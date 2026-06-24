@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Al-Mutawakil · Islamic Library</title>
+  <meta name="description" content="Classical Islamic texts — freely available to read and download." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text-primary: #1a1a18;
+      --text-secondary: #5c5c58;
+      --text-tertiary: #999890;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f6f5f0;
+      --bg-tertiary: #eeecea;
+      --border: rgba(0,0,0,0.1);
+      --border-strong: rgba(0,0,0,0.18);
+      --accent: #3B6D11;
+      --accent-light: #EAF3DE;
+      --accent-text: #27500A;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-serif: 'Amiri', Georgia, serif;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text-primary: #f0ede6;
+        --text-secondary: #a09e96;
+        --text-tertiary: #6b6960;
+        --bg-primary: #1a1917;
+        --bg-secondary: #222120;
+        --bg-tertiary: #2a2926;
+        --border: rgba(255,255,255,0.08);
+        --border-strong: rgba(255,255,255,0.15);
+        --accent: #97C459;
+        --accent-light: #173404;
+        --accent-text: #C0DD97;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--bg-primary);
+      border-bottom: 0.5px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .logo { text-decoration: none; display: flex; flex-direction: column; gap: 0; }
+    .logo-arabic {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .logo-en {
+      font-size: 10px;
+      color: var(--text-tertiary);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    nav { display: flex; gap: 1.5rem; align-items: center; }
+    nav a {
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    nav a:hover { color: var(--text-primary); }
+
+    .hero {
+      padding: 4rem 1.25rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    section { padding: 3rem 1.25rem; max-width: 900px; margin: 0 auto; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text-primary);
+    }
+
+    .section-count { font-size: 13px; color: var(--text-tertiary); }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 1rem;
+    }
+
+    .book-card {
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color 0.15s;
+    }
+
+    .book-card:hover { border-color: var(--border-strong); }
+
+    .book-cover {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--bg-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .book-cover img { width: 100%; height: 100%; object-fit: cover; }
+
+    .book-cover-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .book-cover-placeholder svg {
+      width: 40px;
+      height: 40px;
+      color: var(--text-tertiary);
+    }
+
+    .book-spine {
+      font-family: var(--font-serif);
+      font-size: 13px;
+      color: var(--text-tertiary);
+      text-align: center;
+      padding: 0 1rem;
+      line-height: 1.4;
+    }
+
+    .book-info { padding: 0.875rem 1rem 1rem; }
+
+    .book-category {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .book-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+    }
+
+    .book-actions { display: flex; gap: 6px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: var(--radius-md);
+      border: 0.5px solid var(--border-strong);
+      background: transparent;
+      color: var(--text-secondary);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+
+    .btn:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+
+    .btn-primary {
+      background: var(--accent-light);
+      color: var(--accent-text);
+      border-color: transparent;
+    }
+
+    .btn-primary:hover { background: var(--accent); color: #fff; }
+
+    .about-strip {
+      background: var(--bg-primary);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .about-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem;
+    }
+
+    .about-strip h2 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .about-strip p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    .yt-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--accent-text);
+      text-decoration: none;
+      margin-top: 0.75rem;
+      border: 0.5px solid var(--border-strong);
+      padding: 6px 12px;
+      border-radius: var(--radius-md);
+    }
+
+    .yt-link:hover { background: var(--bg-tertiary); }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1.25rem;
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    @media (max-width: 600px) {
+      nav { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-arabic">المتوكل</span>
+        <span class="logo-en">Al-Mutawakil · Islamic Library</span>
+      </a>
+      <nav>
+        <a href="#books">Books</a>
+        <a href="#about">About</a>
+        <a href="https://www.youtube.com/@al-Mutawakkil6" target="_blank" rel="noopener">YouTube ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Free Islamic Texts</div>
+    <h1>Classical Islamic works,<br/>freely available.</h1>
+    <p>
+      Translations of ʿAqīdah, Fiqh, and Hadith texts from the scholars of the Salaf —
+      free to read and download, wherever you are in the world.
+    </p>
+  </div>
+
+  <section id="books">
+    <div class="section-header">
+      <h2 class="section-title">Library</h2>
+      <span class="section-count">12 books</span>
+    </div>
+
+    <div class="books-grid">
+
+      <!-- BOOK 1 — Dhikr & Dua -->
+      <div class="book-card">
+        <div class="book-cover">
+          <div class="book-cover-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="book-spine">Dhikr &amp; Duʿāʾ</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-category">Duʿāʾ</div>
+          <div class="book-title">Dhikr &amp; Duʿāʾ</div>
+          <div class="book-actions">
+            <a href="pdfs/dhikr-and-dua.pdf" class="btn btn-primary" download>↓ PDF</a>
+            <a href="https://a.co/d/01yjdLyI" class="btn" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOK 2 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <div class="book-cover-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="book-spine">Book Title</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-category">ʿAqīdah</div>
+          <div class="book-title">Title of Book Two</div>
+          <div class="book-actions">
+            <a href="pdfs/book2.pdf" class="btn btn-primary" download>↓ PDF</a>
+            <a href="https://www.amazon.com/dp/B0CVL9P7XX?binding=paperback&qid=1782278653&sr=8-1&ref=dbs_dp_rwt_sb_pc_tpbk" class="btn" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOK 3 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <div class="book-cover-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="book-spine">Book Title</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-category">Hadith</div>
+          <div class="book-title">Title of Book Three</div>
+          <div class="book-actions">
+            <a href="pdfs/book3.pdf" class="btn btn-primary" download>↓ PDF</a>
+            <a href="https://www.amazon.com/dp/B0CVL9P7XX?binding=paperback&qid=1782278653&sr=8-1&ref=dbs_dp_rwt_sb_pc_tpbk" class="btn" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOK 4 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <div class="book-cover-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="book-spine">Book Title</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-category">Fiqh</div>
+          <div class="book-title">Title of Book Four</div>
+          <div class="book-actions">
+            <a href="pdfs/book4.pdf" class="btn btn-primary" download>↓ PDF</a>
+            <a href="https://www.amazon.com/dp/B0CVL9P7XX?binding=paperback&qid=1782278653&sr=8-1&ref=dbs_dp_rwt_sb_pc_tpbk" class="btn" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOK 5 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <div class="book-cover-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="book-spine">Book Title</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-category">ʿAqīdah</div>
+          <div class="book-title">Title of Book Five</div>
+          <div class="book-actions">
+            <a href="pdfs/book5.pdf" class="btn btn-primary" download>↓ PDF</a>
+            <a href="https://www.amazon.com/dp/B0CVL9P7XX?binding=paperback&qid=1782278653&sr=8-1&ref=dbs_dp_rwt_sb_pc_tpbk" class="btn" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOK 6 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <div class="book-cover-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="book-spine">Book Title</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-category">History</div>
+          <div class="book-title">Title of Book Six</div>
+          <div class="book-actions">
+            <a href="pdfs/book6.pdf" class="btn btn-primary" download>↓ PDF</a>
+            <a href="https://www.amazon.com/dp/B0CVL9P7XX?binding=paperback&qid=1782278653&sr=8-1&ref=dbs_dp_rwt_sb_pc_tpbk" class="btn" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOK 7 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <div class="book-cover-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="book-spine">Book Title</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-category">ʿAqīdah</div>
+          <div class="book-title">Title of Book Seven</div>
+          <div class="book-actions">
+            <a href="pdfs/book7.pdf" class="btn btn-primary" download>↓ PDF</a>
+            <a href="https://www.amazon.com/dp/B0CVL9P7XX?binding=paperback&qid=1782278653&sr=8-1&ref=dbs_dp_rwt_sb_pc_tpbk" class="btn" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOK 8 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <div class="book-cover-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="book-spine">Book Title</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-category">Fiqh</div>
+          <div class="book-title">Title of Book Eight</div>
+          <div class="book-actions">
+            <a href="pdfs/book8.pdf" class="btn btn-primary" download>↓ PDF</a>
+            <a href="https://www.amazon.com/dp/B0CVL9P7XX?binding=paperback&qid=1782278653&sr=8-1&ref=dbs_dp_rwt_sb_pc_tpbk" class="btn" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOK 9 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <div class="book-cover-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="book-spine">Book Title</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-category">Hadith</div>
+          <div class="book-title">Title of Book Nine</div>
+          <div class="book-actions">
+            <a href="pdfs/book9.pdf" class="btn btn-primary" download>↓ PDF</a>
+            <a href="https://www.amazon.com/dp/B0CVL9P7XX?binding=paperback&qid=1782278653&sr=8-1&ref=dbs_dp_rwt_sb_pc_tpbk" class="btn" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOK 10 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <div class="book-cover-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="book-spine">Book Title</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-category">ʿAqīdah</div>
+          <div class="book-title">Title of Book Ten</div>
+          <div class="book-actions">
+            <a href="pdfs/book10.pdf" class="btn btn-primary" download>↓ PDF</a>
+            <a href="https://www.amazon.com/dp/B0CVL9P7XX?binding=paperback&qid=1782278653&sr=8-1&ref=dbs_dp_rwt_sb_pc_tpbk" class="btn" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOK 11 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <div class="book-cover-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="book-spine">Book Title</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-category">ʿAqīdah</div>
+          <div class="book-title">Title of Book Eleven</div>
+          <div class="book-actions">
+            <a href="pdfs/book11.pdf" class="btn btn-primary" download>↓ PDF</a>
+            <a href="https://www.amazon.com/dp/B0CVL9P7XX?binding=paperback&qid=1782278653&sr=8-1&ref=dbs_dp_rwt_sb_pc_tpbk" class="btn" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOK 12 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <div class="book-cover-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="book-spine">Book Title</span>
+          </div>
+        </div>
+        <div class="book-info">
+          <div class="book-category">ʿAqīdah</div>
+          <div class="book-title">Title of Book Twelve</div>
+          <div class="book-actions">
+            <a href="pdfs/book12.pdf" class="btn btn-primary" download>↓ PDF</a>
+            <a href="https://www.amazon.com/dp/B0CVL9P7XX?binding=paperback&qid=1782278653&sr=8-1&ref=dbs_dp_rwt_sb_pc_tpbk" class="btn" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="about-strip" id="about">
+    <div class="about-inner">
+      <h2>About</h2>
+      <p>
+        Classical Islamic texts made freely available in English — for anyone who wants to read them,
+        wherever they are. Everything here is free. May Allāh accept it.
+      </p>
+      <a href="https://www.youtube.com/@al-Mutawakkil6" class="yt-link" target="_blank" rel="noopener">
+        ▶ YouTube channel
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <p>Al-Mutawakil · All PDFs freely available</p>
+  </footer>
+
+</body>
+</html>

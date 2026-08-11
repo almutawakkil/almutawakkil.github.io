@@ -1,0 +1,45 @@
+HOW TO UPDATE THE AL-MUTAWAKIL WEBSITE
+
+FILES
+-----
+index.html
+pdfs/
+  words-that-endure.pdf
+  dhikr-and-dua.pdf
+  50-hadith-nawawi-ibn-rajab.pdf
+
+HOW PDF UPDATES WORK
+--------------------
+Each "Click here to read" link points to one fixed PDF filename.
+
+When you publish a revised edition:
+1. Export the revised book as a PDF.
+2. Give it the SAME filename as the existing PDF.
+3. In GitHub, replace the old PDF inside the /pdfs/ folder.
+4. Commit the change.
+
+The website link does not need to change. Anyone clicking it will open the updated PDF.
+
+IMPORTANT
+---------
+Keep these filenames exactly the same unless you also update index.html:
+
+words-that-endure.pdf
+dhikr-and-dua.pdf
+50-hadith-nawawi-ibn-rajab.pdf
+
+AMAZON LINKS
+------------
+The Amazon links are stored directly in index.html.
+If an Amazon listing ever changes, replace only that book's Amazon URL.
+
+CURRENT AMAZON LINKS
+--------------------
+Words That Endure:
+https://a.co/d/07mAeaLn
+
+Dhikr & Dua:
+https://a.co/d/0bremT46
+
+50 Hadith of an-Nawawi and Ibn Rajab:
+https://a.co/d/03ob5qBl

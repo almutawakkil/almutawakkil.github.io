@@ -93,13 +93,53 @@
       .read-link { color: #b8d98d; }
       .amazon-link:hover { color: #f2efe8; }
     }
+        .top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+  padding-bottom: 4px;
+}
+
+nav a {
+  color: #6e6d67;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover,
+nav a.active {
+  color: #27500a;
+}
+
+@media (max-width: 520px) {
+  .top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
   </style>
 </head>
 <body>
   <main class="wrap">
     <header>
-      <h1 class="arabic">المتوكل</h1>
-      <p class="subtitle">Islamic Library</p>
+      <div class="top">
+        <div>
+          <h1 class="arabic">المتوكل</h1>
+          <p class="subtitle">Islamic Library</p>
+        </div>
+    
+        <nav>
+          <a href="index.html" class="active">Books</a>
+          <a href="excerpts.html">Excerpts</a>
+        </nav>
+      </div>
     </header>
 
 

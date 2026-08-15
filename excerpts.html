@@ -5,11 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Excerpts · Al-Mutawakkil</title>
-  <meta name="description" content="Selected excerpts from classical Islamic works." />
+  <meta
+    name="description"
+    content="Selected excerpts from classical Islamic works, freely available to read."
+  />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
     *, *::before, *::after {
@@ -18,7 +25,7 @@
 
     body {
       margin: 0;
-      font-family: Inter, system-ui, sans-serif;
+      font-family: "Amiri", Georgia, serif;
       background: #f6f5f0;
       color: #1a1a18;
       line-height: 1.7;
@@ -29,6 +36,8 @@
       margin: 0 auto;
       padding: 56px 20px 72px;
     }
+
+    /* Header */
 
     header {
       margin-bottom: 42px;
@@ -42,7 +51,7 @@
     }
 
     .arabic {
-      font-family: Amiri, Georgia, serif;
+      font-family: "Amiri", Georgia, serif;
       font-size: 36px;
       line-height: 1.1;
       margin: 0;
@@ -50,6 +59,7 @@
     }
 
     .subtitle {
+      font-family: Inter, system-ui, sans-serif;
       margin: 5px 0 0;
       color: #6e6d67;
       font-size: 14px;
@@ -59,6 +69,7 @@
       display: flex;
       gap: 18px;
       padding-bottom: 4px;
+      font-family: Inter, system-ui, sans-serif;
     }
 
     nav a {
@@ -72,18 +83,23 @@
       color: #27500a;
     }
 
+    /* Page heading */
+
     .page-heading {
-      font-family: Amiri, Georgia, serif;
+      font-family: "Amiri", Georgia, serif;
       font-size: 32px;
       font-weight: 400;
       margin: 0 0 6px;
     }
 
     .page-description {
+      font-family: "Amiri", Georgia, serif;
       color: #6e6d67;
-      font-size: 15px;
+      font-size: 17px;
       margin: 0 0 30px;
     }
+
+    /* Excerpt cards */
 
     .excerpt-card {
       background: #fff;
@@ -94,28 +110,23 @@
     }
 
     .excerpt-card h2 {
-      font-family: Amiri, Georgia, serif;
-      font-size: 26px;
-      line-height: 1.3;
+      font-family: "Amiri", Georgia, serif;
+      font-size: 27px;
+      line-height: 1.4;
       font-weight: 400;
-      margin: 0 0 5px;
+      margin: 0 0 3px;
     }
 
     .source {
-      color: #8a8983;
-      font-size: 13px;
-      margin-bottom: 13px;
-    }
-
-    .excerpt-card p {
-      margin: 0;
-      color: #4f4e49;
-      font-size: 15px;
+      font-family: "Amiri", Georgia, serif;
+      color: #77756e;
+      font-size: 17px;
+      margin-bottom: 14px;
     }
 
     .read-link {
       display: inline-block;
-      margin-top: 18px;
+      font-family: Inter, system-ui, sans-serif;
       color: #27500a;
       text-decoration: none;
       font-size: 14px;
@@ -126,11 +137,17 @@
       text-decoration: underline;
     }
 
+    /* Footer */
+
     footer {
+      font-family: Inter, system-ui, sans-serif;
       margin-top: 36px;
       color: #999890;
       font-size: 12px;
+      line-height: 1.6;
     }
+
+    /* Mobile */
 
     @media (max-width: 520px) {
       .top {
@@ -139,6 +156,8 @@
         gap: 15px;
       }
     }
+
+    /* Dark mode */
 
     @media (prefers-color-scheme: dark) {
       body {
@@ -151,14 +170,11 @@
         border-color: rgba(255,255,255,.08);
       }
 
-      .excerpt-card p {
-        color: #b3b0a8;
-      }
-
       .subtitle,
       .page-description,
-      nav a {
-        color: #8f8c84;
+      nav a,
+      .source {
+        color: #9b9890;
       }
 
       nav a:hover,
@@ -171,7 +187,10 @@
 </head>
 
 <body>
+
   <main class="wrap">
+
+    <!-- HEADER -->
 
     <header>
       <div class="top">
@@ -189,6 +208,9 @@
       </div>
     </header>
 
+
+    <!-- PAGE TITLE -->
+
     <h2 class="page-heading">Excerpts</h2>
 
     <p class="page-description">
@@ -196,14 +218,14 @@
     </p>
 
 
-    <!-- EXCERPT 1 -->
+    <!-- 1. AL-MUWATTA -->
 
     <article class="excerpt-card">
 
-      <h2>كتاب الجامع من الموطأ</h2>
+      <h2 dir="rtl">كتاب الجامع من الموطأ</h2>
 
-      <div class="source">
-        موطأ الإمام مالك رحمه الله
+      <div class="source" dir="rtl">
+        موطأ الإمام مالك رحمه الله
       </div>
 
       <a
@@ -217,13 +239,133 @@
     </article>
 
 
-    <!--
-      ADD FUTURE EXCERPTS HERE.
+    <!-- 2. JAMI OF ABD AL-RAZZAQ -->
 
-      Copy the <article>...</article> section above,
-      then change the title, source, description, and PDF filename.
-    -->
+    <article class="excerpt-card">
 
+      <h2 dir="rtl">كتاب الجامع</h2>
+
+      <div class="source" dir="rtl">
+        مصنف عبد الرزاق
+      </div>
+
+      <a
+        class="read-link"
+        href="pdfs/jami-abdulRazzaq.pdf"
+        target="_blank"
+        rel="noopener">
+        Click here to read
+      </a>
+
+    </article>
+
+
+    <!-- 3. FAITH & KNOWLEDGE — AL-BUKHARI -->
+
+    <article class="excerpt-card">
+
+      <h2>Faith &amp; Knowledge</h2>
+
+      <div class="source">
+        Ṣaḥīḥ al-Bukhārī
+      </div>
+
+      <a
+        class="read-link"
+        href="pdfs/faith-knowledge-bukhari.pdf"
+        target="_blank"
+        rel="noopener">
+        Click here to read
+      </a>
+
+    </article>
+
+
+    <!-- 4. TAWHID — AL-BUKHARI -->
+
+    <article class="excerpt-card">
+
+      <h2 dir="rtl">كتاب التوحيد</h2>
+
+      <div class="source">
+        Ṣaḥīḥ al-Bukhārī
+      </div>
+
+      <a
+        class="read-link"
+        href="pdfs/tawhid-bukhari.pdf"
+        target="_blank"
+        rel="noopener">
+        Click here to read
+      </a>
+
+    </article>
+
+
+    <!-- 5. IMAN — MUSLIM -->
+
+    <article class="excerpt-card">
+
+      <h2 dir="rtl">كتاب الإيمان</h2>
+
+      <div class="source">
+        Ṣaḥīḥ Muslim
+      </div>
+
+      <a
+        class="read-link"
+        href="pdfs/iman-muslim.pdf"
+        target="_blank"
+        rel="noopener">
+        Click here to read
+      </a>
+
+    </article>
+
+
+    <!-- 6. SUNNAH — IBN MAJAH -->
+
+    <article class="excerpt-card">
+
+      <h2 dir="rtl">كتاب السنة</h2>
+
+      <div class="source">
+        Sunan Ibn Mājah
+      </div>
+
+      <a
+        class="read-link"
+        href="pdfs/sunnah-ibnmajah.pdf"
+        target="_blank"
+        rel="noopener">
+        Click here to read
+      </a>
+
+    </article>
+
+
+    <!-- 7. SUNNAH — ABU DAWUD -->
+
+    <article class="excerpt-card">
+
+      <h2 dir="rtl">كتاب السنة</h2>
+
+      <div class="source">
+        Sunan Abī Dāwūd
+      </div>
+
+      <a
+        class="read-link"
+        href="pdfs/sunnah-abudawood.pdf"
+        target="_blank"
+        rel="noopener">
+        Click here to read
+      </a>
+
+    </article>
+
+
+    <!-- FOOTER -->
 
     <footer>
       Please share the website link when possible, so readers can access
@@ -231,5 +373,6 @@
     </footer>
 
   </main>
+
 </body>
 </html>

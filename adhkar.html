@@ -132,13 +132,30 @@
       text-align: right;
     }
 
-    /* NOTE */
+    /* SOURCE NOTE */
 
     .note {
       margin-top: 32px;
       color: #8b8982;
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.8;
+    }
+
+    .note p {
+      margin: 0 0 8px;
+    }
+
+    .note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .source-key {
+      direction: ltr;
+      unicode-bidi: isolate;
+    }
+
+    .source-key span {
+      white-space: nowrap;
     }
 
     .note a {
@@ -255,11 +272,28 @@
     </div>
 
 
-    <p class="note">
-      For translations, sources, and additional details, see
-      <a href="pdfs/dhikr-and-dua.pdf" target="_blank" rel="noopener">
-        Dhikr &amp; Dua</a>.
-    </p>
+    <div class="note">
+
+      <p class="source-key">
+        Source abbreviations:
+        <span>خ — al-Bukhari</span> ·
+        <span>م — Muslim</span> ·
+        <span>ت — al-Tirmidhi</span> ·
+        <span>حم — Ahmad</span> ·
+        <span>س — al-Nasa'i</span> ·
+        <span>بخ — al-Adab al-Mufrad</span>
+      </p>
+
+      <p>
+        These abbreviations indicate the cited source and are not intended as a comprehensive listing of every source in which a narration appears.
+      </p>
+
+      <p>
+        For translations, sources, and additional narrations, see
+        <a href="pdfs/dhikr-and-dua.pdf" target="_blank" rel="noopener">Dhikr &amp; Dua</a>.
+      </p>
+
+    </div>
 
   </main>
 

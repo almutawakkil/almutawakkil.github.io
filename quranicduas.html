@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>الأدعية القرآنية · Al-Mutawakkil</title>
+
   <meta
     name="description"
     content="Duʿāʾ and dhikr from the Qurʾān, presented for easy reading and reflection."
   />
 
-  <!-- Amiri only -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <link
     href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap"
     rel="stylesheet"
@@ -42,6 +43,7 @@
       min-height: 100vh;
       margin: 0 auto;
       padding: 42px 20px 32px;
+
       display: flex;
       flex-direction: column;
     }
@@ -49,7 +51,10 @@
     /* HEADER */
 
     header {
-      margin-bottom: 28px;
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto 28px;
+      direction: ltr;
     }
 
     .top {
@@ -59,7 +64,7 @@
       gap: 24px;
     }
 
-    .brand-arabic {
+    .arabic {
       font-family: "Amiri", Georgia, serif;
       font-size: 36px;
       line-height: 1.1;
@@ -67,15 +72,16 @@
       font-weight: 400;
     }
 
-    .brand-subtitle {
+    .subtitle {
       margin: 5px 0 0;
-      color: #77756e;
-      font-size: 15px;
+      color: #6e6d67;
+      font-size: 16px;
     }
 
     nav {
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 18px;
       padding-bottom: 4px;
     }
@@ -106,6 +112,7 @@
     .dua-card {
       width: 100%;
       min-height: 430px;
+
       background: #fff;
       border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 18px;
@@ -135,8 +142,6 @@
       color: #1a1a18;
     }
 
-    /* Automatically used for longer selections */
-
     .dua-text.medium {
       font-size: clamp(27px, 4.4vw, 38px);
       line-height: 1.9;
@@ -160,6 +165,7 @@
       margin-top: 34px;
 
       display: flex;
+      direction: ltr;
       align-items: center;
       justify-content: space-between;
     }
@@ -178,6 +184,7 @@
       cursor: pointer;
 
       border-radius: 10px;
+
       transition:
         color 0.15s ease,
         background 0.15s ease,
@@ -204,6 +211,7 @@
       }
 
       header {
+        max-width: none;
         margin-bottom: 18px;
       }
 
@@ -213,7 +221,7 @@
         gap: 14px;
       }
 
-      .brand-arabic {
+      .arabic {
         font-size: 32px;
       }
 
@@ -268,7 +276,7 @@
         color: #f2efe8;
       }
 
-      .brand-subtitle,
+      .subtitle,
       nav a,
       .arrow {
         color: #9b9890;
@@ -300,14 +308,12 @@
 
   <main class="wrap">
 
-    <!-- HEADER -->
-
     <header>
       <div class="top">
 
         <div>
-          <h1 class="brand-arabic">المتوكل</h1>
-          <p class="brand-subtitle">Islamic Library</p>
+          <h1 class="arabic">المتوكل</h1>
+          <p class="subtitle">Islamic Library</p>
         </div>
 
         <nav>
@@ -320,8 +326,6 @@
       </div>
     </header>
 
-
-    <!-- DU'A READER -->
 
     <section class="reader">
 
@@ -495,8 +499,6 @@
     });
 
 
-    /* Keyboard arrow support */
-
     document.addEventListener("keydown", function (event) {
 
       if (event.key === "ArrowLeft" && currentIndex > 0) {
@@ -512,14 +514,14 @@
     });
 
 
-    /* Simple mobile swipe support */
-
     let touchStartX = 0;
     let touchEndX = 0;
+
 
     document.addEventListener("touchstart", function (event) {
       touchStartX = event.changedTouches[0].screenX;
     }, { passive: true });
+
 
     document.addEventListener("touchend", function (event) {
 

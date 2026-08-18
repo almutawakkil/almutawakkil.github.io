@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>الأذكار · Al-Mutawakkil</title>
+
+  <meta
+    name="description"
+    content="A collection of Qur'anic supplications, prophetic du'as, and daily adhkar."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Amiri", Georgia, serif;
+      background: #f6f5f0;
+      color: #1a1a18;
+      line-height: 1.7;
+    }
+
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 56px 20px 72px;
+    }
+
+    /* HEADER */
+
+    header {
+      margin-bottom: 44px;
+    }
+
+    .top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 36px;
+      line-height: 1.1;
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .subtitle {
+      margin: 5px 0 0;
+      color: #77756e;
+      font-size: 15px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding-bottom: 4px;
+    }
+
+    nav a {
+      color: #6e6d67;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #27500a;
+    }
+
+    /* PAGE */
+
+    .page-heading {
+      font-size: 34px;
+      font-weight: 400;
+      margin: 0 0 6px;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .page-description {
+      color: #6e6d67;
+      font-size: 17px;
+      margin: 0 0 32px;
+    }
+
+    /* CARDS */
+
+    .adhkar-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .adhkar-card {
+      display: block;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.09);
+      border-radius: 14px;
+      padding: 24px 26px;
+      text-decoration: none;
+      color: #1a1a18;
+
+      transition:
+        border-color .15s ease,
+        transform .15s ease;
+    }
+
+    .adhkar-card:hover {
+      border-color: rgba(0,0,0,.2);
+      transform: translateY(-1px);
+    }
+
+    .adhkar-card h2 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 400;
+      direction: rtl;
+      text-align: right;
+    }
+
+    /* NOTE */
+
+    .note {
+      margin-top: 32px;
+      color: #8b8982;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .note a {
+      color: #27500a;
+      text-decoration: none;
+    }
+
+    .note a:hover {
+      text-decoration: underline;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 520px) {
+      .top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .wrap {
+        padding: 32px 16px 50px;
+      }
+
+      .brand {
+        font-size: 32px;
+      }
+    }
+
+    /* DARK MODE */
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1b1a18;
+        color: #f2efe8;
+      }
+
+      .adhkar-card {
+        background: #22211f;
+        border-color: rgba(255,255,255,.08);
+        color: #f2efe8;
+      }
+
+      .subtitle,
+      .page-description,
+      nav a,
+      .note {
+        color: #9b9890;
+      }
+
+      nav a:hover,
+      nav a.active,
+      .note a {
+        color: #b8d98d;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="wrap">
+
+    <header>
+      <div class="top">
+
+        <div>
+          <h1 class="brand">المتوكل</h1>
+          <p class="subtitle">Islamic Library</p>
+        </div>
+
+        <nav>
+          <a href="index.html">Books</a>
+          <a href="excerpts.html">Classical Excerpts</a>
+          <a href="adhkar.html" class="active" lang="ar" dir="rtl">الأذكار</a>
+        </nav>
+
+      </div>
+    </header>
+
+
+    <h2 class="page-heading" lang="ar">
+      الأذكار
+    </h2>
+
+    <p class="page-description">
+      A simple collection for regular reading and remembrance.
+    </p>
+
+
+    <div class="adhkar-grid">
+
+      <a class="adhkar-card" href="quranicduas.html">
+        <h2 lang="ar">أدعية وأذكار من القرآن</h2>
+      </a>
+
+      <a class="adhkar-card" href="morning.html">
+        <h2 lang="ar">أذكار الصباح</h2>
+      </a>
+
+      <a class="adhkar-card" href="evening.html">
+        <h2 lang="ar">أذكار المساء</h2>
+      </a>
+
+      <a class="adhkar-card" href="sleep.html">
+        <h2 lang="ar">أذكار النوم</h2>
+      </a>
+
+      <a class="adhkar-card" href="afterprayer.html">
+        <h2 lang="ar">أذكار دبر الصلاة</h2>
+      </a>
+
+      <a class="adhkar-card" href="propheticduas.html">
+        <h2 lang="ar">الأدعية النبوية</h2>
+      </a>
+
+    </div>
+
+
+    <p class="note">
+      For translations, sources, and additional details, see
+      <a href="pdfs/dhikr-and-dua.pdf" target="_blank" rel="noopener">
+        Dhikr &amp; Duʿāʾ
+      </a>.
+    </p>
+
+  </main>
+
+</body>
+</html>

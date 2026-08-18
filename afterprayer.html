@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>أذكار دبر الصلاة · Al-Mutawakkil</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Amiri", Georgia, serif;
+      background: #f6f5f0;
+      color: #1a1a18;
+      line-height: 1.7;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 900px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 42px 20px 32px;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+
+    header {
+      margin-bottom: 28px;
+      direction: ltr;
+    }
+
+    .top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 36px;
+      line-height: 1.1;
+      margin: 0;
+      font-weight: 400;
+      direction: rtl;
+    }
+
+    .subtitle {
+      margin: 5px 0 0;
+      color: #77756e;
+      font-size: 15px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding-bottom: 4px;
+    }
+
+    nav a {
+      color: #6e6d67;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #27500a;
+    }
+
+    /* READER */
+
+    .reader {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 0;
+    }
+
+    .dhikr-card {
+      width: 100%;
+      min-height: 430px;
+
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 18px;
+
+      padding: 46px 42px 34px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dhikr-text {
+      width: 100%;
+      max-width: 760px;
+      margin: auto 0;
+
+      font-size: clamp(31px, 5vw, 44px);
+      line-height: 2;
+      font-weight: 400;
+
+      direction: rtl;
+      text-align: center;
+    }
+
+    .dhikr-text.medium {
+      font-size: clamp(27px, 4.4vw, 38px);
+      line-height: 1.9;
+    }
+
+    .dhikr-text.long {
+      font-size: clamp(23px, 3.8vw, 32px);
+      line-height: 1.85;
+    }
+
+    .dhikr-text.very-long {
+      font-size: clamp(19px, 3vw, 27px);
+      line-height: 1.75;
+    }
+
+    /* ARROWS */
+
+    .controls {
+      width: 100%;
+      max-width: 260px;
+      margin-top: 34px;
+
+      display: flex;
+      direction: ltr;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .arrow {
+      font-family: "Amiri", Georgia, serif;
+      appearance: none;
+      border: none;
+      background: transparent;
+      color: #77756e;
+
+      font-size: 34px;
+      line-height: 1;
+
+      padding: 10px 16px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .arrow:hover {
+      color: #27500a;
+      background: rgba(0,0,0,.035);
+    }
+
+    .arrow:disabled {
+      opacity: .22;
+      cursor: default;
+      background: transparent;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+      .wrap {
+        padding: 28px 14px 18px;
+      }
+
+      header {
+        margin-bottom: 18px;
+      }
+
+      .top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .brand {
+        font-size: 32px;
+      }
+
+      nav {
+        gap: 14px;
+      }
+
+      nav a {
+        font-size: 15px;
+      }
+
+      .dhikr-card {
+        min-height: calc(100vh - 190px);
+        border-radius: 14px;
+        padding: 28px 20px 22px;
+      }
+
+      .dhikr-text {
+        font-size: clamp(29px, 8.5vw, 38px);
+        line-height: 1.95;
+      }
+
+      .dhikr-text.medium {
+        font-size: clamp(25px, 7.3vw, 33px);
+      }
+
+      .dhikr-text.long {
+        font-size: clamp(21px, 6vw, 28px);
+      }
+
+      .dhikr-text.very-long {
+        font-size: clamp(17px, 4.7vw, 23px);
+      }
+    }
+
+    /* DARK MODE */
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1b1a18;
+        color: #f2efe8;
+      }
+
+      .dhikr-card {
+        background: #22211f;
+        border-color: rgba(255,255,255,.08);
+      }
+
+      .subtitle,
+      nav a,
+      .arrow {
+        color: #9b9890;
+      }
+
+      nav a:hover,
+      nav a.active,
+      .arrow:hover {
+        color: #b8d98d;
+      }
+
+      .arrow:hover {
+        background: rgba(255,255,255,.04);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="wrap">
+
+    <header>
+
+      <div class="top">
+
+        <div>
+          <h1 class="brand">المتوكل</h1>
+          <p class="subtitle">Islamic Library</p>
+        </div>
+
+        <nav>
+          <a href="index.html">Books</a>
+          <a href="excerpts.html">Classical Excerpts</a>
+          <a href="adhkar.html" class="active">الأذكار</a>
+        </nav>
+
+      </div>
+
+    </header>
+
+
+    <section class="reader">
+
+      <div class="dhikr-card">
+
+        <div
+          id="dhikrText"
+          class="dhikr-text">
+        </div>
+
+        <div class="controls">
+
+          <button
+            id="previousButton"
+            class="arrow"
+            type="button"
+            aria-label="Previous">
+            ←
+          </button>
+
+          <button
+            id="nextButton"
+            class="arrow"
+            type="button"
+            aria-label="Next">
+            →
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    const adhkar = [
+
+      `ضع الذكر الأول هنا`,
+
+      `ضع الذكر الثاني هنا`,
+
+      `ضع الذكر الثالث هنا`
+
+    ];
+
+
+    let currentIndex = 0;
+
+    const dhikrText =
+      document.getElementById("dhikrText");
+
+    const previousButton =
+      document.getElementById("previousButton");
+
+    const nextButton =
+      document.getElementById("nextButton");
+
+
+    function renderDhikr() {
+
+      const text = adhkar[currentIndex];
+
+      dhikrText.textContent = text;
+
+      dhikrText.className = "dhikr-text";
+
+      if (text.length > 500) {
+        dhikrText.classList.add("very-long");
+      }
+
+      else if (text.length > 200) {
+        dhikrText.classList.add("long");
+      }
+
+      else if (text.length > 130) {
+        dhikrText.classList.add("medium");
+      }
+
+      previousButton.disabled =
+        currentIndex === 0;
+
+      nextButton.disabled =
+        currentIndex === adhkar.length - 1;
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    previousButton.addEventListener(
+      "click",
+      function () {
+
+        if (currentIndex > 0) {
+          currentIndex--;
+          renderDhikr();
+        }
+
+      }
+    );
+
+
+    nextButton.addEventListener(
+      "click",
+      function () {
+
+        if (currentIndex < adhkar.length - 1) {
+          currentIndex++;
+          renderDhikr();
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      function (event) {
+
+        if (
+          event.key === "ArrowLeft" &&
+          currentIndex > 0
+        ) {
+          currentIndex--;
+          renderDhikr();
+        }
+
+        if (
+          event.key === "ArrowRight" &&
+          currentIndex < adhkar.length - 1
+        ) {
+          currentIndex++;
+          renderDhikr();
+        }
+
+      }
+    );
+
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+
+    document.addEventListener(
+      "touchstart",
+      function (event) {
+
+        touchStartX =
+          event.changedTouches[0].screenX;
+
+      },
+      { passive: true }
+    );
+
+
+    document.addEventListener(
+      "touchend",
+      function (event) {
+
+        touchEndX =
+          event.changedTouches[0].screenX;
+
+        const difference =
+          touchEndX - touchStartX;
+
+        if (Math.abs(difference) < 60) {
+          return;
+        }
+
+        if (
+          difference < 0 &&
+          currentIndex < adhkar.length - 1
+        ) {
+          currentIndex++;
+          renderDhikr();
+        }
+
+        if (
+          difference > 0 &&
+          currentIndex > 0
+        ) {
+          currentIndex--;
+          renderDhikr();
+        }
+
+      },
+      { passive: true }
+    );
+
+
+    renderDhikr();
+
+  </script>
+
+</body>
+</html>

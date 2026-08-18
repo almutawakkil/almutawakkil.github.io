@@ -148,7 +148,7 @@
       line-height: 1.75;
     }
 
-    /* ARROWS */
+    /* ARROWS + SOURCE */
 
     .controls {
       width: 100%;
@@ -185,6 +185,17 @@
       opacity: .22;
       cursor: default;
       background: transparent;
+    }
+
+    .source-marker {
+      font-family: "Amiri", Georgia, serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #9a9891;
+      direction: rtl;
+      unicode-bidi: isolate;
+      text-align: center;
+      min-width: 40px;
     }
 
     /* MOBILE */
@@ -239,6 +250,10 @@
       .dhikr-text.very-long {
         font-size: clamp(17px, 4.7vw, 23px);
       }
+
+      .source-marker {
+        font-size: 15px;
+      }
     }
 
     /* DARK MODE */
@@ -256,7 +271,8 @@
 
       .subtitle,
       nav a,
-      .arrow {
+      .arrow,
+      .source-marker {
         color: #9b9890;
       }
 
@@ -315,6 +331,11 @@
             ←
           </button>
 
+          <span
+            id="sourceMarker"
+            class="source-marker">
+          </span>
+
           <button
             id="nextButton"
             class="arrow"
@@ -371,10 +392,30 @@ const adhkar = [
 ];
 
 
+const sources = [
+
+  `م`,
+  `م`,
+  `خ م`,
+  `م`,
+  `د`,
+  `م`,
+  `م`,
+  `م`,
+  `م`,
+  `س`,
+  `س`
+
+];
+
+
     let currentIndex = 0;
 
     const dhikrText =
       document.getElementById("dhikrText");
+
+    const sourceMarker =
+      document.getElementById("sourceMarker");
 
     const previousButton =
       document.getElementById("previousButton");
@@ -388,6 +429,9 @@ const adhkar = [
       const text = adhkar[currentIndex];
 
       dhikrText.textContent = text;
+
+      sourceMarker.textContent =
+        sources[currentIndex];
 
       dhikrText.className = "dhikr-text";
 

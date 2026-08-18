@@ -148,6 +148,34 @@
       line-height: 1.75;
     }
 
+    /* COUNTER */
+
+    .counter {
+      display: none;
+      margin-top: 18px;
+
+      font-family: "Amiri", Georgia, serif;
+      font-size: 21px;
+      line-height: 1.2;
+      font-weight: 400;
+
+      color: #8b8982;
+      direction: ltr;
+      text-align: center;
+
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .counter.complete {
+      color: #27500a;
+    }
+
+    .dhikr-card.countable {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     /* ARROWS AND SOURCE */
 
     .controls {
@@ -251,6 +279,11 @@
         font-size: clamp(17px, 4.7vw, 23px);
       }
 
+      .counter {
+        font-size: 19px;
+        margin-top: 14px;
+      }
+
       .source-marker {
         font-size: 15px;
       }
@@ -272,13 +305,15 @@
       .subtitle,
       nav a,
       .arrow,
-      .source-marker {
+      .source-marker,
+      .counter {
         color: #9b9890;
       }
 
       nav a:hover,
       nav a.active,
-      .arrow:hover {
+      .arrow:hover,
+      .counter.complete {
         color: #b8d98d;
       }
 
@@ -314,11 +349,18 @@
 
     <section class="reader">
 
-      <div class="dhikr-card">
+      <div
+        id="dhikrCard"
+        class="dhikr-card">
 
         <div
           id="dhikrText"
           class="dhikr-text">
+        </div>
+
+        <div
+          id="counter"
+          class="counter">
         </div>
 
         <div class="controls">
@@ -395,8 +437,7 @@
 
 أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي فَاغْفِرْ لِي، فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ`,
 
-      `سُبْحَانَ اللَّهِ وَبِحَمْدِهِ
-(100)`
+      `سُبْحَانَ اللَّهِ وَبِحَمْدِهِ`
 
     ];
 
@@ -418,10 +459,42 @@
     ];
 
 
+    /*
+      Only the final 100-count dhikr has a counter.
+
+      Array indexes begin at 0:
+      10 = سبحان الله وبحمده
+    */
+
+    const countTargets = {
+      10: 100
+    };
+
+
+    /*
+      The count is remembered only while this page remains open.
+      Nothing is saved to localStorage.
+    */
+
+    const counts = {
+      10: 0
+    };
+
+
     let currentIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let swipeJustOccurred = false;
+
+
+    const dhikrCard =
+      document.getElementById("dhikrCard");
 
     const dhikrText =
       document.getElementById("dhikrText");
+
+    const counter =
+      document.getElementById("counter");
 
     const sourceMarker =
       document.getElementById("sourceMarker");
@@ -433,34 +506,106 @@
       document.getElementById("nextButton");
 
 
+    function isCountable() {
+
+      return Object.prototype.hasOwnProperty.call(
+        countTargets,
+        currentIndex
+      );
+
+    }
+
+
+    function renderCounter() {
+
+      if (!isCountable()) {
+
+        counter.style.display = "none";
+        counter.textContent = "";
+        counter.classList.remove("complete");
+        dhikrCard.classList.remove("countable");
+
+        return;
+
+      }
+
+
+      const currentCount =
+        counts[currentIndex];
+
+      const target =
+        countTargets[currentIndex];
+
+
+      counter.style.display = "block";
+      dhikrCard.classList.add("countable");
+
+
+      if (currentCount >= target) {
+
+        counter.textContent =
+          currentCount + " / " + target + " ✓";
+
+        counter.classList.add("complete");
+
+      }
+
+      else {
+
+        counter.textContent =
+          currentCount + " / " + target;
+
+        counter.classList.remove("complete");
+
+      }
+
+    }
+
+
     function renderDhikr() {
 
-      const text = adhkar[currentIndex];
+      const text =
+        adhkar[currentIndex];
+
 
       dhikrText.textContent = text;
+
 
       sourceMarker.textContent =
         sources[currentIndex];
 
+
       dhikrText.className = "dhikr-text";
 
+
       if (text.length > 500) {
+
         dhikrText.classList.add("very-long");
+
       }
 
       else if (text.length > 200) {
+
         dhikrText.classList.add("long");
+
       }
 
       else if (text.length > 130) {
+
         dhikrText.classList.add("medium");
+
       }
+
+
+      renderCounter();
+
 
       previousButton.disabled =
         currentIndex === 0;
 
       nextButton.disabled =
         currentIndex === adhkar.length - 1;
+
 
       window.scrollTo({
         top: 0,
@@ -470,13 +615,52 @@
     }
 
 
+    /*
+      Tap the card to increase the counter.
+
+      Navigation controls never add a count.
+      A swipe also will not accidentally add a count.
+    */
+
+    dhikrCard.addEventListener(
+      "click",
+      function (event) {
+
+        if (
+          swipeJustOccurred ||
+          event.target.closest(".controls") ||
+          !isCountable()
+        ) {
+          return;
+        }
+
+
+        const target =
+          countTargets[currentIndex];
+
+
+        if (counts[currentIndex] < target) {
+
+          counts[currentIndex]++;
+
+          renderCounter();
+
+        }
+
+      }
+    );
+
+
     previousButton.addEventListener(
       "click",
       function () {
 
         if (currentIndex > 0) {
+
           currentIndex--;
+
           renderDhikr();
+
         }
 
       }
@@ -488,8 +672,11 @@
       function () {
 
         if (currentIndex < adhkar.length - 1) {
+
           currentIndex++;
+
           renderDhikr();
+
         }
 
       }
@@ -504,24 +691,27 @@
           event.key === "ArrowLeft" &&
           currentIndex > 0
         ) {
+
           currentIndex--;
+
           renderDhikr();
+
         }
+
 
         if (
           event.key === "ArrowRight" &&
           currentIndex < adhkar.length - 1
         ) {
+
           currentIndex++;
+
           renderDhikr();
+
         }
 
       }
     );
-
-
-    let touchStartX = 0;
-    let touchEndX = 0;
 
 
     document.addEventListener(
@@ -530,6 +720,8 @@
 
         touchStartX =
           event.changedTouches[0].screenX;
+
+        swipeJustOccurred = false;
 
       },
       { passive: true }
@@ -543,28 +735,53 @@
         touchEndX =
           event.changedTouches[0].screenX;
 
+
         const difference =
           touchEndX - touchStartX;
 
+
         if (Math.abs(difference) < 60) {
+
           return;
+
         }
+
+
+        swipeJustOccurred = true;
+
 
         if (
           difference < 0 &&
           currentIndex < adhkar.length - 1
         ) {
+
           currentIndex++;
+
           renderDhikr();
+
         }
+
 
         if (
           difference > 0 &&
           currentIndex > 0
         ) {
+
           currentIndex--;
+
           renderDhikr();
+
         }
+
+
+        setTimeout(
+          function () {
+
+            swipeJustOccurred = false;
+
+          },
+          300
+        );
 
       },
       { passive: true }

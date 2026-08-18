@@ -5,20 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Classical Excerpts · Al-Mutawakkil</title>
+
   <meta
     name="description"
-    content="Selected excerpts from classical Islamic works, freely available to read. All rights reserved."
+    content="Selected excerpts and texts from classical Islamic works, freely available to read."
   />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <link
     href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500&display=swap"
     rel="stylesheet"
   />
 
   <style>
+
     *, *::before, *::after {
       box-sizing: border-box;
     }
@@ -37,7 +40,7 @@
       padding: 56px 20px 72px;
     }
 
-    /* Header */
+    /* HEADER */
 
     header {
       margin-bottom: 42px;
@@ -83,7 +86,7 @@
       color: #27500a;
     }
 
-    /* Page heading */
+    /* PAGE HEADING */
 
     .page-heading {
       font-family: "Amiri", Georgia, serif;
@@ -96,10 +99,25 @@
       font-family: "Amiri", Georgia, serif;
       color: #6e6d67;
       font-size: 17px;
-      margin: 0 0 30px;
+      margin: 0 0 38px;
     }
 
-    /* Excerpt cards */
+    /* SECTION HEADINGS */
+
+    .section-heading {
+      font-family: "Amiri", Georgia, serif;
+      font-size: 25px;
+      font-weight: 400;
+      margin: 42px 0 14px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid rgba(0,0,0,.09);
+    }
+
+    .section-heading:first-of-type {
+      margin-top: 0;
+    }
+
+    /* EXCERPT CARDS */
 
     .excerpt-card {
       background: #fff;
@@ -117,13 +135,6 @@
       margin: 0 0 3px;
     }
 
-    /* Arabic title + source */
-
-    .rtl {
-      direction: rtl;
-      text-align: right;
-    }
-
     .source {
       font-family: "Amiri", Georgia, serif;
       color: #77756e;
@@ -131,7 +142,14 @@
       margin-bottom: 14px;
     }
 
-    /* Read link */
+    /* ARABIC */
+
+    .rtl {
+      direction: rtl;
+      text-align: right;
+    }
+
+    /* READ LINK */
 
     .read-link {
       display: inline-block;
@@ -146,29 +164,32 @@
       text-decoration: underline;
     }
 
-    /* Footer */
+    /* FOOTER */
 
     footer {
       font-family: Inter, system-ui, sans-serif;
-      margin-top: 36px;
+      margin-top: 40px;
       color: #999890;
       font-size: 12px;
       line-height: 1.6;
     }
 
-    /* Mobile */
+    /* MOBILE */
 
     @media (max-width: 520px) {
+
       .top {
         align-items: flex-start;
         flex-direction: column;
         gap: 15px;
       }
+
     }
 
-    /* Dark mode */
+    /* DARK MODE */
 
     @media (prefers-color-scheme: dark) {
+
       body {
         background: #1b1a18;
         color: #f2efe8;
@@ -176,6 +197,10 @@
 
       .excerpt-card {
         background: #22211f;
+        border-color: rgba(255,255,255,.08);
+      }
+
+      .section-heading {
         border-color: rgba(255,255,255,.08);
       }
 
@@ -191,22 +216,27 @@
       .read-link {
         color: #b8d98d;
       }
+
     }
+
   </style>
 </head>
+
 
 <body>
 
   <main class="wrap">
 
+
     <!-- HEADER -->
 
     <header>
+
       <div class="top">
 
         <div>
           <h1 class="arabic">المتوكل</h1>
-          <p class="subtitle">Translated Works & Classical Texts</p>
+          <p class="subtitle">Islamic Library</p>
         </div>
 
         <nav>
@@ -215,16 +245,29 @@
         </nav>
 
       </div>
+
     </header>
 
 
     <!-- PAGE TITLE -->
 
-    <h2 class="page-heading">Classical Excerpts</h2>
+    <h2 class="page-heading">
+      Classical Excerpts
+    </h2>
 
     <p class="page-description">
-      Selected excerpts from classical Islamic works, made freely available to read. All rights reserved.
+      Selected excerpts and texts from classical Islamic works, made freely available to read.
     </p>
+
+
+
+    <!-- ================================================== -->
+    <!-- HADITH                                             -->
+    <!-- ================================================== -->
+
+    <h2 class="section-heading">
+      كتب الحديث المسندة
+    </h2>
 
 
     <!-- 1. AL-MUWATTA -->
@@ -232,7 +275,7 @@
     <article class="excerpt-card">
 
       <h2 class="rtl" lang="ar">
-        كتاب الجامع
+        كتاب الجامع من الموطأ
       </h2>
 
       <div class="source rtl" lang="ar">
@@ -250,7 +293,8 @@
     </article>
 
 
-    <!-- 2. JAMI OF ABD AL-RAZZAQ -->
+
+    <!-- 2. ABD AL-RAZZAQ -->
 
     <article class="excerpt-card">
 
@@ -271,6 +315,7 @@
       </a>
 
     </article>
+
 
 
     <!-- 3. FAITH & KNOWLEDGE — AL-BUKHARI -->
@@ -296,6 +341,7 @@
     </article>
 
 
+
     <!-- 4. TAWHID — AL-BUKHARI -->
 
     <article class="excerpt-card">
@@ -317,6 +363,7 @@
       </a>
 
     </article>
+
 
 
     <!-- 5. IMAN — MUSLIM -->
@@ -342,6 +389,7 @@
     </article>
 
 
+
     <!-- 6. SUNNAH — IBN MAJAH -->
 
     <article class="excerpt-card">
@@ -363,6 +411,7 @@
       </a>
 
     </article>
+
 
 
     <!-- 7. SUNNAH — ABU DAWUD -->
@@ -387,18 +436,101 @@
 
     </article>
 
-    <!-- 8. AL-ISTIWA — IBN ABD AL-HADI -->
+
+
+    <!-- ================================================== -->
+    <!-- AQEEDAH                                            -->
+    <!-- ================================================== -->
+
+    <h2 class="section-heading">
+      عقيدة
+    </h2>
+
+
+    <!-- 8. HARB AL-KIRMANI -->
 
     <article class="excerpt-card">
-    
+
+      <h2 class="rtl" lang="ar">
+        عقيدة الكرماني
+      </h2>
+
+      <div class="source rtl" lang="ar">
+        تأليف الإمام حرب بن إسماعيل الكرماني رحمه الله
+      </div>
+
+      <a
+        class="read-link"
+        href="pdfs/aqeedah-kirmani.pdf"
+        target="_blank"
+        rel="noopener">
+        Click here to read
+      </a>
+
+    </article>
+
+
+
+    <!-- 9. IBN SURAYJ -->
+
+    <article class="excerpt-card">
+
+      <h2 class="rtl" lang="ar">
+        عقيدة ابن سريج
+      </h2>
+
+      <div class="source rtl" lang="ar">
+        تأليف الإمام أبي العباس أحمد بن عمر بن سريج رحمه الله
+      </div>
+
+      <a
+        class="read-link"
+        href="pdfs/aqeedah-ibnsurayj.pdf"
+        target="_blank"
+        rel="noopener">
+        Click here to read
+      </a>
+
+    </article>
+
+
+
+    <!-- 10. AL-ZUBAYRI -->
+
+    <article class="excerpt-card">
+
+      <h2 class="rtl" lang="ar">
+        عقيدة الزبيري
+      </h2>
+
+      <div class="source rtl" lang="ar">
+        تأليف الإمام أبي عبد الله الزبير بن أحمد الزبيري رحمه الله
+      </div>
+
+      <a
+        class="read-link"
+        href="pdfs/aqeedah-alzubayri.pdf"
+        target="_blank"
+        rel="noopener">
+        Click here to read
+      </a>
+
+    </article>
+
+
+
+    <!-- 11. IBN ABD AL-HADI -->
+
+    <article class="excerpt-card">
+
       <h2 class="rtl" lang="ar">
         الكلام على الاستواء على العرش
       </h2>
-    
+
       <div class="source rtl" lang="ar">
-        تأليف الإمام محمد بن أحمد بن عبد الهادي المقدسي رحمه الله
+        تأليف الإمام محمد بن عبد الهادي المقدسي رحمه الله
       </div>
-    
+
       <a
         class="read-link"
         href="pdfs/istiwaa-ibnabdulhadi.pdf"
@@ -406,8 +538,42 @@
         rel="noopener">
         Click here to read
       </a>
-    
+
     </article>
+
+
+
+    <!-- ================================================== -->
+    <!-- ADAB & ZUHD                                        -->
+    <!-- ================================================== -->
+
+    <h2 class="section-heading">
+      آداب
+    </h2>
+
+
+    <!-- 12. AL-SHUKR — IBN ABI AL-DUNYA -->
+
+    <article class="excerpt-card">
+
+      <h2 class="rtl" lang="ar">
+        كتاب الشكر
+      </h2>
+
+      <div class="source rtl" lang="ar">
+        تأليف الإمام ابن أبي الدنيا رحمه الله
+      </div>
+
+      <a
+        class="read-link"
+        href="pdfs/shukr-ibnabidunya.pdf"
+        target="_blank"
+        rel="noopener">
+        Click here to read
+      </a>
+
+    </article>
+
 
 
     <!-- FOOTER -->
@@ -416,6 +582,7 @@
       Please share the website link when possible, so readers can access
       the most recent versions of these works.
     </footer>
+
 
   </main>
 

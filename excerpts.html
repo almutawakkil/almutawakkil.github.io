@@ -11,12 +11,11 @@
     content="Selected excerpts and texts from classical Islamic works, easily and freely available to read."
   />
 
-  <!-- Fonts -->
+  <!-- Amiri Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
   <link
-    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap"
     rel="stylesheet"
   />
 
@@ -26,9 +25,17 @@
       box-sizing: border-box;
     }
 
+    html,
+    body,
+    button,
+    input,
+    textarea,
+    select {
+      font-family: "Amiri", Georgia, serif;
+    }
+
     body {
       margin: 0;
-      font-family: "Amiri", Georgia, serif;
       background: #f6f5f0;
       color: #1a1a18;
       line-height: 1.7;
@@ -40,7 +47,10 @@
       padding: 56px 20px 72px;
     }
 
-    /* HEADER */
+
+    /* =========================
+       HEADER
+       ========================= */
 
     header {
       margin-bottom: 42px;
@@ -62,23 +72,25 @@
     }
 
     .subtitle {
-      font-family: Inter, system-ui, sans-serif;
+      font-family: "Amiri", Georgia, serif;
       margin: 5px 0 0;
       color: #6e6d67;
-      font-size: 14px;
+      font-size: 15px;
     }
 
     nav {
       display: flex;
+      flex-wrap: wrap;
       gap: 18px;
       padding-bottom: 4px;
-      font-family: Inter, system-ui, sans-serif;
+      font-family: "Amiri", Georgia, serif;
     }
 
     nav a {
+      font-family: "Amiri", Georgia, serif;
       color: #6e6d67;
       text-decoration: none;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     nav a:hover,
@@ -86,7 +98,10 @@
       color: #27500a;
     }
 
-    /* PAGE HEADING */
+
+    /* =========================
+       PAGE HEADING
+       ========================= */
 
     .page-heading {
       font-family: "Amiri", Georgia, serif;
@@ -102,7 +117,10 @@
       margin: 0 0 38px;
     }
 
-    /* SECTION HEADINGS */
+
+    /* =========================
+       SECTION HEADINGS
+       ========================= */
 
     .section-heading {
       font-family: "Amiri", Georgia, serif;
@@ -117,9 +135,13 @@
       margin-top: 0;
     }
 
-    /* EXCERPT CARDS */
+
+    /* =========================
+       EXCERPT CARDS
+       ========================= */
 
     .excerpt-card {
+      font-family: "Amiri", Georgia, serif;
       background: #fff;
       border: 1px solid rgba(0,0,0,.09);
       border-radius: 14px;
@@ -142,40 +164,53 @@
       margin-bottom: 14px;
     }
 
-    /* ARABIC / RTL */
+
+    /* =========================
+       ARABIC / RTL
+       ========================= */
 
     .rtl,
     [lang="ar"] {
       direction: rtl;
       text-align: right;
+      font-family: "Amiri", Georgia, serif;
     }
 
-    /* READ LINK */
+
+    /* =========================
+       READ LINKS
+       ========================= */
 
     .read-link {
       display: inline-block;
-      font-family: Inter, system-ui, sans-serif;
+      font-family: "Amiri", Georgia, serif;
       color: #27500a;
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 16px;
+      font-weight: 700;
     }
 
     .read-link:hover {
       text-decoration: underline;
     }
 
-    /* FOOTER */
+
+    /* =========================
+       FOOTER
+       ========================= */
 
     footer {
-      font-family: Inter, system-ui, sans-serif;
+      font-family: "Amiri", Georgia, serif;
       margin-top: 40px;
       color: #999890;
-      font-size: 12px;
+      font-size: 14px;
       line-height: 1.6;
     }
 
-    /* MOBILE */
+
+    /* =========================
+       MOBILE
+       ========================= */
 
     @media (max-width: 520px) {
 
@@ -191,7 +226,10 @@
 
     }
 
-    /* DARK MODE */
+
+    /* =========================
+       DARK MODE
+       ========================= */
 
     @media (prefers-color-scheme: dark) {
 
@@ -233,21 +271,23 @@
   <main class="wrap">
 
 
-    <!-- HEADER -->
+    <!-- =========================
+         HEADER
+         ========================= -->
 
     <header>
 
       <div class="top">
 
         <div>
-          <h1 class="arabic">المتوكل</h1>
+          <h1 class="arabic" lang="ar" dir="rtl">المتوكل</h1>
           <p class="subtitle">Islamic Library</p>
         </div>
 
         <nav>
           <a href="index.html">Translated Works</a>
-          <a href="excerpts.html">Classical Excerpts</a>
-          <a href="adhkar.html" class="active" lang="ar" dir="rtl">الأذكار</a>
+          <a href="excerpts.html" class="active">Classical Excerpts</a>
+          <a href="adhkar.html" lang="ar" dir="rtl">الأذكار</a>
           <a href="night.html">Night Calculator</a>
         </nav>
 
@@ -256,7 +296,9 @@
     </header>
 
 
-    <!-- PAGE TITLE -->
+    <!-- =========================
+         PAGE TITLE
+         ========================= -->
 
     <h2 class="page-heading">
       Classical Excerpts
@@ -268,9 +310,9 @@
 
 
 
-    <!-- ================================================== -->
-    <!-- HADITH                                             -->
-    <!-- ================================================== -->
+    <!-- ==================================================
+         HADITH
+         ================================================== -->
 
     <h2 class="section-heading rtl" lang="ar">
       كتب الحديث المسندة
@@ -300,7 +342,6 @@
     </article>
 
 
-
     <!-- 2. ABD AL-RAZZAQ -->
 
     <article class="excerpt-card">
@@ -322,7 +363,6 @@
       </a>
 
     </article>
-
 
 
     <!-- 3. FAITH & KNOWLEDGE — AL-BUKHARI -->
@@ -348,7 +388,6 @@
     </article>
 
 
-
     <!-- 4. TAWHID — AL-BUKHARI -->
 
     <article class="excerpt-card">
@@ -370,7 +409,6 @@
       </a>
 
     </article>
-
 
 
     <!-- 5. IMAN — MUSLIM -->
@@ -396,7 +434,6 @@
     </article>
 
 
-
     <!-- 6. SUNNAH — IBN MAJAH -->
 
     <article class="excerpt-card">
@@ -418,7 +455,6 @@
       </a>
 
     </article>
-
 
 
     <!-- 7. SUNNAH — ABU DAWUD -->
@@ -445,9 +481,9 @@
 
 
 
-    <!-- ================================================== -->
-    <!-- AQEEDAH                                            -->
-    <!-- ================================================== -->
+    <!-- ==================================================
+         AQEEDAH
+         ================================================== -->
 
     <h2 class="section-heading rtl" lang="ar">
       عقيدة
@@ -477,7 +513,6 @@
     </article>
 
 
-
     <!-- 9. IBN SURAYJ -->
 
     <article class="excerpt-card">
@@ -501,7 +536,6 @@
     </article>
 
 
-
     <!-- 10. AL-ZUBAYRI -->
 
     <article class="excerpt-card">
@@ -523,7 +557,6 @@
       </a>
 
     </article>
-
 
 
     <!-- 11. IBN ABD AL-HADI -->
@@ -550,9 +583,9 @@
 
 
 
-    <!-- ================================================== -->
-    <!-- ADAB                                               -->
-    <!-- ================================================== -->
+    <!-- ==================================================
+         ADAB
+         ================================================== -->
 
     <h2 class="section-heading rtl" lang="ar">
       آداب
@@ -583,11 +616,12 @@
 
 
 
-    <!-- FOOTER -->
+    <!-- =========================
+         FOOTER
+         ========================= -->
 
     <footer>
-      Please share the website link when possible, so readers can access
-      the most recent versions of these works.
+      Please share the website link when possible, so readers can access the most recent versions of these works.
     </footer>
 
 

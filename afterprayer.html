@@ -148,6 +148,34 @@
       line-height: 1.75;
     }
 
+    /* COUNTER */
+
+    .counter {
+      display: none;
+      margin-top: 18px;
+
+      font-family: "Amiri", Georgia, serif;
+      font-size: 21px;
+      line-height: 1.2;
+      font-weight: 400;
+
+      color: #8b8982;
+      direction: ltr;
+      text-align: center;
+
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .counter.complete {
+      color: #27500a;
+    }
+
+    .dhikr-card.countable {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     /* ARROWS + SOURCE */
 
     .controls {
@@ -251,6 +279,11 @@
         font-size: clamp(17px, 4.7vw, 23px);
       }
 
+      .counter {
+        font-size: 19px;
+        margin-top: 14px;
+      }
+
       .source-marker {
         font-size: 15px;
       }
@@ -272,13 +305,15 @@
       .subtitle,
       nav a,
       .arrow,
-      .source-marker {
+      .source-marker,
+      .counter {
         color: #9b9890;
       }
 
       nav a:hover,
       nav a.active,
-      .arrow:hover {
+      .arrow:hover,
+      .counter.complete {
         color: #b8d98d;
       }
 
@@ -314,11 +349,18 @@
 
     <section class="reader">
 
-      <div class="dhikr-card">
+      <div
+        id="dhikrCard"
+        class="dhikr-card">
 
         <div
           id="dhikrText"
           class="dhikr-text">
+        </div>
+
+        <div
+          id="counter"
+          class="counter">
         </div>
 
         <div class="controls">
@@ -355,65 +397,95 @@
 
   <script>
 
-const adhkar = [
+    const adhkar = [
 
-  `أستغفرُ الله
+      `أستغفرُ الله
 (3)`,
 
-  `اللَّهُمَّ أَنْتَ السَّلَامُ، وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الجَلَالِ وَالإِكْرَامِ`,
+      `اللَّهُمَّ أَنْتَ السَّلَامُ، وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الجَلَالِ وَالإِكْرَامِ`,
 
-  `لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ المُلْكُ، وَلَهُ الحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ
+      `لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ المُلْكُ، وَلَهُ الحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ
 
 اللَّهُمَّ لَا مَانِعَ لِمَا أَعْطَيْتَ، وَلَا مُعْطِيَ لِمَا مَنَعْتَ، وَلَا يَنْفَعُ ذَا الجَدِّ مِنْكَ الجَدُّ`,
 
-  `لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ المُلْكُ، وَلَهُ الحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ
+      `لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ المُلْكُ، وَلَهُ الحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ
 
 لَا إِلَهَ إِلَّا اللَّهُ، وَلَا نَعْبُدُ إِلَّا إِيَّاهُ، لَهُ النِّعْمَةُ، وَلَهُ الفَضْلُ، وَلَهُ الثَّنَاءُ الحَسَنُ
 
 لَا إِلَهَ إِلَّا اللَّهُ، مُخْلِصِينَ لَهُ الدِّينَ، وَلَوْ كَرِهَ الكَافِرُونَ`,
 
-  `اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ، وَشُكْرِكَ، وَحُسْنِ عِبَادَتِكَ`,
+      `اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ، وَشُكْرِكَ، وَحُسْنِ عِبَادَتِكَ`,
 
-  `سبحان الله
-(33)`,
+      `سبحان الله`,
 
-  `الحمد لله
-(33)`,
+      `الحمد لله`,
 
-  `الله أكبر
-(33)`,
+      `الله أكبر`,
 
-  `لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ المُلْكُ، وَلَهُ الحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ`,
+      `لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ المُلْكُ، وَلَهُ الحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ`,
 
-`﴿قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِن شَرِّ ٱلنَّفَّـٰثَـٰتِ فِى ٱلْعُقَدِ ۝ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ﴾`,
+      `﴿قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِن شَرِّ ٱلنَّفَّـٰثَـٰتِ فِى ٱلْعُقَدِ ۝ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ﴾`,
 
-`﴿قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ ۝ مَلِكِ ٱلنَّاسِ ۝ إِلَـٰهِ ٱلنَّاسِ ۝ مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ ۝ ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ ۝ مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ﴾`
+      `﴿قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ ۝ مَلِكِ ٱلنَّاسِ ۝ إِلَـٰهِ ٱلنَّاسِ ۝ مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ ۝ ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ ۝ مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ﴾`
 
-  
-];
+    ];
 
 
-const sources = [
+    const sources = [
 
-  `م`,
-  `م`,
-  `خ م`,
-  `م`,
-  `د`,
-  `م`,
-  `م`,
-  `م`,
-  `م`,
-  `س`,
-  `س`
+      `م`,
+      `م`,
+      `خ م`,
+      `م`,
+      `د`,
+      `م`,
+      `م`,
+      `م`,
+      `م`,
+      `س`,
+      `س`
 
-];
+    ];
+
+
+    /*
+      Only these three cards have counters.
+
+      Array indexes begin at 0, so:
+      5 = سبحان الله
+      6 = الحمد لله
+      7 = الله أكبر
+    */
+
+    const countTargets = {
+      5: 33,
+      6: 33,
+      7: 33
+    };
+
+
+    /*
+      Each count is kept separately while the page remains open.
+      Nothing is saved to localStorage.
+    */
+
+    const counts = {
+      5: 0,
+      6: 0,
+      7: 0
+    };
 
 
     let currentIndex = 0;
 
+    const dhikrCard =
+      document.getElementById("dhikrCard");
+
     const dhikrText =
       document.getElementById("dhikrText");
+
+    const counter =
+      document.getElementById("counter");
 
     const sourceMarker =
       document.getElementById("sourceMarker");
@@ -423,6 +495,47 @@ const sources = [
 
     const nextButton =
       document.getElementById("nextButton");
+
+
+    function isCountable() {
+      return Object.prototype.hasOwnProperty.call(
+        countTargets,
+        currentIndex
+      );
+    }
+
+
+    function renderCounter() {
+
+      if (!isCountable()) {
+        counter.style.display = "none";
+        counter.textContent = "";
+        counter.classList.remove("complete");
+        dhikrCard.classList.remove("countable");
+        return;
+      }
+
+      const currentCount = counts[currentIndex];
+      const target = countTargets[currentIndex];
+
+      counter.style.display = "block";
+      dhikrCard.classList.add("countable");
+
+      if (currentCount >= target) {
+        counter.textContent =
+          currentCount + " / " + target + " ✓";
+
+        counter.classList.add("complete");
+      }
+
+      else {
+        counter.textContent =
+          currentCount + " / " + target;
+
+        counter.classList.remove("complete");
+      }
+
+    }
 
 
     function renderDhikr() {
@@ -448,6 +561,8 @@ const sources = [
         dhikrText.classList.add("medium");
       }
 
+      renderCounter();
+
       previousButton.disabled =
         currentIndex === 0;
 
@@ -460,6 +575,36 @@ const sources = [
       });
 
     }
+
+
+    /*
+      Tap/click the main card to count.
+
+      Clicks on the navigation arrows are ignored so
+      changing cards never accidentally adds a count.
+    */
+
+    dhikrCard.addEventListener(
+      "click",
+      function (event) {
+
+        if (
+          event.target.closest(".controls") ||
+          !isCountable()
+        ) {
+          return;
+        }
+
+        const target =
+          countTargets[currentIndex];
+
+        if (counts[currentIndex] < target) {
+          counts[currentIndex]++;
+          renderCounter();
+        }
+
+      }
+    );
 
 
     previousButton.addEventListener(
@@ -541,6 +686,11 @@ const sources = [
         if (Math.abs(difference) < 60) {
           return;
         }
+
+        /*
+          Prevent the tap that follows a swipe
+          from accidentally increasing the counter.
+        */
 
         if (
           difference < 0 &&

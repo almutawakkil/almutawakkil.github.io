@@ -399,19 +399,15 @@
 
     const adhkar = [
 
-      `سُبْحَانَ اللهِ وَبِحَمْدِهِ، عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ
-(3)`,
+      `سُبْحَانَ اللهِ وَبِحَمْدِهِ، عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ`,
 
-      `﴿قُلْ هُوَ ٱللَّهُ أَحَدٌ﴾ وَالمُعَوِّذَتَيْنِ
-(3)`,
+      `﴿قُلْ هُوَ ٱللَّهُ أَحَدٌ﴾ وَالمُعَوِّذَتَيْنِ`,
 
-      `بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلَا فِي السَّمَاءِ، وَهُوَ السَّمِيعُ العَلِيمُ
-(3)`,
+      `بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلَا فِي السَّمَاءِ، وَهُوَ السَّمِيعُ العَلِيمُ`,
 
       `أَصْبَحْنَا عَلَى فِطْرَةِ الإِسْلَامِ، وَعَلَى كَلِمَةِ الإِخْلَاصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ ﷺ، وَعَلَى مِلَّةِ أَبِينَا إِبْرَاهِيمَ حَنِيفاً مُسْلِماً، وَمَا كَانَ مِنَ المُشْرِكِينَ`,
 
-      `رَضِيتُ بِاللَّهِ رَبّاً، وَبِالإِسْلَامِ دِيناً، وَبِمُحَمَّدٍ ﷺ نَبِيّاً
-(3)`,
+      `رَضِيتُ بِاللَّهِ رَبّاً، وَبِالإِسْلَامِ دِيناً، وَبِمُحَمَّدٍ ﷺ نَبِيّاً`,
 
       `اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ`,
 
@@ -460,23 +456,39 @@
 
 
     /*
-      Only the final 100-count dhikr has a counter.
+      Every dhikr on this page with a repetition count
+      now has a counter.
 
       Array indexes begin at 0:
-      10 = سبحان الله وبحمده
+
+      0 = سبحان الله وبحمده عدد خلقه... — 3
+      1 = قل هو الله أحد والمعوذتين — 3
+      2 = بسم الله الذي لا يضر... — 3
+      4 = رضيت بالله رباً... — 3
+      10 = سبحان الله وبحمده — 100
     */
 
     const countTargets = {
+      0: 3,
+      1: 3,
+      2: 3,
+      4: 3,
       10: 100
     };
 
 
     /*
-      The count is remembered only while this page remains open.
+      Each counter is remembered separately
+      while this page remains open.
+
       Nothing is saved to localStorage.
     */
 
     const counts = {
+      0: 0,
+      1: 0,
+      2: 0,
+      4: 0,
       10: 0
     };
 
@@ -575,24 +587,31 @@
         sources[currentIndex];
 
 
-      dhikrText.className = "dhikr-text";
+      dhikrText.className =
+        "dhikr-text";
 
 
       if (text.length > 500) {
 
-        dhikrText.classList.add("very-long");
+        dhikrText.classList.add(
+          "very-long"
+        );
 
       }
 
       else if (text.length > 200) {
 
-        dhikrText.classList.add("long");
+        dhikrText.classList.add(
+          "long"
+        );
 
       }
 
       else if (text.length > 130) {
 
-        dhikrText.classList.add("medium");
+        dhikrText.classList.add(
+          "medium"
+        );
 
       }
 
@@ -616,10 +635,11 @@
 
 
     /*
-      Tap the card to increase the counter.
+      Tap or click the card to increase the counter.
 
       Navigation controls never add a count.
-      A swipe also will not accidentally add a count.
+
+      Swiping also does not accidentally add a count.
     */
 
     dhikrCard.addEventListener(
@@ -639,7 +659,9 @@
           countTargets[currentIndex];
 
 
-        if (counts[currentIndex] < target) {
+        if (
+          counts[currentIndex] < target
+        ) {
 
           counts[currentIndex]++;
 
@@ -671,7 +693,10 @@
       "click",
       function () {
 
-        if (currentIndex < adhkar.length - 1) {
+        if (
+          currentIndex <
+          adhkar.length - 1
+        ) {
 
           currentIndex++;
 
@@ -701,7 +726,8 @@
 
         if (
           event.key === "ArrowRight" &&
-          currentIndex < adhkar.length - 1
+          currentIndex <
+          adhkar.length - 1
         ) {
 
           currentIndex++;
@@ -740,7 +766,9 @@
           touchEndX - touchStartX;
 
 
-        if (Math.abs(difference) < 60) {
+        if (
+          Math.abs(difference) < 60
+        ) {
 
           return;
 
@@ -752,7 +780,8 @@
 
         if (
           difference < 0 &&
-          currentIndex < adhkar.length - 1
+          currentIndex <
+          adhkar.length - 1
         ) {
 
           currentIndex++;

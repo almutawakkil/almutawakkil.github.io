@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>الأحاديث والآثار · Al-Mutawakkil</title>
+
+  <meta
+    name="description"
+    content="مجموعة مختارة من الأحاديث والآثار في الإيمان والعبادة والأخلاق والرقائق."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Amiri", Georgia, serif;
+      background: #f6f5f0;
+      color: #1a1a18;
+      line-height: 1.8;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 56px 20px 80px;
+    }
+
+    /* HEADER */
+
+    header {
+      margin-bottom: 52px;
+      direction: ltr;
+    }
+
+    .top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .arabic {
+      font-family: "Amiri", Georgia, serif;
+      font-size: 36px;
+      line-height: 1.1;
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .subtitle {
+      margin: 5px 0 0;
+      color: #6e6d67;
+      font-size: 16px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+      padding-bottom: 4px;
+    }
+
+    nav a {
+      font-family: "Amiri", Georgia, serif;
+      color: #6e6d67;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #27500a;
+    }
+
+    /* INTRO */
+
+    .page-heading {
+      margin: 0;
+      font-size: 36px;
+      line-height: 1.35;
+      font-weight: 400;
+      text-align: right;
+    }
+
+    .page-description {
+      margin: 10px 0 44px;
+      color: #77756e;
+      font-size: 17px;
+      line-height: 1.8;
+      text-align: right;
+    }
+
+    /* NARRATIONS */
+
+    .narration {
+      padding: 42px 0 46px;
+      border-bottom: 1px solid rgba(0,0,0,.09);
+      scroll-margin-top: 28px;
+    }
+
+    .narration:first-of-type {
+      padding-top: 12px;
+    }
+
+    .narration:last-of-type {
+      border-bottom: none;
+    }
+
+    .narration-number {
+      margin: 0 0 20px;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1;
+      color: #9a9891;
+      font-weight: 400;
+    }
+
+    .narration-number a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .narration-number a:hover {
+      color: #27500a;
+    }
+
+    .narration-text {
+      margin: 0;
+      font-size: 27px;
+      line-height: 2;
+      font-weight: 400;
+      text-align: right;
+      direction: rtl;
+    }
+
+    .source {
+      margin: 18px 0 0;
+      color: #85837c;
+      font-size: 15px;
+      line-height: 1.8;
+      text-align: right;
+      direction: rtl;
+    }
+
+    /* POETRY */
+
+    .poetry {
+      width: 100%;
+      max-width: 650px;
+      margin: 24px auto 0;
+      font-size: 25px;
+      line-height: 1.9;
+    }
+
+    .poetry-line {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      text-align: center;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 46px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(0,0,0,.09);
+      color: #999890;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+      .wrap {
+        padding: 32px 16px 54px;
+      }
+
+      header {
+        margin-bottom: 38px;
+      }
+
+      .top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .arabic {
+        font-size: 32px;
+      }
+
+      nav {
+        gap: 14px;
+      }
+
+      nav a {
+        font-size: 15px;
+      }
+
+      .page-heading {
+        font-size: 31px;
+      }
+
+      .page-description {
+        font-size: 16px;
+        margin-bottom: 30px;
+      }
+
+      .narration {
+        padding: 34px 0 38px;
+      }
+
+      .narration-number {
+        margin-bottom: 16px;
+        font-size: 17px;
+      }
+
+      .narration-text {
+        font-size: 23px;
+        line-height: 1.95;
+      }
+
+      .source {
+        margin-top: 15px;
+        font-size: 14px;
+      }
+
+      .poetry {
+        font-size: 22px;
+      }
+
+      .poetry-line {
+        gap: 16px;
+      }
+    }
+
+    /* DARK MODE */
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1b1a18;
+        color: #f2efe8;
+      }
+
+      .subtitle,
+      .page-description,
+      nav a,
+      .source,
+      .narration-number {
+        color: #9b9890;
+      }
+
+      nav a:hover,
+      nav a.active,
+      .narration-number a:hover {
+        color: #b8d98d;
+      }
+
+      .narration,
+      footer {
+        border-color: rgba(255,255,255,.08);
+      }
+
+      footer {
+        color: #77756e;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="wrap">
+
+    <header>
+      <div class="top">
+
+        <div>
+          <h1 class="arabic">المتوكل</h1>
+          <p class="subtitle">Islamic Library</p>
+        </div>
+
+        <nav>
+          <a href="index.html">Translated Works</a>
+          <a href="excerpts.html">Classical Excerpts</a>
+          <a href="adhkar.html" lang="ar" dir="rtl">الأذكار</a>
+          <a href="night.html">Night Calculator</a>
+        </nav>
+
+      </div>
+    </header>
+
+
+    <h2 class="page-heading">
+      أحاديث وآثار مختارة
+    </h2>
+
+    <p class="page-description">
+      مجموعة مختارة من الأحاديث النبوية والآثار في الإيمان والعبادة والأخلاق والرقائق.
+    </p>
+
+
+    <!-- 1 -->
+
+    <section class="narration" id="narration-1">
+
+      <div class="narration-number">
+        <a href="#narration-1">١</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي مُوسَى رضي الله عنه قَالَ: قامَ فينا رَسولُ اللهِ ‎ﷺ بخَمسِ كَلِماتٍ فقال: «إنَّ اللهَ عزَّ وجلَّ لا يَنامُ، ولا يَنبَغي له أن يَنامَ، يَخفِضُ القِسطَ ويَرفَعُه، يُرفَعُ إليه عَمَلُ اللَّيلِ قَبلَ عَمَلِ النَّهارِ، وعَمَلُ النَّهارِ قَبلَ عَمَلِ اللَّيلِ، حِجابُه النُّورُ - وفي رِوايةِ: النَّارُ - لو كَشَفَه لأحرَقَت سُبُحاتُ وجههِ ما انتَهى إليه بَصَرُه مِن خَلقِه»
+      </p>
+
+      <p class="source">
+        مسلم 179 (1/527)
+      </p>
+
+    </section>
+
+
+    <!-- 2 -->
+
+    <section class="narration" id="narration-2">
+
+      <div class="narration-number">
+        <a href="#narration-2">٢</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي هُرَيْرَةَ رضي الله عنه أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: «يَنْزِلُ رَبُّنَا تبارك وتعالى كُلَّ لَيْلَةٍ إِلَى السَّمَاءِ الدُّنْيَا حِينَ يَبقَى ثُلُثُ اللَّيْلِ الْآخِرُ، يَقُولُ: مَنْ يَدْعُونِي فَأَسْتَجِيبَ لَهُ؟ مَنْ يَسْأَلُنِي فَأُعْطِيَهُ؟ مَنْ يَسْتَغْفِرُنِي فَأَغْفِرَ لَهُ؟».
+      </p>
+
+      <p class="source">
+        البخاري 1145 (2/158) ومسلم 758
+      </p>
+
+    </section>
+
+
+    <!-- 3 -->
+
+    <section class="narration" id="narration-3">
+
+      <div class="narration-number">
+        <a href="#narration-3">٣</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي رَزِينٍ رضي الله عنه قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «ضَحِكَ رَبُّنَا مِنْ قُنُوطِ عِبَادِهِ وَقُرْبِ غِيَرِهِ». قَالَ: قُلْتُ: يَا رَسُولَ اللَّهِ، أَوَيَضْحَكُ الرَّبُّ؟ قَالَ: «نَعَمْ». قُلْتُ: لَنْ نَعْدِمَ مِنْ رَبٍّ يَضْحَكُ خَيْرًا.
+      </p>
+
+      <p class="source">
+        ابن ماجه 181 (1/249) | السنة للإمام عبد الله بن الإمام أحمد 433 (ص 232) | الإبانة الصغرى لابن بطة 292 (ص 164) | الإبانة الكبرى لابن بطة 2637 (2/415)
+      </p>
+
+    </section>
+
+
+    <!-- 4 -->
+
+    <section class="narration" id="narration-4">
+
+      <div class="narration-number">
+        <a href="#narration-4">٤</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي هُرَيْرَةَ رضي الله عنه قَالَ: قَالَ النَّبِيُّ ﷺ: «يَقُولُ اللَّهُ تَعَالَى: أَنَا عِنْدَ ظَنِّ عَبْدِي بِي، وَأَنَا مَعَهُ إِذَا ذَكَرَنِي، فَإِنْ ذَكَرَنِي فِي نَفْسِهِ ذَكَرْتُهُ فِي نَفْسِي، وَإِنْ ذَكَرَنِي فِي مَلَأٍ ذَكَرْتُهُ فِي مَلَأٍ خَيْرٍ مِنْهُمْ، وَإِنْ تَقَرَّبَ إِلَيَّ بِشِبْرٍ تَقَرَّبْتُ إِلَيْهِ ذِرَاعًا، وَإِنْ تَقَرَّبَ إِلَيَّ ذِرَاعًا تَقَرَّبْتُ إِلَيْهِ بَاعًا، وَإِنْ أَتَانِي يَمْشِي أَتَيْتُهُ هَرْوَلَةً».
+      </p>
+
+      <p class="source">
+        البخاري 7405 (9/327) ومسلم 2675
+      </p>
+
+    </section>
+
+
+    <!-- 5 -->
+
+    <section class="narration" id="narration-5">
+
+      <div class="narration-number">
+        <a href="#narration-5">٥</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ عَدِيِّ بْنِ حَاتِمٍ رضي الله عنه أَنَّ رسول الله ﷺ قَالَ: «ثُمَّ لَيَقِفَنَّ أَحَدُكُمْ بَيْنَ يَدَىِ اللَّهِ لَيْسَ بَيْنَهُ وَبَيْنَهُ حِجَابٌ، وَلاَ تُرْجُمَانٌ يُتَرْجِمُ لَهُ، ثُمَّ لَيَقُولَنَّ لَهُ: أَلَمْ أُوتِكَ مَالاً؟ فَلَيَقُولَنَّ بَلَى‏،‏ ثُمَّ لَيَقُولَنَّ: أَلَمْ أُرْسِلْ إِلَيْكَ رَسُولاً؟ فَلَيَقُولَنَّ: بَلَى‏،‏ فَيَنْظُرُ عَنْ يَمِينِهِ فَلاَ يَرَى إِلاَّ النَّارَ، ثُمَّ يَنْظُرُ عَنْ شِمَالِهِ فَلاَ يَرَى إِلاَّ النَّارَ، فَلْيَتَّقِيَنَّ أَحَدُكُمُ النَّارَ وَلَوْ بِشِقِّ تَمْرَةٍ، فَإِنْ لَمْ يَجِدْ فَبِكَلِمَةٍ طَيِّبَةٍ».
+      </p>
+
+      <p class="source">
+        البخاري 1413 (1/312)
+      </p>
+
+    </section>
+
+
+    <!-- 6 -->
+
+    <section class="narration" id="narration-6">
+
+      <div class="narration-number">
+        <a href="#narration-6">٦</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي بَرْزَةَ الْأَسْلَمِيِّ رضي الله عنه قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «لَا تَزُولُ قَدَمَا عَبْدٍ حَتَّى يُسْأَلَ عَنْ عُمُرِهِ فِيمَا أَفْنَاهُ، وَعَنْ عِلْمِهِ فِيمَ فَعَلَ، وَعَنْ مَالِهِ مِنْ أَيْنَ اكْتَسَبَهُ وَفِيمَ أَنْفَقَهُ، وَعَنْ جِسْمِهِ فِيمَ أَبْلَاهُ».
+      </p>
+
+      <p class="source">
+        الترمذي 2417 | حديث حسن صحيح (3/407)
+      </p>
+
+    </section>
+
+
+    <!-- 7 -->
+
+    <section class="narration" id="narration-7">
+
+      <div class="narration-number">
+        <a href="#narration-7">٧</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي هُرَيْرَةَ رضي الله عنه أَنَّ رَسُولَ اللهِ ﷺ قَالَ: «الصَّلَوَاتُ الْخَمْسُ، وَالْجُمْعَةُ إِلَى الْجُمْعَةِ، كَفَّارَةً لِمَا بَيْنَهُن،َّ مَا لَمْ يَغْشَ الْكَبَائِرَ».
+      </p>
+
+      <p class="source">
+        مسلم 233 (2/14)
+      </p>
+
+    </section>
+
+
+    <!-- 8 -->
+
+    <section class="narration" id="narration-8">
+
+      <div class="narration-number">
+        <a href="#narration-8">٨</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ ثَوْبَانَ رضي الله عنه أَنَّ رَسُولَ اللهِ ﷺ قَالَ: «عَلَيْكَ بِكَثْرَةِ السُّجُودِ لِلهِ؛ فَإِنَّكَ لَا تَسْجُدُ لِلهِ سَجْدَةً إِلَّا رَفَعَكَ اللهُ بِهَا دَرَجَةً، وَحَطَّ عَنْكَ بِهَا خَطِيئَةً».
+      </p>
+
+      <p class="source">
+        مسلم 448 (2/227)
+      </p>
+
+    </section>
+
+
+    <!-- 9 -->
+
+    <section class="narration" id="narration-9">
+
+      <div class="narration-number">
+        <a href="#narration-9">٩</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي هُرَيْرَةَ رضي الله عنه أَنَّ رَسُولَ اللهِ ﷺ قَالَ: «أَرَأَيْتُمْ لَوْ أَنَّ نَهْرًا بِبَابِ أَحَدِكُمْ يَغْتَسِلُ مِنْهُ كُلَّ يَوْمٍ خَمْسَ مَرَّاتٍ، هَلْ يَبْقَى مِنْ دَرَنِهِ شَيْءٌ؟» قَالُوا: لَا يَبْقَى مِنْ دَرَنِهِ شَيْءٌ، قَالَ: «فَذَلِكَ مَثَلُ الصَّلَوَاتِ الْخَمْسِ يَمْحُو اللهُ بِهِنَّ الْخَطَايَا»
+      </p>
+
+      <p class="source">
+        البخاري 528 ومسلم 667 (2/400)
+      </p>
+
+    </section>
+
+
+    <!-- 10 -->
+
+    <section class="narration" id="narration-10">
+
+      <div class="narration-number">
+        <a href="#narration-10">١٠</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ الإمام مالك بن أنس رحمه الله أَنَّهُ بَلَغَهُ أَنَّ النَّبِيَّ ﷺ قَالَ :«اسْتَقِيمُوا وَلَنْ تُحْصُوا، وَاعْلَمُوا أَنَّ خَيْرَ أَعْمَالِكُمُ الصَّلَاةُ، وَلَنْ يُحَافِظَ عَلَى الْوُضُوءِ إِلَّا مُؤْمِنٌ».
+      </p>
+
+      <p class="source">
+        الموطأ برواية أبي مصعب الزهري رحمه الله 75 (1/306) | الأربعون الطوسية 2
+      </p>
+
+    </section>
+
+
+    <!-- 11 -->
+
+    <section class="narration" id="narration-11">
+
+      <div class="narration-number">
+        <a href="#narration-11">١١</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ جَابِرٍ رضي الله عنه قال: سمعت النَّبِيَّ ﷺ يقول: «إِنَّ بَيْنَ الرَّجُلِ وَبَيْنَ الشِّرْكِ وَالْكُفْرِ تَرْكَ الصَّلَاةِ».
+      </p>
+
+      <p class="source">
+        مسلم 82 (1/424)
+      </p>
+
+    </section>
+
+
+    <!-- 12 -->
+
+    <section class="narration" id="narration-12">
+
+      <div class="narration-number">
+        <a href="#narration-12">١٢</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ عَائِشَةَ رضي الله عنها عَنْ النَّبِيِّ ﷺ قَالَ: «الْمَاهِرُ بِالْقُرْآنِ مَعَ السَّفَرَةِ الْكِرَامِ الْبَرَرَةِ، وَالَّذِي يَقْرَأُ الْقُرْآنَ وَيَتَتَعْتَعُ فِيهِ وَهُوَ عَلَيْهِ شَاقٌّ؛ لَهُ أَجْرَانِ»
+      </p>
+
+      <p class="source">
+        البخاري 4937 ومسلم 798 (2/535) | فضائل القرآن لمحمد بن عبد الوهاب رحمه الله - ص 49
+      </p>
+
+    </section>
+
+
+    <!-- 13 -->
+
+    <section class="narration" id="narration-13">
+
+      <div class="narration-number">
+        <a href="#narration-13">١٣</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي هُرَيْرَةَ رضي الله عنه عَنْ رَسُولِ اللهِ ﷺ قَالَ: «مَا نَقَصَتْ صَدَقَةٌ مِنْ مَالٍ، وَمَا زَادَ اللهُ عَبْدًا بِعَفْوٍ إِلَّا عِزًّا، وَمَا تَوَاضَعَ أَحَدٌ لِلهِ إِلَّا رَفَعَهُ اللهُ».
+      </p>
+
+      <p class="source">
+        مسلم 2588 (6/449)
+      </p>
+
+    </section>
+
+
+    <!-- 14 -->
+
+    <section class="narration" id="narration-14">
+
+      <div class="narration-number">
+        <a href="#narration-14">١٤</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ عَبْدِ اللَّهِ بْنِ سَلَامٍ رضي الله عنه أن النبي ﷺ قال: «يَا أَيُّهَا النَّاسُ، أَفْشُوا السَّلَامَ، وَأَطْعِمُوا الطَّعَامَ، وَصَلُّوا وَالنَّاسُ نِيَامٌ، تَدْخُلُوا الْجَنَّةَ بِسَلَامٍ».
+      </p>
+
+      <p class="source">
+        الترمذي 2485 | حديث صحيح (3/443)
+      </p>
+
+    </section>
+
+
+    <!-- 15 -->
+
+    <section class="narration" id="narration-15">
+
+      <div class="narration-number">
+        <a href="#narration-15">١٥</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي هُرَيْرَةَ رضي الله عنه عَنِ النَّبِيِّ ﷺ قَالَ: ‏«إِنَّ الدِّينَ يُسْرٌ، وَلَنْ يُشَادَّ الدِّينَ أَحَدٌ إِلاَّ غَلَبَهُ، فَسَدِّدُوا وَقَارِبُوا وَأَبْشِرُوا وَاسْتَعِينُوا بِالْغَدْوَةِ وَالرَّوْحَةِ، وَشَىْءٍ مِنَ الدُّلْجَةِ».
+      </p>
+
+      <p class="source">
+        البخاري 39 (1/215)
+      </p>
+
+    </section>
+
+
+    <!-- 16 -->
+
+    <section class="narration" id="narration-16">
+
+      <div class="narration-number">
+        <a href="#narration-16">١٦</a>
+      </div>
+
+      <p class="narration-text">
+        عَنِ عبد الله بن مَسْعُودٍ رَضِيَ اللهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: «هَلَكَ المُتَنَطِّعُونَ» قَالَهَا ثَلَاثاً.
+      </p>
+
+      <p class="source">
+        مسلم 2670 (7/34)
+      </p>
+
+    </section>
+
+
+    <!-- 17 -->
+
+    <section class="narration" id="narration-17">
+
+      <div class="narration-number">
+        <a href="#narration-17">١٧</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي هُرَيْرَةَ رضى الله عنه أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: ‏«مَثَلُ الْمُؤْمِنِ كَمَثَلِ خَامَةِ الزَّرْعِ، يَفِيءُ وَرَقُهُ مِنْ حَيْثُ أَتَتْهَا الرِّيحُ تُكَفِّئُهَا، فَإِذَا سَكَنَتِ اعْتَدَلَتْ، وَكَذَلِكَ الْمُؤْمِنُ يُكَفَّأُ بِالْبَلاَءِ، وَمَثَلُ الْكَافِرِ كَمَثَلِ الأَرْزَةِ، صَمَّاءَ مُعْتَدِلَةً، حَتَّى يَقْصِمَهَا اللَّهُ إِذَا شَاءَ»‏‏.‏
+      </p>
+
+      <p class="source">
+        البخاري 7466 (9/369) ومسلم 2809
+      </p>
+
+    </section>
+
+
+    <!-- 18 -->
+
+    <section class="narration" id="narration-18">
+
+      <div class="narration-number">
+        <a href="#narration-18">١٨</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ عَبْدِ اللَّهِ بْنِ عَمْرٍو رضى الله عنهما عَنِ النَّبِيِّ ﷺ قَالَ: «الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ، وَالْمُهَاجِرُ مَنْ هَجَرَ مَا نَهَى اللَّهُ عَنْهُ».
+      </p>
+
+      <p class="source">
+        البخاري 10 (1/196) | الأربعون للنسوي رحمه الله 2
+      </p>
+
+    </section>
+
+
+    <!-- 19 -->
+
+    <section class="narration" id="narration-19">
+
+      <div class="narration-number">
+        <a href="#narration-19">١٩</a>
+      </div>
+
+      <p class="narration-text">
+        عن عبد الله بن عمرو بن العاص رضى الله عنهما قال: «مثل المؤمن كمثل النحلة لا يأكل إلا طيبا ولا يضع إلا طيبا».
+      </p>
+
+      <p class="source">
+        شعب الإيمان 5381 (7/509)
+      </p>
+
+    </section>
+
+
+    <!-- 20 -->
+
+    <section class="narration" id="narration-20">
+
+      <div class="narration-number">
+        <a href="#narration-20">٢٠</a>
+      </div>
+
+      <p class="narration-text">
+        عن عمر رضي الله عنه أن النبي ﷺ سُئل عن الإحسان فقال: «أَنْ تَعْبُدَ اللهَ كَأَنَّكَ تَرَاهُ، فَإِنْ لَمْ تَكُنْ تَرَاهُ فَإِنَّهُ يَرَاكَ».
+      </p>
+
+      <p class="source">
+        البخاري 50 ومسلم 8 (1/351)
+      </p>
+
+    </section>
+
+
+    <!-- 21 -->
+
+    <section class="narration" id="narration-21">
+
+      <div class="narration-number">
+        <a href="#narration-21">٢١</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي ذَرٍّ رَضِيَ اللهُ عَنْهُ عَنْ رَسُولِ اللَّهِ ‎ﷺ قَالَ: «اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ، وَأَتْبِعِ السَّيِّئَةَ الحَسَنَةَ تَمْحُهَا، وَخَالِقِ النَّاسَ بِخُلُقٍ حَسَنٍ».
+      </p>
+
+      <p class="source">
+        الترمذي 1987 | حديث حسن (3/178)
+      </p>
+
+    </section>
+
+
+    <!-- 22 -->
+
+    <section class="narration" id="narration-22">
+
+      <div class="narration-number">
+        <a href="#narration-22">٢٢</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ سَعْدِ بْنِ أَبِي وَقَّاصٍ رضي الله عنه قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «إِنَّ اللَّهَ يُحِبُّ الْعَبْدَ التَّقِيَّ الْغَنِيَّ الْخَفِيَّ».
+      </p>
+
+      <p class="source">
+        مسلم 2965 (7/378)
+      </p>
+
+    </section>
+
+
+    <!-- 23 -->
+
+    <section class="narration" id="narration-23">
+
+      <div class="narration-number">
+        <a href="#narration-23">٢٣</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ عِمْرَانَ بْنِ حُصَيْنٍ رضي الله عنه عَنْ النَّبِيِّ ﷺ أَنَّهُ قَالَ: «الْحَيَاءُ لَا يَأْتِي إِلَّا بِخَيْرٍ».
+      </p>
+
+      <p class="source">
+        البخاري 6117 (8/80) ومسلم 37
+      </p>
+
+    </section>
+
+
+    <!-- 24 -->
+
+    <section class="narration" id="narration-24">
+
+      <div class="narration-number">
+        <a href="#narration-24">٢٤</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ عَائِشَةَ رضي الله عنها أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: «يَا عَائِشَة،ُ إِنَّ اللَّهَ رَفِيقٌ يُحِبُّ الرِّفْقَ،ُ وَيُعْطِي عَلَى الرِّفْقِ مَا لَا يُعْطِي عَلَى الْعُنْفِ،ُ وَمَا لَا يُعْطِي عَلَى مَا سِوَاهُ».
+      </p>
+
+      <p class="source">
+        مسلم 2593 (6/452)
+      </p>
+
+    </section>
+
+
+    <!-- 25 -->
+
+    <section class="narration" id="narration-25">
+
+      <div class="narration-number">
+        <a href="#narration-25">٢٥</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ عَائِشَةَ رضي الله عنها عَنِ النَّبِيِّ ﷺ قَالَ: «إِنَّ الرِّفْقَ لاَ يَكُونُ فِي شَىْءٍ إِلاَّ زَانَهُ،ُ وَلاَ يُنْزَعُ مِنْ شَىْءٍ إِلاَّ شَانَهُ».‏
+      </p>
+
+      <p class="source">
+        مسلم 2594 (6/453)
+      </p>
+
+    </section>
+
+
+    <!-- 26 -->
+
+    <section class="narration" id="narration-26">
+
+      <div class="narration-number">
+        <a href="#narration-26">٢٦</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي هُرَيْرَةَ رضي الله عنه أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: «لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ،ُ إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الْغَضَبِ».
+      </p>
+
+      <p class="source">
+        البخاري 6114 ومسلم 2609 (6/468)
+      </p>
+
+    </section>
+
+
+    <!-- 27 -->
+
+    <section class="narration" id="narration-27">
+
+      <div class="narration-number">
+        <a href="#narration-27">٢٧</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي هُرَيْرَةَ رضي الله عنه عَنْ رَسُولِ اللَّهِ ﷺ قَالَ:‏ «إِذَا نَظَرَ أَحَدُكُمْ إِلَى مَنْ فُضِّلَ عَلَيْهِ فِي الْمَالِ وَالْخَلْقِ، فَلْيَنْظُرْ إِلَى مَنْ هُوَ أَسْفَلَ مِنْهُ مِمَّنْ فُضِّلَ عَلَيْهِ».
+      </p>
+
+      <p class="source">
+        مسلم 2963 (7/374)
+      </p>
+
+    </section>
+
+
+    <!-- 28 -->
+
+    <section class="narration" id="narration-28">
+
+      <div class="narration-number">
+        <a href="#narration-28">٢٨</a>
+      </div>
+
+      <p class="narration-text">
+        عن أبي سعيد الخدري رضي الله عنه أن النبي ﷺ قال: «وَإِنَّهُ مَنْ يَسْتَعِفَّ يُعِفَُّهُ اللَّهُ، وَمَنْ يَتَصَبَّرْ يُصَبِّرْهُ اللَّهُ، وَمَنْ يَسْتَغْنِ يُغْنِهِ اللَّهُ، وَلَنْ تُعْطَوْا عَطَاءً خَيْرًا وَأَوْسَعَ مِنَ الصَّبْرِ»
+      </p>
+
+      <p class="source">
+        البخاري 6470 (8/276)
+      </p>
+
+    </section>
+
+
+    <!-- 29 -->
+
+    <section class="narration" id="narration-29">
+
+      <div class="narration-number">
+        <a href="#narration-29">٢٩</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ صُهَيْبٍ قَالَ: قَالَ رَسُولُ اللهِ ﷺ: «عَجَبًا لِأَمْرِ الْمُؤْمِنِ، إِنَّ أَمْرَهُ كُلَّهُ له خَيْرٌ، وَلَيْسَ ذَاكَ لِأَحَدٍ إِلَّا لِلْمُؤْمِنِ؛ إِنْ أَصَابَتْهُ سَرَّاءُ شَكَرَ فَكَانَ خَيْرًا لَهُ، وَإِنْ أَصَابَتْهُ ضَرَّاءُ صَبَرَ فَكَانَ خَيْرًا لَهُ».
+      </p>
+
+      <p class="source">
+        مسلم 2999 (7/405)
+      </p>
+
+    </section>
+
+
+    <!-- 30 -->
+
+    <section class="narration" id="narration-30">
+
+      <div class="narration-number">
+        <a href="#narration-30">٣٠</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ جَرِيرِ بْنِ عَبْدِ اللَّهِ رضي الله عنه قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «لَا يَرْحَمُ اللَّهُ مَنْ لَا يَرْحَمُ النَّاسَ»
+      </p>
+
+      <p class="source">
+        البخاري 7376 (9/312) ومسلم 2319
+      </p>
+
+    </section>
+
+
+    <!-- 31 -->
+
+    <section class="narration" id="narration-31">
+
+      <div class="narration-number">
+        <a href="#narration-31">٣١</a>
+      </div>
+
+      <p class="narration-text">
+        عن عبدِ الله بنِ عَمْرٍو رضي الله عنهما قال: قال رسولُ الله ﷺ: «الرّاحِمُونَ يَرْحَمُهُمُ الرحمنُ، ارْحَمُوا من في الأرْضِ، يَرْحَمْكُمْ من في السَّمَاءِ»
+      </p>
+
+      <p class="source">
+        الترمذي 1924 | حديث حسن صحيح (3/152)
+      </p>
+
+    </section>
+
+
+    <!-- 32 -->
+
+    <section class="narration" id="narration-32">
+
+      <div class="narration-number">
+        <a href="#narration-32">٣٢</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ عَبْدِ اللَّهِ بْنِ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: «أَلَا كُلُّكُمْ رَاعٍ وَكُلُّكُمْ مَسْئُولٌ عَنْ رَعِيَّتِهِ»
+      </p>
+
+      <p class="source">
+        البخاري 7138 (9/171)
+      </p>
+
+    </section>
+
+
+    <!-- 33 -->
+
+    <section class="narration" id="narration-33">
+
+      <div class="narration-number">
+        <a href="#narration-33">٣٣</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ جَابِرِ بْنِ عَبْدِ اللَّهِ رضي الله عنه أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ:‏‏ «اتَّقُوا الظُّلْمَ؛ فَإِنَّ الظُّلْمَ ظُلُمَاتٌ يَوْمَ الْقِيَامَةِ، وَاتَّقُوا الشُّحَّ؛ فَإِنَّ الشُّحَّ أَهْلَكَ مَنْ كَانَ قَبْلَكُمْ، حَمَلَهُمْ عَلَى أَنْ سَفَكُوا دِمَاءَهُمْ وَاسْتَحَلُّوا مَحَارِمَهُمْ».
+      </p>
+
+      <p class="source">
+        مسلم 2578 (6/442)
+      </p>
+
+    </section>
+
+
+    <!-- 34 -->
+
+    <section class="narration" id="narration-34">
+
+      <div class="narration-number">
+        <a href="#narration-34">٣٤</a>
+      </div>
+
+      <p class="narration-text">
+        قالت عَائشةَ رضي الله عنها: «من الْتَمسَ رِضاءَ اللهِ بِسَخَطِ النَّاسِ كَفاهُ اللهُ مُؤْنةَ النّاسِ، ومن الْتَمسَ رِضَاءَ النَّاسِ بِسَخَطِ اللهِ وَكَلَهُ اللهُ إلى النَّاسِ»
+      </p>
+
+      <p class="source">
+        الترمذي 2414 (3/405)
+      </p>
+
+    </section>
+
+
+    <!-- 35 -->
+
+    <section class="narration" id="narration-35">
+
+      <div class="narration-number">
+        <a href="#narration-35">٣٥</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي هُرَيْرَةَ رضي الله عنه قَالَ: قَالَ رَسُولُ اللهِ ﷺ: «الْمُؤْمِنُ الْقَوِيُّ خَيْرٌ وَأَحَبُّ إِلَى اللهِ مِنَ الْمُؤْمِنِ الضَّعِيفِ، وَفِي كُلٍّ خَيْرٌ، احْرِصْ عَلَى مَا يَنْفَعُكَ، وَاسْتَعِنْ بِاللهِ وَلَا تَعْجِزْ، وَإِنْ أَصَابَكَ شَيْءٌ فَلَا تَقُلْ: لَوْ أَنِّي فَعَلْتُ كَانَ كَذَا وَكَذَا، وَلَكِنْ قُلْ: قَدَرُ اللَّهِ وَمَا شَاءَ فَعَلَ، فَإِنَّ لَوْ تَفْتَحُ عَمَلَ الشَّيْطَانِ».
+      </p>
+
+      <p class="source">
+        مسلم 2664 (7/29)
+      </p>
+
+    </section>
+
+
+    <!-- 36 -->
+
+    <section class="narration" id="narration-36">
+
+      <div class="narration-number">
+        <a href="#narration-36">٣٦</a>
+      </div>
+
+      <p class="narration-text">
+        عن ابن مسعود رضي الله عنه قال: كان عمر بن الخطاب رضي الله عنه كثيرا ما يخطب كان يقول على المنبر:
+      </p>
+
+      <div class="poetry">
+        <div class="poetry-line">
+          <span>خفض عليك فإن الأمور</span>
+          <span>بكف الإله مقاديرها</span>
+        </div>
+
+        <div class="poetry-line">
+          <span>فلیس بآتيك منهيها</span>
+          <span>ولا قاصر عنك مأمورها</span>
+        </div>
+      </div>
+
+      <p class="source">
+        الأسماء والصفات 728 (2/868)
+      </p>
+
+    </section>
+
+
+    <!-- 37 -->
+
+    <section class="narration" id="narration-37">
+
+      <div class="narration-number">
+        <a href="#narration-37">٣٧</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي هُرَيْرَةَ رضي الله عنه عَنِ النَّبِيِّ ﷺ قَالَ: «لَيْسَ الْغِنَى عَنْ كَثْرَةِ الْعَرَضِ، وَلَكِنَّ الْغِنَى غِنَى النَّفْسِ».
+      </p>
+
+      <p class="source">
+        البخاري 6446 ومسلم 1051 (3/235)
+      </p>
+
+    </section>
+
+
+    <!-- 38 -->
+
+    <section class="narration" id="narration-38">
+
+      <div class="narration-number">
+        <a href="#narration-38">٣٨</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ عَبْدِ اللَّهِ بْنِ عَمْرِو رضي الله عنهما أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: «قَدْ أَفْلَحَ مَنْ أَسْلَمَ، وَرُزِقَ كَفَافًا، وَقَنَّعَهُ اللَّهُ بِمَا آتَاهُ».
+      </p>
+
+      <p class="source">
+        مسلم 1054 (3/239)
+      </p>
+
+    </section>
+
+
+    <!-- 39 -->
+
+    <section class="narration" id="narration-39">
+
+      <div class="narration-number">
+        <a href="#narration-39">٣٩</a>
+      </div>
+
+      <p class="narration-text">
+        قال أبو مسلم الخولاني رحمه الله: «ليس الزهادة في الدنيا بتحريم الحلال، ولا إضاعة المال، إنما الزهادة في الدنيا أن تكون بما في يدي اللّٰه أوثق مما في يديك، وإذا أصبت بمصيبة كنت أشد رجاء لأجرها وذخرها من أنها لو بقيت لك».
+      </p>
+
+      <p class="source">
+        الجامع لعلوم الإمام أحمد رحمه الله 20/268
+      </p>
+
+    </section>
+
+
+    <!-- 40 -->
+
+    <section class="narration" id="narration-40">
+
+      <div class="narration-number">
+        <a href="#narration-40">٤٠</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي هُرَيْرَةَ رضي الله عنه قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «الدُّنْيَا سِجْنُ الْمُؤْمِنِ وَجَنَّةُ الْكَافِرِ».
+      </p>
+
+      <p class="source">
+        مسلم 2956 (7/369)
+      </p>
+
+    </section>
+
+
+    <!-- 41 -->
+
+    <section class="narration" id="narration-41">
+
+      <div class="narration-number">
+        <a href="#narration-41">٤١</a>
+      </div>
+
+      <p class="narration-text">
+        عن أبي هريرة رضي الله عنه قال: قال رَسولُ اللهِ ﷺ: «مَنْ يُرِدِ اللَّهُ بِهِ خَيْرًا يُصِبْ مِنْهُ».
+      </p>
+
+      <p class="source">
+        البخاري 5645 (7/331)
+      </p>
+
+    </section>
+
+
+    <!-- 42 -->
+
+    <section class="narration" id="narration-42">
+
+      <div class="narration-number">
+        <a href="#narration-42">٤٢</a>
+      </div>
+
+      <p class="narration-text">
+        عن أبي هريرة رضي الله عنه عَنِ النَّبِيِّ ﷺ قَالَ: «مَا يَزَالُ الْبَلاَءُ بِالْمُؤْمِنِ وَالْمُؤْمِنَةِ فِي نَفْسِهِ وَوَلَدِهِ وَمَالِه، حَتَّى يَلْقَى اللَّهَ وَمَا عَلَيْهِ خَطِيئَةٌ‏».
+      </p>
+
+      <p class="source">
+        الترمذي 2399 | حديث حسن صحيح (3/399)
+      </p>
+
+    </section>
+
+
+    <!-- 43 -->
+
+    <section class="narration" id="narration-43">
+
+      <div class="narration-number">
+        <a href="#narration-43">٤٣</a>
+      </div>
+
+      <p class="narration-text">
+        عَنِ كَعْبِ بْنِ مَالِكٍ رضي الله عنه قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ:‏ «مَا ذِئْبَانِ جَائِعَانِ أُرْسِلاَ فِي غَنَمٍ بِأَفْسَدَ لَهَا مِنْ حِرْصِ الْمَرْءِ عَلَى الْمَالِ وَالشَّرَفِ لِدِينِهِ».
+      </p>
+
+      <p class="source">
+        الترمذي 2376 | حديث حسن صحيح (3/385)
+      </p>
+
+    </section>
+
+
+    <!-- 44 -->
+
+    <section class="narration" id="narration-44">
+
+      <div class="narration-number">
+        <a href="#narration-44">٤٤</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ ابْنِ عُمَرَ رضي الله عنهما قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: «يَا أَيُّهَا النَّاسُ تُوبُوا إِلَى اللَّهِ؛ فَإِنِّي أَتُوبُ فِي الْيَوْمِ مِائَةَ مَرَّةٍ».
+      </p>
+
+      <p class="source">
+        مسلم 2702 (7/67)
+      </p>
+
+    </section>
+
+
+    <!-- 45 -->
+
+    <section class="narration" id="narration-45">
+
+      <div class="narration-number">
+        <a href="#narration-45">٤٥</a>
+      </div>
+
+      <p class="narration-text">
+        قالت عَائشةَ رضي الله عنها: «أقلوا الذنوب؛ فإنكم لن تلقوا الله عز وجل بشيء أفضل من قلة الذنوب»
+      </p>
+
+      <p class="source">
+        الجامع لعلوم الإمام أحمد رحمه الله 20/204
+      </p>
+
+    </section>
+
+
+    <!-- 46 -->
+
+    <section class="narration" id="narration-46">
+
+      <div class="narration-number">
+        <a href="#narration-46">٤٦</a>
+      </div>
+
+      <p class="narration-text">
+        عن أنس بن مالك رضي الله عنه أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: «لَوْ أَنَّ لاِبْنِ آدَمَ وَادِيًا مِنْ ذَهَبٍ أَحَبَّ أَنْ يَكُونَ لَهُ وَادِيَانِ، وَلَنْ يَمْلأَ فَاهُ إِلاَّ التُّرَابُ، وَيَتُوبُ اللَّهُ عَلَى مَنْ تَابَ».
+      </p>
+
+      <p class="source">
+        البخاري 6439 (8/258) ومسلم 1048
+      </p>
+
+    </section>
+
+
+    <!-- 47 -->
+
+    <section class="narration" id="narration-47">
+
+      <div class="narration-number">
+        <a href="#narration-47">٤٧</a>
+      </div>
+
+      <p class="narration-text">
+        كان العلاء بن زياد رحمه الله يقول: «لينزل أحدكم نفسه أنه قد حضره الموت فاستقال ربه فأقاله، فليعمل بطاعة الله عز وجل»
+      </p>
+
+      <p class="source">
+        الجامع لعلوم الإمام أحمد رحمه الله 20/204
+      </p>
+
+    </section>
+
+
+    <!-- 48 -->
+
+    <section class="narration" id="narration-48">
+
+      <div class="narration-number">
+        <a href="#narration-48">٤٨</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي مُوسَى رضي الله عنه قَالَ: قَالَ النَّبِيُّ ﷺ: «مَثَلُ الَّذِي يَذْكُرُ رَبَّهُ، وَالَّذِي لَا يَذْكُرُ، مَثَلُ الْحَيِّ وَالْمَيِّتِ».
+      </p>
+
+      <p class="source">
+        البخاري 6407 (8/238) ومسلم 779
+      </p>
+
+    </section>
+
+
+    <!-- 49 -->
+
+    <section class="narration" id="narration-49">
+
+      <div class="narration-number">
+        <a href="#narration-49">٤٩</a>
+      </div>
+
+      <p class="narration-text">
+        قَالَ مُعَاذُ بْنُ جَبَلٍ رضي الله عنه: «مَا عَمِلَ آدَمِيٌّ مِنْ عَمَلٍ أَنْجَىٰ لَهُ مِنْ عَذَابِ اللَّهِ، مِنْ ذِكْرِ اللَّهِ».
+      </p>
+
+      <p class="source">
+        الموطأ برواية أبي مصعب الزهري رحمه الله 450 (1/430)
+      </p>
+
+    </section>
+
+
+    <!-- 50 -->
+
+    <section class="narration" id="narration-50">
+
+      <div class="narration-number">
+        <a href="#narration-50">٥٠</a>
+      </div>
+
+      <p class="narration-text">
+        قَالَ أَبُو الدَّرْدَاءِ رضي الله عنه: «أَلَا أُخْبِرُكُمْ بِخَيْرِ أَعْمَالِكُمْ لَكُمْ، وَأَرْفَعِهَا فِي دَرَجَاتِكُمْ، وَأَزْكَاهَا عِنْدَ مَلِيكِكُمْ، وَخَيْرٍ لَكُمْ مِنْ إِعْطَاءِ الذَّهَبِ وَالْوَرِقِ، وَخَيْرِ لَكُمْ مِنْ أَنْ تَلْقَوْا عَدُوَكُمْ فَتَضْرِبُوا أَعْنَاقَهُمْ وَيَضْرِبُوا أَعْنَاقَكُمْ». قَالُوا: بَلَىٰ، قَالَ: ذِكْرُ اللَّهِ».
+      </p>
+
+      <p class="source">
+        الموطأ برواية أبي مصعب الزهري رحمه الله 449 (1/430)
+      </p>
+
+    </section>
+
+
+    <!-- 51 -->
+
+    <section class="narration" id="narration-51">
+
+      <div class="narration-number">
+        <a href="#narration-51">٥١</a>
+      </div>
+
+      <p class="narration-text">
+        قال عمر رضي الله عنه: «عليكم بذكر اللّٰه فإنه شفاء، وإياكم وذكر الناس فإنه داء»
+      </p>
+
+      <p class="source">
+        الجامع لعلوم الإمام أحمد رحمه الله 20/358
+      </p>
+
+    </section>
+
+
+    <!-- 52 -->
+
+    <section class="narration" id="narration-52">
+
+      <div class="narration-number">
+        <a href="#narration-52">٥٢</a>
+      </div>
+
+      <p class="narration-text">
+        قالَ مُعَاذُ بْنُ جَبَلٍ رضي الله عنه: «إنك مجالس قوما لا محالة يخوضون في الحديث، فإذا رأيتهم غفلوا فارغب إلى ربك عز وجل عند ذلك رغبات».
+      </p>
+
+      <p class="source">
+        الجامع لعلوم الإمام أحمد رحمه الله 20/383
+      </p>
+
+    </section>
+
+
+    <!-- 53 -->
+
+    <section class="narration" id="narration-53">
+
+      <div class="narration-number">
+        <a href="#narration-53">٥٣</a>
+      </div>
+
+      <p class="narration-text">
+        قالَ عبد الله بن مسعود رضي الله عنه: «إن اللّٰه لا يسمع من مسمَع، ولا من مراء، ولا من لاعب، ولا من داع إلا داع دعاء ثبتًا من قلبه».
+      </p>
+
+      <p class="source">
+        الجامع لعلوم الإمام أحمد رحمه الله 20/384
+      </p>
+
+    </section>
+
+
+    <!-- 54 -->
+
+    <section class="narration" id="narration-54">
+
+      <div class="narration-number">
+        <a href="#narration-54">٥٤</a>
+      </div>
+
+      <p class="narration-text">
+        قالَ أبو الدرداء رضي الله عنه: «أدع الله يوم سرائك، لعله يستجيب لك يوم ضرائك».
+      </p>
+
+      <p class="source">
+        الجامع لعلوم الإمام أحمد رحمه الله 20/379
+      </p>
+
+    </section>
+
+
+    <!-- 55 -->
+
+    <section class="narration" id="narration-55">
+
+      <div class="narration-number">
+        <a href="#narration-55">٥٥</a>
+      </div>
+
+      <p class="narration-text">
+        قال حذيفة رضي الله عنه: «ليأتين على الناس زمان لا ينجو فيه إلا من دعا بدعاء كدعاء الغرق».
+      </p>
+
+      <p class="source">
+        مصنف ابن أبي شيبة رحمه الله 31131 (16/112)
+      </p>
+
+    </section>
+
+
+    <!-- 56 -->
+
+    <section class="narration" id="narration-56">
+
+      <div class="narration-number">
+        <a href="#narration-56">٥٦</a>
+      </div>
+
+      <p class="narration-text">
+        عَنْ أَبِي هُرَيْرَةَ رضي الله عنه أَنَّ رَسُولَ اللهِ ﷺ قَالَ: «مَنْ صَلَّى عَلَيَّ وَاحِدَةً صَلَّى اللهُ عَلَيْهِ عَشْرًا»
+      </p>
+
+      <p class="source">
+        مسلم 408 (2/162)
+      </p>
+
+    </section>
+
+
+    <footer>
+      المتوكل
+    </footer>
+
+  </main>
+
+</body>
+</html>

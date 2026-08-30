@@ -46,13 +46,18 @@
       border: 1px solid #dedbd3;
     }
 
+    .section {
+      margin-bottom: 26px;
+    }
+
     label {
       display: block;
       font-weight: 600;
       margin-bottom: 8px;
     }
 
-    input {
+    input,
+    select {
       width: 100%;
       padding: 12px 14px;
       font-size: 16px;
@@ -61,13 +66,43 @@
       background: white;
     }
 
-    input:focus {
+    input:focus,
+    select:focus {
       outline: none;
       border-color: #444;
     }
 
-    .section {
-      margin-bottom: 26px;
+    .url-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .url-row input {
+      flex: 1;
+    }
+
+    #loadBookButton {
+      white-space: nowrap;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 8px;
+      background: #444;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    #loadBookButton:hover {
+      background: #222;
+    }
+
+    #loadBookButton:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    #volumeSection {
+      display: none;
     }
 
     .pages-title {
@@ -96,12 +131,20 @@
       font-size: 18px;
     }
 
+    .remove-page:hover {
+      background: #f3f3f3;
+    }
+
     #addPage {
       border: none;
       background: transparent;
       cursor: pointer;
       color: #555;
       font-size: 14px;
+    }
+
+    #addPage:hover {
+      text-decoration: underline;
     }
 
     .main-button {
@@ -120,6 +163,11 @@
       background: #000;
     }
 
+    .main-button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
     .small-note {
       margin-top: 10px;
       color: #777;
@@ -127,10 +175,22 @@
       line-height: 1.5;
     }
 
+    #bookInfo {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: #f7f7f5;
+      color: #555;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
     #status {
       margin-top: 16px;
       min-height: 20px;
       font-size: 14px;
+      line-height: 1.5;
     }
 
     .error {
@@ -139,6 +199,10 @@
 
     .success {
       color: #266333;
+    }
+
+    .loading {
+      color: #555;
     }
 
     #clipSection {
@@ -168,13 +232,20 @@
       color: white;
     }
 
+    #clipLabel {
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #666;
+    }
+
     /*
-     * This is the actual clip.
+     * Actual finished clip.
      */
     #bookClip {
       margin: auto;
       background: white;
       width: min(100%, 1200px);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
     }
 
     #bookClip img {
@@ -186,11 +257,11 @@
     }
 
     .page-divider {
-      height: 10px;
+      height: 8px;
       background: white;
     }
 
-    @media (max-width: 550px) {
+    @media (max-width: 600px) {
       .container {
         margin: 25px auto;
       }
@@ -203,6 +274,14 @@
         font-size: 28px;
       }
 
+      .url-row {
+        flex-direction: column;
+      }
+
+      #loadBookButton {
+        padding: 12px;
+      }
+
       .clip-controls {
         flex-direction: column;
       }
@@ -211,8 +290,6 @@
 
     /*
      * PRINT MODE
-     *
-     * Everything except the selected pages disappears.
      */
 
     @media print {
@@ -237,11 +314,10 @@
         position: absolute;
         left: 0;
         top: 0;
-
         width: 100% !important;
-
         margin: 0 !important;
         padding: 0 !important;
+        box-shadow: none !important;
       }
 
       #bookClip img {
@@ -254,30 +330,33 @@
         height: 0 !important;
       }
     }
-
   </style>
 </head>
 
 
 <body>
 
-  <main class="container">
+<main class="container">
 
-    <h1>Book Clipper</h1>
+  <h1>Book Clipper</h1>
 
-    <p class="subtitle">
-      Turn selected pages from an Internet Archive book
-      into one clean page for quoting, highlighting, and sharing.
-    </p>
+  <p class="subtitle">
+    Turn selected pages from an Internet Archive book into one
+    clean page for quoting, highlighting, and sharing.
+  </p>
 
 
-    <div class="card">
+  <div class="card">
 
-      <div class="section">
+    <!-- ARCHIVE LINK -->
 
-        <label for="archiveUrl">
-          Internet Archive link
-        </label>
+    <div class="section">
+
+      <label for="archiveUrl">
+        Internet Archive link
+      </label>
+
+      <div class="url-row">
 
         <input
           id="archiveUrl"
@@ -285,108 +364,162 @@
           placeholder="https://archive.org/details/..."
         >
 
-      </div>
-
-
-      <div class="section">
-
-        <div class="pages-title">
-
-          <label style="margin:0;">
-            PDF pages
-          </label>
-
-          <button
-            id="addPage"
-            type="button"
-          >
-            + Add page
-          </button>
-
-        </div>
-
-
-        <div id="pageInputs">
-
-          <div class="page-row">
-
-            <input
-              class="page-number"
-              type="number"
-              min="1"
-              placeholder="PDF page number"
-            >
-
-            <button
-              class="remove-page"
-              type="button"
-            >
-              ×
-            </button>
-
-          </div>
-
-        </div>
-
-
-        <div class="small-note">
-          Maximum 4 pages. They will appear in exactly
-          the order entered.
-        </div>
+        <button
+          id="loadBookButton"
+          type="button"
+        >
+          Load Volumes
+        </button>
 
       </div>
 
-
-      <button
-        id="createButton"
-        class="main-button"
-        type="button"
-      >
-        Create Clip
-      </button>
-
-
-      <div id="status"></div>
+      <div id="bookInfo"></div>
 
     </div>
 
 
+    <!-- VOLUME SELECTION -->
 
-    <section id="clipSection">
+    <div
+      id="volumeSection"
+      class="section"
+    >
 
-      <div class="clip-controls">
+      <label for="volumeSelect">
+        Volume / PDF
+      </label>
+
+      <select id="volumeSelect"></select>
+
+      <div class="small-note">
+        Choose the volume containing the pages you were reading.
+      </div>
+
+    </div>
+
+
+    <!-- PAGE SELECTION -->
+
+    <div class="section">
+
+      <div class="pages-title">
+
+        <label style="margin:0;">
+          PDF pages
+        </label>
 
         <button
-          id="printButton"
-          class="secondary-button dark"
+          id="addPage"
           type="button"
         >
-          Save as PDF
-        </button>
-
-        <button
-          id="newClipButton"
-          class="secondary-button"
-          type="button"
-        >
-          New Clip
+          + Add page
         </button>
 
       </div>
 
 
-      <div id="bookClip"></div>
+      <div id="pageInputs">
 
-    </section>
+        <div class="page-row">
 
-  </main>
+          <input
+            class="page-number"
+            type="number"
+            min="1"
+            placeholder="PDF page number"
+          >
+
+          <button
+            class="remove-page"
+            type="button"
+            aria-label="Remove page"
+          >
+            ×
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="small-note">
+        Maximum 4 pages. Pages appear in exactly the order entered.
+        For example: 500, 501, 1.
+      </div>
+
+    </div>
+
+
+    <button
+      id="createButton"
+      class="main-button"
+      type="button"
+      disabled
+    >
+      Create Clip
+    </button>
+
+
+    <div id="status"></div>
+
+  </div>
+
+
+  <!-- RESULT -->
+
+  <section id="clipSection">
+
+    <div id="clipLabel"></div>
+
+    <div class="clip-controls">
+
+      <button
+        id="printButton"
+        class="secondary-button dark"
+        type="button"
+      >
+        Save as PDF
+      </button>
+
+      <button
+        id="newClipButton"
+        class="secondary-button"
+        type="button"
+      >
+        New Clip
+      </button>
+
+    </div>
+
+
+    <div id="bookClip"></div>
+
+  </section>
+
+</main>
 
 
 
 <script>
 
+  /*
+   * ELEMENTS
+   */
+
   const archiveUrl =
     document.getElementById("archiveUrl");
+
+  const loadBookButton =
+    document.getElementById("loadBookButton");
+
+  const volumeSection =
+    document.getElementById("volumeSection");
+
+  const volumeSelect =
+    document.getElementById("volumeSelect");
+
+  const bookInfo =
+    document.getElementById("bookInfo");
 
   const pageInputs =
     document.getElementById("pageInputs");
@@ -403,6 +536,9 @@
   const clipSection =
     document.getElementById("clipSection");
 
+  const clipLabel =
+    document.getElementById("clipLabel");
+
   const bookClip =
     document.getElementById("bookClip");
 
@@ -413,9 +549,30 @@
     document.getElementById("newClipButton");
 
 
+  /*
+   * CURRENT BOOK
+   */
+
+  let currentIdentifier = null;
+
+  let currentVolumes = [];
+
 
   /*
-   * Get Archive item identifier
+   * STATUS
+   */
+
+  function setStatus(message, type = "") {
+
+    status.textContent = message;
+
+    status.className = type;
+
+  }
+
+
+  /*
+   * EXTRACT ARCHIVE ITEM ID
    */
 
   function getIdentifier(value) {
@@ -423,9 +580,11 @@
     value = value.trim();
 
     if (!value) {
+
       throw new Error(
-        "Paste an Internet Archive link."
+        "Paste an Internet Archive link first."
       );
+
     }
 
 
@@ -491,21 +650,568 @@
 
 
     throw new Error(
-      "Couldn't determine the Archive item."
+      "Couldn't determine the Internet Archive item."
     );
 
   }
 
 
+  /*
+   * ENCODE A PATH WHILE KEEPING /
+   *
+   * Example:
+   *
+   * folder/book volume 1
+   *
+   * becomes
+   *
+   * folder/book%20volume%201
+   */
+
+  function encodeArchivePath(path) {
+
+    return path
+      .split("/")
+      .map(part =>
+        encodeURIComponent(part)
+      )
+      .join("/");
+
+  }
+
 
   /*
-   * Page boxes
+   * CLEAN A FILE NAME FOR DISPLAY
+   */
+
+  function getBaseName(path) {
+
+    return path
+      .split("/")
+      .pop();
+
+  }
+
+
+  function prettifyVolumeName(name) {
+
+    return name
+      .replace(/_scandata\.xml$/i, "")
+      .replace(/_text\.pdf$/i, "")
+      .replace(/_bw\.pdf$/i, "")
+      .replace(/\.pdf$/i, "")
+      .replace(/_/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  }
+
+
+  /*
+   * FIND VOLUMES / BOOK PREFIXES
+   */
+
+  function findVolumes(metadata) {
+
+    const files =
+      Array.isArray(metadata.files)
+        ? metadata.files
+        : [];
+
+
+    /*
+     * This is the important part.
+     *
+     * Each scanned book normally has:
+     *
+     * something_scandata.xml
+     *
+     * Internet Archive's BookReader uses
+     * "something" as the book's sub-prefix.
+     *
+     * For example:
+     *
+     * vol01_scandata.xml
+     *
+     * means:
+     *
+     * /download/ITEM/vol01/page/n0.jpg
+     */
+
+    const scandataFiles =
+      files.filter(file => {
+
+        return (
+          file.name &&
+          file.name
+            .toLowerCase()
+            .endsWith("_scandata.xml")
+        );
+
+      });
+
+
+    const volumes = [];
+
+
+    for (const scandata of scandataFiles) {
+
+      const prefix =
+        scandata.name.replace(
+          /_scandata\.xml$/i,
+          ""
+        );
+
+
+      /*
+       * Look for PDFs associated with this
+       * exact scanned-book prefix.
+       */
+
+      const matchingPdfs =
+        files.filter(file => {
+
+          if (!file.name) {
+            return false;
+          }
+
+
+          const lower =
+            file.name.toLowerCase();
+
+
+          if (!lower.endsWith(".pdf")) {
+            return false;
+          }
+
+
+          return (
+            file.name === `${prefix}.pdf` ||
+            file.name === `${prefix}_text.pdf` ||
+            file.name === `${prefix}_bw.pdf` ||
+            file.name.startsWith(
+              `${prefix}_`
+            )
+          );
+
+        });
+
+
+      /*
+       * Choose the nicest PDF filename purely
+       * for the human-readable dropdown label.
+       *
+       * The actual page images use "prefix".
+       */
+
+      let displayPdf = null;
+
+
+      const exactPdf =
+        matchingPdfs.find(
+          file =>
+            file.name === `${prefix}.pdf`
+        );
+
+
+      const textPdf =
+        matchingPdfs.find(
+          file =>
+            file.name === `${prefix}_text.pdf`
+        );
+
+
+      displayPdf =
+        exactPdf ||
+        textPdf ||
+        matchingPdfs[0] ||
+        null;
+
+
+      volumes.push({
+
+        prefix,
+
+        pdfName:
+          displayPdf
+            ? displayPdf.name
+            : null,
+
+        label:
+          displayPdf
+            ? getBaseName(displayPdf.name)
+            : prettifyVolumeName(prefix)
+
+      });
+
+    }
+
+
+    /*
+     * Remove duplicate prefixes.
+     */
+
+    const unique =
+      [];
+
+
+    const seen =
+      new Set();
+
+
+    for (const volume of volumes) {
+
+      if (seen.has(volume.prefix)) {
+        continue;
+      }
+
+
+      seen.add(volume.prefix);
+
+      unique.push(volume);
+
+    }
+
+
+    /*
+     * FALLBACK
+     *
+     * Occasionally an item may expose PDFs but
+     * scandata isn't obvious in metadata.
+     *
+     * In that case, try deriving likely prefixes
+     * from the PDF filenames.
+     */
+
+    if (!unique.length) {
+
+      const pdfFiles =
+        files.filter(file => {
+
+          return (
+            file.name &&
+            file.name
+              .toLowerCase()
+              .endsWith(".pdf")
+          );
+
+        });
+
+
+      for (const pdf of pdfFiles) {
+
+        let prefix =
+          pdf.name;
+
+
+        prefix =
+          prefix.replace(
+            /_text\.pdf$/i,
+            ""
+          );
+
+
+        prefix =
+          prefix.replace(
+            /_bw\.pdf$/i,
+            ""
+          );
+
+
+        prefix =
+          prefix.replace(
+            /\.pdf$/i,
+            ""
+          );
+
+
+        if (seen.has(prefix)) {
+          continue;
+        }
+
+
+        seen.add(prefix);
+
+
+        unique.push({
+
+          prefix,
+
+          pdfName:
+            pdf.name,
+
+          label:
+            getBaseName(pdf.name)
+
+        });
+
+      }
+
+    }
+
+
+    /*
+     * Sort naturally:
+     *
+     * vol2 before vol10
+     */
+
+    unique.sort(
+      (a, b) =>
+        a.label.localeCompare(
+          b.label,
+          undefined,
+          {
+            numeric: true,
+            sensitivity: "base"
+          }
+        )
+    );
+
+
+    return unique;
+
+  }
+
+
+  /*
+   * LOAD ARCHIVE ITEM
+   */
+
+  async function loadArchiveItem() {
+
+    try {
+
+      setStatus(
+        "Reading Internet Archive files...",
+        "loading"
+      );
+
+
+      loadBookButton.disabled =
+        true;
+
+
+      createButton.disabled =
+        true;
+
+
+      volumeSection.style.display =
+        "none";
+
+
+      bookInfo.style.display =
+        "none";
+
+
+      currentIdentifier =
+        getIdentifier(
+          archiveUrl.value
+        );
+
+
+      const metadataUrl =
+        `https://archive.org/metadata/${encodeURIComponent(currentIdentifier)}`;
+
+
+      const response =
+        await fetch(metadataUrl);
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          "Internet Archive metadata could not be loaded."
+        );
+
+      }
+
+
+      const metadata =
+        await response.json();
+
+
+      if (
+        metadata.error
+      ) {
+
+        throw new Error(
+          metadata.error
+        );
+
+      }
+
+
+      currentVolumes =
+        findVolumes(metadata);
+
+
+      if (!currentVolumes.length) {
+
+        throw new Error(
+          "I couldn't find any readable book volumes in this Archive item."
+        );
+
+      }
+
+
+      /*
+       * Populate dropdown
+       */
+
+      volumeSelect.innerHTML =
+        "";
+
+
+      currentVolumes.forEach(
+        (volume, index) => {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+
+          option.value =
+            index;
+
+
+          /*
+           * Keep original file name visible.
+           *
+           * This makes identifying volume 1,
+           * volume 2, etc. much easier.
+           */
+
+          option.textContent =
+            volume.label;
+
+
+          volumeSelect.appendChild(
+            option
+          );
+
+        }
+      );
+
+
+      /*
+       * Book information
+       */
+
+      const title =
+        metadata.metadata?.title ||
+        currentIdentifier;
+
+
+      bookInfo.innerHTML =
+        `<strong>${escapeHtml(title)}</strong><br>` +
+        `${currentVolumes.length} book ${
+          currentVolumes.length === 1
+            ? "volume"
+            : "volumes"
+        } found.`;
+
+
+      bookInfo.style.display =
+        "block";
+
+
+      volumeSection.style.display =
+        "block";
+
+
+      createButton.disabled =
+        false;
+
+
+      setStatus(
+        currentVolumes.length === 1
+          ? "Book loaded. Enter the PDF page number."
+          : `Found ${currentVolumes.length} volumes. Choose the one you were reading.`,
+        "success"
+      );
+
+
+    } catch (error) {
+
+      console.error(error);
+
+
+      setStatus(
+        error.message ||
+        "Something went wrong.",
+        "error"
+      );
+
+
+    } finally {
+
+      loadBookButton.disabled =
+        false;
+
+    }
+
+  }
+
+
+  /*
+   * PREVENT HTML FROM METADATA TITLE
+   */
+
+  function escapeHtml(text) {
+
+    const div =
+      document.createElement("div");
+
+
+    div.textContent =
+      String(text);
+
+
+    return div.innerHTML;
+
+  }
+
+
+  /*
+   * LOAD BUTTON
+   */
+
+  loadBookButton.addEventListener(
+    "click",
+    loadArchiveItem
+  );
+
+
+  /*
+   * ENTER AFTER URL
+   */
+
+  archiveUrl.addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "Enter") {
+
+        loadArchiveItem();
+
+      }
+
+    }
+  );
+
+
+  /*
+   * PAGE INPUT CONTROLS
    */
 
   function updateRows() {
 
     const rows =
-      document.querySelectorAll(".page-row");
+      document.querySelectorAll(
+        ".page-row"
+      );
 
 
     addPage.style.display =
@@ -517,7 +1223,9 @@
     rows.forEach(row => {
 
       const button =
-        row.querySelector(".remove-page");
+        row.querySelector(
+          ".remove-page"
+        );
 
 
       button.style.visibility =
@@ -528,7 +1236,6 @@
     });
 
   }
-
 
 
   addPage.addEventListener(
@@ -547,7 +1254,9 @@
 
 
       const row =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
 
 
       row.className =
@@ -566,6 +1275,7 @@
         <button
           class="remove-page"
           type="button"
+          aria-label="Remove page"
         >
           ×
         </button>
@@ -573,9 +1283,13 @@
       `;
 
 
-      pageInputs.appendChild(row);
+      pageInputs.appendChild(
+        row
+      );
+
 
       updateRows();
+
 
       row
         .querySelector("input")
@@ -585,17 +1299,18 @@
   );
 
 
-
   pageInputs.addEventListener(
     "click",
     event => {
 
       if (
-        !event.target.classList.contains(
-          "remove-page"
-        )
+        !event.target
+          .classList
+          .contains("remove-page")
       ) {
+
         return;
+
       }
 
 
@@ -621,18 +1336,16 @@
   );
 
 
-
   updateRows();
 
 
-
   /*
-   * Read page numbers
+   * GET REQUESTED PAGES
    */
 
   function getPages() {
 
-    const values =
+    const inputs =
       [
         ...document.querySelectorAll(
           ".page-number"
@@ -641,16 +1354,22 @@
 
 
     const pages =
-      values
-        .map(input => input.value.trim())
-        .filter(value => value !== "")
-        .map(value => Number(value));
+      inputs
+        .map(input =>
+          input.value.trim()
+        )
+        .filter(value =>
+          value !== ""
+        )
+        .map(value =>
+          Number(value)
+        );
 
 
     if (!pages.length) {
 
       throw new Error(
-        "Enter at least one page."
+        "Enter at least one PDF page."
       );
 
     }
@@ -686,13 +1405,13 @@
   }
 
 
-
   /*
-   * Load image and report success/failure
+   * LOAD AN INTERNET ARCHIVE PAGE IMAGE
    */
 
   function loadPageImage(
     identifier,
+    prefix,
     pdfPage
   ) {
 
@@ -700,26 +1419,28 @@
       (resolve, reject) => {
 
         /*
-         * IA's accessible page index starts at zero.
+         * Internet Archive accessible-page
+         * numbering begins with n0.
          *
-         * PDF page 1 -> n0
-         * PDF page 2 -> n1
+         * Therefore:
+         *
+         * PDF page 1   -> n0
+         * PDF page 2   -> n1
          * PDF page 500 -> n499
          */
 
-        const iaIndex =
+        const index =
           pdfPage - 1;
 
 
-        /*
-         * _large requests a high-quality image.
-         *
-         * We can switch this to the full-resolution
-         * .jpg later if desired.
-         */
+        const encodedPrefix =
+          encodeArchivePath(
+            prefix
+          );
+
 
         const src =
-          `https://archive.org/download/${encodeURIComponent(identifier)}/page/n${iaIndex}_large.jpg`;
+          `https://archive.org/download/${encodeURIComponent(identifier)}/${encodedPrefix}/page/n${index}_large.jpg`;
 
 
         const img =
@@ -727,19 +1448,52 @@
 
 
         img.onload =
-          () => resolve({
-            img,
-            pdfPage,
-            src
-          });
+          () => {
+
+            /*
+             * Some error pages could technically
+             * return an image. Reject suspiciously
+             * tiny results.
+             */
+
+            if (
+              img.naturalWidth < 200 ||
+              img.naturalHeight < 200
+            ) {
+
+              reject(
+                new Error(
+                  `Page ${pdfPage} could not be loaded from this volume.`
+                )
+              );
+
+
+              return;
+
+            }
+
+
+            resolve({
+
+              img,
+              pdfPage,
+              src
+
+            });
+
+          };
 
 
         img.onerror =
-          () => reject(
-            new Error(
-              `Could not load PDF page ${pdfPage}.`
-            )
-          );
+          () => {
+
+            reject(
+              new Error(
+                `Could not load page ${pdfPage} from the selected volume.`
+              )
+            );
+
+          };
 
 
         img.src =
@@ -751,31 +1505,53 @@
   }
 
 
-
   /*
-   * Create clip
+   * CREATE CLIP
    */
 
   createButton.addEventListener(
     "click",
     async () => {
 
-      status.textContent = "";
-
-      status.className = "";
-
-      bookClip.innerHTML = "";
-
-      clipSection.style.display =
-        "none";
-
-
       try {
 
-        const identifier =
-          getIdentifier(
-            archiveUrl.value
+        if (!currentIdentifier) {
+
+          throw new Error(
+            "Load an Internet Archive book first."
           );
+
+        }
+
+
+        if (!currentVolumes.length) {
+
+          throw new Error(
+            "Choose a book volume first."
+          );
+
+        }
+
+
+        const selectedIndex =
+          Number(
+            volumeSelect.value
+          );
+
+
+        const volume =
+          currentVolumes[
+            selectedIndex
+          ];
+
+
+        if (!volume) {
+
+          throw new Error(
+            "Choose a valid volume."
+          );
+
+        }
 
 
         const pages =
@@ -786,16 +1562,20 @@
           true;
 
 
-        status.textContent =
-          "Loading pages...";
+        bookClip.innerHTML =
+          "";
 
 
-        const loadedPages = [];
+        clipSection.style.display =
+          "none";
+
+
+        const loadedPages =
+          [];
 
 
         /*
-         * Load sequentially so that the order
-         * always matches what the user entered.
+         * Load in exact entered order.
          */
 
         for (
@@ -808,13 +1588,16 @@
             pages[i];
 
 
-          status.textContent =
-            `Loading page ${page} (${i + 1} of ${pages.length})...`;
+          setStatus(
+            `Loading page ${page} (${i + 1} of ${pages.length})...`,
+            "loading"
+          );
 
 
           const loaded =
             await loadPageImage(
-              identifier,
+              currentIdentifier,
+              volume.prefix,
               page
             );
 
@@ -826,9 +1609,8 @@
         }
 
 
-
         /*
-         * Put images into clip.
+         * Build tall clip
          */
 
         loadedPages.forEach(
@@ -872,24 +1654,26 @@
         );
 
 
+        clipLabel.textContent =
+          `${volume.label} — PDF pages ${pages.join(", ")}`;
+
+
         clipSection.style.display =
           "block";
 
 
-        status.textContent =
-          `Done — pages ${pages.join(", ")} are ready.`;
+        setStatus(
+          `Done — pages ${pages.join(", ")} are ready.`,
+          "success"
+        );
 
-        status.className =
-          "success";
-
-
-        /*
-         * Scroll result into view.
-         */
 
         clipSection.scrollIntoView({
+
           behavior: "smooth",
+
           block: "start"
+
         });
 
 
@@ -898,13 +1682,12 @@
         console.error(error);
 
 
-        status.textContent =
+        setStatus(
           error.message ||
-          "Something went wrong.";
+          "Something went wrong.",
+          "error"
+        );
 
-
-        status.className =
-          "error";
 
       } finally {
 
@@ -917,19 +1700,13 @@
   );
 
 
-
   /*
-   * Print / Save as PDF
+   * SAVE AS ONE-PAGE PDF
    */
 
   printButton.addEventListener(
     "click",
     () => {
-
-      /*
-       * Determine proportions of the finished
-       * stacked image.
-       */
 
       const images =
         [
@@ -945,14 +1722,15 @@
 
 
       /*
-       * Use the first page as our reference width.
+       * Reference page width.
        */
 
       const referenceWidth =
         1000;
 
 
-      let totalHeight = 0;
+      let totalHeight =
+        0;
 
 
       for (const img of images) {
@@ -963,27 +1741,33 @@
 
 
         totalHeight +=
-          referenceWidth * ratio;
+          referenceWidth *
+          ratio;
 
       }
 
 
       /*
-       * Dynamically tell the browser that the PDF
-       * page itself should be tall enough to hold
-       * the entire clip on ONE page.
+       * Remove previous dynamic page size.
        */
 
-      const oldStyle =
+      const previous =
         document.getElementById(
           "dynamicPrintSize"
         );
 
 
-      if (oldStyle) {
-        oldStyle.remove();
+      if (previous) {
+
+        previous.remove();
+
       }
 
+
+      /*
+       * Make the printed PDF itself
+       * one long sheet.
+       */
 
       const style =
         document.createElement(
@@ -1000,11 +1784,13 @@
         @media print {
 
           @page {
+
             size:
               ${referenceWidth}px
               ${Math.ceil(totalHeight)}px;
 
             margin: 0;
+
           }
 
         }
@@ -1017,10 +1803,6 @@
       );
 
 
-      /*
-       * Let browser's normal PDF printer handle it.
-       */
-
       setTimeout(
         () => window.print(),
         100
@@ -1030,9 +1812,11 @@
   );
 
 
-
   /*
-   * Start over
+   * NEW CLIP
+   *
+   * Keeps the book + volume loaded.
+   * Just clears the current output.
    */
 
   newClipButton.addEventListener(
@@ -1042,15 +1826,23 @@
       bookClip.innerHTML =
         "";
 
+
       clipSection.style.display =
         "none";
 
-      status.textContent =
-        "";
+
+      setStatus(
+        "Ready for another clip.",
+        "success"
+      );
+
 
       window.scrollTo({
+
         top: 0,
+
         behavior: "smooth"
+
       });
 
     }

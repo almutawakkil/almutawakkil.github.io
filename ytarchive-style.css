@@ -6,3 +6,22 @@ mark{
   padding:0 .08em;
   border-radius:3px;
 }
+
+
+/* ===== Arabic typography: Amiri ===== */
+.result h2,
+.excerpt,
+.meta,
+select,
+option,
+input[type="search"],
+input[type="text"] {
+  font-family: "Amiri", Georgia, serif;
+}
+
+/* Keep utility controls in the interface font */
+.time,
+.watch,
+button {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}

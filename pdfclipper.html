@@ -2,11 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Book Clipper</title>
 
@@ -27,8 +23,8 @@
     }
 
     .container {
-      width: min(720px, calc(100% - 32px));
-      margin: 60px auto;
+      width: min(760px, calc(100% - 32px));
+      margin: 50px auto;
     }
 
     h1 {
@@ -39,8 +35,8 @@
     .subtitle {
       color: #666;
       margin-top: 0;
-      margin-bottom: 35px;
-      line-height: 1.6;
+      margin-bottom: 32px;
+      line-height: 1.55;
     }
 
     .card {
@@ -76,8 +72,8 @@
 
     .pages-title {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 10px;
     }
 
@@ -100,53 +96,41 @@
       font-size: 18px;
     }
 
-    .remove-page:hover {
-      background: #f3f3f3;
-    }
-
-    button {
-      font-family: inherit;
-    }
-
     #addPage {
       border: none;
       background: transparent;
       cursor: pointer;
-      font-size: 14px;
-      padding: 0;
       color: #555;
+      font-size: 14px;
     }
 
-    #addPage:hover {
-      text-decoration: underline;
-    }
-
-    #createButton {
+    .main-button {
       width: 100%;
       padding: 14px;
-      border: 0;
+      border: none;
       border-radius: 9px;
       background: #222;
       color: white;
       font-size: 16px;
-      cursor: pointer;
       font-weight: 600;
+      cursor: pointer;
     }
 
-    #createButton:hover {
+    .main-button:hover {
       background: #000;
     }
 
-    #createButton:disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
+    .small-note {
+      margin-top: 10px;
+      color: #777;
+      font-size: 13px;
+      line-height: 1.5;
     }
 
     #status {
-      margin-top: 18px;
+      margin-top: 16px;
+      min-height: 20px;
       font-size: 14px;
-      line-height: 1.6;
-      min-height: 22px;
     }
 
     .error {
@@ -157,72 +141,52 @@
       color: #266333;
     }
 
-    .loading {
-      color: #555;
-    }
-
-    #result {
+    #clipSection {
       display: none;
-      margin-top: 25px;
-      padding-top: 25px;
-      border-top: 1px solid #ddd;
+      margin-top: 35px;
     }
 
-    .result-buttons {
+    .clip-controls {
+      margin-bottom: 20px;
       display: flex;
       gap: 10px;
-      flex-wrap: wrap;
     }
 
-    .result-button {
+    .secondary-button {
       flex: 1;
-      min-width: 150px;
-      text-align: center;
       padding: 12px;
       border-radius: 8px;
       border: 1px solid #222;
       cursor: pointer;
-      text-decoration: none;
+      background: white;
+      font-size: 15px;
       font-weight: 600;
     }
 
-    #openPdf {
+    .secondary-button.dark {
       background: #222;
       color: white;
     }
 
-    #downloadPdf {
+    /*
+     * This is the actual clip.
+     */
+    #bookClip {
+      margin: auto;
       background: white;
-      color: #222;
+      width: min(100%, 1200px);
     }
 
-    .small-note {
-      margin-top: 12px;
-      color: #777;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    #preview {
-      display: none;
-      margin-top: 30px;
-    }
-
-    #preview h2 {
-      font-size: 20px;
-    }
-
-    .preview-pages {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .preview-pages canvas {
+    #bookClip img {
       width: 100%;
       height: auto;
       display: block;
-      border: 1px solid #ddd;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-divider {
+      height: 10px;
       background: white;
     }
 
@@ -238,9 +202,62 @@
       h1 {
         font-size: 28px;
       }
+
+      .clip-controls {
+        flex-direction: column;
+      }
     }
+
+
+    /*
+     * PRINT MODE
+     *
+     * Everything except the selected pages disappears.
+     */
+
+    @media print {
+
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+      }
+
+      body * {
+        visibility: hidden;
+      }
+
+      #bookClip,
+      #bookClip * {
+        visibility: visible;
+      }
+
+      #bookClip {
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        width: 100% !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      #bookClip img {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+      }
+
+      .page-divider {
+        height: 0 !important;
+      }
+    }
+
   </style>
 </head>
+
 
 <body>
 
@@ -249,14 +266,15 @@
     <h1>Book Clipper</h1>
 
     <p class="subtitle">
-      Turn selected pages from an Internet Archive PDF
-      into one high-quality page for quoting, highlighting,
-      and sharing.
+      Turn selected pages from an Internet Archive book
+      into one clean page for quoting, highlighting, and sharing.
     </p>
+
 
     <div class="card">
 
       <div class="section">
+
         <label for="archiveUrl">
           Internet Archive link
         </label>
@@ -266,6 +284,7 @@
           type="url"
           placeholder="https://archive.org/details/..."
         >
+
       </div>
 
 
@@ -295,13 +314,12 @@
               class="page-number"
               type="number"
               min="1"
-              placeholder="Page number"
+              placeholder="PDF page number"
             >
 
             <button
               class="remove-page"
               type="button"
-              aria-label="Remove page"
             >
               ×
             </button>
@@ -310,9 +328,10 @@
 
         </div>
 
+
         <div class="small-note">
-          Maximum 4 pages. Pages will appear in exactly
-          the order entered above.
+          Maximum 4 pages. They will appear in exactly
+          the order entered.
         </div>
 
       </div>
@@ -320,6 +339,7 @@
 
       <button
         id="createButton"
+        class="main-button"
         type="button"
       >
         Create Clip
@@ -328,434 +348,192 @@
 
       <div id="status"></div>
 
+    </div>
 
-      <div id="result">
 
-        <div class="result-buttons">
 
-          <a
-            id="openPdf"
-            class="result-button"
-            href="#"
-            target="_blank"
-          >
-            Open PDF
-          </a>
+    <section id="clipSection">
 
-          <a
-            id="downloadPdf"
-            class="result-button"
-            href="#"
-            download="book-clip.pdf"
-          >
-            Download PDF
-          </a>
+      <div class="clip-controls">
 
-        </div>
+        <button
+          id="printButton"
+          class="secondary-button dark"
+          type="button"
+        >
+          Save as PDF
+        </button>
 
-        <div class="small-note">
-          The finished document contains one tall PDF page.
-        </div>
+        <button
+          id="newClipButton"
+          class="secondary-button"
+          type="button"
+        >
+          New Clip
+        </button>
 
       </div>
 
-    </div>
 
+      <div id="bookClip"></div>
 
-    <div id="preview">
-
-      <h2>Pages</h2>
-
-      <div
-        id="previewPages"
-        class="preview-pages"
-      ></div>
-
-    </div>
+    </section>
 
   </main>
 
 
-  <!-- PDF-LIB -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js">
-  </script>
+
+<script>
+
+  const archiveUrl =
+    document.getElementById("archiveUrl");
+
+  const pageInputs =
+    document.getElementById("pageInputs");
+
+  const addPage =
+    document.getElementById("addPage");
+
+  const createButton =
+    document.getElementById("createButton");
+
+  const status =
+    document.getElementById("status");
+
+  const clipSection =
+    document.getElementById("clipSection");
+
+  const bookClip =
+    document.getElementById("bookClip");
+
+  const printButton =
+    document.getElementById("printButton");
+
+  const newClipButton =
+    document.getElementById("newClipButton");
 
 
-  <script type="module">
 
-    /*
-     * PDF.js
-     */
-    import * as pdfjsLib from
-      "https://cdn.jsdelivr.net/npm/pdfjs-dist@6.2.108/build/pdf.mjs";
+  /*
+   * Get Archive item identifier
+   */
 
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-      "https://cdn.jsdelivr.net/npm/pdfjs-dist@6.2.108/build/pdf.worker.mjs";
+  function getIdentifier(value) {
 
+    value = value.trim();
 
-    /*
-     * Elements
-     */
-
-    const archiveUrl =
-      document.getElementById("archiveUrl");
-
-    const pageInputs =
-      document.getElementById("pageInputs");
-
-    const addPageButton =
-      document.getElementById("addPage");
-
-    const createButton =
-      document.getElementById("createButton");
-
-    const status =
-      document.getElementById("status");
-
-    const result =
-      document.getElementById("result");
-
-    const openPdf =
-      document.getElementById("openPdf");
-
-    const downloadPdf =
-      document.getElementById("downloadPdf");
-
-    const preview =
-      document.getElementById("preview");
-
-    const previewPages =
-      document.getElementById("previewPages");
-
-
-    let currentPdfUrl = null;
-
-
-    /*
-     * Helpers
-     */
-
-    function setStatus(message, type = "loading") {
-
-      status.textContent = message;
-
-      status.className = type;
-
+    if (!value) {
+      throw new Error(
+        "Paste an Internet Archive link."
+      );
     }
 
 
-    function getArchiveIdentifier(input) {
+    let url;
 
-      const value = input.trim();
+    try {
 
-      if (!value) {
-        throw new Error(
-          "Paste an Internet Archive link first."
-        );
-      }
+      url = new URL(value);
 
-
-      let url;
-
-      try {
-
-        url = new URL(value);
-
-      } catch {
-
-        throw new Error(
-          "That doesn't look like a valid URL."
-        );
-
-      }
-
-
-      if (
-        url.hostname !== "archive.org" &&
-        url.hostname !== "www.archive.org"
-      ) {
-
-        throw new Error(
-          "Please use an archive.org link."
-        );
-
-      }
-
-
-      const parts =
-        url.pathname
-          .split("/")
-          .filter(Boolean);
-
-
-      const detailsIndex =
-        parts.indexOf("details");
-
-      if (
-        detailsIndex !== -1 &&
-        parts[detailsIndex + 1]
-      ) {
-
-        return {
-          identifier:
-            parts[detailsIndex + 1],
-
-          directPdf: null
-        };
-
-      }
-
-
-      const downloadIndex =
-        parts.indexOf("download");
-
-      if (
-        downloadIndex !== -1 &&
-        parts[downloadIndex + 1]
-      ) {
-
-        const identifier =
-          parts[downloadIndex + 1];
-
-
-        /*
-         * User pasted direct Archive PDF.
-         */
-
-        if (
-          url.pathname
-            .toLowerCase()
-            .endsWith(".pdf")
-        ) {
-
-          return {
-            identifier,
-            directPdf: value
-          };
-
-        }
-
-
-        return {
-          identifier,
-          directPdf: null
-        };
-
-      }
-
+    } catch {
 
       throw new Error(
-        "I couldn't find an Internet Archive item ID in that link."
+        "That doesn't look like a valid URL."
       );
 
     }
 
 
-    /*
-     * Find the PDF belonging to an Archive item.
-     */
+    if (
+      url.hostname !== "archive.org" &&
+      url.hostname !== "www.archive.org"
+    ) {
 
-    async function findPdfUrl(inputUrl) {
-
-      const info =
-        getArchiveIdentifier(inputUrl);
-
-
-      /*
-       * Direct PDF links don't need metadata lookup.
-       */
-
-      if (info.directPdf) {
-
-        return {
-          url: info.directPdf,
-          filename:
-            decodeURIComponent(
-              info.directPdf.split("/").pop()
-            )
-        };
-
-      }
-
-
-      const metadataUrl =
-        `https://archive.org/metadata/${encodeURIComponent(info.identifier)}`;
-
-
-      const response =
-        await fetch(metadataUrl);
-
-
-      if (!response.ok) {
-
-        throw new Error(
-          "Internet Archive metadata could not be loaded."
-        );
-
-      }
-
-
-      const metadata =
-        await response.json();
-
-
-      const files =
-        Array.isArray(metadata.files)
-          ? metadata.files
-          : [];
-
-
-      let pdfFiles =
-        files.filter(file => {
-
-          if (!file.name) return false;
-
-          if (
-            !file.name
-              .toLowerCase()
-              .endsWith(".pdf")
-          ) {
-            return false;
-          }
-
-          if (
-            file.private === true ||
-            file.private === "true"
-          ) {
-            return false;
-          }
-
-          return true;
-
-        });
-
-
-      if (!pdfFiles.length) {
-
-        throw new Error(
-          "No public PDF was found for this Archive item."
-        );
-
-      }
-
-
-      /*
-       * Prefer likely main PDFs.
-       *
-       * Original PDF first,
-       * then Text PDF,
-       * then other PDFs.
-       */
-
-      pdfFiles.sort((a, b) => {
-
-        function score(file) {
-
-          let score = 0;
-
-          const format =
-            (file.format || "")
-              .toLowerCase();
-
-          const name =
-            (file.name || "")
-              .toLowerCase();
-
-
-          if (file.source === "original") {
-            score += 100;
-          }
-
-          if (format === "text pdf") {
-            score += 80;
-          }
-
-          if (format.includes("pdf")) {
-            score += 30;
-          }
-
-          if (name.includes("_text.pdf")) {
-            score += 20;
-          }
-
-          /*
-           * Avoid odd derivatives when possible.
-           */
-
-          if (name.includes("_bw.pdf")) {
-            score -= 15;
-          }
-
-          return score;
-        }
-
-
-        return score(b) - score(a);
-
-      });
-
-
-      const selected =
-        pdfFiles[0];
-
-
-      const encodedName =
-        selected.name
-          .split("/")
-          .map(encodeURIComponent)
-          .join("/");
-
-
-      const pdfUrl =
-        `https://archive.org/download/${encodeURIComponent(info.identifier)}/${encodedName}`;
-
-
-      return {
-        url: pdfUrl,
-        filename: selected.name
-      };
+      throw new Error(
+        "Please use an archive.org link."
+      );
 
     }
 
 
-    /*
-     * Page inputs
-     */
-
-    function updatePageControls() {
-
-      const rows =
-        document.querySelectorAll(".page-row");
+    const parts =
+      url.pathname
+        .split("/")
+        .filter(Boolean);
 
 
-      addPageButton.style.display =
-        rows.length >= 4
-          ? "none"
-          : "inline-block";
+    const detailsIndex =
+      parts.indexOf("details");
 
 
-      rows.forEach(row => {
+    if (
+      detailsIndex !== -1 &&
+      parts[detailsIndex + 1]
+    ) {
 
-        const remove =
-          row.querySelector(".remove-page");
-
-
-        /*
-         * Don't allow zero page boxes.
-         */
-
-        remove.style.visibility =
-          rows.length === 1
-            ? "hidden"
-            : "visible";
-
-      });
+      return parts[detailsIndex + 1];
 
     }
 
 
-    function addPageInput() {
+    const downloadIndex =
+      parts.indexOf("download");
+
+
+    if (
+      downloadIndex !== -1 &&
+      parts[downloadIndex + 1]
+    ) {
+
+      return parts[downloadIndex + 1];
+
+    }
+
+
+    throw new Error(
+      "Couldn't determine the Archive item."
+    );
+
+  }
+
+
+
+  /*
+   * Page boxes
+   */
+
+  function updateRows() {
+
+    const rows =
+      document.querySelectorAll(".page-row");
+
+
+    addPage.style.display =
+      rows.length >= 4
+        ? "none"
+        : "inline-block";
+
+
+    rows.forEach(row => {
+
+      const button =
+        row.querySelector(".remove-page");
+
+
+      button.style.visibility =
+        rows.length === 1
+          ? "hidden"
+          : "visible";
+
+    });
+
+  }
+
+
+
+  addPage.addEventListener(
+    "click",
+    () => {
 
       const count =
         document.querySelectorAll(
@@ -763,11 +541,14 @@
         ).length;
 
 
-      if (count >= 4) return;
+      if (count >= 4) {
+        return;
+      }
 
 
       const row =
         document.createElement("div");
+
 
       row.className =
         "page-row";
@@ -779,13 +560,12 @@
           class="page-number"
           type="number"
           min="1"
-          placeholder="Page number"
+          placeholder="PDF page number"
         >
 
         <button
           class="remove-page"
           type="button"
-          aria-label="Remove page"
         >
           ×
         </button>
@@ -795,639 +575,488 @@
 
       pageInputs.appendChild(row);
 
-      updatePageControls();
+      updateRows();
 
       row
         .querySelector("input")
         .focus();
 
     }
+  );
 
 
-    addPageButton.addEventListener(
-      "click",
-      addPageInput
-    );
 
-
-    pageInputs.addEventListener(
-      "click",
-      event => {
-
-        if (
-          !event.target.classList.contains(
-            "remove-page"
-          )
-        ) {
-          return;
-        }
-
-
-        const rows =
-          document.querySelectorAll(
-            ".page-row"
-          );
-
-
-        if (rows.length <= 1) {
-          return;
-        }
-
-
-        event.target
-          .closest(".page-row")
-          .remove();
-
-
-        updatePageControls();
-
-      }
-    );
-
-
-    updatePageControls();
-
-
-    /*
-     * Read requested page numbers.
-     */
-
-    function getRequestedPages() {
-
-      const inputs =
-        [
-          ...document.querySelectorAll(
-            ".page-number"
-          )
-        ];
-
-
-      const numbers =
-        inputs
-          .map(input =>
-            parseInt(input.value, 10)
-          )
-          .filter(number =>
-            Number.isInteger(number)
-          );
-
-
-      if (!numbers.length) {
-
-        throw new Error(
-          "Enter at least one PDF page."
-        );
-
-      }
-
-
-      if (numbers.length > 4) {
-
-        throw new Error(
-          "You can select a maximum of four pages."
-        );
-
-      }
-
+  pageInputs.addEventListener(
+    "click",
+    event => {
 
       if (
-        numbers.some(number => number < 1)
+        !event.target.classList.contains(
+          "remove-page"
+        )
+      ) {
+        return;
+      }
+
+
+      const rows =
+        document.querySelectorAll(
+          ".page-row"
+        );
+
+
+      if (rows.length <= 1) {
+        return;
+      }
+
+
+      event.target
+        .closest(".page-row")
+        .remove();
+
+
+      updateRows();
+
+    }
+  );
+
+
+
+  updateRows();
+
+
+
+  /*
+   * Read page numbers
+   */
+
+  function getPages() {
+
+    const values =
+      [
+        ...document.querySelectorAll(
+          ".page-number"
+        )
+      ];
+
+
+    const pages =
+      values
+        .map(input => input.value.trim())
+        .filter(value => value !== "")
+        .map(value => Number(value));
+
+
+    if (!pages.length) {
+
+      throw new Error(
+        "Enter at least one page."
+      );
+
+    }
+
+
+    if (pages.length > 4) {
+
+      throw new Error(
+        "Maximum 4 pages."
+      );
+
+    }
+
+
+    for (const page of pages) {
+
+      if (
+        !Number.isInteger(page) ||
+        page < 1
       ) {
 
         throw new Error(
-          "Page numbers must be 1 or higher."
+          "Page numbers must be whole numbers starting at 1."
         );
 
       }
 
-
-      return numbers;
-
     }
 
 
-    /*
-     * Render one PDF page to a high-resolution canvas.
-     */
+    return pages;
 
-    async function renderPdfPage(
-      pdf,
-      pageNumber
-    ) {
+  }
 
-      const page =
-        await pdf.getPage(pageNumber);
 
 
-      /*
-       * 3x rendering gives us a sharp page
-       * while remaining reasonable on phones.
-       */
+  /*
+   * Load image and report success/failure
+   */
 
-      const scale = 3;
+  function loadPageImage(
+    identifier,
+    pdfPage
+  ) {
 
-
-      const viewport =
-        page.getViewport({
-          scale
-        });
-
-
-      const canvas =
-        document.createElement("canvas");
-
-
-      const context =
-        canvas.getContext(
-          "2d",
-          {
-            alpha: false
-          }
-        );
-
-
-      canvas.width =
-        Math.ceil(viewport.width);
-
-      canvas.height =
-        Math.ceil(viewport.height);
-
-
-      /*
-       * White page background.
-       */
-
-      context.fillStyle =
-        "#ffffff";
-
-      context.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
-
-
-      await page.render({
-
-        canvasContext: context,
-        viewport
-
-      }).promise;
-
-
-      return canvas;
-
-    }
-
-
-    /*
-     * Turn canvas into PNG bytes.
-     */
-
-    async function canvasToBytes(canvas) {
-
-      return new Promise(
-        (resolve, reject) => {
-
-          canvas.toBlob(
-            async blob => {
-
-              if (!blob) {
-
-                reject(
-                  new Error(
-                    "Could not create page image."
-                  )
-                );
-
-                return;
-              }
-
-
-              const buffer =
-                await blob.arrayBuffer();
-
-
-              resolve(buffer);
-
-            },
-
-            "image/png"
-
-          );
-
-        }
-      );
-
-    }
-
-
-    /*
-     * Create one tall PDF page.
-     */
-
-    async function makeTallPdf(
-      canvases,
-      requestedPages
-    ) {
-
-      const {
-        PDFDocument
-      } = window.PDFLib;
-
-
-      const output =
-        await PDFDocument.create();
-
-
-      /*
-       * Finished PDF width in PDF points.
-       *
-       * We keep the rendered page images at their
-       * full resolution and simply display them
-       * at this width inside the PDF.
-       */
-
-      const outputWidth = 1200;
-
-
-      const embeddedPages = [];
-
-
-      for (
-        let i = 0;
-        i < canvases.length;
-        i++
-      ) {
-
-        setStatus(
-          `Preparing page ${requestedPages[i]}...`
-        );
-
-
-        const canvas =
-          canvases[i];
-
-
-        const pngBytes =
-          await canvasToBytes(canvas);
-
-
-        const image =
-          await output.embedPng(
-            pngBytes
-          );
-
-
-        const ratio =
-          image.height /
-          image.width;
-
-
-        embeddedPages.push({
-
-          image,
-
-          width: outputWidth,
-
-          height:
-            outputWidth * ratio
-
-        });
-
-      }
-
-
-      /*
-       * Tiny gap between pages.
-       */
-
-      const gap = 12;
-
-
-      const totalHeight =
-        embeddedPages.reduce(
-          (sum, item) =>
-            sum + item.height,
-          0
-        )
-        +
-        gap *
-        Math.max(
-          embeddedPages.length - 1,
-          0
-        );
-
-
-      const page =
-        output.addPage([
-          outputWidth,
-          totalHeight
-        ]);
-
-
-      /*
-       * PDF coordinates begin at bottom-left.
-       * Start from the top and work downward.
-       */
-
-      let y =
-        totalHeight;
-
-
-      for (
-        const item of embeddedPages
-      ) {
-
-        y -= item.height;
-
-
-        page.drawImage(
-          item.image,
-          {
-
-            x: 0,
-
-            y,
-
-            width:
-              item.width,
-
-            height:
-              item.height
-
-          }
-        );
-
-
-        y -= gap;
-
-      }
-
-
-      const bytes =
-        await output.save();
-
-
-      return new Blob(
-        [bytes],
-        {
-          type: "application/pdf"
-        }
-      );
-
-    }
-
-
-    /*
-     * Main action
-     */
-
-    createButton.addEventListener(
-      "click",
-      async () => {
+    return new Promise(
+      (resolve, reject) => {
 
         /*
-         * Reset old result.
+         * IA's accessible page index starts at zero.
+         *
+         * PDF page 1 -> n0
+         * PDF page 2 -> n1
+         * PDF page 500 -> n499
          */
 
-        result.style.display =
-          "none";
+        const iaIndex =
+          pdfPage - 1;
 
-        preview.style.display =
-          "none";
 
-        previewPages.innerHTML =
-          "";
+        /*
+         * _large requests a high-quality image.
+         *
+         * We can switch this to the full-resolution
+         * .jpg later if desired.
+         */
+
+        const src =
+          `https://archive.org/download/${encodeURIComponent(identifier)}/page/n${iaIndex}_large.jpg`;
+
+
+        const img =
+          new Image();
+
+
+        img.onload =
+          () => resolve({
+            img,
+            pdfPage,
+            src
+          });
+
+
+        img.onerror =
+          () => reject(
+            new Error(
+              `Could not load PDF page ${pdfPage}.`
+            )
+          );
+
+
+        img.src =
+          src;
+
+      }
+    );
+
+  }
+
+
+
+  /*
+   * Create clip
+   */
+
+  createButton.addEventListener(
+    "click",
+    async () => {
+
+      status.textContent = "";
+
+      status.className = "";
+
+      bookClip.innerHTML = "";
+
+      clipSection.style.display =
+        "none";
+
+
+      try {
+
+        const identifier =
+          getIdentifier(
+            archiveUrl.value
+          );
+
+
+        const pages =
+          getPages();
+
 
         createButton.disabled =
           true;
 
 
-        try {
-
-          const url =
-            archiveUrl.value;
+        status.textContent =
+          "Loading pages...";
 
 
-          const requestedPages =
-            getRequestedPages();
+        const loadedPages = [];
 
 
-          setStatus(
-            "Finding the PDF on Internet Archive..."
+        /*
+         * Load sequentially so that the order
+         * always matches what the user entered.
+         */
+
+        for (
+          let i = 0;
+          i < pages.length;
+          i++
+        ) {
+
+          const page =
+            pages[i];
+
+
+          status.textContent =
+            `Loading page ${page} (${i + 1} of ${pages.length})...`;
+
+
+          const loaded =
+            await loadPageImage(
+              identifier,
+              page
+            );
+
+
+          loadedPages.push(
+            loaded
           );
 
-
-          const pdfInfo =
-            await findPdfUrl(url);
+        }
 
 
-          currentPdfUrl =
-            pdfInfo.url;
+
+        /*
+         * Put images into clip.
+         */
+
+        loadedPages.forEach(
+          (item, index) => {
+
+            item.img.alt =
+              `PDF page ${item.pdfPage}`;
 
 
-          setStatus(
-            `Loading ${pdfInfo.filename}...`
-          );
+            item.img.title =
+              `PDF page ${item.pdfPage}`;
 
 
-          /*
-           * PDF.js will request the document from
-           * Internet Archive and render only the
-           * pages we actually ask it for.
-           */
+            bookClip.appendChild(
+              item.img
+            );
 
-          const loadingTask =
-            pdfjsLib.getDocument({
-
-              url:
-                currentPdfUrl,
-
-              withCredentials:
-                false
-
-            });
-
-
-          const pdf =
-            await loadingTask.promise;
-
-
-          /*
-           * Validate requested pages.
-           */
-
-          for (
-            const pageNumber
-            of requestedPages
-          ) {
 
             if (
-              pageNumber > pdf.numPages
+              index <
+              loadedPages.length - 1
             ) {
 
-              throw new Error(
-                `Page ${pageNumber} doesn't exist. This PDF has ${pdf.numPages} pages.`
+              const divider =
+                document.createElement(
+                  "div"
+                );
+
+
+              divider.className =
+                "page-divider";
+
+
+              bookClip.appendChild(
+                divider
               );
 
             }
 
           }
+        );
 
 
-          const canvases = [];
+        clipSection.style.display =
+          "block";
 
 
-          for (
-            let i = 0;
-            i < requestedPages.length;
-            i++
-          ) {
+        status.textContent =
+          `Done — pages ${pages.join(", ")} are ready.`;
 
-            const pageNumber =
-              requestedPages[i];
+        status.className =
+          "success";
 
 
-            setStatus(
-              `Rendering page ${pageNumber} (${i + 1} of ${requestedPages.length})...`
-            );
+        /*
+         * Scroll result into view.
+         */
+
+        clipSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
 
 
-            const canvas =
-              await renderPdfPage(
-                pdf,
-                pageNumber
-              );
+      } catch (error) {
+
+        console.error(error);
 
 
-            canvases.push(
-              canvas
-            );
+        status.textContent =
+          error.message ||
+          "Something went wrong.";
 
 
-            /*
-             * Add page to visual preview.
-             */
+        status.className =
+          "error";
 
-            const previewCanvas =
-              document.createElement(
-                "canvas"
-              );
+      } finally {
 
+        createButton.disabled =
+          false;
 
-            previewCanvas.width =
-              canvas.width;
+      }
 
-            previewCanvas.height =
-              canvas.height;
+    }
+  );
 
 
-            previewCanvas
-              .getContext("2d")
-              .drawImage(
-                canvas,
-                0,
-                0
-              );
+
+  /*
+   * Print / Save as PDF
+   */
+
+  printButton.addEventListener(
+    "click",
+    () => {
+
+      /*
+       * Determine proportions of the finished
+       * stacked image.
+       */
+
+      const images =
+        [
+          ...bookClip.querySelectorAll(
+            "img"
+          )
+        ];
 
 
-            previewPages.appendChild(
-              previewCanvas
-            );
+      if (!images.length) {
+        return;
+      }
 
+
+      /*
+       * Use the first page as our reference width.
+       */
+
+      const referenceWidth =
+        1000;
+
+
+      let totalHeight = 0;
+
+
+      for (const img of images) {
+
+        const ratio =
+          img.naturalHeight /
+          img.naturalWidth;
+
+
+        totalHeight +=
+          referenceWidth * ratio;
+
+      }
+
+
+      /*
+       * Dynamically tell the browser that the PDF
+       * page itself should be tall enough to hold
+       * the entire clip on ONE page.
+       */
+
+      const oldStyle =
+        document.getElementById(
+          "dynamicPrintSize"
+        );
+
+
+      if (oldStyle) {
+        oldStyle.remove();
+      }
+
+
+      const style =
+        document.createElement(
+          "style"
+        );
+
+
+      style.id =
+        "dynamicPrintSize";
+
+
+      style.textContent = `
+
+        @media print {
+
+          @page {
+            size:
+              ${referenceWidth}px
+              ${Math.ceil(totalHeight)}px;
+
+            margin: 0;
           }
-
-
-          setStatus(
-            "Creating the single-page PDF..."
-          );
-
-
-          const pdfBlob =
-            await makeTallPdf(
-              canvases,
-              requestedPages
-            );
-
-
-          const blobUrl =
-            URL.createObjectURL(
-              pdfBlob
-            );
-
-
-          openPdf.href =
-            blobUrl;
-
-          downloadPdf.href =
-            blobUrl;
-
-
-          const pageName =
-            requestedPages.join("-");
-
-
-          downloadPdf.download =
-            `book-clip-pages-${pageName}.pdf`;
-
-
-          result.style.display =
-            "block";
-
-          preview.style.display =
-            "block";
-
-
-          setStatus(
-            `Done — pages ${requestedPages.join(", ")} were combined into one PDF page.`,
-            "success"
-          );
-
-
-        } catch (error) {
-
-          console.error(error);
-
-
-          let message =
-            error?.message ||
-            "Something went wrong.";
-
-
-          /*
-           * Helpful explanation for cross-origin
-           * failures.
-           */
-
-          if (
-            message.includes("Failed to fetch") ||
-            message.includes("CORS")
-          ) {
-
-            message =
-              "The PDF was found, but Internet Archive blocked the browser from loading it directly. If this happens with Archive books, we'll add a tiny proxy to the site.";
-
-          }
-
-
-          setStatus(
-            message,
-            "error"
-          );
-
-        } finally {
-
-          createButton.disabled =
-            false;
 
         }
 
-      }
-    );
+      `;
 
-  </script>
+
+      document.head.appendChild(
+        style
+      );
+
+
+      /*
+       * Let browser's normal PDF printer handle it.
+       */
+
+      setTimeout(
+        () => window.print(),
+        100
+      );
+
+    }
+  );
+
+
+
+  /*
+   * Start over
+   */
+
+  newClipButton.addEventListener(
+    "click",
+    () => {
+
+      bookClip.innerHTML =
+        "";
+
+      clipSection.style.display =
+        "none";
+
+      status.textContent =
+        "";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+  );
+
+</script>
 
 </body>
 </html>

@@ -6,7 +6,7 @@
   <title>Quote Maker</title>
 
   <!--
-    IMAGE SETUP
+    BACKGROUND IMAGES
 
     assets/quote-maker/night.jpeg
     assets/quote-maker/sunset.jpeg
@@ -16,8 +16,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+  <!--
+    Amiri:
+      Main quotations / hadith
+
+    Aref Ruqaa:
+      Speaker / source / attribution
+
+    Inter:
+      Interface
+  -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Inter:wght@400;500;600&display=swap"
     rel="stylesheet"
   >
 
@@ -87,7 +97,6 @@
       margin:0 0 6px;
 
       font-weight:600;
-
       letter-spacing:-.035em;
     }
 
@@ -208,11 +217,11 @@
 
     input{
       font-family:
+        "Aref Ruqaa",
         "Amiri",
-        Inter,
         serif;
 
-      font-size:17px;
+      font-size:18px;
     }
 
     input:focus,
@@ -311,7 +320,6 @@
       position:relative;
 
       width:46px;
-
       height:27px;
 
       flex:0 0 auto;
@@ -321,7 +329,6 @@
       opacity:0;
 
       width:0;
-
       height:0;
     }
 
@@ -345,11 +352,9 @@
       position:absolute;
 
       width:21px;
-
       height:21px;
 
       left:3px;
-
       top:3px;
 
       background:#fff;
@@ -626,7 +631,6 @@
             Content
           </p>
 
-
           <div class="field">
 
             <label for="quote">
@@ -683,7 +687,6 @@
           <p class="section-title">
             Style
           </p>
-
 
           <label>
             Background
@@ -891,48 +894,40 @@
 
 
   /*
-    ================================================
+    ==================================================
     ELEMENTS
-    ================================================
+    ==================================================
   */
 
   const canvas =
     document.getElementById("card");
 
-
   const ctx =
     canvas.getContext("2d");
-
 
   const quoteInput =
     document.getElementById("quote");
 
-
   const authorInput =
     document.getElementById("author");
-
 
   const sourceInput =
     document.getElementById("source");
 
-
   const authorField =
     document.getElementById("authorField");
 
-
   const watermarkInput =
     document.getElementById("watermark");
-
 
   const statusEl =
     document.getElementById("status");
 
 
-
   /*
-    ================================================
+    ==================================================
     STATE
-    ================================================
+    ==================================================
   */
 
   const state = {
@@ -948,26 +943,23 @@
   };
 
 
-
   /*
-    ================================================
+    ==================================================
     PRIVATE WATERMARK
-    ================================================
+    ==================================================
   */
 
   const WATERMARK_PASSWORD =
     "barbarawi";
 
-
   let watermarkUnlocked =
     false;
 
 
-
   /*
-    ================================================
+    ==================================================
     THEMES
-    ================================================
+    ==================================================
   */
 
   const themeConfig = {
@@ -984,7 +976,7 @@
         "#F7F4ED",
 
       secondary:
-        "rgba(247,244,237,.84)",
+        "rgba(247,244,237,.88)",
 
       shadow:
         "rgba(0,0,0,.52)",
@@ -1007,7 +999,7 @@
         "#FFF9ED",
 
       secondary:
-        "rgba(255,249,237,.88)",
+        "rgba(255,249,237,.92)",
 
       shadow:
         "rgba(54,32,12,.48)",
@@ -1030,7 +1022,7 @@
         "#F8F7F1",
 
       secondary:
-        "rgba(248,247,241,.84)",
+        "rgba(248,247,241,.88)",
 
       shadow:
         "rgba(8,25,20,.48)",
@@ -1053,7 +1045,7 @@
         "#2C2925",
 
       secondary:
-        "#6F665B"
+        "#6A6054"
 
     }
 
@@ -1064,11 +1056,10 @@
     new Map();
 
 
-
   /*
-    ================================================
+    ==================================================
     STATUS
-    ================================================
+    ==================================================
   */
 
   function setStatus(
@@ -1079,13 +1070,11 @@
     statusEl.textContent =
       text;
 
-
     if(timeout){
 
       clearTimeout(
         setStatus.timer
       );
-
 
       setStatus.timer =
         setTimeout(
@@ -1104,11 +1093,10 @@
   }
 
 
-
   /*
-    ================================================
+    ==================================================
     ARABIC DETECTION
-    ================================================
+    ==================================================
   */
 
   function containsArabic(text){
@@ -1119,12 +1107,10 @@
   }
 
 
-
   /*
-    Count Arabic combining marks / harakat.
-
-    This lets heavily vocalized text receive
-    more vertical spacing automatically.
+    ==================================================
+    HARAKAT DETECTION
+    ==================================================
   */
 
   function harakatRatio(text){
@@ -1163,23 +1149,9 @@
   }
 
 
-
   /*
-    ================================================
-    LINE HEIGHT
-    ================================================
-
-    Regular Arabic:
-      1.78
-
-    Moderately vocalized:
-      1.90
-
-    Heavily vocalized:
-      2.03
-
-    This gives Amiri's harakat significantly
-    more breathing room.
+    Heavily vocalized Arabic gets
+    additional line spacing.
   */
 
   function getArabicLineHeightMultiplier(text){
@@ -1192,7 +1164,7 @@
       ratio >= .42
     ){
 
-      return 2.03;
+      return 2.05;
 
     }
 
@@ -1201,7 +1173,7 @@
       ratio >= .22
     ){
 
-      return 1.90;
+      return 1.92;
 
     }
 
@@ -1211,11 +1183,10 @@
   }
 
 
-
   /*
-    ================================================
+    ==================================================
     CANVAS SIZE
-    ================================================
+    ==================================================
   */
 
   function configureCanvas(){
@@ -1230,7 +1201,9 @@
       canvas.height =
         2700;
 
-    }else{
+    }
+
+    else{
 
       canvas.width =
         2160;
@@ -1243,11 +1216,10 @@
   }
 
 
-
   /*
-    ================================================
+    ==================================================
     IMAGE LOADING
-    ================================================
+    ==================================================
   */
 
   async function loadImage(src){
@@ -1264,7 +1236,6 @@
     const promise =
       new Promise(
         (resolve,reject) => {
-
 
           const img =
             new Image();
@@ -1296,11 +1267,10 @@
   }
 
 
-
   /*
-    ================================================
+    ==================================================
     COVER IMAGE
-    ================================================
+    ==================================================
   */
 
   function drawCoverImage(
@@ -1320,11 +1290,8 @@
 
 
     let sw;
-
     let sh;
-
     let sx;
-
     let sy;
 
 
@@ -1347,7 +1314,9 @@
       sy =
         0;
 
-    }else{
+    }
+
+    else{
 
       sw =
         img.width;
@@ -1382,11 +1351,10 @@
   }
 
 
-
   /*
-    ================================================
+    ==================================================
     IMAGE TREATMENT
-    ================================================
+    ==================================================
   */
 
   function drawImageTreatment(
@@ -1405,7 +1373,6 @@
       W,
       H
     );
-
 
 
     const grad =
@@ -1447,7 +1414,6 @@
     );
 
 
-
     const radial =
       ctx.createRadialGradient(
         W/2,
@@ -1485,11 +1451,10 @@
   }
 
 
-
   /*
-    ================================================
+    ==================================================
     PAPER
-    ================================================
+    ==================================================
   */
 
   function drawPaper(
@@ -1509,11 +1474,6 @@
       H
     );
 
-
-
-    /*
-      Soft parchment variation.
-    */
 
     const glow =
       ctx.createRadialGradient(
@@ -1550,11 +1510,9 @@
     );
 
 
-
     /*
-      Fine paper fibers.
-
-      Decorative line intentionally removed.
+      Fine parchment texture.
+      No decorative top rule.
     */
 
     ctx.save();
@@ -1607,11 +1565,10 @@
   }
 
 
-
   /*
-    ================================================
+    ==================================================
     TEXT WRAPPING
-    ================================================
+    ==================================================
   */
 
   function splitExplicitLines(text){
@@ -1621,7 +1578,6 @@
       .split("\n");
 
   }
-
 
 
   function wrapParagraph(
@@ -1665,7 +1621,7 @@
 
       if(
         ctx.measureText(test).width
-          <= maxWidth
+        <= maxWidth
         ||
         !line
       ){
@@ -1673,7 +1629,9 @@
         line =
           test;
 
-      }else{
+      }
+
+      else{
 
         lines.push(
           line
@@ -1700,7 +1658,6 @@
     return lines;
 
   }
-
 
 
   function wrapText(
@@ -1751,11 +1708,15 @@
   }
 
 
+  /*
+    ==================================================
+    FONT FUNCTIONS
+    ==================================================
+  */
 
   /*
-    ================================================
-    FONT
-    ================================================
+    Main text:
+      Amiri
   */
 
   function fontString(
@@ -1775,11 +1736,35 @@
   }
 
 
+  /*
+    Attribution:
+      Aref Ruqaa for Arabic
+
+    This gives the speaker/source
+    a distinct calligraphic character.
+  */
+
+  function metaFontString(
+    size,
+    weight,
+    arabic
+  ){
+
+    const family =
+      arabic
+        ? '"Aref Ruqaa"'
+        : 'Georgia';
+
+
+    return `${weight} ${size}px ${family}`;
+
+  }
+
 
   /*
-    ================================================
+    ==================================================
     FIT MAIN QUOTE
-    ================================================
+    ==================================================
   */
 
   function fitQuote(
@@ -1866,12 +1851,10 @@
     }
 
 
-
     const minSize =
       arabic
-        ? 52
-        : 50;
-
+        ? 50
+        : 48;
 
 
     while(
@@ -1900,7 +1883,9 @@
 
 
       const lineHeight =
-        size * multiplier;
+        size
+        *
+        multiplier;
 
 
       const totalHeight =
@@ -1932,7 +1917,6 @@
         3;
 
     }
-
 
 
     ctx.font =
@@ -1981,489 +1965,10 @@
   }
 
 
-
   /*
-    ================================================
-    HADITH HEADING
-    ================================================
-
-    Exactly:
-
-      قال النبي ﷺ:
-
-    No harakat.
-  */
-
-  function drawHadithHeading(
-    config,
-    W,
-    H,
-    y,
-    align
-  ){
-
-    const text =
-      "قال النبي ﷺ:";
-
-
-    ctx.save();
-
-
-    ctx.fillStyle =
-      config.text;
-
-
-    ctx.shadowColor =
-      config.type === "image"
-        ? config.shadow
-        : "rgba(0,0,0,0)";
-
-
-    ctx.shadowBlur =
-      config.type === "image"
-        ? 16
-        : 0;
-
-
-    ctx.shadowOffsetY =
-      config.type === "image"
-        ? 3
-        : 0;
-
-
-    ctx.font =
-      fontString(
-        state.ratio === "4:5"
-          ? 76
-          : 70,
-        700,
-        true
-      );
-
-
-    ctx.direction =
-      "rtl";
-
-
-    ctx.textBaseline =
-      "top";
-
-
-    if(
-      align === "center"
-    ){
-
-      ctx.textAlign =
-        "center";
-
-
-      ctx.fillText(
-        text,
-        W/2,
-        y
-      );
-
-    }
-
-    else{
-
-      ctx.textAlign =
-        "right";
-
-
-      ctx.fillText(
-        text,
-        W*.90,
-        y
-      );
-
-    }
-
-
-    ctx.restore();
-
-  }
-
-
-
-  /*
-    ================================================
-    MAIN TEXT
-    ================================================
-  */
-
-  function drawTextBlock(
-    config,
-    W,
-    H
-  ){
-
-    const quote =
-      quoteInput.value.trim()
-      ||
-      "اكتب النص هنا";
-
-
-    const author =
-      authorInput.value.trim();
-
-
-    const source =
-      sourceInput.value.trim();
-
-
-
-    const quoteArabic =
-      containsArabic(
-        quote
-      );
-
-
-    const authorArabic =
-      containsArabic(
-        author
-      );
-
-
-    const sourceArabic =
-      containsArabic(
-        source
-      );
-
-
-
-    const marginX =
-      W * .10;
-
-
-    const maxWidth =
-      W
-      -
-      marginX * 2;
-
-
-
-    /*
-      ================================================
-      GENERAL MODE
-      ================================================
-    */
-
-    if(
-      state.type === "general"
-    ){
-
-      const quoteCenterY =
-        state.ratio === "4:5"
-          ? H * .455
-          : H * .435;
-
-
-      const quoteSafeTop =
-        state.ratio === "4:5"
-          ? H * .125
-          : H * .11;
-
-
-      const quoteSafeBottom =
-        state.ratio === "4:5"
-          ? H * .735
-          : H * .715;
-
-
-      const availableHeight =
-        quoteSafeBottom
-        -
-        quoteSafeTop;
-
-
-
-      const fitted =
-        fitQuote(
-          quote,
-          maxWidth,
-          availableHeight,
-          quoteArabic
-        );
-
-
-
-      let startY =
-        quoteCenterY
-        -
-        fitted.totalHeight / 2;
-
-
-
-      if(
-        startY < quoteSafeTop
-      ){
-
-        startY =
-          quoteSafeTop;
-
-      }
-
-
-
-      if(
-        startY + fitted.totalHeight
-        >
-        quoteSafeBottom
-      ){
-
-        startY =
-          quoteSafeBottom
-          -
-          fitted.totalHeight;
-
-      }
-
-
-
-      drawMainQuote(
-        config,
-        fitted,
-        quoteArabic,
-        W,
-        startY,
-        marginX
-      );
-
-
-
-      drawGeneralAttribution(
-        config,
-        W,
-        H,
-        marginX,
-        author,
-        source,
-        authorArabic,
-        sourceArabic
-      );
-
-    }
-
-
-
-    /*
-      ================================================
-      HADITH MODE
-      ================================================
-    */
-
-    else{
-
-      /*
-        Heading and hadith are treated as one
-        visual group.
-
-        The heading sits immediately above the
-        hadith rather than at the very top.
-      */
-
-
-      const headingHeight =
-        state.ratio === "4:5"
-          ? 105
-          : 95;
-
-
-      const headingGap =
-        state.ratio === "4:5"
-          ? 64
-          : 55;
-
-
-
-      /*
-        Reserve some space for the heading.
-      */
-
-      const quoteSafeTop =
-        state.ratio === "4:5"
-          ? H * .13
-          : H * .11;
-
-
-      const quoteSafeBottom =
-        state.ratio === "4:5"
-          ? H * .73
-          : H * .70;
-
-
-
-      const availableForEverything =
-        quoteSafeBottom
-        -
-        quoteSafeTop;
-
-
-
-      const availableForQuote =
-        availableForEverything
-        -
-        headingHeight
-        -
-        headingGap;
-
-
-
-      const fitted =
-        fitQuote(
-          quote,
-          maxWidth,
-          availableForQuote,
-          quoteArabic
-        );
-
-
-
-      const groupHeight =
-        headingHeight
-        +
-        headingGap
-        +
-        fitted.totalHeight;
-
-
-
-      const groupCenterY =
-        state.ratio === "4:5"
-          ? H * .43
-          : H * .405;
-
-
-
-      let groupStartY =
-        groupCenterY
-        -
-        groupHeight / 2;
-
-
-
-      if(
-        groupStartY
-        <
-        quoteSafeTop
-      ){
-
-        groupStartY =
-          quoteSafeTop;
-
-      }
-
-
-
-      const headingY =
-        groupStartY;
-
-
-
-      const quoteStartY =
-        headingY
-        +
-        headingHeight
-        +
-        headingGap;
-
-
-
-      drawHadithHeading(
-        config,
-        W,
-        H,
-        headingY,
-        state.align
-      );
-
-
-
-      drawMainQuote(
-        config,
-        fitted,
-        quoteArabic,
-        W,
-        quoteStartY,
-        marginX
-      );
-
-
-
-      drawHadithSource(
-        config,
-        W,
-        H,
-        marginX,
-        source,
-        sourceArabic
-      );
-
-    }
-
-
-
-    /*
-      ================================================
-      WATERMARK
-      ================================================
-    */
-
-    if(
-      watermarkInput.checked
-      &&
-      watermarkUnlocked
-    ){
-
-      ctx.save();
-
-
-      ctx.fillStyle =
-        config.type === "paper"
-          ? "rgba(44,41,37,.42)"
-          : "rgba(255,255,255,.48)";
-
-
-      ctx.font =
-        fontString(
-          40,
-          400,
-          true
-        );
-
-
-      ctx.textAlign =
-        "center";
-
-
-      ctx.textBaseline =
-        "bottom";
-
-
-      ctx.direction =
-        "rtl";
-
-
-      ctx.fillText(
-        "المتوكل",
-        W/2,
-        H-54
-      );
-
-
-      ctx.restore();
-
-    }
-
-  }
-
-
-
-  /*
-    ================================================
-    DRAW MAIN QUOTE
-    ================================================
+    ==================================================
+    MAIN QUOTE DRAWING
+    ==================================================
   */
 
   function drawMainQuote(
@@ -2535,12 +2040,10 @@
     }
 
 
-
     const tx =
       state.align === "center"
         ? W/2
         : W-marginX;
-
 
 
     fitted.lines.forEach(
@@ -2566,11 +2069,101 @@
   }
 
 
+  /*
+    ==================================================
+    HADITH HEADING
+    ==================================================
+
+    Exactly:
+
+      قال النبي ﷺ:
+
+    The same x-position / alignment anchor
+    is used as the hadith itself.
+  */
+
+  function drawHadithHeading(
+    config,
+    W,
+    y,
+    marginX
+  ){
+
+    const text =
+      "قال النبي ﷺ:";
+
+
+    ctx.save();
+
+
+    ctx.fillStyle =
+      config.text;
+
+
+    ctx.shadowColor =
+      config.type === "image"
+        ? config.shadow
+        : "rgba(0,0,0,0)";
+
+
+    ctx.shadowBlur =
+      config.type === "image"
+        ? 15
+        : 0;
+
+
+    ctx.shadowOffsetY =
+      config.type === "image"
+        ? 3
+        : 0;
+
+
+    ctx.font =
+      fontString(
+        state.ratio === "4:5"
+          ? 76
+          : 70,
+        700,
+        true
+      );
+
+
+    ctx.direction =
+      "rtl";
+
+
+    ctx.textBaseline =
+      "top";
+
+
+    const headingX =
+      state.align === "center"
+        ? W/2
+        : W-marginX;
+
+
+    ctx.textAlign =
+      state.align === "center"
+        ? "center"
+        : "right";
+
+
+    ctx.fillText(
+      text,
+      headingX,
+      y
+    );
+
+
+    ctx.restore();
+
+  }
+
 
   /*
-    ================================================
+    ==================================================
     GENERAL ATTRIBUTION
-    ================================================
+    ==================================================
   */
 
   function drawGeneralAttribution(
@@ -2586,8 +2179,8 @@
 
     const authorY =
       state.ratio === "4:5"
-        ? H * .805
-        : H * .795;
+        ? H * .800
+        : H * .785;
 
 
     const sourceY =
@@ -2595,10 +2188,9 @@
       +
       (
         state.ratio === "4:5"
-          ? 112
-          : 102
+          ? 128
+          : 116
       );
-
 
 
     const metaX =
@@ -2607,6 +2199,12 @@
         : W-marginX;
 
 
+    /*
+      SPEAKER / AUTHOR
+
+      Larger than previous version.
+      Aref Ruqaa.
+    */
 
     if(author){
 
@@ -2629,6 +2227,12 @@
           : 0;
 
 
+      ctx.shadowOffsetY =
+        config.type === "image"
+          ? 2
+          : 0;
+
+
       ctx.textBaseline =
         "top";
 
@@ -2646,10 +2250,10 @@
 
 
       ctx.font =
-        fontString(
+        metaFontString(
           authorArabic
-            ? 68
-            : 58,
+            ? 82
+            : 62,
           700,
           authorArabic
         );
@@ -2667,6 +2271,12 @@
     }
 
 
+    /*
+      SOURCE
+
+      Also larger.
+      Aref Ruqaa.
+    */
 
     if(source){
 
@@ -2678,7 +2288,7 @@
 
 
       ctx.globalAlpha =
-        .88;
+        .90;
 
 
       ctx.shadowColor =
@@ -2689,7 +2299,13 @@
 
       ctx.shadowBlur =
         config.type === "image"
-          ? 12
+          ? 11
+          : 0;
+
+
+      ctx.shadowOffsetY =
+        config.type === "image"
+          ? 2
           : 0;
 
 
@@ -2710,10 +2326,10 @@
 
 
       ctx.font =
-        fontString(
+        metaFontString(
           sourceArabic
-            ? 47
-            : 42,
+            ? 60
+            : 46,
           400,
           sourceArabic
         );
@@ -2735,11 +2351,10 @@
   }
 
 
-
   /*
-    ================================================
+    ==================================================
     HADITH SOURCE
-    ================================================
+    ==================================================
   */
 
   function drawHadithSource(
@@ -2772,7 +2387,6 @@
         : W-marginX;
 
 
-
     ctx.save();
 
 
@@ -2781,7 +2395,7 @@
 
 
     ctx.globalAlpha =
-      .90;
+      .92;
 
 
     ctx.shadowColor =
@@ -2792,7 +2406,13 @@
 
     ctx.shadowBlur =
       config.type === "image"
-        ? 12
+        ? 11
+        : 0;
+
+
+    ctx.shadowOffsetY =
+      config.type === "image"
+        ? 2
         : 0;
 
 
@@ -2813,10 +2433,10 @@
 
 
     ctx.font =
-      fontString(
+      metaFontString(
         sourceArabic
-          ? 49
-          : 42,
+          ? 61
+          : 46,
         400,
         sourceArabic
       );
@@ -2834,11 +2454,385 @@
   }
 
 
+  /*
+    ==================================================
+    MAIN TEXT LAYOUT
+    ==================================================
+  */
+
+  function drawTextBlock(
+    config,
+    W,
+    H
+  ){
+
+    const quote =
+      quoteInput.value.trim()
+      ||
+      "اكتب النص هنا";
+
+
+    const author =
+      authorInput.value.trim();
+
+
+    const source =
+      sourceInput.value.trim();
+
+
+    const quoteArabic =
+      containsArabic(
+        quote
+      );
+
+
+    const authorArabic =
+      containsArabic(
+        author
+      );
+
+
+    const sourceArabic =
+      containsArabic(
+        source
+      );
+
+
+    const marginX =
+      W * .10;
+
+
+    const maxWidth =
+      W
+      -
+      marginX * 2;
+
+
+    /*
+      ================================================
+      GENERAL QUOTE
+      ================================================
+    */
+
+    if(
+      state.type === "general"
+    ){
+
+      const quoteCenterY =
+        state.ratio === "4:5"
+          ? H * .445
+          : H * .425;
+
+
+      const quoteSafeTop =
+        state.ratio === "4:5"
+          ? H * .115
+          : H * .10;
+
+
+      const quoteSafeBottom =
+        state.ratio === "4:5"
+          ? H * .720
+          : H * .700;
+
+
+      const availableHeight =
+        quoteSafeBottom
+        -
+        quoteSafeTop;
+
+
+      const fitted =
+        fitQuote(
+          quote,
+          maxWidth,
+          availableHeight,
+          quoteArabic
+        );
+
+
+      let startY =
+        quoteCenterY
+        -
+        fitted.totalHeight / 2;
+
+
+      if(
+        startY < quoteSafeTop
+      ){
+
+        startY =
+          quoteSafeTop;
+
+      }
+
+
+      if(
+        startY + fitted.totalHeight
+        >
+        quoteSafeBottom
+      ){
+
+        startY =
+          quoteSafeBottom
+          -
+          fitted.totalHeight;
+
+      }
+
+
+      drawMainQuote(
+        config,
+        fitted,
+        quoteArabic,
+        W,
+        startY,
+        marginX
+      );
+
+
+      drawGeneralAttribution(
+        config,
+        W,
+        H,
+        marginX,
+        author,
+        source,
+        authorArabic,
+        sourceArabic
+      );
+
+    }
+
+
+    /*
+      ================================================
+      HADITH
+      ================================================
+    */
+
+    else{
+
+
+      /*
+        More room beneath:
+
+          قال النبي ﷺ:
+
+        This is intentionally substantially
+        larger than the previous version.
+      */
+
+      const headingHeight =
+        state.ratio === "4:5"
+          ? 108
+          : 98;
+
+
+      const headingGap =
+        state.ratio === "4:5"
+          ? 128
+          : 110;
+
+
+      const quoteSafeTop =
+        state.ratio === "4:5"
+          ? H * .105
+          : H * .095;
+
+
+      const quoteSafeBottom =
+        state.ratio === "4:5"
+          ? H * .735
+          : H * .705;
+
+
+      const availableForEverything =
+        quoteSafeBottom
+        -
+        quoteSafeTop;
+
+
+      const availableForQuote =
+        availableForEverything
+        -
+        headingHeight
+        -
+        headingGap;
+
+
+      const fitted =
+        fitQuote(
+          quote,
+          maxWidth,
+          availableForQuote,
+          quoteArabic
+        );
+
+
+      const groupHeight =
+        headingHeight
+        +
+        headingGap
+        +
+        fitted.totalHeight;
+
+
+      /*
+        Hadith group sits slightly higher
+        than the general quotation because
+        the source remains fixed below.
+      */
+
+      const groupCenterY =
+        state.ratio === "4:5"
+          ? H * .415
+          : H * .395;
+
+
+      let groupStartY =
+        groupCenterY
+        -
+        groupHeight / 2;
+
+
+      /*
+        Top boundary protection.
+      */
+
+      if(
+        groupStartY
+        <
+        quoteSafeTop
+      ){
+
+        groupStartY =
+          quoteSafeTop;
+
+      }
+
+
+      /*
+        Bottom boundary protection.
+      */
+
+      if(
+        groupStartY
+        +
+        groupHeight
+        >
+        quoteSafeBottom
+      ){
+
+        groupStartY =
+          quoteSafeBottom
+          -
+          groupHeight;
+
+      }
+
+
+      const headingY =
+        groupStartY;
+
+
+      const quoteStartY =
+        headingY
+        +
+        headingHeight
+        +
+        headingGap;
+
+
+      drawHadithHeading(
+        config,
+        W,
+        headingY,
+        marginX
+      );
+
+
+      drawMainQuote(
+        config,
+        fitted,
+        quoteArabic,
+        W,
+        quoteStartY,
+        marginX
+      );
+
+
+      drawHadithSource(
+        config,
+        W,
+        H,
+        marginX,
+        source,
+        sourceArabic
+      );
+
+    }
+
+
+    /*
+      ================================================
+      PRIVATE WATERMARK
+      ================================================
+    */
+
+    if(
+      watermarkInput.checked
+      &&
+      watermarkUnlocked
+    ){
+
+      ctx.save();
+
+
+      ctx.fillStyle =
+        config.type === "paper"
+          ? "rgba(44,41,37,.42)"
+          : "rgba(255,255,255,.48)";
+
+
+      ctx.font =
+        metaFontString(
+          47,
+          400,
+          true
+        );
+
+
+      ctx.textAlign =
+        "center";
+
+
+      ctx.textBaseline =
+        "bottom";
+
+
+      ctx.direction =
+        "rtl";
+
+
+      ctx.fillText(
+        "المتوكل",
+        W/2,
+        H-54
+      );
+
+
+      ctx.restore();
+
+    }
+
+  }
+
 
   /*
-    ================================================
+    ==================================================
     RENDER
-    ================================================
+    ==================================================
   */
 
   async function render(){
@@ -2866,7 +2860,6 @@
       W,
       H
     );
-
 
 
     if(
@@ -2944,7 +2937,6 @@
       }
 
 
-
       drawImageTreatment(
         config,
         W,
@@ -2952,7 +2944,6 @@
       );
 
     }
-
 
 
     drawTextBlock(
@@ -2964,11 +2955,10 @@
   }
 
 
-
   /*
-    ================================================
-    CHOICE BUTTONS
-    ================================================
+    ==================================================
+    CHOICE GROUPS
+    ==================================================
   */
 
   function bindChoiceGroup(
@@ -3017,7 +3007,6 @@
             value;
 
 
-
           btn.parentElement
             .querySelectorAll(
               ".choice"
@@ -3038,7 +3027,6 @@
           );
 
 
-
           if(
             key === "type"
           ){
@@ -3048,14 +3036,12 @@
           }
 
 
-
           render();
 
         }
       );
 
   }
-
 
 
   bindChoiceGroup(
@@ -3082,11 +3068,10 @@
   );
 
 
-
   /*
-    ================================================
+    ==================================================
     GENERAL / HADITH INTERFACE
-    ================================================
+    ==================================================
   */
 
   function updateTypeInterface(){
@@ -3112,11 +3097,10 @@
   }
 
 
-
   /*
-    ================================================
+    ==================================================
     LIVE UPDATES
-    ================================================
+    ==================================================
   */
 
   [
@@ -3137,11 +3121,10 @@
   );
 
 
-
   /*
-    ================================================
+    ==================================================
     WATERMARK PASSWORD
-    ================================================
+    ==================================================
   */
 
   watermarkInput
@@ -3161,7 +3144,6 @@
         }
 
 
-
         if(
           watermarkUnlocked
         ){
@@ -3173,12 +3155,10 @@
         }
 
 
-
         const entered =
           window.prompt(
             "Enter watermark password:"
           );
-
 
 
         if(
@@ -3230,11 +3210,10 @@
     );
 
 
-
   /*
-    ================================================
-    DOWNLOAD
-    ================================================
+    ==================================================
+    DOWNLOAD PNG
+    ==================================================
   */
 
   document
@@ -3249,16 +3228,13 @@
         await render();
 
 
-
         const link =
           document.createElement(
             "a"
           );
 
 
-
         let filenameBase;
-
 
 
         if(
@@ -3280,7 +3256,6 @@
         }
 
 
-
         const safeName =
           filenameBase
             .replace(
@@ -3291,7 +3266,6 @@
               /^-+|-+$/g,
               ""
             );
-
 
 
         link.download =
@@ -3305,7 +3279,6 @@
           }.png`;
 
 
-
         link.href =
           canvas.toDataURL(
             "image/png",
@@ -3313,9 +3286,7 @@
           );
 
 
-
         link.click();
-
 
 
         setStatus(
@@ -3326,11 +3297,10 @@
     );
 
 
-
   /*
-    ================================================
+    ==================================================
     COPY IMAGE
-    ================================================
+    ==================================================
   */
 
   document
@@ -3348,7 +3318,6 @@
           await render();
 
 
-
           const blob =
             await new Promise(
               resolve => {
@@ -3364,7 +3333,6 @@
             );
 
 
-
           if(
             !navigator.clipboard
             ||
@@ -3376,7 +3344,6 @@
             );
 
           }
-
 
 
           await navigator.clipboard.write(
@@ -3393,7 +3360,6 @@
 
             ]
           );
-
 
 
           setStatus(
@@ -3416,11 +3382,13 @@
     );
 
 
-
   /*
-    ================================================
-    FONT LOADING
-    ================================================
+    ==================================================
+    START / FONT LOADING
+    ==================================================
+
+    Canvas measurements depend on the
+    actual fonts being loaded first.
   */
 
   async function start(){
@@ -3436,7 +3404,6 @@
     }
 
 
-
     if(
       document.fonts
       &&
@@ -3449,12 +3416,29 @@
         await Promise.all(
           [
 
+            /*
+              Amiri
+            */
+
             document.fonts.load(
               '400 150px "Amiri"'
             ),
 
             document.fonts.load(
               '700 76px "Amiri"'
+            ),
+
+
+            /*
+              Aref Ruqaa
+            */
+
+            document.fonts.load(
+              '400 60px "Aref Ruqaa"'
+            ),
+
+            document.fonts.load(
+              '700 82px "Aref Ruqaa"'
             )
 
           ]
@@ -3466,13 +3450,13 @@
       catch(err){
 
         /*
-          Continue normally.
+          Continue normally if the browser
+          doesn't support explicit loading.
         */
 
       }
 
     }
-
 
 
     updateTypeInterface();
@@ -3481,7 +3465,6 @@
     render();
 
   }
-
 
 
   start();

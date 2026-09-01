@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Quote Maker</title>
 
+  <!--
+    QUOTE MAKER — VERSION 1.0
+
+    Background files:
+
+      assets/quote-maker/night.jpeg
+      assets/quote-maker/mountains.jpg
+      assets/quote-maker/lake.jpg
+      assets/quote-maker/tree.jpg
+
+    Paper is generated directly in the canvas.
+  -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -14,6 +27,7 @@
   >
 
   <style>
+
     :root{
       --page:#f5f4f1;
       --panel:#ffffff;
@@ -29,6 +43,7 @@
 
     body{
       margin:0;
+
       color:var(--ink);
 
       background:
@@ -49,7 +64,11 @@
     }
 
     .shell{
-      width:min(1220px,calc(100% - 32px));
+      width:min(
+        1220px,
+        calc(100% - 32px)
+      );
+
       margin:34px auto 60px;
     }
 
@@ -58,62 +77,97 @@
       align-items:flex-end;
       justify-content:space-between;
       gap:18px;
+
       margin-bottom:24px;
     }
 
     .title h1{
-      font-size:clamp(25px,3vw,38px);
       margin:0 0 6px;
+
+      font-size:clamp(
+        25px,
+        3vw,
+        38px
+      );
+
       font-weight:600;
+
       letter-spacing:-.035em;
     }
 
     .title p{
       margin:0;
+
       color:var(--muted);
+
       font-size:14px;
     }
 
     .layout{
       display:grid;
-      grid-template-columns:minmax(330px,440px) minmax(0,1fr);
+
+      grid-template-columns:
+        minmax(330px,440px)
+        minmax(0,1fr);
+
       gap:26px;
+
       align-items:start;
     }
 
     .panel{
-      background:rgba(255,255,255,.9);
-      border:1px solid var(--line);
+      background:
+        rgba(255,255,255,.9);
+
+      border:
+        1px solid var(--line);
+
       border-radius:22px;
-      box-shadow:0 18px 48px rgba(40,35,28,.06);
+
+      box-shadow:
+        0 18px 48px
+        rgba(40,35,28,.06);
     }
 
     .controls{
       padding:22px;
+
       position:sticky;
+
       top:18px;
     }
 
     .section + .section{
       margin-top:22px;
+
       padding-top:22px;
-      border-top:1px solid var(--line);
+
+      border-top:
+        1px solid var(--line);
     }
 
     .section-title{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.11em;
-      color:#8b8882;
       margin:0 0 12px;
+
+      color:#8b8882;
+
+      font-size:12px;
+
       font-weight:600;
+
+      text-transform:uppercase;
+
+      letter-spacing:.11em;
     }
 
     label{
       display:block;
-      font-size:13px;
-      font-weight:600;
+
       margin:0 0 7px;
+
+      font-size:13px;
+
+      font-weight:600;
     }
 
     .field + .field{
@@ -123,11 +177,18 @@
     textarea,
     input{
       width:100%;
-      border:1px solid #dcd9d2;
-      border-radius:13px;
-      background:#fff;
-      color:#1d1d1b;
+
       padding:12px 13px;
+
+      border:
+        1px solid #dcd9d2;
+
+      border-radius:13px;
+
+      background:#fff;
+
+      color:#1d1d1b;
+
       outline:none;
 
       transition:
@@ -137,34 +198,55 @@
 
     textarea{
       min-height:190px;
+
       resize:vertical;
+
       line-height:1.95;
-      font-family:"Amiri",serif;
+
+      font-family:
+        "Amiri",
+        serif;
+
       font-size:21px;
     }
 
     input{
-      font-family:"Aref Ruqaa","Amiri",serif;
+      font-family:
+        "Aref Ruqaa",
+        "Amiri",
+        serif;
+
       font-size:18px;
     }
 
     input:focus,
     textarea:focus{
       border-color:#aaa59b;
-      box-shadow:0 0 0 3px rgba(70,65,58,.07);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(70,65,58,.07);
     }
 
     .segmented{
       display:grid;
+
       gap:8px;
     }
 
     .segmented.two{
-      grid-template-columns:repeat(2,1fr);
+      grid-template-columns:
+        repeat(2,1fr);
     }
 
-    .segmented.four{
-      grid-template-columns:repeat(2,1fr);
+    .segmented.five{
+      grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .segmented.five .choice:last-child{
+      grid-column:
+        1 / -1;
     }
 
     button{
@@ -172,13 +254,21 @@
     }
 
     .choice{
-      border:1px solid #dedbd4;
-      background:#fff;
-      color:#403e39;
-      border-radius:12px;
       padding:10px 11px;
+
+      border:
+        1px solid #dedbd4;
+
+      border-radius:12px;
+
+      background:#fff;
+
+      color:#403e39;
+
       cursor:pointer;
+
       transition:.15s ease;
+
       font-size:13px;
     }
 
@@ -188,62 +278,93 @@
 
     .choice.active{
       background:#232321;
+
       color:#fff;
+
       border-color:#232321;
     }
 
     .toggle-row{
       display:flex;
+
       align-items:center;
+
       justify-content:space-between;
+
       gap:16px;
     }
 
     .toggle-copy strong{
       display:block;
-      font-size:13px;
+
       margin-bottom:3px;
+
+      font-size:13px;
     }
 
     .toggle-copy span{
       display:block;
+
       color:var(--muted);
+
       font-size:12px;
+
       line-height:1.45;
     }
 
     .switch{
       position:relative;
+
       width:46px;
+
       height:27px;
+
       flex:0 0 auto;
     }
 
     .switch input{
       opacity:0;
+
       width:0;
+
       height:0;
     }
 
     .slider{
       position:absolute;
+
       inset:0;
-      background:#d7d4ce;
+
       border-radius:99px;
+
+      background:#d7d4ce;
+
       cursor:pointer;
+
       transition:.18s;
     }
 
     .slider:before{
       content:"";
+
       position:absolute;
+
       width:21px;
+
       height:21px;
+
       left:3px;
+
       top:3px;
-      background:#fff;
+
       border-radius:50%;
-      box-shadow:0 2px 7px rgba(0,0,0,.14);
+
+      background:#fff;
+
+      box-shadow:
+        0 2px 7px
+        rgba(0,0,0,.14);
+
       transition:.18s;
     }
 
@@ -252,56 +373,92 @@
     }
 
     .switch input:checked + .slider:before{
-      transform:translateX(19px);
+      transform:
+        translateX(19px);
     }
 
     .actions{
       display:grid;
-      grid-template-columns:1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap:9px;
     }
 
     .primary,
     .secondary{
-      border-radius:13px;
       padding:12px 14px;
+
+      border:
+        1px solid #252522;
+
+      border-radius:13px;
+
       cursor:pointer;
+
       font-weight:600;
-      border:1px solid #252522;
     }
 
     .primary{
       background:#252522;
+
       color:#fff;
     }
 
     .secondary{
       background:#fff;
+
       color:#252522;
     }
 
     .note{
       margin:12px 0 0;
+
       color:#77746e;
+
       font-size:11px;
+
       line-height:1.55;
     }
 
     .preview-panel{
-      padding:22px;
       min-height:500px;
+
+      padding:22px;
+
       display:flex;
+
       align-items:center;
+
       justify-content:center;
+
       overflow:hidden;
 
       background:
-        linear-gradient(45deg,#f1efe9 25%,transparent 25%),
-        linear-gradient(-45deg,#f1efe9 25%,transparent 25%),
-        linear-gradient(45deg,transparent 75%,#f1efe9 75%),
-        linear-gradient(-45deg,transparent 75%,#f1efe9 75%);
+        linear-gradient(
+          45deg,
+          #f1efe9 25%,
+          transparent 25%
+        ),
+        linear-gradient(
+          -45deg,
+          #f1efe9 25%,
+          transparent 25%
+        ),
+        linear-gradient(
+          45deg,
+          transparent 75%,
+          #f1efe9 75%
+        ),
+        linear-gradient(
+          -45deg,
+          transparent 75%,
+          #f1efe9 75%
+        );
 
-      background-size:24px 24px;
+      background-size:
+        24px 24px;
 
       background-position:
         0 0,
@@ -311,24 +468,40 @@
     }
 
     .canvas-wrap{
-      width:min(100%,560px);
-      filter:drop-shadow(0 24px 34px rgba(36,31,25,.16));
+      width:min(
+        100%,
+        560px
+      );
+
+      filter:
+        drop-shadow(
+          0 24px 34px
+          rgba(36,31,25,.16)
+        );
     }
 
     canvas{
       display:block;
+
       width:100%;
+
       height:auto;
+
       border-radius:4px;
+
       background:#ddd;
     }
 
     .status{
-      margin-top:10px;
-      text-align:center;
-      font-size:12px;
-      color:#77736d;
       min-height:18px;
+
+      margin-top:10px;
+
+      color:#77736d;
+
+      text-align:center;
+
+      font-size:12px;
     }
 
     .hidden{
@@ -336,6 +509,7 @@
     }
 
     @media(max-width:900px){
+
       .layout{
         grid-template-columns:1fr;
       }
@@ -347,16 +521,23 @@
       .preview-panel{
         padding:16px;
       }
+
     }
 
     @media(max-width:520px){
+
       .shell{
-        width:min(100% - 18px,1220px);
+        width:min(
+          100% - 18px,
+          1220px
+        );
+
         margin-top:18px;
       }
 
       .topbar{
         align-items:flex-start;
+
         flex-direction:column;
       }
 
@@ -371,7 +552,9 @@
       .actions{
         grid-template-columns:1fr;
       }
+
     }
+
   </style>
 </head>
 
@@ -380,19 +563,36 @@
   <main class="shell">
 
     <div class="topbar">
+
       <div class="title">
-        <h1>Quote Maker</h1>
-        <p>A simple, quiet tool for making shareable quotation cards.</p>
+
+        <h1>
+          Quote Maker
+        </h1>
+
+        <p>
+          A simple, quiet tool for making shareable quotation cards.
+        </p>
+
       </div>
+
     </div>
+
 
     <div class="layout">
 
       <aside class="panel controls">
 
+
+        <!-- TYPE -->
+
         <section
           class="section"
-          style="padding-top:0;margin-top:0;border-top:0"
+          style="
+            padding-top:0;
+            margin-top:0;
+            border-top:0;
+          "
         >
 
           <p class="section-title">
@@ -423,11 +623,14 @@
         </section>
 
 
+        <!-- CONTENT -->
+
         <section class="section">
 
           <p class="section-title">
             Content
           </p>
+
 
           <div class="field">
 
@@ -478,18 +681,21 @@
         </section>
 
 
+        <!-- STYLE -->
+
         <section class="section">
 
           <p class="section-title">
             Style
           </p>
 
+
           <label>
             Background
           </label>
 
           <div
-            class="segmented four"
+            class="segmented five"
             id="themeChoices"
           >
 
@@ -502,16 +708,23 @@
 
             <button
               class="choice"
-              data-theme="sunset"
+              data-theme="mountains"
             >
-              Sunset
+              Mountains
             </button>
 
             <button
               class="choice"
-              data-theme="green"
+              data-theme="lake"
             >
-              Stars
+              Lake
+            </button>
+
+            <button
+              class="choice"
+              data-theme="tree"
+            >
+              Tree
             </button>
 
             <button
@@ -576,13 +789,15 @@
               class="choice"
               data-align="right"
             >
-              Right aligned
+              Right / Justified
             </button>
 
           </div>
 
         </section>
 
+
+        <!-- WATERMARK -->
 
         <section class="section">
 
@@ -619,6 +834,8 @@
         </section>
 
 
+        <!-- ACTIONS -->
+
         <section class="section">
 
           <div class="actions">
@@ -649,6 +866,8 @@
 
       </aside>
 
+
+      <!-- PREVIEW -->
 
       <section>
 
@@ -682,6 +901,13 @@
 
 (() => {
 
+
+  /*
+    ==================================================
+    ELEMENTS
+    ==================================================
+  */
+
   const canvas =
     document.getElementById("card");
 
@@ -707,13 +933,30 @@
     document.getElementById("status");
 
 
+  /*
+    ==================================================
+    STATE
+    ==================================================
+  */
+
   const state = {
+
     type:"general",
+
     theme:"night",
+
     ratio:"4:5",
+
     align:"center"
+
   };
 
+
+  /*
+    ==================================================
+    PRIVATE WATERMARK
+    ==================================================
+  */
 
   const WATERMARK_PASSWORD =
     "barbarawi";
@@ -722,43 +965,176 @@
     false;
 
 
+  /*
+    ==================================================
+    THEMES
+    ==================================================
+  */
+
   const themeConfig = {
 
+
+    /*
+      Night remains very close to
+      the existing treatment.
+    */
+
     night:{
+
       type:"image",
-      src:"assets/quote-maker/night.jpeg",
-      text:"#F7F4ED",
-      secondary:"#F7F4ED",
-      shadow:"rgba(0,0,0,.55)",
+
+      src:
+        "assets/quote-maker/night.jpeg",
+
+      text:
+        "#F7F4ED",
+
+      secondary:
+        "#F7F4ED",
+
+      shadow:
+        "rgba(0,0,0,.55)",
+
       overlayTop:.13,
-      overlayBottom:.60
+
+      overlayMiddle:.14,
+
+      overlayBottom:.60,
+
+      veil:
+        "rgba(0,0,0,.07)"
+
     },
 
-    sunset:{
+
+    /*
+      Dramatic mountain image.
+
+      Slightly stronger treatment than Night
+      because the sky has brighter regions.
+    */
+
+    mountains:{
+
       type:"image",
-      src:"assets/quote-maker/sunset.jpeg",
-      text:"#FFF9ED",
-      secondary:"#FFF9ED",
-      shadow:"rgba(54,32,12,.50)",
-      overlayTop:.12,
-      overlayBottom:.55
+
+      src:
+        "assets/quote-maker/mountains.jpg",
+
+      text:
+        "#FBF8F0",
+
+      secondary:
+        "#FBF8F0",
+
+      shadow:
+        "rgba(0,0,0,.60)",
+
+      overlayTop:.26,
+
+      overlayMiddle:.22,
+
+      overlayBottom:.58,
+
+      veil:
+        "rgba(11,20,27,.08)"
+
     },
 
-    green:{
+
+    /*
+      Lake image is naturally bright,
+      especially in the sky and water.
+
+      Dark treatment ensures consistent
+      white typography.
+    */
+
+    lake:{
+
       type:"image",
-      src:"assets/quote-maker/green-stars.jpeg",
-      text:"#F8F7F1",
-      secondary:"#F8F7F1",
-      shadow:"rgba(8,25,20,.50)",
-      overlayTop:.10,
-      overlayBottom:.48
+
+      src:
+        "assets/quote-maker/lake.jpg",
+
+      text:
+        "#FFFDF6",
+
+      secondary:
+        "#FFFDF6",
+
+      shadow:
+        "rgba(0,0,0,.62)",
+
+      overlayTop:.28,
+
+      overlayMiddle:.24,
+
+      overlayBottom:.55,
+
+      veil:
+        "rgba(11,22,26,.10)"
+
     },
+
+
+    /*
+      Tree image is deliberately soft
+      and very bright.
+
+      We keep that painterly feeling
+      but darken the whole photograph
+      substantially for text readability.
+    */
+
+    tree:{
+
+      type:"image",
+
+      src:
+        "assets/quote-maker/tree.jpg",
+
+      text:
+        "#FFFDF7",
+
+      secondary:
+        "#FFFDF7",
+
+      shadow:
+        "rgba(25,18,12,.68)",
+
+      overlayTop:.34,
+
+      overlayMiddle:.30,
+
+      overlayBottom:.52,
+
+      veil:
+        "rgba(32,26,18,.15)"
+
+    },
+
+
+    /*
+      Paper uses dark warm-brown typography.
+
+      Watermark now inherits the same
+      secondary color.
+    */
 
     paper:{
+
       type:"paper",
-      bg:"#F3EBDD",
-      text:"#2C2925",
-      secondary:"#62584D"
+
+      bg:
+        "#F3EBDD",
+
+      text:
+        "#2C2925",
+
+      secondary:
+        "#62584D"
+
     }
 
   };
@@ -767,6 +1143,12 @@
   const imageCache =
     new Map();
 
+
+  /*
+    ==================================================
+    STATUS
+    ==================================================
+  */
 
   function setStatus(
     text,
@@ -801,6 +1183,12 @@
   }
 
 
+  /*
+    ==================================================
+    LANGUAGE DETECTION
+    ==================================================
+  */
+
   function containsArabic(text){
 
     return /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/
@@ -808,6 +1196,12 @@
 
   }
 
+
+  /*
+    ==================================================
+    HARAKAT DETECTION
+    ==================================================
+  */
 
   function harakatRatio(text){
 
@@ -845,6 +1239,14 @@
   }
 
 
+  /*
+    Generous Amiri spacing,
+    especially with full vocalization.
+
+    We don't go excessively wide because
+    doing so unnecessarily reduces font size.
+  */
+
   function getArabicLineHeightMultiplier(text){
 
     const ratio =
@@ -869,10 +1271,16 @@
     }
 
 
-    return 1.75;
+    return 1.74;
 
   }
 
+
+  /*
+    ==================================================
+    CANVAS
+    ==================================================
+  */
 
   function configureCanvas(){
 
@@ -901,6 +1309,12 @@
   }
 
 
+  /*
+    ==================================================
+    IMAGE LOADING
+    ==================================================
+  */
+
   async function loadImage(src){
 
     if(
@@ -915,6 +1329,7 @@
     const promise =
       new Promise(
         (resolve,reject) => {
+
 
           const img =
             new Image();
@@ -946,6 +1361,21 @@
   }
 
 
+  /*
+    ==================================================
+    COVER CROPPING
+    ==================================================
+
+    Image dimensions do NOT need
+    to match the canvas.
+
+    Landscape, portrait and square images
+    all work.
+
+    The image is enlarged until it fills
+    the canvas, then excess is cropped.
+  */
+
   function drawCoverImage(
     img,
     x,
@@ -975,11 +1405,14 @@
       sh =
         img.height;
 
+
       sw =
         sh * boxRatio;
 
+
       sx =
         (img.width - sw) / 2;
+
 
       sy =
         0;
@@ -991,11 +1424,14 @@
       sw =
         img.width;
 
+
       sh =
         sw / boxRatio;
 
+
       sx =
         0;
+
 
       sy =
         (img.height - sh) / 2;
@@ -1018,14 +1454,24 @@
   }
 
 
+  /*
+    ==================================================
+    PHOTO TREATMENT
+    ==================================================
+  */
+
   function drawImageTreatment(
     config,
     W,
     H
   ){
 
+    /*
+      Theme-specific veil.
+    */
+
     ctx.fillStyle =
-      "rgba(0,0,0,.07)";
+      config.veil;
 
 
     ctx.fillRect(
@@ -1035,6 +1481,10 @@
       H
     );
 
+
+    /*
+      Vertical tonal treatment.
+    */
 
     const grad =
       ctx.createLinearGradient(
@@ -1052,8 +1502,8 @@
 
 
     grad.addColorStop(
-      .38,
-      "rgba(0,0,0,.14)"
+      .42,
+      `rgba(0,0,0,${config.overlayMiddle})`
     );
 
 
@@ -1074,6 +1524,10 @@
       H
     );
 
+
+    /*
+      Edge vignette.
+    */
 
     const radial =
       ctx.createRadialGradient(
@@ -1112,6 +1566,12 @@
   }
 
 
+  /*
+    ==================================================
+    PAPER
+    ==================================================
+  */
+
   function drawPaper(
     config,
     W,
@@ -1129,6 +1589,10 @@
       H
     );
 
+
+    /*
+      Warm paper variation.
+    */
 
     const glow =
       ctx.createRadialGradient(
@@ -1164,6 +1628,10 @@
       H
     );
 
+
+    /*
+      Fine paper fibers.
+    */
 
     ctx.save();
 
@@ -1215,7 +1683,61 @@
   }
 
 
-  function splitExplicitLines(text){
+  /*
+    ==================================================
+    FONTS
+    ==================================================
+  */
+
+  function quoteFont(
+    size,
+    weight,
+    arabic
+  ){
+
+    const family =
+      arabic
+        ? '"Amiri"'
+        : 'Georgia';
+
+
+    return `${weight} ${size}px ${family}`;
+
+  }
+
+
+  function metaFont(
+    size,
+    weight,
+    arabic
+  ){
+
+    const family =
+      arabic
+        ? '"Aref Ruqaa"'
+        : 'Georgia';
+
+
+    return `${weight} ${size}px ${family}`;
+
+  }
+
+
+  /*
+    ==================================================
+    PARAGRAPH + LINE WRAPPING
+    ==================================================
+
+    Each line carries metadata telling us
+    whether it is the final line of its
+    paragraph.
+
+    That is important for justification:
+    final lines should remain naturally
+    right aligned.
+  */
+
+  function splitParagraphs(text){
 
     return (text || "")
       .replace(/\r/g,"")
@@ -1224,7 +1746,7 @@
   }
 
 
-  function wrapParagraph(
+  function wrapOneParagraph(
     text,
     maxWidth
   ){
@@ -1233,7 +1755,13 @@
       !text.trim()
     ){
 
-      return [""];
+      return [
+        {
+          text:"",
+          paragraphEnd:true,
+          blank:true
+        }
+      ];
 
     }
 
@@ -1244,7 +1772,7 @@
         .split(/\s+/);
 
 
-    const lines =
+    const rawLines =
       [];
 
 
@@ -1277,7 +1805,7 @@
 
       else{
 
-        lines.push(
+        rawLines.push(
           line
         );
 
@@ -1292,14 +1820,26 @@
 
     if(line){
 
-      lines.push(
+      rawLines.push(
         line
       );
 
     }
 
 
-    return lines;
+    return rawLines.map(
+      (lineText,index) => ({
+
+        text:
+          lineText,
+
+        paragraphEnd:
+          index === rawLines.length - 1,
+
+        blank:false
+
+      })
+    );
 
   }
 
@@ -1310,7 +1850,7 @@
   ){
 
     const paragraphs =
-      splitExplicitLines(text);
+      splitParagraphs(text);
 
 
     const result =
@@ -1322,7 +1862,7 @@
 
 
         const wrapped =
-          wrapParagraph(
+          wrapOneParagraph(
             paragraph,
             maxWidth
           );
@@ -1333,12 +1873,24 @@
         );
 
 
+        /*
+          Preserve manually-entered
+          paragraph separation.
+        */
+
         if(
-          index <
+          index
+          <
           paragraphs.length - 1
         ){
 
-          result.push("");
+          result.push(
+            {
+              text:"",
+              paragraphEnd:true,
+              blank:true
+            }
+          );
 
         }
 
@@ -1351,36 +1903,123 @@
   }
 
 
-  function fontString(
-    size,
-    weight,
+  /*
+    ==================================================
+    ADAPTIVE FITTING
+    ==================================================
+
+    Important change:
+
+    We no longer depend heavily on arbitrary
+    character-count ranges.
+
+    Instead:
+
+      1. Pick an attractive starting size.
+      2. Actually wrap and measure the text.
+      3. Keep it if it fits.
+      4. Otherwise gently shrink.
+
+    Short quotations receive a larger
+    starting point because they SHOULD
+    dominate the available space.
+  */
+
+  function startingQuoteSize(
+    text,
     arabic
   ){
 
-    const family =
-      arabic
-        ? '"Amiri"'
-        : 'Georgia';
+    const cleanLength =
+      text
+        .replace(/\s/g,"")
+        .length;
 
 
-    return `${weight} ${size}px ${family}`;
+    /*
+      General quotes can be especially
+      large when short.
+    */
 
-  }
+    if(
+      state.type === "general"
+    ){
+
+      if(arabic){
+
+        if(cleanLength <= 30){
+          return 210;
+        }
 
 
-  function metaFontString(
-    size,
-    weight,
-    arabic
-  ){
-
-    const family =
-      arabic
-        ? '"Aref Ruqaa"'
-        : 'Georgia';
+        if(cleanLength <= 60){
+          return 194;
+        }
 
 
-    return `${weight} ${size}px ${family}`;
+        if(cleanLength <= 100){
+          return 176;
+        }
+
+
+        if(cleanLength <= 180){
+          return 158;
+        }
+
+
+        return 146;
+
+      }
+
+
+      if(cleanLength <= 70){
+        return 152;
+      }
+
+
+      if(cleanLength <= 150){
+        return 136;
+      }
+
+
+      return 124;
+
+    }
+
+
+    /*
+      Hadith still starts large,
+      but generally needs more room.
+    */
+
+    if(arabic){
+
+      if(cleanLength <= 60){
+        return 180;
+      }
+
+
+      if(cleanLength <= 120){
+        return 166;
+      }
+
+
+      if(cleanLength <= 220){
+        return 150;
+      }
+
+
+      if(cleanLength <= 400){
+        return 136;
+      }
+
+
+      return 124;
+
+    }
+
+
+    return 122;
 
   }
 
@@ -1392,90 +2031,11 @@
     arabic
   ){
 
-    const textLength =
-      text
-        .replace(/\s/g,"")
-        .length;
-
-
-    let size;
-
-
-    if(arabic){
-
-      if(
-        textLength <= 90
-      ){
-
-        size =
-          158;
-
-      }
-
-      else if(
-        textLength <= 180
-      ){
-
-        size =
-          148;
-
-      }
-
-      else if(
-        textLength <= 320
-      ){
-
-        size =
-          136;
-
-      }
-
-      else if(
-        textLength <= 500
-      ){
-
-        size =
-          126;
-
-      }
-
-      else{
-
-        size =
-          118;
-
-      }
-
-    }
-
-    else{
-
-      if(
-        textLength <= 120
-      ){
-
-        size =
-          128;
-
-      }
-
-      else if(
-        textLength <= 250
-      ){
-
-        size =
-          118;
-
-      }
-
-      else{
-
-        size =
-          106;
-
-      }
-
-    }
+    let size =
+      startingQuoteSize(
+        text,
+        arabic
+      );
 
 
     const minSize =
@@ -1489,7 +2049,7 @@
     ){
 
       ctx.font =
-        fontString(
+        quoteFont(
           size,
           400,
           arabic
@@ -1522,18 +2082,30 @@
 
 
       if(
-        totalHeight <= maxHeight
+        totalHeight
+        <=
+        maxHeight
       ){
 
         return {
+
           size,
+
           lines,
+
           lineHeight,
+
           totalHeight
+
         };
 
       }
 
+
+      /*
+        Fine-grained shrinking makes
+        transitions less abrupt.
+      */
 
       size -=
         2;
@@ -1542,7 +2114,7 @@
 
 
     ctx.font =
-      fontString(
+      quoteFont(
         minSize,
         400,
         arabic
@@ -1569,18 +2141,208 @@
 
 
     return {
-      size:minSize,
+
+      size:
+        minSize,
+
       lines,
+
       lineHeight,
 
       totalHeight:
         lines.length
         *
         lineHeight
+
     };
 
   }
 
+
+  /*
+    ==================================================
+    JUSTIFIED ARABIC
+    ==================================================
+
+    Canvas does not give us high-end Arabic
+    book-layout justification.
+
+    We therefore use restrained word-space
+    distribution.
+
+    We DO NOT insert tatweel/kashida into the
+    quoted Arabic itself.
+
+    Rules:
+
+      - right-aligned mode only
+      - at least 3 words
+      - never final paragraph line
+      - never blank line
+      - never stretch excessively
+  */
+
+  function drawJustifiedLine(
+    text,
+    rightX,
+    y,
+    targetWidth
+  ){
+
+    const words =
+      text
+        .trim()
+        .split(/\s+/);
+
+
+    if(
+      words.length < 3
+    ){
+
+      ctx.textAlign =
+        "right";
+
+
+      ctx.fillText(
+        text,
+        rightX,
+        y
+      );
+
+
+      return;
+
+    }
+
+
+    /*
+      Measure all words individually.
+    */
+
+    const widths =
+      words.map(
+        word =>
+          ctx.measureText(word).width
+      );
+
+
+    const wordsWidth =
+      widths.reduce(
+        (sum,width) =>
+          sum + width,
+        0
+      );
+
+
+    const gaps =
+      words.length - 1;
+
+
+    const normalSpace =
+      ctx.measureText(" ").width;
+
+
+    const naturalWidth =
+      wordsWidth
+      +
+      normalSpace
+      *
+      gaps;
+
+
+    const extra =
+      targetWidth
+      -
+      naturalWidth;
+
+
+    /*
+      If the line is already close to width,
+      or if justification would create huge
+      spaces, keep normal right alignment.
+    */
+
+    if(
+      extra <= 0
+      ||
+      extra / gaps
+      >
+      normalSpace * 2.35
+    ){
+
+      ctx.textAlign =
+        "right";
+
+
+      ctx.fillText(
+        text,
+        rightX,
+        y
+      );
+
+
+      return;
+
+    }
+
+
+    const gapWidth =
+      normalSpace
+      +
+      extra / gaps;
+
+
+    /*
+      RTL line:
+      begin at right edge and manually
+      move left word-by-word.
+    */
+
+    ctx.textAlign =
+      "right";
+
+
+    let x =
+      rightX;
+
+
+    words.forEach(
+      (word,index) => {
+
+
+        ctx.fillText(
+          word,
+          x,
+          y
+        );
+
+
+        x -=
+          widths[index];
+
+
+        if(
+          index
+          <
+          words.length - 1
+        ){
+
+          x -=
+            gapWidth;
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /*
+    ==================================================
+    DRAW MAIN QUOTE / MATN
+    ==================================================
+  */
 
   function drawMainQuote(
     config,
@@ -1617,7 +2379,7 @@
 
 
     ctx.font =
-      fontString(
+      quoteFont(
         fitted.size,
         400,
         arabic
@@ -1634,34 +2396,124 @@
         : "ltr";
 
 
-    ctx.textAlign =
+    const maxTextWidth =
+      W
+      -
+      marginX * 2;
+
+
+    /*
+      CENTERED
+    */
+
+    if(
       state.align === "center"
-        ? "center"
-        : "right";
+    ){
+
+      ctx.textAlign =
+        "center";
 
 
-    const tx =
-      state.align === "center"
-        ? W/2
-        : W-marginX;
+      fitted.lines.forEach(
+        (line,index) => {
 
 
-    fitted.lines.forEach(
-      (line,index) => {
+          if(
+            line.blank
+          ){
+
+            return;
+
+          }
 
 
-        ctx.fillText(
-          line,
-          tx,
-          startY
-          +
-          index
-          *
-          fitted.lineHeight
-        );
+          ctx.fillText(
+            line.text,
+            W/2,
+            startY
+            +
+            index
+            *
+            fitted.lineHeight
+          );
 
-      }
-    );
+        }
+      );
+
+    }
+
+
+    /*
+      RIGHT / JUSTIFIED
+    */
+
+    else{
+
+      const rightX =
+        W
+        -
+        marginX;
+
+
+      fitted.lines.forEach(
+        (line,index) => {
+
+
+          if(
+            line.blank
+          ){
+
+            return;
+
+          }
+
+
+          const y =
+            startY
+            +
+            index
+            *
+            fitted.lineHeight;
+
+
+          /*
+            Arabic non-final paragraph lines
+            receive restrained justification.
+          */
+
+          if(
+            arabic
+            &&
+            !line.paragraphEnd
+          ){
+
+            drawJustifiedLine(
+              line.text,
+              rightX,
+              y,
+              maxTextWidth
+            );
+
+          }
+
+          else{
+
+            ctx.textAlign =
+              "right";
+
+
+            ctx.fillText(
+              line.text,
+              rightX,
+              y
+            );
+
+          }
+
+        }
+      );
+
+    }
 
 
     ctx.restore();
@@ -1675,6 +2527,12 @@
 
   }
 
+
+  /*
+    ==================================================
+    HADITH HEADING
+    ==================================================
+  */
 
   function drawHadithHeading(
     config,
@@ -1709,10 +2567,10 @@
 
 
     ctx.font =
-      fontString(
+      quoteFont(
         state.ratio === "4:5"
-          ? 120
-          : 108,
+          ? 124
+          : 112,
         700,
         true
       );
@@ -1751,12 +2609,15 @@
 
 
   /*
-    GENERAL QUOTE METADATA
+    ==================================================
+    GENERAL ATTRIBUTION
+    ==================================================
 
-    Speaker and source now live in the lower part
-    of the composition.
+    Speaker/source now belong to the LOWER
+    section of the design.
 
-    They are no longer allowed to float far upward.
+    Short quotes do not cause this block
+    to float into the center.
   */
 
   function drawGeneralAttribution(
@@ -1788,51 +2649,63 @@
         : W-marginX;
 
 
+    /*
+      Increased ~8–10%.
+    */
+
     const authorSize =
       authorArabic
-        ? 96
-        : 70;
+        ? 104
+        : 74;
 
 
     const sourceSize =
       sourceArabic
-        ? 70
-        : 52;
+        ? 76
+        : 56;
 
 
     /*
-      Speaker is anchored low.
+      Lower anchor.
 
-      A short quote can nudge it slightly upward,
-      but never dramatically.
+      This remains predictable regardless
+      of quote length.
     */
 
-    let authorY;
+    let authorRatio;
 
 
     if(
-      quoteBottom < H * .43
+      quoteBottom
+      <
+      H * .42
     ){
 
-      authorY =
+      authorRatio =
         state.ratio === "4:5"
-          ? H * .70
-          : H * .685;
+          ? .715
+          : .695;
 
     }
 
     else{
 
-      authorY =
+      authorRatio =
         state.ratio === "4:5"
-          ? H * .72
-          : H * .705;
+          ? .735
+          : .715;
 
     }
 
 
+    let authorY =
+      H
+      *
+      authorRatio;
+
+
     /*
-      Keep reasonable separation from quote.
+      Never collide with quote.
     */
 
     const minimumAuthorY =
@@ -1840,8 +2713,8 @@
       +
       (
         state.ratio === "4:5"
-          ? 110
-          : 88
+          ? 115
+          : 92
       );
 
 
@@ -1853,8 +2726,10 @@
 
 
     /*
-      More deliberate separation between
-      speaker and source.
+      Speaker/source separation.
+
+      This retains the ~25% spacing
+      increase requested previously.
     */
 
     const sourceY =
@@ -1866,6 +2741,10 @@
           : 152
       );
 
+
+    /*
+      SPEAKER
+    */
 
     if(author){
 
@@ -1888,7 +2767,7 @@
 
       ctx.shadowBlur =
         config.type === "image"
-          ? 14
+          ? 15
           : 0;
 
 
@@ -1915,7 +2794,7 @@
 
 
       ctx.font =
-        metaFontString(
+        metaFont(
           authorSize,
           700,
           authorArabic
@@ -1933,6 +2812,10 @@
 
     }
 
+
+    /*
+      SOURCE
+    */
 
     if(source){
 
@@ -1955,7 +2838,7 @@
 
       ctx.shadowBlur =
         config.type === "image"
-          ? 11
+          ? 12
           : 0;
 
 
@@ -1982,7 +2865,7 @@
 
 
       ctx.font =
-        metaFontString(
+        metaFont(
           sourceSize,
           400,
           sourceArabic
@@ -2006,7 +2889,12 @@
 
 
   /*
+    ==================================================
     HADITH SOURCE
+    ==================================================
+
+    Layout retained from the version
+    that worked well.
 
     Short:
       ~74%
@@ -2016,9 +2904,6 @@
 
     Long:
       ~83%
-
-    This remains mostly independent of the text
-    so the matn is free to remain large.
   */
 
   function drawHadithSource(
@@ -2047,10 +2932,14 @@
         : W-marginX;
 
 
+    /*
+      Slightly larger than before.
+    */
+
     const sourceSize =
       sourceArabic
-        ? 72
-        : 53;
+        ? 78
+        : 57;
 
 
     let sourceRatio;
@@ -2089,28 +2978,32 @@
 
 
     let sourceY =
-      H * sourceRatio;
+      H
+      *
+      sourceRatio;
 
 
     /*
-      The source can never overlap the matn.
+      Never collide with matn.
     */
 
     const minimumGap =
       state.ratio === "4:5"
-        ? 95
-        : 76;
+        ? 100
+        : 80;
 
 
     sourceY =
       Math.max(
         sourceY,
-        quoteBottom + minimumGap
+        quoteBottom
+        +
+        minimumGap
       );
 
 
     /*
-      Footer still belongs to the watermark.
+      Preserve watermark footer.
     */
 
     const maximumY =
@@ -2134,7 +3027,7 @@
 
 
     ctx.globalAlpha =
-      .95;
+      .96;
 
 
     ctx.shadowColor =
@@ -2145,7 +3038,7 @@
 
     ctx.shadowBlur =
       config.type === "image"
-        ? 11
+        ? 12
         : 0;
 
 
@@ -2172,7 +3065,7 @@
 
 
     ctx.font =
-      metaFontString(
+      metaFont(
         sourceSize,
         400,
         sourceArabic
@@ -2192,9 +3085,17 @@
 
 
   /*
+    ==================================================
     WATERMARK
+    ==================================================
 
-    Unchanged.
+    Important changes:
+
+      - Aref Ruqaa
+      - larger
+      - same theme color as metadata
+      - Paper therefore becomes dark brown
+        automatically
   */
 
   function drawWatermark(
@@ -2217,35 +3118,45 @@
     ctx.save();
 
 
+    /*
+      SAME COLOR AS SOURCE/SPEAKER.
+    */
+
     ctx.fillStyle =
-      "#FFFFFF";
+      config.secondary;
 
 
     ctx.globalAlpha =
-      .96;
+      .98;
 
 
     ctx.shadowColor =
-      config.type === "paper"
-        ? "rgba(44,41,37,.45)"
-        : "rgba(0,0,0,.55)";
+      config.type === "image"
+        ? config.shadow
+        : "rgba(0,0,0,0)";
 
 
     ctx.shadowBlur =
-      config.type === "paper"
-        ? 10
-        : 14;
+      config.type === "image"
+        ? 14
+        : 0;
 
 
     ctx.shadowOffsetY =
-      3;
+      config.type === "image"
+        ? 3
+        : 0;
 
+
+    /*
+      ~10–12% larger.
+    */
 
     ctx.font =
-      metaFontString(
+      metaFont(
         state.ratio === "4:5"
-          ? 100
-          : 92,
+          ? 114
+          : 104,
         700,
         true
       );
@@ -2262,6 +3173,10 @@
     ctx.direction =
       "rtl";
 
+
+    /*
+      Footer position preserved.
+    */
 
     const watermarkY =
       state.ratio === "4:5"
@@ -2280,6 +3195,12 @@
 
   }
 
+
+  /*
+    ==================================================
+    MAIN LAYOUT
+    ==================================================
+  */
 
   function drawTextBlock(
     config,
@@ -2320,14 +3241,19 @@
 
 
     /*
-      Hadith gets slightly wider margins,
-      helping it retain larger type.
+      A little more width than the original
+      versions.
+
+      More width means:
+        fewer lines,
+        larger possible font,
+        cleaner composition.
     */
 
     const marginX =
       state.type === "hadith"
-        ? W * .075
-        : W * .09;
+        ? W * .072
+        : W * .082;
 
 
     const maxWidth =
@@ -2337,9 +3263,9 @@
 
 
     /*
-      ================================================
+      ==================================================
       GENERAL
-      ================================================
+      ==================================================
     */
 
     if(
@@ -2347,28 +3273,28 @@
     ){
 
       /*
-        Give the quote plenty of room.
+        Quote stays central-upper.
 
-        We are no longer shrinking it simply
-        to make room for metadata above.
+        Short quotes become significantly larger
+        rather than leaving a huge empty void.
       */
 
       const quoteSafeTop =
         state.ratio === "4:5"
-          ? H * .115
-          : H * .10;
+          ? H * .11
+          : H * .095;
 
 
       const quoteSafeBottom =
         state.ratio === "4:5"
-          ? H * .625
-          : H * .61;
+          ? H * .63
+          : H * .615;
 
 
       const quoteCenterY =
         state.ratio === "4:5"
-          ? H * .37
-          : H * .355;
+          ? H * .365
+          : H * .35;
 
 
       const availableHeight =
@@ -2393,7 +3319,8 @@
 
 
       if(
-        startY <
+        startY
+        <
         quoteSafeTop
       ){
 
@@ -2446,32 +3373,33 @@
 
 
     /*
-      ================================================
+      ==================================================
       HADITH
-      ================================================
+      ==================================================
+
+      This stays intentionally close
+      to the version that was already
+      working well.
     */
 
     else{
 
 
-      /*
-        Heading and matn now start slightly lower.
-      */
-
       const headingHeight =
         state.ratio === "4:5"
-          ? 145
-          : 132;
+          ? 150
+          : 136;
 
 
       const headingGap =
         state.ratio === "4:5"
-          ? 100
-          : 88;
+          ? 104
+          : 90;
 
 
       /*
-        Top moved down slightly from the last version.
+        Heading + matn start a little below
+        the absolute upper edge.
       */
 
       const groupSafeTop =
@@ -2481,9 +3409,7 @@
 
 
       /*
-        But bottom expanded considerably,
-        giving long hadith more room
-        and therefore a larger font.
+        Plenty of room for large matn.
       */
 
       const groupSafeBottom =
@@ -2524,17 +3450,8 @@
 
 
       /*
-        Shift whole Prophet-heading + matn
-        slightly downward.
-
-        Shorter text:
-          around 39%
-
-        Longer text:
-          around 41%
-
-        This prevents the composition
-        from feeling top-heavy.
+        Slightly lower center
+        for visual balance.
       */
 
       let groupCenterY;
@@ -2546,8 +3463,8 @@
 
         groupCenterY =
           state.ratio === "4:5"
-            ? H * .39
-            : H * .375;
+            ? H * .395
+            : H * .38;
 
       }
 
@@ -2557,8 +3474,8 @@
 
         groupCenterY =
           state.ratio === "4:5"
-            ? H * .40
-            : H * .385;
+            ? H * .405
+            : H * .39;
 
       }
 
@@ -2566,8 +3483,8 @@
 
         groupCenterY =
           state.ratio === "4:5"
-            ? H * .41
-            : H * .395;
+            ? H * .415
+            : H * .40;
 
       }
 
@@ -2579,7 +3496,8 @@
 
 
       if(
-        groupStartY <
+        groupStartY
+        <
         groupSafeTop
       ){
 
@@ -2644,11 +3562,18 @@
         quoteBottom,
         source,
         sourceArabic,
-        fitted.lines.length
+        fitted.lines.filter(
+          line =>
+            !line.blank
+        ).length
       );
 
     }
 
+
+    /*
+      Draw watermark last.
+    */
 
     drawWatermark(
       config,
@@ -2658,6 +3583,12 @@
 
   }
 
+
+  /*
+    ==================================================
+    RENDER
+    ==================================================
+  */
 
   async function render(){
 
@@ -2702,6 +3633,7 @@
 
       try{
 
+
         const img =
           await loadImage(
             config.src
@@ -2716,9 +3648,16 @@
           H
         );
 
+
       }
 
       catch(err){
+
+
+        /*
+          Safe fallback if the filename
+          is wrong or image wasn't uploaded.
+        */
 
         const fallback =
           ctx.createLinearGradient(
@@ -2755,7 +3694,7 @@
 
         setStatus(
           `Add ${config.src} to use this background.`,
-          2600
+          2800
         );
 
       }
@@ -2779,6 +3718,12 @@
   }
 
 
+  /*
+    ==================================================
+    BUTTON GROUPS
+    ==================================================
+  */
+
   function bindChoiceGroup(
     groupId,
     key
@@ -2799,8 +3744,12 @@
             );
 
 
-          if(!btn){
+          if(
+            !btn
+          ){
+
             return;
+
           }
 
 
@@ -2808,8 +3757,12 @@
             btn.dataset[key];
 
 
-          if(!value){
+          if(
+            !value
+          ){
+
             return;
+
           }
 
 
@@ -2878,6 +3831,12 @@
   );
 
 
+  /*
+    ==================================================
+    GENERAL / HADITH INTERFACE
+    ==================================================
+  */
+
   function updateTypeInterface(){
 
     if(
@@ -2901,6 +3860,12 @@
   }
 
 
+  /*
+    ==================================================
+    LIVE INPUT
+    ==================================================
+  */
+
   [
     quoteInput,
     authorInput,
@@ -2908,6 +3873,7 @@
   ]
   .forEach(
     element => {
+
 
       element.addEventListener(
         "input",
@@ -2918,11 +3884,21 @@
   );
 
 
+  /*
+    ==================================================
+    PASSWORD-GATED WATERMARK
+    ==================================================
+  */
+
   watermarkInput
     .addEventListener(
       "change",
       () => {
 
+
+        /*
+          Turning off never needs password.
+        */
 
         if(
           !watermarkInput.checked
@@ -2934,6 +3910,11 @@
 
         }
 
+
+        /*
+          Already unlocked during this
+          browser session.
+        */
 
         if(
           watermarkUnlocked
@@ -2953,7 +3934,8 @@
 
 
         if(
-          entered ===
+          entered
+          ===
           WATERMARK_PASSWORD
         ){
 
@@ -2976,6 +3958,7 @@
         }
 
         else{
+
 
           watermarkInput.checked =
             false;
@@ -3000,6 +3983,12 @@
       }
     );
 
+
+  /*
+    ==================================================
+    DOWNLOAD PNG
+    ==================================================
+  */
 
   document
     .getElementById(
@@ -3082,6 +4071,12 @@
     );
 
 
+  /*
+    ==================================================
+    COPY IMAGE
+    ==================================================
+  */
+
   document
     .getElementById(
       "copyBtn"
@@ -3100,6 +4095,7 @@
           const blob =
             await new Promise(
               resolve => {
+
 
                 canvas.toBlob(
                   resolve,
@@ -3142,6 +4138,7 @@
             "Image copied."
           );
 
+
         }
 
         catch(err){
@@ -3157,6 +4154,15 @@
       }
     );
 
+
+  /*
+    ==================================================
+    START / FONT LOADING
+    ==================================================
+
+    Canvas must wait for the actual fonts
+    before measuring text.
+  */
 
   async function start(){
 
@@ -3179,31 +4185,47 @@
 
       try{
 
+
         await Promise.all(
           [
 
+            /*
+              AMIRI
+            */
+
             document.fonts.load(
-              '400 158px "Amiri"'
+              '400 210px "Amiri"'
             ),
 
             document.fonts.load(
-              '700 120px "Amiri"'
+              '700 124px "Amiri"'
+            ),
+
+
+            /*
+              AREF RUQAA
+            */
+
+            document.fonts.load(
+              '400 78px "Aref Ruqaa"'
             ),
 
             document.fonts.load(
-              '400 72px "Aref Ruqaa"'
-            ),
-
-            document.fonts.load(
-              '700 100px "Aref Ruqaa"'
+              '700 114px "Aref Ruqaa"'
             )
 
           ]
         );
 
+
       }
 
       catch(err){
+
+        /*
+          Continue even if explicit
+          font loading is unsupported.
+        */
 
       }
 

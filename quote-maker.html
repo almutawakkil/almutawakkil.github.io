@@ -16,23 +16,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!--
-    Amiri:
-      Main quotations / hadith
-
-    Aref Ruqaa:
-      Speaker / source / attribution
-
-    Inter:
-      Interface
-  -->
   <link
     href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Inter:wght@400;500;600&display=swap"
     rel="stylesheet"
   >
 
   <style>
-
     :root{
       --page:#f5f4f1;
       --panel:#ffffff;
@@ -49,7 +38,6 @@
 
     body{
       margin:0;
-
       color:var(--ink);
 
       background:
@@ -83,28 +71,19 @@
       align-items:flex-end;
       justify-content:space-between;
       gap:18px;
-
       margin-bottom:24px;
     }
 
     .title h1{
-      font-size:clamp(
-        25px,
-        3vw,
-        38px
-      );
-
+      font-size:clamp(25px,3vw,38px);
       margin:0 0 6px;
-
       font-weight:600;
       letter-spacing:-.035em;
     }
 
     .title p{
       margin:0;
-
       color:var(--muted);
-
       font-size:14px;
     }
 
@@ -116,17 +95,12 @@
         minmax(0,1fr);
 
       gap:26px;
-
       align-items:start;
     }
 
     .panel{
-      background:
-        rgba(255,255,255,.9);
-
-      border:
-        1px solid var(--line);
-
+      background:rgba(255,255,255,.9);
+      border:1px solid var(--line);
       border-radius:22px;
 
       box-shadow:
@@ -136,42 +110,29 @@
 
     .controls{
       padding:22px;
-
       position:sticky;
-
       top:18px;
     }
 
     .section + .section{
       margin-top:22px;
-
       padding-top:22px;
-
-      border-top:
-        1px solid var(--line);
+      border-top:1px solid var(--line);
     }
 
     .section-title{
       font-size:12px;
-
       text-transform:uppercase;
-
       letter-spacing:.11em;
-
       color:#8b8882;
-
       margin:0 0 12px;
-
       font-weight:600;
     }
 
     label{
       display:block;
-
       font-size:13px;
-
       font-weight:600;
-
       margin:0 0 7px;
     }
 
@@ -182,18 +143,11 @@
     textarea,
     input{
       width:100%;
-
-      border:
-        1px solid #dcd9d2;
-
+      border:1px solid #dcd9d2;
       border-radius:13px;
-
       background:#fff;
-
       color:#1d1d1b;
-
       padding:12px 13px;
-
       outline:none;
 
       transition:
@@ -203,9 +157,7 @@
 
     textarea{
       min-height:190px;
-
       resize:vertical;
-
       line-height:1.95;
 
       font-family:
@@ -235,18 +187,15 @@
 
     .segmented{
       display:grid;
-
       gap:8px;
     }
 
     .segmented.two{
-      grid-template-columns:
-        repeat(2,1fr);
+      grid-template-columns:repeat(2,1fr);
     }
 
     .segmented.four{
-      grid-template-columns:
-        repeat(2,1fr);
+      grid-template-columns:repeat(2,1fr);
     }
 
     button{
@@ -254,21 +203,13 @@
     }
 
     .choice{
-      border:
-        1px solid #dedbd4;
-
+      border:1px solid #dedbd4;
       background:#fff;
-
       color:#403e39;
-
       border-radius:12px;
-
       padding:10px 11px;
-
       cursor:pointer;
-
       transition:.15s ease;
-
       font-size:13px;
     }
 
@@ -278,37 +219,27 @@
 
     .choice.active{
       background:#232321;
-
       color:#fff;
-
       border-color:#232321;
     }
 
     .toggle-row{
       display:flex;
-
       align-items:center;
-
       justify-content:space-between;
-
       gap:16px;
     }
 
     .toggle-copy strong{
       display:block;
-
       font-size:13px;
-
       margin-bottom:3px;
     }
 
     .toggle-copy span{
       display:block;
-
       color:var(--muted);
-
       font-size:12px;
-
       line-height:1.45;
     }
 
@@ -318,47 +249,34 @@
 
     .switch{
       position:relative;
-
       width:46px;
       height:27px;
-
       flex:0 0 auto;
     }
 
     .switch input{
       opacity:0;
-
       width:0;
       height:0;
     }
 
     .slider{
       position:absolute;
-
       inset:0;
-
       background:#d7d4ce;
-
       border-radius:99px;
-
       cursor:pointer;
-
       transition:.18s;
     }
 
     .slider:before{
       content:"";
-
       position:absolute;
-
       width:21px;
       height:21px;
-
       left:3px;
       top:3px;
-
       background:#fff;
-
       border-radius:50%;
 
       box-shadow:
@@ -373,64 +291,47 @@
     }
 
     .switch input:checked + .slider:before{
-      transform:
-        translateX(19px);
+      transform:translateX(19px);
     }
 
     .actions{
       display:grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
+      grid-template-columns:1fr 1fr;
       gap:9px;
     }
 
     .primary,
     .secondary{
       border-radius:13px;
-
       padding:12px 14px;
-
       cursor:pointer;
-
       font-weight:600;
-
-      border:
-        1px solid #252522;
+      border:1px solid #252522;
     }
 
     .primary{
       background:#252522;
-
       color:#fff;
     }
 
     .secondary{
       background:#fff;
-
       color:#252522;
     }
 
     .note{
       margin:12px 0 0;
-
       color:#77746e;
-
       font-size:11px;
-
       line-height:1.55;
     }
 
     .preview-panel{
       padding:22px;
-
       min-height:500px;
 
       display:flex;
-
       align-items:center;
-
       justify-content:center;
 
       overflow:hidden;
@@ -457,8 +358,7 @@
           #f1efe9 75%
         );
 
-      background-size:
-        24px 24px;
+      background-size:24px 24px;
 
       background-position:
         0 0,
@@ -468,10 +368,7 @@
     }
 
     .canvas-wrap{
-      width:min(
-        100%,
-        560px
-      );
+      width:min(100%,560px);
 
       filter:
         drop-shadow(
@@ -482,25 +379,17 @@
 
     canvas{
       display:block;
-
       width:100%;
-
       height:auto;
-
       border-radius:4px;
-
       background:#ddd;
     }
 
     .status{
       margin-top:10px;
-
       text-align:center;
-
       font-size:12px;
-
       color:#77736d;
-
       min-height:18px;
     }
 
@@ -509,7 +398,6 @@
     }
 
     @media(max-width:900px){
-
       .layout{
         grid-template-columns:1fr;
       }
@@ -521,23 +409,16 @@
       .preview-panel{
         padding:16px;
       }
-
     }
 
     @media(max-width:520px){
-
       .shell{
-        width:min(
-          100% - 18px,
-          1220px
-        );
-
+        width:min(100% - 18px,1220px);
         margin-top:18px;
       }
 
       .topbar{
         align-items:flex-start;
-
         flex-direction:column;
       }
 
@@ -552,9 +433,7 @@
       .actions{
         grid-template-columns:1fr;
       }
-
     }
-
   </style>
 </head>
 
@@ -563,19 +442,13 @@
   <main class="shell">
 
     <div class="topbar">
-
       <div class="title">
-
-        <h1>
-          Quote Maker
-        </h1>
+        <h1>Quote Maker</h1>
 
         <p>
           A simple, quiet tool for making shareable quotation cards.
         </p>
-
       </div>
-
     </div>
 
 
@@ -591,7 +464,7 @@
           style="
             padding-top:0;
             margin-top:0;
-            border-top:0
+            border-top:0;
           "
         >
 
@@ -630,6 +503,7 @@
           <p class="section-title">
             Content
           </p>
+
 
           <div class="field">
 
@@ -687,6 +561,7 @@
           <p class="section-title">
             Style
           </p>
+
 
           <label>
             Background
@@ -931,15 +806,10 @@
   */
 
   const state = {
-
     type:"general",
-
     theme:"night",
-
     ratio:"4:5",
-
     align:"center"
-
   };
 
 
@@ -964,9 +834,7 @@
 
   const themeConfig = {
 
-
     night:{
-
       type:"image",
 
       src:
@@ -976,7 +844,7 @@
         "#F7F4ED",
 
       secondary:
-        "rgba(247,244,237,.88)",
+        "#F7F4ED",
 
       shadow:
         "rgba(0,0,0,.52)",
@@ -984,12 +852,10 @@
       overlayTop:.13,
 
       overlayBottom:.60
-
     },
 
 
     sunset:{
-
       type:"image",
 
       src:
@@ -999,7 +865,7 @@
         "#FFF9ED",
 
       secondary:
-        "rgba(255,249,237,.92)",
+        "#FFF9ED",
 
       shadow:
         "rgba(54,32,12,.48)",
@@ -1007,12 +873,10 @@
       overlayTop:.12,
 
       overlayBottom:.55
-
     },
 
 
     green:{
-
       type:"image",
 
       src:
@@ -1022,7 +886,7 @@
         "#F8F7F1",
 
       secondary:
-        "rgba(248,247,241,.88)",
+        "#F8F7F1",
 
       shadow:
         "rgba(8,25,20,.48)",
@@ -1030,12 +894,10 @@
       overlayTop:.10,
 
       overlayBottom:.48
-
     },
 
 
     paper:{
-
       type:"paper",
 
       bg:
@@ -1045,8 +907,7 @@
         "#2C2925",
 
       secondary:
-        "#6A6054"
-
+        "#665C50"
     }
 
   };
@@ -1070,11 +931,13 @@
     statusEl.textContent =
       text;
 
+
     if(timeout){
 
       clearTimeout(
         setStatus.timer
       );
+
 
       setStatus.timer =
         setTimeout(
@@ -1095,7 +958,7 @@
 
   /*
     ==================================================
-    ARABIC DETECTION
+    LANGUAGE
     ==================================================
   */
 
@@ -1149,11 +1012,6 @@
   }
 
 
-  /*
-    Heavily vocalized Arabic gets
-    additional line spacing.
-  */
-
   function getArabicLineHeightMultiplier(text){
 
     const ratio =
@@ -1185,7 +1043,7 @@
 
   /*
     ==================================================
-    CANVAS SIZE
+    CANVAS
     ==================================================
   */
 
@@ -1510,11 +1368,6 @@
     );
 
 
-    /*
-      Fine parchment texture.
-      No decorative top rule.
-    */
-
     ctx.save();
 
 
@@ -1710,13 +1563,8 @@
 
   /*
     ==================================================
-    FONT FUNCTIONS
+    FONTS
     ==================================================
-  */
-
-  /*
-    Main text:
-      Amiri
   */
 
   function fontString(
@@ -1735,14 +1583,6 @@
 
   }
 
-
-  /*
-    Attribution:
-      Aref Ruqaa for Arabic
-
-    This gives the speaker/source
-    a distinct calligraphic character.
-  */
 
   function metaFontString(
     size,
@@ -1763,7 +1603,7 @@
 
   /*
     ==================================================
-    FIT MAIN QUOTE
+    FIT QUOTE
     ==================================================
   */
 
@@ -1899,15 +1739,10 @@
       ){
 
         return {
-
           size,
-
           lines,
-
           lineHeight,
-
           totalHeight
-
         };
 
       }
@@ -1947,19 +1782,14 @@
 
 
     return {
-
-      size:
-        minSize,
-
+      size:minSize,
       lines,
-
       lineHeight,
 
       totalHeight:
         lines.length
         *
         lineHeight
-
     };
 
   }
@@ -1967,7 +1797,7 @@
 
   /*
     ==================================================
-    MAIN QUOTE DRAWING
+    DRAW MAIN QUOTE
     ==================================================
   */
 
@@ -2023,21 +1853,10 @@
         : "ltr";
 
 
-    if(
+    ctx.textAlign =
       state.align === "center"
-    ){
-
-      ctx.textAlign =
-        "center";
-
-    }
-
-    else{
-
-      ctx.textAlign =
-        "right";
-
-    }
+        ? "center"
+        : "right";
 
 
     const tx =
@@ -2066,6 +1885,13 @@
 
     ctx.restore();
 
+
+    return (
+      startY
+      +
+      fitted.totalHeight
+    );
+
   }
 
 
@@ -2074,12 +1900,9 @@
     HADITH HEADING
     ==================================================
 
-    Exactly:
-
       قال النبي ﷺ:
 
-    The same x-position / alignment anchor
-    is used as the hadith itself.
+    Intentionally much larger now.
   */
 
   function drawHadithHeading(
@@ -2108,7 +1931,7 @@
 
     ctx.shadowBlur =
       config.type === "image"
-        ? 15
+        ? 18
         : 0;
 
 
@@ -2121,8 +1944,8 @@
     ctx.font =
       fontString(
         state.ratio === "4:5"
-          ? 76
-          : 70,
+          ? 108
+          : 96,
         700,
         true
       );
@@ -2136,21 +1959,21 @@
       "top";
 
 
-    const headingX =
-      state.align === "center"
-        ? W/2
-        : W-marginX;
-
-
     ctx.textAlign =
       state.align === "center"
         ? "center"
         : "right";
 
 
+    const x =
+      state.align === "center"
+        ? W/2
+        : W-marginX;
+
+
     ctx.fillText(
       text,
-      headingX,
+      x,
       y
     );
 
@@ -2164,6 +1987,12 @@
     ==================================================
     GENERAL ATTRIBUTION
     ==================================================
+
+    The attribution is NOT fixed
+    to a percentage anymore.
+
+    Its position depends on
+    where the quote actually ends.
   */
 
   function drawGeneralAttribution(
@@ -2171,26 +2000,22 @@
     W,
     H,
     marginX,
+    quoteBottom,
     author,
     source,
     authorArabic,
     sourceArabic
   ){
 
-    const authorY =
-      state.ratio === "4:5"
-        ? H * .800
-        : H * .785;
+    if(
+      !author
+      &&
+      !source
+    ){
 
+      return;
 
-    const sourceY =
-      authorY
-      +
-      (
-        state.ratio === "4:5"
-          ? 128
-          : 116
-      );
+    }
 
 
     const metaX =
@@ -2200,10 +2025,139 @@
 
 
     /*
-      SPEAKER / AUTHOR
+      Keep metadata above the watermark area.
 
-      Larger than previous version.
-      Aref Ruqaa.
+      Even when the watermark is OFF,
+      preserving this lower margin
+      gives the card breathing room.
+    */
+
+    const usableBottom =
+      state.ratio === "4:5"
+        ? H * .905
+        : H * .895;
+
+
+    /*
+      Larger, tighter metadata block.
+    */
+
+    const authorSize =
+      authorArabic
+        ? 92
+        : 68;
+
+
+    const sourceSize =
+      sourceArabic
+        ? 67
+        : 50;
+
+
+    const authorHeight =
+      author
+        ? authorSize * 1.10
+        : 0;
+
+
+    const sourceHeight =
+      source
+        ? sourceSize * 1.08
+        : 0;
+
+
+    const betweenMeta =
+      (
+        author
+        &&
+        source
+      )
+        ? 18
+        : 0;
+
+
+    const blockHeight =
+      authorHeight
+      +
+      betweenMeta
+      +
+      sourceHeight;
+
+
+    /*
+      Put the center of this block halfway
+      between the end of the quotation
+      and the usable bottom of the card.
+    */
+
+    const availableGap =
+      Math.max(
+        0,
+        usableBottom - quoteBottom
+      );
+
+
+    let blockCenter =
+      quoteBottom
+      +
+      availableGap * .52;
+
+
+    let authorY =
+      blockCenter
+      -
+      blockHeight / 2;
+
+
+    /*
+      Ensure metadata never gets
+      uncomfortably close to the quote.
+    */
+
+    const minimumTop =
+      quoteBottom
+      +
+      (
+        state.ratio === "4:5"
+          ? 90
+          : 72
+      );
+
+
+    if(
+      authorY < minimumTop
+    ){
+
+      authorY =
+        minimumTop;
+
+    }
+
+
+    /*
+      Also protect bottom margin.
+    */
+
+    if(
+      authorY + blockHeight
+      >
+      usableBottom
+    ){
+
+      authorY =
+        usableBottom
+        -
+        blockHeight;
+
+    }
+
+
+    let currentY =
+      authorY;
+
+
+    /*
+      AUTHOR
     */
 
     if(author){
@@ -2213,6 +2167,10 @@
 
       ctx.fillStyle =
         config.secondary;
+
+
+      ctx.globalAlpha =
+        .96;
 
 
       ctx.shadowColor =
@@ -2251,9 +2209,7 @@
 
       ctx.font =
         metaFontString(
-          authorArabic
-            ? 82
-            : 62,
+          authorSize,
           700,
           authorArabic
         );
@@ -2262,20 +2218,23 @@
       ctx.fillText(
         author,
         metaX,
-        authorY
+        currentY
       );
 
 
       ctx.restore();
+
+
+      currentY +=
+        authorHeight
+        +
+        betweenMeta;
 
     }
 
 
     /*
       SOURCE
-
-      Also larger.
-      Aref Ruqaa.
     */
 
     if(source){
@@ -2288,7 +2247,7 @@
 
 
       ctx.globalAlpha =
-        .90;
+        .88;
 
 
       ctx.shadowColor =
@@ -2327,9 +2286,7 @@
 
       ctx.font =
         metaFontString(
-          sourceArabic
-            ? 60
-            : 46,
+          sourceSize,
           400,
           sourceArabic
         );
@@ -2338,9 +2295,7 @@
       ctx.fillText(
         source,
         metaX,
-        author
-          ? sourceY
-          : authorY
+        currentY
       );
 
 
@@ -2355,6 +2310,12 @@
     ==================================================
     HADITH SOURCE
     ==================================================
+
+    Same proportional principle:
+
+    the source sits between the
+    end of the matn and the bottom,
+    rather than at a fixed percentage.
   */
 
   function drawHadithSource(
@@ -2362,6 +2323,7 @@
     W,
     H,
     marginX,
+    quoteBottom,
     source,
     sourceArabic
   ){
@@ -2375,16 +2337,82 @@
     }
 
 
-    const sourceY =
-      state.ratio === "4:5"
-        ? H * .815
-        : H * .80;
-
-
     const sourceX =
       state.align === "center"
         ? W/2
         : W-marginX;
+
+
+    const usableBottom =
+      state.ratio === "4:5"
+        ? H * .905
+        : H * .895;
+
+
+    const sourceSize =
+      sourceArabic
+        ? 70
+        : 52;
+
+
+    const sourceHeight =
+      sourceSize * 1.10;
+
+
+    const availableGap =
+      Math.max(
+        0,
+        usableBottom
+        -
+        quoteBottom
+      );
+
+
+    /*
+      Slightly above exact mathematical
+      midpoint looks more natural.
+    */
+
+    let sourceY =
+      quoteBottom
+      +
+      availableGap * .49
+      -
+      sourceHeight / 2;
+
+
+    const minimumY =
+      quoteBottom
+      +
+      (
+        state.ratio === "4:5"
+          ? 100
+          : 82
+      );
+
+
+    if(
+      sourceY < minimumY
+    ){
+
+      sourceY =
+        minimumY;
+
+    }
+
+
+    if(
+      sourceY + sourceHeight
+      >
+      usableBottom
+    ){
+
+      sourceY =
+        usableBottom
+        -
+        sourceHeight;
+
+    }
 
 
     ctx.save();
@@ -2395,7 +2423,7 @@
 
 
     ctx.globalAlpha =
-      .92;
+      .91;
 
 
     ctx.shadowColor =
@@ -2434,9 +2462,7 @@
 
     ctx.font =
       metaFontString(
-        sourceArabic
-          ? 61
-          : 46,
+        sourceSize,
         400,
         sourceArabic
       );
@@ -2456,7 +2482,113 @@
 
   /*
     ==================================================
-    MAIN TEXT LAYOUT
+    WATERMARK
+    ==================================================
+  */
+
+  function drawWatermark(
+    config,
+    W,
+    H
+  ){
+
+    if(
+      !watermarkInput.checked
+      ||
+      !watermarkUnlocked
+    ){
+
+      return;
+
+    }
+
+
+    ctx.save();
+
+
+    /*
+      Same color family as attribution.
+    */
+
+    ctx.fillStyle =
+      config.secondary;
+
+
+    /*
+      Still quiet,
+      but much more readable when compressed
+      by Instagram / WhatsApp / YouTube.
+    */
+
+    ctx.globalAlpha =
+      config.type === "paper"
+        ? .72
+        : .70;
+
+
+    ctx.shadowColor =
+      config.type === "image"
+        ? config.shadow
+        : "rgba(0,0,0,0)";
+
+
+    ctx.shadowBlur =
+      config.type === "image"
+        ? 9
+        : 0;
+
+
+    ctx.shadowOffsetY =
+      config.type === "image"
+        ? 2
+        : 0;
+
+
+    /*
+      Aref Ruqaa.
+    */
+
+    ctx.font =
+      metaFontString(
+        state.ratio === "4:5"
+          ? 62
+          : 58,
+        700,
+        true
+      );
+
+
+    ctx.textAlign =
+      "center";
+
+
+    ctx.textBaseline =
+      "bottom";
+
+
+    ctx.direction =
+      "rtl";
+
+
+    ctx.fillText(
+      "المتوكل",
+      W/2,
+      H - (
+        state.ratio === "4:5"
+          ? 58
+          : 50
+      )
+    );
+
+
+    ctx.restore();
+
+  }
+
+
+  /*
+    ==================================================
+    MAIN LAYOUT
     ==================================================
   */
 
@@ -2509,31 +2641,38 @@
 
 
     /*
-      ================================================
-      GENERAL QUOTE
-      ================================================
+      ==================================================
+      GENERAL
+      ==================================================
     */
 
     if(
       state.type === "general"
     ){
 
+      /*
+        Quote occupies roughly the upper
+        2/3 of the composition.
+
+        Its own visual center remains stable.
+      */
+
       const quoteCenterY =
         state.ratio === "4:5"
-          ? H * .445
-          : H * .425;
+          ? H * .405
+          : H * .385;
 
 
       const quoteSafeTop =
         state.ratio === "4:5"
-          ? H * .115
-          : H * .10;
+          ? H * .105
+          : H * .09;
 
 
       const quoteSafeBottom =
         state.ratio === "4:5"
-          ? H * .720
-          : H * .700;
+          ? H * .675
+          : H * .655;
 
 
       const availableHeight =
@@ -2558,7 +2697,9 @@
 
 
       if(
-        startY < quoteSafeTop
+        startY
+        <
+        quoteSafeTop
       ){
 
         startY =
@@ -2568,7 +2709,9 @@
 
 
       if(
-        startY + fitted.totalHeight
+        startY
+        +
+        fitted.totalHeight
         >
         quoteSafeBottom
       ){
@@ -2581,14 +2724,15 @@
       }
 
 
-      drawMainQuote(
-        config,
-        fitted,
-        quoteArabic,
-        W,
-        startY,
-        marginX
-      );
+      const quoteBottom =
+        drawMainQuote(
+          config,
+          fitted,
+          quoteArabic,
+          W,
+          startY,
+          marginX
+        );
 
 
       drawGeneralAttribution(
@@ -2596,6 +2740,7 @@
         W,
         H,
         marginX,
+        quoteBottom,
         author,
         source,
         authorArabic,
@@ -2606,51 +2751,57 @@
 
 
     /*
-      ================================================
+      ==================================================
       HADITH
-      ================================================
+      ==================================================
     */
 
     else{
 
 
       /*
-        More room beneath:
-
-          قال النبي ﷺ:
-
-        This is intentionally substantially
-        larger than the previous version.
+        The heading is now a proper
+        visual part of the composition,
+        not a tiny label.
       */
 
       const headingHeight =
         state.ratio === "4:5"
-          ? 108
-          : 98;
+          ? 142
+          : 126;
 
+
+      /*
+        Deliberate gap beneath heading.
+      */
 
       const headingGap =
         state.ratio === "4:5"
-          ? 128
-          : 110;
+          ? 145
+          : 125;
 
 
-      const quoteSafeTop =
+      const groupSafeTop =
         state.ratio === "4:5"
-          ? H * .105
-          : H * .095;
+          ? H * .075
+          : H * .065;
 
+
+      /*
+        Leave enough lower space so
+        source can breathe naturally.
+      */
 
       const quoteSafeBottom =
         state.ratio === "4:5"
-          ? H * .735
-          : H * .705;
+          ? H * .675
+          : H * .655;
 
 
       const availableForEverything =
         quoteSafeBottom
         -
-        quoteSafeTop;
+        groupSafeTop;
 
 
       const availableForQuote =
@@ -2679,15 +2830,14 @@
 
 
       /*
-        Hadith group sits slightly higher
-        than the general quotation because
-        the source remains fixed below.
+        Keep whole hadith group balanced
+        in the upper portion.
       */
 
       const groupCenterY =
         state.ratio === "4:5"
-          ? H * .415
-          : H * .395;
+          ? H * .365
+          : H * .345;
 
 
       let groupStartY =
@@ -2696,25 +2846,17 @@
         groupHeight / 2;
 
 
-      /*
-        Top boundary protection.
-      */
-
       if(
         groupStartY
         <
-        quoteSafeTop
+        groupSafeTop
       ){
 
         groupStartY =
-          quoteSafeTop;
+          groupSafeTop;
 
       }
 
-
-      /*
-        Bottom boundary protection.
-      */
 
       if(
         groupStartY
@@ -2752,14 +2894,15 @@
       );
 
 
-      drawMainQuote(
-        config,
-        fitted,
-        quoteArabic,
-        W,
-        quoteStartY,
-        marginX
-      );
+      const quoteBottom =
+        drawMainQuote(
+          config,
+          fitted,
+          quoteArabic,
+          W,
+          quoteStartY,
+          marginX
+        );
 
 
       drawHadithSource(
@@ -2767,6 +2910,7 @@
         W,
         H,
         marginX,
+        quoteBottom,
         source,
         sourceArabic
       );
@@ -2775,56 +2919,14 @@
 
 
     /*
-      ================================================
-      PRIVATE WATERMARK
-      ================================================
+      Watermark is always drawn last.
     */
 
-    if(
-      watermarkInput.checked
-      &&
-      watermarkUnlocked
-    ){
-
-      ctx.save();
-
-
-      ctx.fillStyle =
-        config.type === "paper"
-          ? "rgba(44,41,37,.42)"
-          : "rgba(255,255,255,.48)";
-
-
-      ctx.font =
-        metaFontString(
-          47,
-          400,
-          true
-        );
-
-
-      ctx.textAlign =
-        "center";
-
-
-      ctx.textBaseline =
-        "bottom";
-
-
-      ctx.direction =
-        "rtl";
-
-
-      ctx.fillText(
-        "المتوكل",
-        W/2,
-        H-54
-      );
-
-
-      ctx.restore();
-
-    }
+    drawWatermark(
+      config,
+      W,
+      H
+    );
 
   }
 
@@ -2957,7 +3059,7 @@
 
   /*
     ==================================================
-    CHOICE GROUPS
+    BUTTON GROUPS
     ==================================================
   */
 
@@ -3070,7 +3172,7 @@
 
   /*
     ==================================================
-    GENERAL / HADITH INTERFACE
+    TYPE INTERFACE
     ==================================================
   */
 
@@ -3099,7 +3201,7 @@
 
   /*
     ==================================================
-    LIVE UPDATES
+    LIVE INPUT
     ==================================================
   */
 
@@ -3212,7 +3314,7 @@
 
   /*
     ==================================================
-    DOWNLOAD PNG
+    DOWNLOAD
     ==================================================
   */
 
@@ -3299,7 +3401,7 @@
 
   /*
     ==================================================
-    COPY IMAGE
+    COPY
     ==================================================
   */
 
@@ -3351,10 +3453,8 @@
 
               new ClipboardItem(
                 {
-
                   "image/png":
                     blob
-
                 }
               )
 
@@ -3384,11 +3484,8 @@
 
   /*
     ==================================================
-    START / FONT LOADING
+    FONT LOADING
     ==================================================
-
-    Canvas measurements depend on the
-    actual fonts being loaded first.
   */
 
   async function start(){
@@ -3416,29 +3513,20 @@
         await Promise.all(
           [
 
-            /*
-              Amiri
-            */
-
             document.fonts.load(
               '400 150px "Amiri"'
             ),
 
             document.fonts.load(
-              '700 76px "Amiri"'
-            ),
-
-
-            /*
-              Aref Ruqaa
-            */
-
-            document.fonts.load(
-              '400 60px "Aref Ruqaa"'
+              '700 108px "Amiri"'
             ),
 
             document.fonts.load(
-              '700 82px "Aref Ruqaa"'
+              '400 70px "Aref Ruqaa"'
+            ),
+
+            document.fonts.load(
+              '700 92px "Aref Ruqaa"'
             )
 
           ]
@@ -3450,8 +3538,7 @@
       catch(err){
 
         /*
-          Continue normally if the browser
-          doesn't support explicit loading.
+          Continue normally.
         */
 
       }

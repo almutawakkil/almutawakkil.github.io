@@ -2906,184 +2906,200 @@
       ~83%
   */
 
-  function drawHadithSource(
-    config,
-    W,
-    H,
-    marginX,
-    quoteBottom,
-    source,
-    sourceArabic,
-    lineCount
+function drawHadithSource(
+  config,
+  W,
+  H,
+  marginX,
+  quoteBottom,
+  source,
+  sourceArabic,
+  lineCount
+){
+
+  if(
+    !source
   ){
 
-    if(
-      !source
-    ){
-
-      return;
-
-    }
-
-
-    const sourceX =
-      state.align === "center"
-        ? W/2
-        : W-marginX;
-
-
-    /*
-      Slightly larger than before.
-    */
-
-    const sourceSize =
-      sourceArabic
-        ? 78
-        : 57;
-
-
-    let sourceRatio;
-
-
-    if(
-      lineCount <= 3
-    ){
-
-      sourceRatio =
-        state.ratio === "4:5"
-          ? .74
-          : .725;
-
-    }
-
-    else if(
-      lineCount <= 5
-    ){
-
-      sourceRatio =
-        state.ratio === "4:5"
-          ? .785
-          : .765;
-
-    }
-
-    else{
-
-      sourceRatio =
-        state.ratio === "4:5"
-          ? .83
-          : .81;
-
-    }
-
-
-    let sourceY =
-      H
-      *
-      sourceRatio;
-
-
-    /*
-      Never collide with matn.
-    */
-
-    const minimumGap =
-      state.ratio === "4:5"
-        ? 100
-        : 80;
-
-
-    sourceY =
-      Math.max(
-        sourceY,
-        quoteBottom
-        +
-        minimumGap
-      );
-
-
-    /*
-      Preserve watermark footer.
-    */
-
-    const maximumY =
-      state.ratio === "4:5"
-        ? H * .84
-        : H * .825;
-
-
-    sourceY =
-      Math.min(
-        sourceY,
-        maximumY
-      );
-
-
-    ctx.save();
-
-
-    ctx.fillStyle =
-      config.secondary;
-
-
-    ctx.globalAlpha =
-      .96;
-
-
-    ctx.shadowColor =
-      config.type === "image"
-        ? config.shadow
-        : "rgba(0,0,0,0)";
-
-
-    ctx.shadowBlur =
-      config.type === "image"
-        ? 12
-        : 0;
-
-
-    ctx.shadowOffsetY =
-      config.type === "image"
-        ? 2
-        : 0;
-
-
-    ctx.textBaseline =
-      "top";
-
-
-    ctx.textAlign =
-      state.align === "center"
-        ? "center"
-        : "right";
-
-
-    ctx.direction =
-      sourceArabic
-        ? "rtl"
-        : "ltr";
-
-
-    ctx.font =
-      metaFont(
-        sourceSize,
-        400,
-        sourceArabic
-      );
-
-
-    ctx.fillText(
-      source,
-      sourceX,
-      sourceY
-    );
-
-
-    ctx.restore();
+    return;
 
   }
 
 
+  const sourceX =
+    state.align === "center"
+      ? W/2
+      : W-marginX;
+
+
+  /*
+    Slightly larger than before.
+  */
+
+  const sourceSize =
+    sourceArabic
+      ? 86
+      : 62;
+
+
+  /*
+    Hadith source now belongs in the
+    lower source position — not where
+    a speaker would normally sit.
+
+    Short:
+      ~79%
+
+    Medium:
+      ~81%
+
+    Long:
+      ~83%
+  */
+
+  let sourceRatio;
+
+
+  if(
+    lineCount <= 3
+  ){
+
+    sourceRatio =
+      state.ratio === "4:5"
+        ? .79
+        : .775;
+
+  }
+
+  else if(
+    lineCount <= 5
+  ){
+
+    sourceRatio =
+      state.ratio === "4:5"
+        ? .81
+        : .795;
+
+  }
+
+  else{
+
+    sourceRatio =
+      state.ratio === "4:5"
+        ? .83
+        : .81;
+
+  }
+
+
+  let sourceY =
+    H
+    *
+    sourceRatio;
+
+
+  /*
+    Never collide with the matn.
+  */
+
+  const minimumGap =
+    state.ratio === "4:5"
+      ? 110
+      : 88;
+
+
+  sourceY =
+    Math.max(
+      sourceY,
+      quoteBottom
+      +
+      minimumGap
+    );
+
+
+  /*
+    Preserve enough breathing room
+    above the watermark.
+  */
+
+  const maximumY =
+    state.ratio === "4:5"
+      ? H * .845
+      : H * .83;
+
+
+  sourceY =
+    Math.min(
+      sourceY,
+      maximumY
+    );
+
+
+  ctx.save();
+
+
+  ctx.fillStyle =
+    config.secondary;
+
+
+  ctx.globalAlpha =
+    .96;
+
+
+  ctx.shadowColor =
+    config.type === "image"
+      ? config.shadow
+      : "rgba(0,0,0,0)";
+
+
+  ctx.shadowBlur =
+    config.type === "image"
+      ? 12
+      : 0;
+
+
+  ctx.shadowOffsetY =
+    config.type === "image"
+      ? 2
+      : 0;
+
+
+  ctx.textBaseline =
+    "top";
+
+
+  ctx.textAlign =
+    state.align === "center"
+      ? "center"
+      : "right";
+
+
+  ctx.direction =
+    sourceArabic
+      ? "rtl"
+      : "ltr";
+
+
+  ctx.font =
+    metaFont(
+      sourceSize,
+      400,
+      sourceArabic
+    );
+
+
+  ctx.fillText(
+    source,
+    sourceX,
+    sourceY
+  );
+
+
+  ctx.restore();
+
+}
+
+  
   /*
     ==================================================
     WATERMARK
@@ -3391,10 +3407,10 @@
           : 136;
 
 
-      const headingGap =
-        state.ratio === "4:5"
-          ? 104
-          : 90;
+        const headingGap =
+          state.ratio === "4:5"
+            ? 120
+            : 104;
 
 
       /*
@@ -3414,8 +3430,8 @@
 
       const groupSafeBottom =
         state.ratio === "4:5"
-          ? H * .705
-          : H * .69;
+          ? H * .72
+          : H * .705;
 
 
       const availableForGroup =

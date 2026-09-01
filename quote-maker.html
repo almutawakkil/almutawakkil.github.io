@@ -8,28 +8,14 @@
   <!--
     IMAGE SETUP
 
-    Put these files in:
-
-      assets/quote-maker/night.jpeg
-      assets/quote-maker/sunset.jpeg
-      assets/quote-maker/green-stars.jpeg
-
-    This page can live at:
-
-      /quote-maker.html
+    assets/quote-maker/night.jpeg
+    assets/quote-maker/sunset.jpeg
+    assets/quote-maker/green-stars.jpeg
   -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!--
-    Amiri:
-      400 = quotation / source / watermark
-      700 = author
-
-    Inter:
-      interface only
-  -->
   <link
     href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600&display=swap"
     rel="stylesheet"
@@ -53,6 +39,7 @@
 
     body{
       margin:0;
+
       color:var(--ink);
 
       background:
@@ -86,6 +73,7 @@
       align-items:flex-end;
       justify-content:space-between;
       gap:18px;
+
       margin-bottom:24px;
     }
 
@@ -99,6 +87,7 @@
       margin:0 0 6px;
 
       font-weight:600;
+
       letter-spacing:-.035em;
     }
 
@@ -140,11 +129,13 @@
       padding:22px;
 
       position:sticky;
+
       top:18px;
     }
 
     .section + .section{
       margin-top:22px;
+
       padding-top:22px;
 
       border-top:
@@ -194,8 +185,6 @@
 
       padding:12px 13px;
 
-      font:inherit;
-
       outline:none;
 
       transition:
@@ -203,15 +192,12 @@
         box-shadow .15s;
     }
 
-    /*
-      Amiri inside the quote editor too.
-    */
     textarea{
-      min-height:170px;
+      min-height:190px;
 
       resize:vertical;
 
-      line-height:1.9;
+      line-height:1.95;
 
       font-family:
         "Amiri",
@@ -220,7 +206,7 @@
       font-size:21px;
     }
 
-    input[dir="auto"]{
+    input{
       font-family:
         "Amiri",
         Inter,
@@ -284,7 +270,7 @@
     .choice.active{
       background:#232321;
 
-      color:white;
+      color:#fff;
 
       border-color:#232321;
     }
@@ -325,6 +311,7 @@
       position:relative;
 
       width:46px;
+
       height:27px;
 
       flex:0 0 auto;
@@ -334,6 +321,7 @@
       opacity:0;
 
       width:0;
+
       height:0;
     }
 
@@ -357,12 +345,14 @@
       position:absolute;
 
       width:21px;
+
       height:21px;
 
       left:3px;
+
       top:3px;
 
-      background:white;
+      background:#fff;
 
       border-radius:50%;
 
@@ -509,6 +499,10 @@
       min-height:18px;
     }
 
+    .hidden{
+      display:none;
+    }
+
     @media(max-width:900px){
 
       .layout{
@@ -579,9 +573,13 @@
 
     </div>
 
+
     <div class="layout">
 
       <aside class="panel controls">
+
+
+        <!-- TYPE -->
 
         <section
           class="section"
@@ -593,8 +591,41 @@
         >
 
           <p class="section-title">
+            Type
+          </p>
+
+          <div
+            class="segmented two"
+            id="typeChoices"
+          >
+
+            <button
+              class="choice active"
+              data-type="general"
+            >
+              General
+            </button>
+
+            <button
+              class="choice"
+              data-type="hadith"
+            >
+              Hadith
+            </button>
+
+          </div>
+
+        </section>
+
+
+        <!-- CONTENT -->
+
+        <section class="section">
+
+          <p class="section-title">
             Content
           </p>
+
 
           <div class="field">
 
@@ -609,7 +640,11 @@
 
           </div>
 
-          <div class="field">
+
+          <div
+            class="field"
+            id="authorField"
+          >
 
             <label for="author">
               Name
@@ -622,6 +657,7 @@
             />
 
           </div>
+
 
           <div class="field">
 
@@ -639,11 +675,15 @@
 
         </section>
 
+
+        <!-- STYLE -->
+
         <section class="section">
 
           <p class="section-title">
             Style
           </p>
+
 
           <label>
             Background
@@ -684,7 +724,9 @@
 
           </div>
 
+
           <div style="height:14px"></div>
+
 
           <label>
             Format
@@ -711,7 +753,9 @@
 
           </div>
 
+
           <div style="height:14px"></div>
+
 
           <label>
             Text alignment
@@ -739,6 +783,9 @@
           </div>
 
         </section>
+
+
+        <!-- WATERMARK -->
 
         <section class="section">
 
@@ -774,6 +821,9 @@
 
         </section>
 
+
+        <!-- ACTIONS -->
+
         <section class="section">
 
           <div class="actions">
@@ -804,6 +854,9 @@
 
       </aside>
 
+
+      <!-- PREVIEW -->
+
       <section>
 
         <div class="panel preview-panel">
@@ -831,45 +884,60 @@
 
   </main>
 
+
 <script>
 
 (() => {
 
+
   /*
-    ------------------------------------------------
-    BASIC ELEMENTS
-    ------------------------------------------------
+    ================================================
+    ELEMENTS
+    ================================================
   */
 
   const canvas =
     document.getElementById("card");
 
+
   const ctx =
     canvas.getContext("2d");
+
 
   const quoteInput =
     document.getElementById("quote");
 
+
   const authorInput =
     document.getElementById("author");
+
 
   const sourceInput =
     document.getElementById("source");
 
+
+  const authorField =
+    document.getElementById("authorField");
+
+
   const watermarkInput =
     document.getElementById("watermark");
+
 
   const statusEl =
     document.getElementById("status");
 
 
+
   /*
-    ------------------------------------------------
+    ================================================
     STATE
-    ------------------------------------------------
+    ================================================
   */
 
   const state = {
+
+    type:"general",
 
     theme:"night",
 
@@ -880,36 +948,30 @@
   };
 
 
+
   /*
-    ------------------------------------------------
+    ================================================
     PRIVATE WATERMARK
-    ------------------------------------------------
-
-    This is only casual protection.
-
-    Since this is a static website,
-    somebody inspecting the JavaScript
-    could find the password.
-
-    The purpose is simply to prevent
-    ordinary public visitors from
-    casually using the watermark.
+    ================================================
   */
 
   const WATERMARK_PASSWORD =
     "barbarawi";
 
+
   let watermarkUnlocked =
     false;
 
 
+
   /*
-    ------------------------------------------------
-    BACKGROUND THEMES
-    ------------------------------------------------
+    ================================================
+    THEMES
+    ================================================
   */
 
   const themeConfig = {
+
 
     night:{
 
@@ -991,10 +1053,7 @@
         "#2C2925",
 
       secondary:
-        "#6F665B",
-
-      accent:
-        "#B9A58B"
+        "#6F665B"
 
     }
 
@@ -1005,10 +1064,11 @@
     new Map();
 
 
+
   /*
-    ------------------------------------------------
-    STATUS MESSAGES
-    ------------------------------------------------
+    ================================================
+    STATUS
+    ================================================
   */
 
   function setStatus(
@@ -1019,17 +1079,23 @@
     statusEl.textContent =
       text;
 
+
     if(timeout){
 
       clearTimeout(
         setStatus.timer
       );
 
+
       setStatus.timer =
         setTimeout(
           () => {
-            statusEl.textContent = "";
+
+            statusEl.textContent =
+              "";
+
           },
+
           timeout
         );
 
@@ -1038,10 +1104,11 @@
   }
 
 
+
   /*
-    ------------------------------------------------
-    LANGUAGE DETECTION
-    ------------------------------------------------
+    ================================================
+    ARABIC DETECTION
+    ================================================
   */
 
   function containsArabic(text){
@@ -1052,10 +1119,103 @@
   }
 
 
+
   /*
-    ------------------------------------------------
+    Count Arabic combining marks / harakat.
+
+    This lets heavily vocalized text receive
+    more vertical spacing automatically.
+  */
+
+  function harakatRatio(text){
+
+    const arabicLetters =
+      (
+        text.match(
+          /[\u0621-\u064A\u066E-\u06D3]/g
+        )
+        ||
+        []
+      ).length;
+
+
+    const marks =
+      (
+        text.match(
+          /[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]/g
+        )
+        ||
+        []
+      ).length;
+
+
+    if(
+      arabicLetters === 0
+    ){
+
+      return 0;
+
+    }
+
+
+    return marks / arabicLetters;
+
+  }
+
+
+
+  /*
+    ================================================
+    LINE HEIGHT
+    ================================================
+
+    Regular Arabic:
+      1.78
+
+    Moderately vocalized:
+      1.90
+
+    Heavily vocalized:
+      2.03
+
+    This gives Amiri's harakat significantly
+    more breathing room.
+  */
+
+  function getArabicLineHeightMultiplier(text){
+
+    const ratio =
+      harakatRatio(text);
+
+
+    if(
+      ratio >= .42
+    ){
+
+      return 2.03;
+
+    }
+
+
+    if(
+      ratio >= .22
+    ){
+
+      return 1.90;
+
+    }
+
+
+    return 1.78;
+
+  }
+
+
+
+  /*
+    ================================================
     CANVAS SIZE
-    ------------------------------------------------
+    ================================================
   */
 
   function configureCanvas(){
@@ -1083,10 +1243,11 @@
   }
 
 
+
   /*
-    ------------------------------------------------
+    ================================================
     IMAGE LOADING
-    ------------------------------------------------
+    ================================================
   */
 
   async function loadImage(src){
@@ -1099,18 +1260,23 @@
 
     }
 
+
     const promise =
       new Promise(
         (resolve,reject) => {
 
+
           const img =
             new Image();
+
 
           img.onload =
             () => resolve(img);
 
+
           img.onerror =
             reject;
+
 
           img.src =
             src;
@@ -1118,20 +1284,23 @@
         }
       );
 
+
     imageCache.set(
       src,
       promise
     );
+
 
     return promise;
 
   }
 
 
+
   /*
-    ------------------------------------------------
+    ================================================
     COVER IMAGE
-    ------------------------------------------------
+    ================================================
   */
 
   function drawCoverImage(
@@ -1145,13 +1314,19 @@
     const imageRatio =
       img.width / img.height;
 
+
     const boxRatio =
       w / h;
 
+
     let sw;
+
     let sh;
+
     let sx;
+
     let sy;
+
 
     if(
       imageRatio > boxRatio
@@ -1160,11 +1335,14 @@
       sh =
         img.height;
 
+
       sw =
         sh * boxRatio;
 
+
       sx =
         (img.width - sw) / 2;
+
 
       sy =
         0;
@@ -1174,16 +1352,20 @@
       sw =
         img.width;
 
+
       sh =
         sw / boxRatio;
 
+
       sx =
         0;
+
 
       sy =
         (img.height - sh) / 2;
 
     }
+
 
     ctx.drawImage(
       img,
@@ -1200,10 +1382,11 @@
   }
 
 
+
   /*
-    ------------------------------------------------
-    PHOTO TREATMENT
-    ------------------------------------------------
+    ================================================
+    IMAGE TREATMENT
+    ================================================
   */
 
   function drawImageTreatment(
@@ -1212,12 +1395,9 @@
     H
   ){
 
-    /*
-      Gentle overall veil.
-    */
-
     ctx.fillStyle =
       "rgba(0,0,0,.07)";
+
 
     ctx.fillRect(
       0,
@@ -1227,11 +1407,6 @@
     );
 
 
-    /*
-      Darker toward the bottom,
-      helping both quotation
-      and attribution readability.
-    */
 
     const grad =
       ctx.createLinearGradient(
@@ -1241,23 +1416,28 @@
         H
       );
 
+
     grad.addColorStop(
       0,
       `rgba(0,0,0,${config.overlayTop})`
     );
+
 
     grad.addColorStop(
       .38,
       "rgba(0,0,0,.14)"
     );
 
+
     grad.addColorStop(
       1,
       `rgba(0,0,0,${config.overlayBottom})`
     );
 
+
     ctx.fillStyle =
       grad;
+
 
     ctx.fillRect(
       0,
@@ -1267,9 +1447,6 @@
     );
 
 
-    /*
-      Subtle vignette.
-    */
 
     const radial =
       ctx.createRadialGradient(
@@ -1281,18 +1458,22 @@
         Math.max(W,H)*.72
       );
 
+
     radial.addColorStop(
       0,
       "rgba(0,0,0,0)"
     );
+
 
     radial.addColorStop(
       1,
       "rgba(0,0,0,.20)"
     );
 
+
     ctx.fillStyle =
       radial;
+
 
     ctx.fillRect(
       0,
@@ -1304,10 +1485,11 @@
   }
 
 
+
   /*
-    ------------------------------------------------
-    PAPER BACKGROUND
-    ------------------------------------------------
+    ================================================
+    PAPER
+    ================================================
   */
 
   function drawPaper(
@@ -1319,6 +1501,7 @@
     ctx.fillStyle =
       config.bg;
 
+
     ctx.fillRect(
       0,
       0,
@@ -1327,8 +1510,9 @@
     );
 
 
+
     /*
-      Gentle paper variation.
+      Soft parchment variation.
     */
 
     const glow =
@@ -1341,18 +1525,22 @@
         W*.9
       );
 
+
     glow.addColorStop(
       0,
       "rgba(255,255,255,.38)"
     );
+
 
     glow.addColorStop(
       1,
       "rgba(122,96,68,.045)"
     );
 
+
     ctx.fillStyle =
       glow;
+
 
     ctx.fillRect(
       0,
@@ -1362,20 +1550,27 @@
     );
 
 
+
     /*
-      Fine horizontal fibers.
+      Fine paper fibers.
+
+      Decorative line intentionally removed.
     */
 
     ctx.save();
 
+
     ctx.globalAlpha =
       .055;
+
 
     ctx.strokeStyle =
       "#806C54";
 
+
     ctx.lineWidth =
       1.3;
+
 
     for(
       let y=40;
@@ -1385,10 +1580,12 @@
 
       ctx.beginPath();
 
+
       ctx.moveTo(
         0,
         y
       );
+
 
       ctx.bezierCurveTo(
         W*.25,
@@ -1399,51 +1596,22 @@
         y+2
       );
 
+
       ctx.stroke();
 
     }
 
-    ctx.restore();
-
-
-    /*
-      Small ornamental rule.
-    */
-
-    ctx.save();
-
-    ctx.strokeStyle =
-      config.accent;
-
-    ctx.lineWidth =
-      3;
-
-    ctx.globalAlpha =
-      .78;
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      W*.43,
-      H*.17
-    );
-
-    ctx.lineTo(
-      W*.57,
-      H*.17
-    );
-
-    ctx.stroke();
 
     ctx.restore();
 
   }
 
 
+
   /*
-    ------------------------------------------------
+    ================================================
     TEXT WRAPPING
-    ------------------------------------------------
+    ================================================
   */
 
   function splitExplicitLines(text){
@@ -1453,6 +1621,7 @@
       .split("\n");
 
   }
+
 
 
   function wrapParagraph(
@@ -1468,16 +1637,20 @@
 
     }
 
+
     const words =
       text
         .trim()
         .split(/\s+/);
 
+
     const lines =
       [];
 
+
     let line =
       "";
+
 
     for(
       const word
@@ -1488,6 +1661,7 @@
         line
           ? line + " " + word
           : word;
+
 
       if(
         ctx.measureText(test).width
@@ -1505,12 +1679,14 @@
           line
         );
 
+
         line =
           word;
 
       }
 
     }
+
 
     if(line){
 
@@ -1520,9 +1696,11 @@
 
     }
 
+
     return lines;
 
   }
+
 
 
   function wrapText(
@@ -1533,11 +1711,14 @@
     const paragraphs =
       splitExplicitLines(text);
 
+
     const result =
       [];
 
+
     paragraphs.forEach(
       (paragraph,index) => {
+
 
         const wrapped =
           wrapParagraph(
@@ -1545,14 +1726,11 @@
             maxWidth
           );
 
+
         result.push(
           ...wrapped
         );
 
-        /*
-          Preserve intentional
-          paragraph breaks.
-        */
 
         if(
           index
@@ -1567,24 +1745,17 @@
       }
     );
 
+
     return result;
 
   }
 
 
+
   /*
-    ------------------------------------------------
+    ================================================
     FONT
-    ------------------------------------------------
-
-    Arabic = Amiri
-    English = Georgia
-
-    For Amiri, use actual available
-    weights instead of synthesized ones:
-
-      400 regular
-      700 bold
+    ================================================
   */
 
   function fontString(
@@ -1598,32 +1769,17 @@
         ? '"Amiri"'
         : 'Georgia';
 
+
     return `${weight} ${size}px ${family}`;
 
   }
 
 
+
   /*
-    ------------------------------------------------
-    FIT QUOTATION
-    ------------------------------------------------
-
-    This is where the adaptive layout
-    happens.
-
-    Short quotation:
-      stays large and elegant.
-
-    Medium quotation:
-      naturally wraps.
-
-    Long hadith / paragraph:
-      gradually shrinks until it fits.
-
-    The quote itself is later centered
-    around a fixed visual anchor,
-    instead of moving the composition
-    around unpredictably.
+    ================================================
+    FIT MAIN QUOTE
+    ================================================
   */
 
   function fitQuote(
@@ -1634,17 +1790,13 @@
   ){
 
     const textLength =
-      text.replace(/\s/g,"").length;
+      text
+        .replace(/\s/g,"")
+        .length;
 
-
-    /*
-      Give shorter texts more presence.
-
-      Longer texts begin slightly smaller,
-      making the transition less abrupt.
-    */
 
     let size;
+
 
     if(arabic){
 
@@ -1655,28 +1807,36 @@
         size =
           150;
 
-      }else if(
+      }
+
+      else if(
         textLength <= 180
       ){
 
         size =
           138;
 
-      }else if(
+      }
+
+      else if(
         textLength <= 320
       ){
 
         size =
           124;
 
-      }else{
+      }
+
+      else{
 
         size =
           112;
 
       }
 
-    }else{
+    }
+
+    else{
 
       if(
         textLength <= 120
@@ -1685,14 +1845,18 @@
         size =
           126;
 
-      }else if(
+      }
+
+      else if(
         textLength <= 250
       ){
 
         size =
           116;
 
-      }else{
+      }
+
+      else{
 
         size =
           104;
@@ -1702,17 +1866,12 @@
     }
 
 
-    /*
-      Long hadith can go smaller
-      than a short quotation,
-      but we still keep a sensible
-      lower limit for readability.
-    */
 
     const minSize =
       arabic
-        ? 58
-        : 52;
+        ? 52
+        : 50;
+
 
 
     while(
@@ -1734,20 +1893,14 @@
         );
 
 
-      /*
-        Amiri needs generous line spacing,
-        especially with full tashkil.
+      const multiplier =
+        arabic
+          ? getArabicLineHeightMultiplier(text)
+          : 1.38;
 
-        1.72 prevents harakat from visually
-        colliding between neighboring lines.
-      */
 
       const lineHeight =
-        size * (
-          arabic
-            ? 1.72
-            : 1.38
-        );
+        size * multiplier;
 
 
       const totalHeight =
@@ -1763,8 +1916,11 @@
         return {
 
           size,
+
           lines,
+
           lineHeight,
+
           totalHeight
 
         };
@@ -1778,10 +1934,6 @@
     }
 
 
-    /*
-      Emergency fallback for unusually
-      long material.
-    */
 
     ctx.font =
       fontString(
@@ -1798,17 +1950,22 @@
       );
 
 
+    const multiplier =
+      arabic
+        ? getArabicLineHeightMultiplier(text)
+        : 1.38;
+
+
     const lineHeight =
-      minSize * (
-        arabic
-          ? 1.72
-          : 1.38
-      );
+      minSize
+      *
+      multiplier;
 
 
     return {
 
-      size:minSize,
+      size:
+        minSize,
 
       lines,
 
@@ -1824,10 +1981,115 @@
   }
 
 
+
   /*
-    ------------------------------------------------
-    MAIN TEXT LAYOUT
-    ------------------------------------------------
+    ================================================
+    HADITH HEADING
+    ================================================
+
+    Exactly:
+
+      قال النبي ﷺ:
+
+    No harakat.
+  */
+
+  function drawHadithHeading(
+    config,
+    W,
+    H,
+    y,
+    align
+  ){
+
+    const text =
+      "قال النبي ﷺ:";
+
+
+    ctx.save();
+
+
+    ctx.fillStyle =
+      config.text;
+
+
+    ctx.shadowColor =
+      config.type === "image"
+        ? config.shadow
+        : "rgba(0,0,0,0)";
+
+
+    ctx.shadowBlur =
+      config.type === "image"
+        ? 16
+        : 0;
+
+
+    ctx.shadowOffsetY =
+      config.type === "image"
+        ? 3
+        : 0;
+
+
+    ctx.font =
+      fontString(
+        state.ratio === "4:5"
+          ? 76
+          : 70,
+        700,
+        true
+      );
+
+
+    ctx.direction =
+      "rtl";
+
+
+    ctx.textBaseline =
+      "top";
+
+
+    if(
+      align === "center"
+    ){
+
+      ctx.textAlign =
+        "center";
+
+
+      ctx.fillText(
+        text,
+        W/2,
+        y
+      );
+
+    }
+
+    else{
+
+      ctx.textAlign =
+        "right";
+
+
+      ctx.fillText(
+        text,
+        W*.90,
+        y
+      );
+
+    }
+
+
+    ctx.restore();
+
+  }
+
+
+
+  /*
+    ================================================
+    MAIN TEXT
+    ================================================
   */
 
   function drawTextBlock(
@@ -1850,6 +2112,7 @@
       sourceInput.value.trim();
 
 
+
     const quoteArabic =
       containsArabic(
         quote
@@ -1868,9 +2131,6 @@
       );
 
 
-    /*
-      Horizontal breathing room.
-    */
 
     const marginX =
       W * .10;
@@ -1882,115 +2142,338 @@
       marginX * 2;
 
 
-    /*
-      ------------------------------------------------
-      QUOTE VISUAL ANCHOR
-      ------------------------------------------------
-
-      Instead of defining a box and simply
-      centering whatever happens to fit in it,
-      we define a consistent visual center.
-
-      Portrait:
-        about 45.5% down the canvas.
-
-      Square:
-        about 43.5%.
-
-      A short quotation remains centered here.
-
-      A long quotation expands upward
-      and downward around the same point.
-    */
-
-    const quoteCenterY =
-      state.ratio === "4:5"
-        ? H * .455
-        : H * .435;
-
 
     /*
-      Safe upper boundary.
+      ================================================
+      GENERAL MODE
+      ================================================
     */
 
-    const quoteSafeTop =
-      state.ratio === "4:5"
-        ? H * .145
-        : H * .125;
+    if(
+      state.type === "general"
+    ){
+
+      const quoteCenterY =
+        state.ratio === "4:5"
+          ? H * .455
+          : H * .435;
 
 
-    /*
-      Safe lower boundary.
-
-      This guarantees a clean separation
-      between quotation and attribution.
-    */
-
-    const quoteSafeBottom =
-      state.ratio === "4:5"
-        ? H * .735
-        : H * .715;
+      const quoteSafeTop =
+        state.ratio === "4:5"
+          ? H * .125
+          : H * .11;
 
 
-    const availableHeight =
-      quoteSafeBottom
-      -
-      quoteSafeTop;
+      const quoteSafeBottom =
+        state.ratio === "4:5"
+          ? H * .735
+          : H * .715;
 
 
-    const fitted =
-      fitQuote(
-        quote,
-        maxWidth,
-        availableHeight,
-        quoteArabic
+      const availableHeight =
+        quoteSafeBottom
+        -
+        quoteSafeTop;
+
+
+
+      const fitted =
+        fitQuote(
+          quote,
+          maxWidth,
+          availableHeight,
+          quoteArabic
+        );
+
+
+
+      let startY =
+        quoteCenterY
+        -
+        fitted.totalHeight / 2;
+
+
+
+      if(
+        startY < quoteSafeTop
+      ){
+
+        startY =
+          quoteSafeTop;
+
+      }
+
+
+
+      if(
+        startY + fitted.totalHeight
+        >
+        quoteSafeBottom
+      ){
+
+        startY =
+          quoteSafeBottom
+          -
+          fitted.totalHeight;
+
+      }
+
+
+
+      drawMainQuote(
+        config,
+        fitted,
+        quoteArabic,
+        W,
+        startY,
+        marginX
       );
 
 
-    /*
-      Center the actual quote block around
-      the fixed visual anchor.
-    */
 
-    let startY =
-      quoteCenterY
-      -
-      fitted.totalHeight / 2;
-
-
-    /*
-      Guard against unusually long texts.
-    */
-
-    if(
-      startY < quoteSafeTop
-    ){
-
-      startY =
-        quoteSafeTop;
+      drawGeneralAttribution(
+        config,
+        W,
+        H,
+        marginX,
+        author,
+        source,
+        authorArabic,
+        sourceArabic
+      );
 
     }
 
 
-    if(
-      startY + fitted.totalHeight
-      >
-      quoteSafeBottom
-    ){
 
-      startY =
+    /*
+      ================================================
+      HADITH MODE
+      ================================================
+    */
+
+    else{
+
+      /*
+        Heading and hadith are treated as one
+        visual group.
+
+        The heading sits immediately above the
+        hadith rather than at the very top.
+      */
+
+
+      const headingHeight =
+        state.ratio === "4:5"
+          ? 105
+          : 95;
+
+
+      const headingGap =
+        state.ratio === "4:5"
+          ? 64
+          : 55;
+
+
+
+      /*
+        Reserve some space for the heading.
+      */
+
+      const quoteSafeTop =
+        state.ratio === "4:5"
+          ? H * .13
+          : H * .11;
+
+
+      const quoteSafeBottom =
+        state.ratio === "4:5"
+          ? H * .73
+          : H * .70;
+
+
+
+      const availableForEverything =
         quoteSafeBottom
         -
+        quoteSafeTop;
+
+
+
+      const availableForQuote =
+        availableForEverything
+        -
+        headingHeight
+        -
+        headingGap;
+
+
+
+      const fitted =
+        fitQuote(
+          quote,
+          maxWidth,
+          availableForQuote,
+          quoteArabic
+        );
+
+
+
+      const groupHeight =
+        headingHeight
+        +
+        headingGap
+        +
         fitted.totalHeight;
+
+
+
+      const groupCenterY =
+        state.ratio === "4:5"
+          ? H * .43
+          : H * .405;
+
+
+
+      let groupStartY =
+        groupCenterY
+        -
+        groupHeight / 2;
+
+
+
+      if(
+        groupStartY
+        <
+        quoteSafeTop
+      ){
+
+        groupStartY =
+          quoteSafeTop;
+
+      }
+
+
+
+      const headingY =
+        groupStartY;
+
+
+
+      const quoteStartY =
+        headingY
+        +
+        headingHeight
+        +
+        headingGap;
+
+
+
+      drawHadithHeading(
+        config,
+        W,
+        H,
+        headingY,
+        state.align
+      );
+
+
+
+      drawMainQuote(
+        config,
+        fitted,
+        quoteArabic,
+        W,
+        quoteStartY,
+        marginX
+      );
+
+
+
+      drawHadithSource(
+        config,
+        W,
+        H,
+        marginX,
+        source,
+        sourceArabic
+      );
 
     }
 
 
+
     /*
-      ------------------------------------------------
-      DRAW QUOTATION
-      ------------------------------------------------
+      ================================================
+      WATERMARK
+      ================================================
     */
+
+    if(
+      watermarkInput.checked
+      &&
+      watermarkUnlocked
+    ){
+
+      ctx.save();
+
+
+      ctx.fillStyle =
+        config.type === "paper"
+          ? "rgba(44,41,37,.42)"
+          : "rgba(255,255,255,.48)";
+
+
+      ctx.font =
+        fontString(
+          40,
+          400,
+          true
+        );
+
+
+      ctx.textAlign =
+        "center";
+
+
+      ctx.textBaseline =
+        "bottom";
+
+
+      ctx.direction =
+        "rtl";
+
+
+      ctx.fillText(
+        "المتوكل",
+        W/2,
+        H-54
+      );
+
+
+      ctx.restore();
+
+    }
+
+  }
+
+
+
+  /*
+    ================================================
+    DRAW MAIN QUOTE
+    ================================================
+  */
+
+  function drawMainQuote(
+    config,
+    fitted,
+    arabic,
+    W,
+    startY,
+    marginX
+  ){
 
     ctx.save();
 
@@ -2021,12 +2504,18 @@
       fontString(
         fitted.size,
         400,
-        quoteArabic
+        arabic
       );
 
 
     ctx.textBaseline =
       "top";
+
+
+    ctx.direction =
+      arabic
+        ? "rtl"
+        : "ltr";
 
 
     if(
@@ -2036,18 +2525,15 @@
       ctx.textAlign =
         "center";
 
-    }else{
+    }
+
+    else{
 
       ctx.textAlign =
         "right";
 
     }
 
-
-    ctx.direction =
-      quoteArabic
-        ? "rtl"
-        : "ltr";
 
 
     const tx =
@@ -2056,15 +2542,19 @@
         : W-marginX;
 
 
+
     fitted.lines.forEach(
       (line,index) => {
+
 
         ctx.fillText(
           line,
           tx,
           startY
           +
-          index * fitted.lineHeight
+          index
+          *
+          fitted.lineHeight
         );
 
       }
@@ -2073,19 +2563,26 @@
 
     ctx.restore();
 
+  }
 
-    /*
-      ------------------------------------------------
-      ATTRIBUTION
-      ------------------------------------------------
 
-      This position NEVER moves
-      because of quote length.
 
-      Short quote, long hadith,
-      multiple paragraphs:
-      attribution stays here.
-    */
+  /*
+    ================================================
+    GENERAL ATTRIBUTION
+    ================================================
+  */
+
+  function drawGeneralAttribution(
+    config,
+    W,
+    H,
+    marginX,
+    author,
+    source,
+    authorArabic,
+    sourceArabic
+  ){
 
     const authorY =
       state.ratio === "4:5"
@@ -2103,15 +2600,13 @@
       );
 
 
+
     const metaX =
       state.align === "center"
         ? W/2
         : W-marginX;
 
 
-    /*
-      Author.
-    */
 
     if(author){
 
@@ -2150,18 +2645,12 @@
           : "ltr";
 
 
-      /*
-        Bold Amiri for author.
-      */
-
       ctx.font =
         fontString(
           authorArabic
             ? 68
             : 58,
-          authorArabic
-            ? 700
-            : 700,
+          700,
           authorArabic
         );
 
@@ -2178,9 +2667,6 @@
     }
 
 
-    /*
-      Source.
-    */
 
     if(source){
 
@@ -2246,66 +2732,113 @@
 
     }
 
+  }
 
-    /*
-      ------------------------------------------------
-      PRIVATE WATERMARK
-      ------------------------------------------------
-    */
+
+
+  /*
+    ================================================
+    HADITH SOURCE
+    ================================================
+  */
+
+  function drawHadithSource(
+    config,
+    W,
+    H,
+    marginX,
+    source,
+    sourceArabic
+  ){
 
     if(
-      watermarkInput.checked
-      &&
-      watermarkUnlocked
+      !source
     ){
 
-      ctx.save();
+      return;
+
+    }
 
 
-      ctx.fillStyle =
-        config.type === "paper"
-          ? "rgba(44,41,37,.42)"
-          : "rgba(255,255,255,.48)";
+    const sourceY =
+      state.ratio === "4:5"
+        ? H * .815
+        : H * .80;
 
 
-      ctx.font =
-        fontString(
-          40,
-          400,
-          true
-        );
+    const sourceX =
+      state.align === "center"
+        ? W/2
+        : W-marginX;
 
 
-      ctx.textAlign =
-        "center";
+
+    ctx.save();
 
 
-      ctx.textBaseline =
-        "bottom";
+    ctx.fillStyle =
+      config.secondary;
 
 
-      ctx.direction =
-        "rtl";
+    ctx.globalAlpha =
+      .90;
 
 
-      ctx.fillText(
-        "المتوكل",
-        W/2,
-        H-54
+    ctx.shadowColor =
+      config.type === "image"
+        ? config.shadow
+        : "rgba(0,0,0,0)";
+
+
+    ctx.shadowBlur =
+      config.type === "image"
+        ? 12
+        : 0;
+
+
+    ctx.textBaseline =
+      "top";
+
+
+    ctx.textAlign =
+      state.align === "center"
+        ? "center"
+        : "right";
+
+
+    ctx.direction =
+      sourceArabic
+        ? "rtl"
+        : "ltr";
+
+
+    ctx.font =
+      fontString(
+        sourceArabic
+          ? 49
+          : 42,
+        400,
+        sourceArabic
       );
 
 
-      ctx.restore();
+    ctx.fillText(
+      source,
+      sourceX,
+      sourceY
+    );
 
-    }
+
+    ctx.restore();
 
   }
 
 
+
   /*
-    ------------------------------------------------
+    ================================================
     RENDER
-    ------------------------------------------------
+    ================================================
   */
 
   async function render(){
@@ -2335,6 +2868,7 @@
     );
 
 
+
     if(
       config.type === "paper"
     ){
@@ -2345,7 +2879,9 @@
         H
       );
 
-    }else{
+    }
+
+    else{
 
       try{
 
@@ -2363,12 +2899,9 @@
           H
         );
 
-      }catch(err){
+      }
 
-        /*
-          Fallback background
-          in case an image is missing.
-        */
+      catch(err){
 
         const fallback =
           ctx.createLinearGradient(
@@ -2411,6 +2944,7 @@
       }
 
 
+
       drawImageTreatment(
         config,
         W,
@@ -2418,6 +2952,7 @@
       );
 
     }
+
 
 
     drawTextBlock(
@@ -2429,10 +2964,11 @@
   }
 
 
+
   /*
-    ------------------------------------------------
-    BUTTON GROUPS
-    ------------------------------------------------
+    ================================================
+    CHOICE BUTTONS
+    ================================================
   */
 
   function bindChoiceGroup(
@@ -2448,13 +2984,16 @@
         "click",
         event => {
 
+
           const btn =
             event.target.closest(
               ".choice"
             );
 
 
-          if(!btn){
+          if(
+            !btn
+          ){
 
             return;
 
@@ -2465,7 +3004,9 @@
             btn.dataset[key];
 
 
-          if(!value){
+          if(
+            !value
+          ){
 
             return;
 
@@ -2474,6 +3015,7 @@
 
           state[key] =
             value;
+
 
 
           btn.parentElement
@@ -2496,12 +3038,30 @@
           );
 
 
+
+          if(
+            key === "type"
+          ){
+
+            updateTypeInterface();
+
+          }
+
+
+
           render();
 
         }
       );
 
   }
+
+
+
+  bindChoiceGroup(
+    "typeChoices",
+    "type"
+  );
 
 
   bindChoiceGroup(
@@ -2522,10 +3082,41 @@
   );
 
 
+
   /*
-    ------------------------------------------------
-    LIVE TEXT UPDATES
-    ------------------------------------------------
+    ================================================
+    GENERAL / HADITH INTERFACE
+    ================================================
+  */
+
+  function updateTypeInterface(){
+
+    if(
+      state.type === "hadith"
+    ){
+
+      authorField.classList.add(
+        "hidden"
+      );
+
+    }
+
+    else{
+
+      authorField.classList.remove(
+        "hidden"
+      );
+
+    }
+
+  }
+
+
+
+  /*
+    ================================================
+    LIVE UPDATES
+    ================================================
   */
 
   [
@@ -2536,6 +3127,7 @@
   .forEach(
     element => {
 
+
       element.addEventListener(
         "input",
         render
@@ -2545,25 +3137,11 @@
   );
 
 
+
   /*
-    ------------------------------------------------
-    PASSWORD-GATED WATERMARK
-    ------------------------------------------------
-
-    First attempt to turn it on:
-
-      prompt for password.
-
-    Correct:
-      unlock for this browser tab/session.
-
-    Incorrect:
-      toggle returns to OFF.
-
-    After correct password:
-      user may turn watermark
-      off and on freely without
-      entering the password again.
+    ================================================
+    WATERMARK PASSWORD
+    ================================================
   */
 
   watermarkInput
@@ -2571,10 +3149,6 @@
       "change",
       () => {
 
-        /*
-          Turning it OFF never requires
-          a password.
-        */
 
         if(
           !watermarkInput.checked
@@ -2587,10 +3161,6 @@
         }
 
 
-        /*
-          Already unlocked during
-          this page session.
-        */
 
         if(
           watermarkUnlocked
@@ -2603,10 +3173,12 @@
         }
 
 
+
         const entered =
           window.prompt(
             "Enter watermark password:"
           );
+
 
 
         if(
@@ -2630,7 +3202,9 @@
 
           render();
 
-        }else{
+        }
+
+        else{
 
           watermarkInput.checked =
             false;
@@ -2656,10 +3230,11 @@
     );
 
 
+
   /*
-    ------------------------------------------------
-    DOWNLOAD PNG
-    ------------------------------------------------
+    ================================================
+    DOWNLOAD
+    ================================================
   */
 
   document
@@ -2670,7 +3245,9 @@
       "click",
       async () => {
 
+
         await render();
+
 
 
         const link =
@@ -2679,31 +3256,54 @@
           );
 
 
-        const safeAuthor =
-          (
+
+        let filenameBase;
+
+
+
+        if(
+          state.type === "hadith"
+        ){
+
+          filenameBase =
+            "hadith";
+
+        }
+
+        else{
+
+          filenameBase =
             authorInput.value.trim()
             ||
-            "quote"
-          )
-          .replace(
-            /[^\p{L}\p{N}_-]+/gu,
-            "-"
-          )
-          .replace(
-            /^-+|-+$/g,
-            ""
-          );
+            "quote";
+
+        }
+
+
+
+        const safeName =
+          filenameBase
+            .replace(
+              /[^\p{L}\p{N}_-]+/gu,
+              "-"
+            )
+            .replace(
+              /^-+|-+$/g,
+              ""
+            );
+
 
 
         link.download =
           `${
-            safeAuthor || "quote"
+            safeName || "quote"
           }-${
             state.ratio.replace(
               ":",
               "x"
             )
           }.png`;
+
 
 
         link.href =
@@ -2713,7 +3313,9 @@
           );
 
 
+
         link.click();
+
 
 
         setStatus(
@@ -2724,10 +3326,11 @@
     );
 
 
+
   /*
-    ------------------------------------------------
+    ================================================
     COPY IMAGE
-    ------------------------------------------------
+    ================================================
   */
 
   document
@@ -2738,14 +3341,18 @@
       "click",
       async () => {
 
+
         try{
 
+
           await render();
+
 
 
           const blob =
             await new Promise(
               resolve => {
+
 
                 canvas.toBlob(
                   resolve,
@@ -2755,6 +3362,7 @@
 
               }
             );
+
 
 
           if(
@@ -2770,13 +3378,16 @@
           }
 
 
+
           await navigator.clipboard.write(
             [
 
               new ClipboardItem(
                 {
+
                   "image/png":
                     blob
+
                 }
               )
 
@@ -2784,11 +3395,15 @@
           );
 
 
+
           setStatus(
             "Image copied."
           );
 
-        }catch(err){
+        }
+
+        catch(err){
+
 
           setStatus(
             "Copy Image is not supported here — use Download PNG instead.",
@@ -2801,14 +3416,11 @@
     );
 
 
-  /*
-    ------------------------------------------------
-    FONT LOADING
-    ------------------------------------------------
 
-    Wait for Amiri before the final
-    initial render so canvas text
-    measurements match the real font.
+  /*
+    ================================================
+    FONT LOADING
+    ================================================
   */
 
   async function start(){
@@ -2824,9 +3436,6 @@
     }
 
 
-    /*
-      Explicitly request Amiri as well.
-    */
 
     if(
       document.fonts
@@ -2836,6 +3445,7 @@
 
       try{
 
+
         await Promise.all(
           [
 
@@ -2844,18 +3454,19 @@
             ),
 
             document.fonts.load(
-              '700 68px "Amiri"'
+              '700 76px "Amiri"'
             )
 
           ]
         );
 
-      }catch(err){
+
+      }
+
+      catch(err){
 
         /*
-          Browser can still continue
-          if explicit font loading
-          isn't supported.
+          Continue normally.
         */
 
       }
@@ -2863,12 +3474,18 @@
     }
 
 
+
+    updateTypeInterface();
+
+
     render();
 
   }
 
 
+
   start();
+
 
 })();
 

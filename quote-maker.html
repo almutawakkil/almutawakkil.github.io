@@ -302,6 +302,7 @@
         linear-gradient(-45deg,transparent 75%,#f1efe9 75%);
 
       background-size:24px 24px;
+
       background-position:
         0 0,
         0 12px,
@@ -525,6 +526,7 @@
 
           <div style="height:14px"></div>
 
+
           <label>
             Format
           </label>
@@ -552,6 +554,7 @@
 
 
           <div style="height:14px"></div>
+
 
           <label>
             Text alignment
@@ -773,11 +776,13 @@
     statusEl.textContent =
       text;
 
+
     if(timeout){
 
       clearTimeout(
         setStatus.timer
       );
+
 
       setStatus.timer =
         setTimeout(
@@ -787,6 +792,7 @@
               "";
 
           },
+
           timeout
         );
 
@@ -839,14 +845,6 @@
   }
 
 
-  /*
-    Still generous enough for fully-vocalized
-    Arabic, but slightly tighter than before.
-
-    This gives us back some font size without
-    allowing the harakat to collide.
-  */
-
   function getArabicLineHeightMultiplier(text){
 
     const ratio =
@@ -857,7 +855,7 @@
       ratio >= .42
     ){
 
-      return 1.95;
+      return 1.94;
 
     }
 
@@ -866,12 +864,12 @@
       ratio >= .22
     ){
 
-      return 1.86;
+      return 1.85;
 
     }
 
 
-    return 1.76;
+    return 1.75;
 
   }
 
@@ -921,11 +919,14 @@
           const img =
             new Image();
 
+
           img.onload =
             () => resolve(img);
 
+
           img.onerror =
             reject;
+
 
           img.src =
             src;
@@ -955,6 +956,7 @@
 
     const imageRatio =
       img.width / img.height;
+
 
     const boxRatio =
       w / h;
@@ -1262,7 +1264,8 @@
 
 
       if(
-        ctx.measureText(test).width <= maxWidth
+        ctx.measureText(test).width
+        <= maxWidth
         ||
         !line
       ){
@@ -1316,6 +1319,7 @@
 
     paragraphs.forEach(
       (paragraph,index) => {
+
 
         const wrapped =
           wrapParagraph(
@@ -1381,14 +1385,6 @@
   }
 
 
-  /*
-    This fitting algorithm itself is basically
-    the same as before.
-
-    The important change is that Hadith mode
-    now gives it far more room to work with.
-  */
-
   function fitQuote(
     text,
     maxWidth,
@@ -1412,7 +1408,7 @@
       ){
 
         size =
-          154;
+          158;
 
       }
 
@@ -1421,7 +1417,7 @@
       ){
 
         size =
-          144;
+          148;
 
       }
 
@@ -1430,7 +1426,7 @@
       ){
 
         size =
-          132;
+          136;
 
       }
 
@@ -1439,14 +1435,14 @@
       ){
 
         size =
-          120;
+          126;
 
       }
 
       else{
 
         size =
-          112;
+          118;
 
       }
 
@@ -1459,7 +1455,7 @@
       ){
 
         size =
-          126;
+          128;
 
       }
 
@@ -1468,14 +1464,14 @@
       ){
 
         size =
-          116;
+          118;
 
       }
 
       else{
 
         size =
-          104;
+          106;
 
       }
 
@@ -1573,18 +1569,14 @@
 
 
     return {
-
       size:minSize,
-
       lines,
-
       lineHeight,
 
       totalHeight:
         lines.length
         *
         lineHeight
-
     };
 
   }
@@ -1657,6 +1649,7 @@
     fitted.lines.forEach(
       (line,index) => {
 
+
         ctx.fillText(
           line,
           tx,
@@ -1682,10 +1675,6 @@
 
   }
 
-
-  /*
-    قال النبي ﷺ:
-  */
 
   function drawHadithHeading(
     config,
@@ -1762,10 +1751,12 @@
 
 
   /*
-    GENERAL ATTRIBUTION
+    GENERAL QUOTE METADATA
 
-    Still proportional, but slightly more
-    centrally biased.
+    Speaker and source now live in the lower part
+    of the composition.
+
+    They are no longer allowed to float far upward.
   */
 
   function drawGeneralAttribution(
@@ -1799,114 +1790,81 @@
 
     const authorSize =
       authorArabic
-        ? 92
-        : 68;
+        ? 96
+        : 70;
 
 
     const sourceSize =
       sourceArabic
-        ? 68
-        : 51;
-
-
-    const authorHeight =
-      author
-        ? authorSize * 1.08
-        : 0;
-
-
-    const sourceHeight =
-      source
-        ? sourceSize * 1.05
-        : 0;
-
-
-    const betweenMeta =
-      author && source
-        ? 8
-        : 0;
-
-
-    const blockHeight =
-      authorHeight
-      +
-      betweenMeta
-      +
-      sourceHeight;
+        ? 70
+        : 52;
 
 
     /*
-      This boundary is a little lower than the
-      previous version, but still keeps the
-      composition centered.
+      Speaker is anchored low.
+
+      A short quote can nudge it slightly upward,
+      but never dramatically.
     */
 
-    const lowerBoundary =
-      state.ratio === "4:5"
-        ? H * .82
-        : H * .80;
+    let authorY;
 
 
-    const available =
-      Math.max(
-        0,
-        lowerBoundary - quoteBottom
-      );
+    if(
+      quoteBottom < H * .43
+    ){
+
+      authorY =
+        state.ratio === "4:5"
+          ? H * .70
+          : H * .685;
+
+    }
+
+    else{
+
+      authorY =
+        state.ratio === "4:5"
+          ? H * .72
+          : H * .705;
+
+    }
 
 
     /*
-      A little under halfway:
-      this pulls the metadata gently upward.
+      Keep reasonable separation from quote.
     */
 
-    let blockCenter =
-      quoteBottom
-      +
-      available * .47;
-
-
-    let blockTop =
-      blockCenter
-      -
-      blockHeight / 2;
-
-
-    const minimumTop =
+    const minimumAuthorY =
       quoteBottom
       +
       (
         state.ratio === "4:5"
-          ? 70
-          : 58
+          ? 110
+          : 88
       );
 
 
-    if(
-      blockTop < minimumTop
-    ){
-
-      blockTop =
-        minimumTop;
-
-    }
+    authorY =
+      Math.max(
+        authorY,
+        minimumAuthorY
+      );
 
 
-    if(
-      blockTop + blockHeight
-      >
-      lowerBoundary
-    ){
+    /*
+      More deliberate separation between
+      speaker and source.
+    */
 
-      blockTop =
-        lowerBoundary
-        -
-        blockHeight;
-
-    }
-
-
-    let currentY =
-      blockTop;
+    const sourceY =
+      authorY
+      +
+      (
+        state.ratio === "4:5"
+          ? 180
+          : 152
+      );
 
 
     if(author){
@@ -1967,17 +1925,11 @@
       ctx.fillText(
         author,
         metaX,
-        currentY
+        authorY
       );
 
 
       ctx.restore();
-
-
-      currentY +=
-        authorHeight
-        +
-        betweenMeta;
 
     }
 
@@ -1992,7 +1944,7 @@
 
 
       ctx.globalAlpha =
-        .92;
+        .94;
 
 
       ctx.shadowColor =
@@ -2040,7 +1992,9 @@
       ctx.fillText(
         source,
         metaX,
-        currentY
+        author
+          ? sourceY
+          : authorY
       );
 
 
@@ -2054,17 +2008,17 @@
   /*
     HADITH SOURCE
 
-    This is intentionally NOT directly tied
-    to the length of the hadith anymore.
+    Short:
+      ~74%
 
-    Normal target:
-      roughly 76% down the card.
+    Medium:
+      ~78%
 
-    Very short hadith:
-      may rise to about 72–74%.
+    Long:
+      ~83%
 
-    Long hadith:
-      source remains around 76–78%.
+    This remains mostly independent of the text
+    so the matn is free to remain large.
   */
 
   function drawHadithSource(
@@ -2074,7 +2028,8 @@
     marginX,
     quoteBottom,
     source,
-    sourceArabic
+    sourceArabic,
+    lineCount
   ){
 
     if(
@@ -2101,49 +2056,34 @@
     let sourceRatio;
 
 
-    /*
-      Short matn:
-      allow source to come up slightly.
-    */
-
     if(
-      quoteBottom < H * .47
-    ){
-
-      sourceRatio =
-        state.ratio === "4:5"
-          ? .72
-          : .71;
-
-    }
-
-
-    /*
-      Medium matn.
-    */
-
-    else if(
-      quoteBottom < H * .56
+      lineCount <= 3
     ){
 
       sourceRatio =
         state.ratio === "4:5"
           ? .74
-          : .735;
+          : .725;
 
     }
 
+    else if(
+      lineCount <= 5
+    ){
 
-    /*
-      Long matn.
-    */
+      sourceRatio =
+        state.ratio === "4:5"
+          ? .785
+          : .765;
+
+    }
 
     else{
 
       sourceRatio =
         state.ratio === "4:5"
-          ? .765
-          : .755;
+          ? .83
+          : .81;
 
     }
 
@@ -2153,7 +2093,7 @@
 
 
     /*
-      Never let source collide with matn.
+      The source can never overlap the matn.
     */
 
     const minimumGap =
@@ -2162,27 +2102,21 @@
         : 76;
 
 
-    if(
-      sourceY <
-      quoteBottom + minimumGap
-    ){
-
-      sourceY =
-        quoteBottom
-        +
-        minimumGap;
-
-    }
+    sourceY =
+      Math.max(
+        sourceY,
+        quoteBottom + minimumGap
+      );
 
 
     /*
-      But do not let it drift too far down.
+      Footer still belongs to the watermark.
     */
 
     const maximumY =
       state.ratio === "4:5"
-        ? H * .79
-        : H * .78;
+        ? H * .84
+        : H * .825;
 
 
     sourceY =
@@ -2260,7 +2194,7 @@
   /*
     WATERMARK
 
-    Position is intentionally unchanged.
+    Unchanged.
   */
 
   function drawWatermark(
@@ -2386,19 +2320,14 @@
 
 
     /*
-      General remains at 10% margins.
-
-      Hadith gets slightly more width:
-      8% margins.
-
-      This alone helps keep long hadith
-      noticeably larger.
+      Hadith gets slightly wider margins,
+      helping it retain larger type.
     */
 
     const marginX =
       state.type === "hadith"
-        ? W * .08
-        : W * .10;
+        ? W * .075
+        : W * .09;
 
 
     const maxWidth =
@@ -2417,22 +2346,29 @@
       state.type === "general"
     ){
 
+      /*
+        Give the quote plenty of room.
+
+        We are no longer shrinking it simply
+        to make room for metadata above.
+      */
+
       const quoteSafeTop =
         state.ratio === "4:5"
-          ? H * .13
-          : H * .115;
+          ? H * .115
+          : H * .10;
 
 
       const quoteSafeBottom =
         state.ratio === "4:5"
-          ? H * .64
-          : H * .625;
+          ? H * .625
+          : H * .61;
 
 
       const quoteCenterY =
         state.ratio === "4:5"
-          ? H * .385
-          : H * .37;
+          ? H * .37
+          : H * .355;
 
 
       const availableHeight =
@@ -2519,7 +2455,7 @@
 
 
       /*
-        Heading remains prominent.
+        Heading and matn now start slightly lower.
       */
 
       const headingHeight =
@@ -2528,44 +2464,32 @@
           : 132;
 
 
-      /*
-        Comfortable space after heading,
-        but not so huge that it steals
-        room from the matn.
-      */
-
       const headingGap =
         state.ratio === "4:5"
-          ? 105
-          : 90;
+          ? 100
+          : 88;
 
 
       /*
-        We allow the overall hadith group
-        to use much more of the upper card.
-
-        This is the big fix.
+        Top moved down slightly from the last version.
       */
 
       const groupSafeTop =
         state.ratio === "4:5"
-          ? H * .085
-          : H * .075;
+          ? H * .105
+          : H * .09;
 
 
       /*
-        Matn may extend significantly farther
-        down than in the previous version.
-
-        Source is independently positioned
-        around 75–78%, so we don't need to
-        reserve a huge blank zone.
+        But bottom expanded considerably,
+        giving long hadith more room
+        and therefore a larger font.
       */
 
       const groupSafeBottom =
         state.ratio === "4:5"
-          ? H * .66
-          : H * .65;
+          ? H * .705
+          : H * .69;
 
 
       const availableForGroup =
@@ -2600,10 +2524,17 @@
 
 
       /*
-        Short hadiths sit slightly higher.
+        Shift whole Prophet-heading + matn
+        slightly downward.
 
-        Long hadiths naturally occupy
-        more of this zone.
+        Shorter text:
+          around 39%
+
+        Longer text:
+          around 41%
+
+        This prevents the composition
+        from feeling top-heavy.
       */
 
       let groupCenterY;
@@ -2615,8 +2546,8 @@
 
         groupCenterY =
           state.ratio === "4:5"
-            ? H * .335
-            : H * .32;
+            ? H * .39
+            : H * .375;
 
       }
 
@@ -2626,8 +2557,8 @@
 
         groupCenterY =
           state.ratio === "4:5"
-            ? H * .355
-            : H * .34;
+            ? H * .40
+            : H * .385;
 
       }
 
@@ -2635,8 +2566,8 @@
 
         groupCenterY =
           state.ratio === "4:5"
-            ? H * .37
-            : H * .355;
+            ? H * .41
+            : H * .395;
 
       }
 
@@ -2712,7 +2643,8 @@
         marginX,
         quoteBottom,
         source,
-        sourceArabic
+        sourceArabic,
+        fitted.lines.length
       );
 
     }
@@ -3251,7 +3183,7 @@
           [
 
             document.fonts.load(
-              '400 154px "Amiri"'
+              '400 158px "Amiri"'
             ),
 
             document.fonts.load(

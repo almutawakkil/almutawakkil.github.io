@@ -1,0 +1,4441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quote Maker · al-Mutawakkil</title>
+
+  <!--
+    QUOTE MAKER — VERSION 1.0
+
+    Background files:
+
+      assets/quote-maker/night.jpeg
+      assets/quote-maker/mountains.jpg
+      assets/quote-maker/lake.jpg
+      assets/quote-maker/tree.jpg
+
+    Paper is generated directly in the canvas.
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    :root{
+      --page:#f5f4f1;
+      --panel:#ffffff;
+      --ink:#191919;
+      --muted:#73716d;
+      --line:#e6e3dd;
+      --paper:#F3EBDD;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+
+      color:var(--ink);
+
+      background:
+        radial-gradient(
+          circle at 15% 0%,
+          #fff 0 18%,
+          transparent 40%
+        ),
+        var(--page);
+
+      font-family:
+        "Amiri",
+        Georgia,
+        serif;
+    }
+
+    .shell{
+      width:min(
+        1220px,
+        calc(100% - 32px)
+      );
+
+      margin:0 auto;
+      padding:56px 0 72px;
+    }
+
+    /* ===== Al-Mutawakkil site header ===== */
+
+    .site-header{
+      max-width:820px;
+      margin:0 auto 42px;
+    }
+
+    .site-top{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .brand{
+      margin:0;
+      font-size:36px;
+      line-height:1.1;
+      font-weight:400;
+      letter-spacing:0;
+    }
+
+    .site-subtitle{
+      margin:5px 0 0;
+      color:#6e6d67;
+      font-size:16px;
+    }
+
+    nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      padding-bottom:4px;
+    }
+
+    nav a{
+      color:#6e6d67;
+      text-decoration:none;
+      font-size:16px;
+    }
+
+    nav a:hover,
+    nav a.active{
+      color:#27500a;
+    }
+
+    /* ===== Tool heading ===== */
+
+    .tool-intro{
+      max-width:820px;
+      margin:0 auto 24px;
+    }
+
+    .tool-title{
+      margin:0 0 6px;
+      font-size:34px;
+      line-height:1.2;
+      font-weight:400;
+      letter-spacing:0;
+    }
+
+    .tool-intro p{
+      margin:0;
+      color:var(--muted);
+      font-size:17px;
+    }
+
+    .layout{
+      display:grid;
+
+      grid-template-columns:
+        minmax(330px,440px)
+        minmax(0,1fr);
+
+      gap:26px;
+
+      align-items:start;
+    }
+
+    .panel{
+      background:
+        rgba(255,255,255,.9);
+
+      border:
+        1px solid var(--line);
+
+      border-radius:22px;
+
+      box-shadow:
+        0 18px 48px
+        rgba(40,35,28,.06);
+    }
+
+    .controls{
+      padding:22px;
+
+      position:sticky;
+
+      top:18px;
+    }
+
+    .section + .section{
+      margin-top:22px;
+
+      padding-top:22px;
+
+      border-top:
+        1px solid var(--line);
+    }
+
+    .section-title{
+      margin:0 0 12px;
+
+      color:#8b8882;
+
+      font-size:12px;
+
+      font-weight:600;
+
+      text-transform:uppercase;
+
+      letter-spacing:.11em;
+    }
+
+    label{
+      display:block;
+
+      margin:0 0 7px;
+
+      font-size:13px;
+
+      font-weight:600;
+    }
+
+    .field + .field{
+      margin-top:14px;
+    }
+
+    textarea,
+    input{
+      width:100%;
+
+      padding:12px 13px;
+
+      border:
+        1px solid #dcd9d2;
+
+      border-radius:13px;
+
+      background:#fff;
+
+      color:#1d1d1b;
+
+      outline:none;
+
+      transition:
+        border-color .15s,
+        box-shadow .15s;
+    }
+
+    textarea{
+      min-height:190px;
+
+      resize:vertical;
+
+      line-height:1.95;
+
+      font-family:
+        "Amiri",
+        serif;
+
+      font-size:21px;
+    }
+
+    input{
+      font-family:
+        "Amiri",
+        Georgia,
+        serif;
+
+      font-size:18px;
+    }
+
+    input:focus,
+    textarea:focus{
+      border-color:#aaa59b;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(70,65,58,.07);
+    }
+
+    .segmented{
+      display:grid;
+
+      gap:8px;
+    }
+
+    .segmented.two{
+      grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .segmented.five{
+      grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .segmented.five .choice:last-child{
+      grid-column:
+        1 / -1;
+    }
+
+    button{
+      font:inherit;
+    }
+
+    .choice{
+      padding:10px 11px;
+
+      border:
+        1px solid #dedbd4;
+
+      border-radius:12px;
+
+      background:#fff;
+
+      color:#403e39;
+
+      cursor:pointer;
+
+      transition:.15s ease;
+
+      font-size:13px;
+    }
+
+    .choice:hover{
+      border-color:#bdb8ae;
+    }
+
+    .choice.active{
+      background:#232321;
+
+      color:#fff;
+
+      border-color:#232321;
+    }
+
+    .toggle-row{
+      display:flex;
+
+      align-items:center;
+
+      justify-content:space-between;
+
+      gap:16px;
+    }
+
+    .toggle-copy strong{
+      display:block;
+
+      margin-bottom:3px;
+
+      font-size:13px;
+    }
+
+    .toggle-copy span{
+      display:block;
+
+      color:var(--muted);
+
+      font-size:12px;
+
+      line-height:1.45;
+    }
+
+    .switch{
+      position:relative;
+
+      width:46px;
+
+      height:27px;
+
+      flex:0 0 auto;
+    }
+
+    .switch input{
+      opacity:0;
+
+      width:0;
+
+      height:0;
+    }
+
+    .slider{
+      position:absolute;
+
+      inset:0;
+
+      border-radius:99px;
+
+      background:#d7d4ce;
+
+      cursor:pointer;
+
+      transition:.18s;
+    }
+
+    .slider:before{
+      content:"";
+
+      position:absolute;
+
+      width:21px;
+
+      height:21px;
+
+      left:3px;
+
+      top:3px;
+
+      border-radius:50%;
+
+      background:#fff;
+
+      box-shadow:
+        0 2px 7px
+        rgba(0,0,0,.14);
+
+      transition:.18s;
+    }
+
+    .switch input:checked + .slider{
+      background:#232321;
+    }
+
+    .switch input:checked + .slider:before{
+      transform:
+        translateX(19px);
+    }
+
+    .actions{
+      display:grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:9px;
+    }
+
+    .primary,
+    .secondary{
+      padding:12px 14px;
+
+      border:
+        1px solid #252522;
+
+      border-radius:13px;
+
+      cursor:pointer;
+
+      font-weight:600;
+    }
+
+    .primary{
+      background:#252522;
+
+      color:#fff;
+    }
+
+    .secondary{
+      background:#fff;
+
+      color:#252522;
+    }
+
+    .note{
+      margin:12px 0 0;
+
+      color:#77746e;
+
+      font-size:11px;
+
+      line-height:1.55;
+    }
+
+    .preview-panel{
+      min-height:500px;
+
+      padding:22px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      overflow:hidden;
+
+      background:
+        linear-gradient(
+          45deg,
+          #f1efe9 25%,
+          transparent 25%
+        ),
+        linear-gradient(
+          -45deg,
+          #f1efe9 25%,
+          transparent 25%
+        ),
+        linear-gradient(
+          45deg,
+          transparent 75%,
+          #f1efe9 75%
+        ),
+        linear-gradient(
+          -45deg,
+          transparent 75%,
+          #f1efe9 75%
+        );
+
+      background-size:
+        24px 24px;
+
+      background-position:
+        0 0,
+        0 12px,
+        12px -12px,
+        -12px 0;
+    }
+
+    .canvas-wrap{
+      width:min(
+        100%,
+        560px
+      );
+
+      filter:
+        drop-shadow(
+          0 24px 34px
+          rgba(36,31,25,.16)
+        );
+    }
+
+    canvas{
+      display:block;
+
+      width:100%;
+
+      height:auto;
+
+      border-radius:4px;
+
+      background:#ddd;
+    }
+
+    .status{
+      min-height:18px;
+
+      margin-top:10px;
+
+      color:#77736d;
+
+      text-align:center;
+
+      font-size:12px;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    @media(max-width:900px){
+
+      .layout{
+        grid-template-columns:1fr;
+      }
+
+      .controls{
+        position:static;
+      }
+
+      .preview-panel{
+        padding:16px;
+      }
+
+    }
+
+    @media(max-width:520px){
+
+      .shell{
+        width:min(
+          100% - 18px,
+          1220px
+        );
+
+        padding-top:32px;
+      }
+
+      .site-header{
+        margin-bottom:36px;
+      }
+
+      .site-top{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:14px;
+      }
+
+      .brand{
+        font-size:32px;
+      }
+
+      nav{
+        gap:14px;
+      }
+
+      nav a{
+        font-size:15px;
+      }
+
+      .tool-title{
+        font-size:31px;
+      }
+
+      .panel{
+        border-radius:17px;
+      }
+
+      .controls{
+        padding:16px;
+      }
+
+      .actions{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+
+    /* ===== Dark mode ===== */
+
+    @media (prefers-color-scheme: dark){
+
+      :root{
+        --page:#1b1a18;
+        --panel:#22211f;
+        --ink:#f2efe8;
+        --muted:#9b9890;
+        --line:rgba(255,255,255,.08);
+        --soft:rgba(255,255,255,.07);
+      }
+
+      body{
+        background:#1b1a18;
+        color:#f2efe8;
+      }
+
+      .site-subtitle,
+      nav a,
+      .tool-intro p,
+      .toggle-copy span,
+      .note,
+      .status{
+        color:#9b9890;
+      }
+
+      nav a:hover,
+      nav a.active{
+        color:#b8d98d;
+      }
+
+      .panel{
+        background:#22211f;
+        border-color:rgba(255,255,255,.08);
+        box-shadow:0 18px 48px rgba(0,0,0,.18);
+      }
+
+      .section + .section{
+        border-color:rgba(255,255,255,.08);
+      }
+
+      .section-title{
+        color:#a8a59d;
+      }
+
+      textarea,
+      input{
+        background:#1b1a18;
+        color:#f2efe8;
+        border-color:rgba(255,255,255,.15);
+      }
+
+      textarea:focus,
+      input:focus{
+        border-color:#8da675;
+        box-shadow:0 0 0 3px rgba(184,217,141,.08);
+      }
+
+      .choice{
+        background:#1b1a18;
+        color:#d8d5cd;
+        border-color:rgba(255,255,255,.14);
+      }
+
+      .choice:hover{
+        border-color:rgba(255,255,255,.28);
+      }
+
+      .choice.active{
+        background:#496f2b;
+        color:#fff;
+        border-color:#496f2b;
+      }
+
+      .slider{
+        background:#4b4944;
+      }
+
+      .switch input:checked + .slider{
+        background:#496f2b;
+      }
+
+      .primary{
+        background:#496f2b;
+        color:#fff;
+        border-color:#496f2b;
+      }
+
+      .secondary{
+        background:#1b1a18;
+        color:#f2efe8;
+        border-color:rgba(255,255,255,.18);
+      }
+
+      .preview-panel{
+        background:
+          linear-gradient(45deg,#292824 25%,transparent 25%),
+          linear-gradient(-45deg,#292824 25%,transparent 25%),
+          linear-gradient(45deg,transparent 75%,#292824 75%),
+          linear-gradient(-45deg,transparent 75%,#292824 75%);
+        background-size:24px 24px;
+        background-position:0 0,0 12px,12px -12px,-12px 0;
+      }
+
+      .canvas-wrap{
+        filter:drop-shadow(0 24px 34px rgba(0,0,0,.35));
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <main class="shell">
+
+    <header class="site-header">
+      <div class="site-top">
+
+        <div>
+          <h1 class="brand">المتوكل</h1>
+          <p class="site-subtitle">Islamic Library</p>
+        </div>
+
+        <nav>
+          <a href="index.html">Translated Works</a>
+          <a href="excerpts.html">Classical Excerpts</a>
+          <a href="40.html" lang="ar" dir="rtl">الأربعون للمتوكل</a>
+          <a href="adhkar.html" lang="ar" dir="rtl">الأذكار</a>
+          <a href="tools.html" class="active">Tools</a>
+        </nav>
+
+      </div>
+    </header>
+
+    <section class="tool-intro">
+      <h2 class="tool-title">Quote Maker</h2>
+      <p>A simple, quiet tool for making shareable quotation cards.</p>
+    </section>
+
+
+    <div class="layout">
+
+      <aside class="panel controls">
+
+
+        <!-- TYPE -->
+
+        <section
+          class="section"
+          style="
+            padding-top:0;
+            margin-top:0;
+            border-top:0;
+          "
+        >
+
+          <p class="section-title">
+            Type
+          </p>
+
+          <div
+            class="segmented two"
+            id="typeChoices"
+          >
+
+            <button
+              class="choice active"
+              data-type="general"
+            >
+              General
+            </button>
+
+            <button
+              class="choice"
+              data-type="hadith"
+            >
+              Hadith
+            </button>
+
+          </div>
+
+        </section>
+
+
+        <!-- CONTENT -->
+
+        <section class="section">
+
+          <p class="section-title">
+            Content
+          </p>
+
+
+          <div class="field">
+
+            <label for="quote">
+              Quote
+            </label>
+
+            <textarea
+              id="quote"
+              dir="auto"
+            >مَنْ كَانَ بِاللَّهِ أَعْرَفَ، كَانَ مِنْهُ أَخْوَفَ.</textarea>
+
+          </div>
+
+
+          <div
+            class="field"
+            id="authorField"
+          >
+
+            <label for="author">
+              Name
+            </label>
+
+            <input
+              id="author"
+              dir="auto"
+              value="سفيان الثوري"
+            />
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="source">
+              Source
+            </label>
+
+            <input
+              id="source"
+              dir="auto"
+              value="حلية الأولياء"
+            />
+
+          </div>
+
+        </section>
+
+
+        <!-- STYLE -->
+
+        <section class="section">
+
+          <p class="section-title">
+            Style
+          </p>
+
+
+          <label>
+            Background
+          </label>
+
+          <div
+            class="segmented five"
+            id="themeChoices"
+          >
+
+            <button
+              class="choice active"
+              data-theme="night"
+            >
+              Night
+            </button>
+
+            <button
+              class="choice"
+              data-theme="mountains"
+            >
+              Mountains
+            </button>
+
+            <button
+              class="choice"
+              data-theme="lake"
+            >
+              Lake
+            </button>
+
+            <button
+              class="choice"
+              data-theme="tree"
+            >
+              Tree
+            </button>
+
+            <button
+              class="choice"
+              data-theme="paper"
+            >
+              Paper
+            </button>
+
+          </div>
+
+
+          <div style="height:14px"></div>
+
+
+          <label>
+            Format
+          </label>
+
+          <div
+            class="segmented two"
+            id="ratioChoices"
+          >
+
+            <button
+              class="choice active"
+              data-ratio="4:5"
+            >
+              4:5 Portrait
+            </button>
+
+            <button
+              class="choice"
+              data-ratio="1:1"
+            >
+              1:1 Square
+            </button>
+
+          </div>
+
+
+          <div style="height:14px"></div>
+
+
+          <label>
+            Text alignment
+          </label>
+
+          <div
+            class="segmented two"
+            id="alignChoices"
+          >
+
+            <button
+              class="choice active"
+              data-align="center"
+            >
+              Centered
+            </button>
+
+            <button
+              class="choice"
+              data-align="right"
+            >
+              Right / Justified
+            </button>
+
+          </div>
+
+        </section>
+
+
+        <!-- WATERMARK -->
+
+        <section class="section">
+
+          <div class="toggle-row">
+
+            <div class="toggle-copy">
+
+              <strong>
+                Private watermark
+              </strong>
+
+              <span>
+                Adds المتوكل — requires access.
+              </span>
+
+            </div>
+
+            <label
+              class="switch"
+              aria-label="Toggle private watermark"
+            >
+
+              <input
+                id="watermark"
+                type="checkbox"
+              >
+
+              <span class="slider"></span>
+
+            </label>
+
+          </div>
+
+        </section>
+
+
+        <!-- ACTIONS -->
+
+        <section class="section">
+
+          <div class="actions">
+
+            <button
+              class="primary"
+              id="downloadBtn"
+            >
+              Download PNG
+            </button>
+
+            <button
+              class="secondary"
+              id="copyBtn"
+            >
+              Copy Image
+            </button>
+
+          </div>
+
+          <p class="note">
+            Please verify quotations and sources before sharing.
+            This tool formats the text provided; it does not verify
+            its authenticity.
+          </p>
+
+        </section>
+
+      </aside>
+
+
+      <!-- PREVIEW -->
+
+      <section>
+
+        <div class="panel preview-panel">
+
+          <div class="canvas-wrap">
+
+            <canvas
+              id="card"
+              width="2160"
+              height="2700"
+            ></canvas>
+
+          </div>
+
+        </div>
+
+        <div
+          class="status"
+          id="status"
+        ></div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+<script>
+
+(() => {
+
+
+  /*
+    ==================================================
+    ELEMENTS
+    ==================================================
+  */
+
+  const canvas =
+    document.getElementById("card");
+
+  const ctx =
+    canvas.getContext("2d");
+
+  const quoteInput =
+    document.getElementById("quote");
+
+  const authorInput =
+    document.getElementById("author");
+
+  const sourceInput =
+    document.getElementById("source");
+
+  const authorField =
+    document.getElementById("authorField");
+
+  const watermarkInput =
+    document.getElementById("watermark");
+
+  const statusEl =
+    document.getElementById("status");
+
+
+  /*
+    ==================================================
+    STATE
+    ==================================================
+  */
+
+  const state = {
+
+    type:"general",
+
+    theme:"night",
+
+    ratio:"4:5",
+
+    align:"center"
+
+  };
+
+
+  /*
+    ==================================================
+    PRIVATE WATERMARK
+    ==================================================
+  */
+
+  const WATERMARK_PASSWORD =
+    "barbarawi";
+
+  let watermarkUnlocked =
+    false;
+
+
+  /*
+    ==================================================
+    THEMES
+    ==================================================
+  */
+
+  const themeConfig = {
+
+
+    /*
+      Night remains very close to
+      the existing treatment.
+    */
+
+    night:{
+
+      type:"image",
+
+      src:
+        "assets/quote-maker/night.jpeg",
+
+      text:
+        "#F7F4ED",
+
+      secondary:
+        "#F7F4ED",
+
+      shadow:
+        "rgba(0,0,0,.55)",
+
+      overlayTop:.13,
+
+      overlayMiddle:.14,
+
+      overlayBottom:.60,
+
+      veil:
+        "rgba(0,0,0,.07)"
+
+    },
+
+
+    /*
+      Dramatic mountain image.
+
+      Slightly stronger treatment than Night
+      because the sky has brighter regions.
+    */
+
+    mountains:{
+
+      type:"image",
+
+      src:
+        "assets/quote-maker/mountains.jpg",
+
+      text:
+        "#FBF8F0",
+
+      secondary:
+        "#FBF8F0",
+
+      shadow:
+        "rgba(0,0,0,.60)",
+
+      overlayTop:.26,
+
+      overlayMiddle:.22,
+
+      overlayBottom:.58,
+
+      veil:
+        "rgba(11,20,27,.08)"
+
+    },
+
+
+    /*
+      Lake image is naturally bright,
+      especially in the sky and water.
+
+      Dark treatment ensures consistent
+      white typography.
+    */
+
+    lake:{
+
+      type:"image",
+
+      src:
+        "assets/quote-maker/lake.jpg",
+
+      text:
+        "#FFFDF6",
+
+      secondary:
+        "#FFFDF6",
+
+      shadow:
+        "rgba(0,0,0,.62)",
+
+      overlayTop:.28,
+
+      overlayMiddle:.24,
+
+      overlayBottom:.55,
+
+      veil:
+        "rgba(11,22,26,.10)"
+
+    },
+
+
+    /*
+      Tree image is deliberately soft
+      and very bright.
+
+      We keep that painterly feeling
+      but darken the whole photograph
+      substantially for text readability.
+    */
+
+    tree:{
+
+      type:"image",
+
+      src:
+        "assets/quote-maker/tree.jpg",
+
+      text:
+        "#FFFDF7",
+
+      secondary:
+        "#FFFDF7",
+
+      shadow:
+        "rgba(25,18,12,.68)",
+
+      overlayTop:.34,
+
+      overlayMiddle:.30,
+
+      overlayBottom:.52,
+
+      veil:
+        "rgba(32,26,18,.15)"
+
+    },
+
+
+    /*
+      Paper uses dark warm-brown typography.
+
+      Watermark now inherits the same
+      secondary color.
+    */
+
+    paper:{
+
+      type:"paper",
+
+      bg:
+        "#F3EBDD",
+
+      text:
+        "#2C2925",
+
+      secondary:
+        "#62584D"
+
+    }
+
+  };
+
+
+  const imageCache =
+    new Map();
+
+
+  /*
+    ==================================================
+    STATUS
+    ==================================================
+  */
+
+  function setStatus(
+    text,
+    timeout = 1700
+  ){
+
+    statusEl.textContent =
+      text;
+
+
+    if(timeout){
+
+      clearTimeout(
+        setStatus.timer
+      );
+
+
+      setStatus.timer =
+        setTimeout(
+          () => {
+
+            statusEl.textContent =
+              "";
+
+          },
+
+          timeout
+        );
+
+    }
+
+  }
+
+
+  /*
+    ==================================================
+    LANGUAGE DETECTION
+    ==================================================
+  */
+
+  function containsArabic(text){
+
+    return /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/
+      .test(text || "");
+
+  }
+
+
+  /*
+    ==================================================
+    HARAKAT DETECTION
+    ==================================================
+  */
+
+  function harakatRatio(text){
+
+    const letters =
+      (
+        text.match(
+          /[\u0621-\u064A\u066E-\u06D3]/g
+        )
+        ||
+        []
+      ).length;
+
+
+    const marks =
+      (
+        text.match(
+          /[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]/g
+        )
+        ||
+        []
+      ).length;
+
+
+    if(
+      letters === 0
+    ){
+
+      return 0;
+
+    }
+
+
+    return marks / letters;
+
+  }
+
+
+  /*
+    Generous Amiri spacing,
+    especially with full vocalization.
+
+    We don't go excessively wide because
+    doing so unnecessarily reduces font size.
+  */
+
+  function getArabicLineHeightMultiplier(text){
+
+    const ratio =
+      harakatRatio(text);
+
+
+    if(
+      ratio >= .42
+    ){
+
+      return 1.94;
+
+    }
+
+
+    if(
+      ratio >= .22
+    ){
+
+      return 1.85;
+
+    }
+
+
+    return 1.74;
+
+  }
+
+
+  /*
+    ==================================================
+    CANVAS
+    ==================================================
+  */
+
+  function configureCanvas(){
+
+    if(
+      state.ratio === "4:5"
+    ){
+
+      canvas.width =
+        2160;
+
+      canvas.height =
+        2700;
+
+    }
+
+    else{
+
+      canvas.width =
+        2160;
+
+      canvas.height =
+        2160;
+
+    }
+
+  }
+
+
+  /*
+    ==================================================
+    IMAGE LOADING
+    ==================================================
+  */
+
+  async function loadImage(src){
+
+    if(
+      imageCache.has(src)
+    ){
+
+      return imageCache.get(src);
+
+    }
+
+
+    const promise =
+      new Promise(
+        (resolve,reject) => {
+
+
+          const img =
+            new Image();
+
+
+          img.onload =
+            () => resolve(img);
+
+
+          img.onerror =
+            reject;
+
+
+          img.src =
+            src;
+
+        }
+      );
+
+
+    imageCache.set(
+      src,
+      promise
+    );
+
+
+    return promise;
+
+  }
+
+
+  /*
+    ==================================================
+    COVER CROPPING
+    ==================================================
+
+    Image dimensions do NOT need
+    to match the canvas.
+
+    Landscape, portrait and square images
+    all work.
+
+    The image is enlarged until it fills
+    the canvas, then excess is cropped.
+  */
+
+  function drawCoverImage(
+    img,
+    x,
+    y,
+    w,
+    h
+  ){
+
+    const imageRatio =
+      img.width / img.height;
+
+
+    const boxRatio =
+      w / h;
+
+
+    let sw;
+    let sh;
+    let sx;
+    let sy;
+
+
+    if(
+      imageRatio > boxRatio
+    ){
+
+      sh =
+        img.height;
+
+
+      sw =
+        sh * boxRatio;
+
+
+      sx =
+        (img.width - sw) / 2;
+
+
+      sy =
+        0;
+
+    }
+
+    else{
+
+      sw =
+        img.width;
+
+
+      sh =
+        sw / boxRatio;
+
+
+      sx =
+        0;
+
+
+      sy =
+        (img.height - sh) / 2;
+
+    }
+
+
+    ctx.drawImage(
+      img,
+      sx,
+      sy,
+      sw,
+      sh,
+      x,
+      y,
+      w,
+      h
+    );
+
+  }
+
+
+  /*
+    ==================================================
+    PHOTO TREATMENT
+    ==================================================
+  */
+
+  function drawImageTreatment(
+    config,
+    W,
+    H
+  ){
+
+    /*
+      Theme-specific veil.
+    */
+
+    ctx.fillStyle =
+      config.veil;
+
+
+    ctx.fillRect(
+      0,
+      0,
+      W,
+      H
+    );
+
+
+    /*
+      Vertical tonal treatment.
+    */
+
+    const grad =
+      ctx.createLinearGradient(
+        0,
+        0,
+        0,
+        H
+      );
+
+
+    grad.addColorStop(
+      0,
+      `rgba(0,0,0,${config.overlayTop})`
+    );
+
+
+    grad.addColorStop(
+      .42,
+      `rgba(0,0,0,${config.overlayMiddle})`
+    );
+
+
+    grad.addColorStop(
+      1,
+      `rgba(0,0,0,${config.overlayBottom})`
+    );
+
+
+    ctx.fillStyle =
+      grad;
+
+
+    ctx.fillRect(
+      0,
+      0,
+      W,
+      H
+    );
+
+
+    /*
+      Edge vignette.
+    */
+
+    const radial =
+      ctx.createRadialGradient(
+        W/2,
+        H/2,
+        Math.min(W,H)*.20,
+        W/2,
+        H/2,
+        Math.max(W,H)*.72
+      );
+
+
+    radial.addColorStop(
+      0,
+      "rgba(0,0,0,0)"
+    );
+
+
+    radial.addColorStop(
+      1,
+      "rgba(0,0,0,.20)"
+    );
+
+
+    ctx.fillStyle =
+      radial;
+
+
+    ctx.fillRect(
+      0,
+      0,
+      W,
+      H
+    );
+
+  }
+
+
+  /*
+    ==================================================
+    PAPER
+    ==================================================
+  */
+
+  function drawPaper(
+    config,
+    W,
+    H
+  ){
+
+    ctx.fillStyle =
+      config.bg;
+
+
+    ctx.fillRect(
+      0,
+      0,
+      W,
+      H
+    );
+
+
+    /*
+      Warm paper variation.
+    */
+
+    const glow =
+      ctx.createRadialGradient(
+        W*.28,
+        H*.16,
+        0,
+        W*.28,
+        H*.16,
+        W*.9
+      );
+
+
+    glow.addColorStop(
+      0,
+      "rgba(255,255,255,.38)"
+    );
+
+
+    glow.addColorStop(
+      1,
+      "rgba(122,96,68,.045)"
+    );
+
+
+    ctx.fillStyle =
+      glow;
+
+
+    ctx.fillRect(
+      0,
+      0,
+      W,
+      H
+    );
+
+
+    /*
+      Fine paper fibers.
+    */
+
+    ctx.save();
+
+
+    ctx.globalAlpha =
+      .055;
+
+
+    ctx.strokeStyle =
+      "#806C54";
+
+
+    ctx.lineWidth =
+      1.3;
+
+
+    for(
+      let y=40;
+      y<H;
+      y+=31
+    ){
+
+      ctx.beginPath();
+
+
+      ctx.moveTo(
+        0,
+        y
+      );
+
+
+      ctx.bezierCurveTo(
+        W*.25,
+        y+4,
+        W*.65,
+        y-4,
+        W,
+        y+2
+      );
+
+
+      ctx.stroke();
+
+    }
+
+
+    ctx.restore();
+
+  }
+
+
+  /*
+    ==================================================
+    FONTS
+    ==================================================
+  */
+
+  function quoteFont(
+    size,
+    weight,
+    arabic
+  ){
+
+    const family =
+      arabic
+        ? '"Amiri"'
+        : 'Georgia';
+
+
+    return `${weight} ${size}px ${family}`;
+
+  }
+
+
+  function metaFont(
+    size,
+    weight,
+    arabic
+  ){
+
+    const family =
+      arabic
+        ? '"Aref Ruqaa"'
+        : 'Georgia';
+
+
+    return `${weight} ${size}px ${family}`;
+
+  }
+
+
+  /*
+    ==================================================
+    PARAGRAPH + LINE WRAPPING
+    ==================================================
+
+    Each line carries metadata telling us
+    whether it is the final line of its
+    paragraph.
+
+    That is important for justification:
+    final lines should remain naturally
+    right aligned.
+  */
+
+  function splitParagraphs(text){
+
+    return (text || "")
+      .replace(/\r/g,"")
+      .split("\n");
+
+  }
+
+
+  function wrapOneParagraph(
+    text,
+    maxWidth
+  ){
+
+    if(
+      !text.trim()
+    ){
+
+      return [
+        {
+          text:"",
+          paragraphEnd:true,
+          blank:true
+        }
+      ];
+
+    }
+
+
+    const words =
+      text
+        .trim()
+        .split(/\s+/);
+
+
+    const rawLines =
+      [];
+
+
+    let line =
+      "";
+
+
+    for(
+      const word
+      of words
+    ){
+
+      const test =
+        line
+          ? line + " " + word
+          : word;
+
+
+      if(
+        ctx.measureText(test).width
+        <= maxWidth
+        ||
+        !line
+      ){
+
+        line =
+          test;
+
+      }
+
+      else{
+
+        rawLines.push(
+          line
+        );
+
+
+        line =
+          word;
+
+      }
+
+    }
+
+
+    if(line){
+
+      rawLines.push(
+        line
+      );
+
+    }
+
+
+    return rawLines.map(
+      (lineText,index) => ({
+
+        text:
+          lineText,
+
+        paragraphEnd:
+          index === rawLines.length - 1,
+
+        blank:false
+
+      })
+    );
+
+  }
+
+
+  function wrapText(
+    text,
+    maxWidth
+  ){
+
+    const paragraphs =
+      splitParagraphs(text);
+
+
+    const result =
+      [];
+
+
+    paragraphs.forEach(
+      (paragraph,index) => {
+
+
+        const wrapped =
+          wrapOneParagraph(
+            paragraph,
+            maxWidth
+          );
+
+
+        result.push(
+          ...wrapped
+        );
+
+
+        /*
+          Preserve manually-entered
+          paragraph separation.
+        */
+
+        if(
+          index
+          <
+          paragraphs.length - 1
+        ){
+
+          result.push(
+            {
+              text:"",
+              paragraphEnd:true,
+              blank:true
+            }
+          );
+
+        }
+
+      }
+    );
+
+
+    return result;
+
+  }
+
+
+  /*
+    ==================================================
+    ADAPTIVE FITTING
+    ==================================================
+
+    Important change:
+
+    We no longer depend heavily on arbitrary
+    character-count ranges.
+
+    Instead:
+
+      1. Pick an attractive starting size.
+      2. Actually wrap and measure the text.
+      3. Keep it if it fits.
+      4. Otherwise gently shrink.
+
+    Short quotations receive a larger
+    starting point because they SHOULD
+    dominate the available space.
+  */
+
+  function startingQuoteSize(
+    text,
+    arabic
+  ){
+
+    const cleanLength =
+      text
+        .replace(/\s/g,"")
+        .length;
+
+
+    /*
+      General quotes can be especially
+      large when short.
+    */
+
+    if(
+      state.type === "general"
+    ){
+
+      if(arabic){
+
+        if(cleanLength <= 30){
+          return 210;
+        }
+
+
+        if(cleanLength <= 60){
+          return 194;
+        }
+
+
+        if(cleanLength <= 100){
+          return 176;
+        }
+
+
+        if(cleanLength <= 180){
+          return 158;
+        }
+
+
+        return 146;
+
+      }
+
+
+      if(cleanLength <= 70){
+        return 152;
+      }
+
+
+      if(cleanLength <= 150){
+        return 136;
+      }
+
+
+      return 124;
+
+    }
+
+
+    /*
+      Hadith still starts large,
+      but generally needs more room.
+    */
+
+    if(arabic){
+
+      if(cleanLength <= 60){
+        return 180;
+      }
+
+
+      if(cleanLength <= 120){
+        return 166;
+      }
+
+
+      if(cleanLength <= 220){
+        return 150;
+      }
+
+
+      if(cleanLength <= 400){
+        return 136;
+      }
+
+
+      return 124;
+
+    }
+
+
+    return 122;
+
+  }
+
+
+  function fitQuote(
+    text,
+    maxWidth,
+    maxHeight,
+    arabic
+  ){
+
+    let size =
+      startingQuoteSize(
+        text,
+        arabic
+      );
+
+
+    const minSize =
+      arabic
+        ? 50
+        : 46;
+
+
+    while(
+      size >= minSize
+    ){
+
+      ctx.font =
+        quoteFont(
+          size,
+          400,
+          arabic
+        );
+
+
+      const lines =
+        wrapText(
+          text,
+          maxWidth
+        );
+
+
+      const multiplier =
+        arabic
+          ? getArabicLineHeightMultiplier(text)
+          : 1.38;
+
+
+      const lineHeight =
+        size
+        *
+        multiplier;
+
+
+      const totalHeight =
+        lines.length
+        *
+        lineHeight;
+
+
+      if(
+        totalHeight
+        <=
+        maxHeight
+      ){
+
+        return {
+
+          size,
+
+          lines,
+
+          lineHeight,
+
+          totalHeight
+
+        };
+
+      }
+
+
+      /*
+        Fine-grained shrinking makes
+        transitions less abrupt.
+      */
+
+      size -=
+        2;
+
+    }
+
+
+    ctx.font =
+      quoteFont(
+        minSize,
+        400,
+        arabic
+      );
+
+
+    const lines =
+      wrapText(
+        text,
+        maxWidth
+      );
+
+
+    const multiplier =
+      arabic
+        ? getArabicLineHeightMultiplier(text)
+        : 1.38;
+
+
+    const lineHeight =
+      minSize
+      *
+      multiplier;
+
+
+    return {
+
+      size:
+        minSize,
+
+      lines,
+
+      lineHeight,
+
+      totalHeight:
+        lines.length
+        *
+        lineHeight
+
+    };
+
+  }
+
+
+  /*
+    ==================================================
+    JUSTIFIED ARABIC
+    ==================================================
+
+    Canvas does not give us high-end Arabic
+    book-layout justification.
+
+    We therefore use restrained word-space
+    distribution.
+
+    We DO NOT insert tatweel/kashida into the
+    quoted Arabic itself.
+
+    Rules:
+
+      - right-aligned mode only
+      - at least 3 words
+      - never final paragraph line
+      - never blank line
+      - never stretch excessively
+  */
+
+  function drawJustifiedLine(
+    text,
+    rightX,
+    y,
+    targetWidth
+  ){
+
+    const words =
+      text
+        .trim()
+        .split(/\s+/);
+
+
+    if(
+      words.length < 3
+    ){
+
+      ctx.textAlign =
+        "right";
+
+
+      ctx.fillText(
+        text,
+        rightX,
+        y
+      );
+
+
+      return;
+
+    }
+
+
+    /*
+      Measure all words individually.
+    */
+
+    const widths =
+      words.map(
+        word =>
+          ctx.measureText(word).width
+      );
+
+
+    const wordsWidth =
+      widths.reduce(
+        (sum,width) =>
+          sum + width,
+        0
+      );
+
+
+    const gaps =
+      words.length - 1;
+
+
+    const normalSpace =
+      ctx.measureText(" ").width;
+
+
+    const naturalWidth =
+      wordsWidth
+      +
+      normalSpace
+      *
+      gaps;
+
+
+    const extra =
+      targetWidth
+      -
+      naturalWidth;
+
+
+    /*
+      If the line is already close to width,
+      or if justification would create huge
+      spaces, keep normal right alignment.
+    */
+
+    if(
+      extra <= 0
+      ||
+      extra / gaps
+      >
+      normalSpace * 2.35
+    ){
+
+      ctx.textAlign =
+        "right";
+
+
+      ctx.fillText(
+        text,
+        rightX,
+        y
+      );
+
+
+      return;
+
+    }
+
+
+    const gapWidth =
+      normalSpace
+      +
+      extra / gaps;
+
+
+    /*
+      RTL line:
+      begin at right edge and manually
+      move left word-by-word.
+    */
+
+    ctx.textAlign =
+      "right";
+
+
+    let x =
+      rightX;
+
+
+    words.forEach(
+      (word,index) => {
+
+
+        ctx.fillText(
+          word,
+          x,
+          y
+        );
+
+
+        x -=
+          widths[index];
+
+
+        if(
+          index
+          <
+          words.length - 1
+        ){
+
+          x -=
+            gapWidth;
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /*
+    ==================================================
+    DRAW MAIN QUOTE / MATN
+    ==================================================
+  */
+
+  function drawMainQuote(
+    config,
+    fitted,
+    arabic,
+    W,
+    startY,
+    marginX
+  ){
+
+    ctx.save();
+
+
+    ctx.fillStyle =
+      config.text;
+
+
+    ctx.shadowColor =
+      config.type === "image"
+        ? config.shadow
+        : "rgba(0,0,0,0)";
+
+
+    ctx.shadowBlur =
+      config.type === "image"
+        ? 24
+        : 0;
+
+
+    ctx.shadowOffsetY =
+      config.type === "image"
+        ? 5
+        : 0;
+
+
+    ctx.font =
+      quoteFont(
+        fitted.size,
+        400,
+        arabic
+      );
+
+
+    ctx.textBaseline =
+      "top";
+
+
+    ctx.direction =
+      arabic
+        ? "rtl"
+        : "ltr";
+
+
+    const maxTextWidth =
+      W
+      -
+      marginX * 2;
+
+
+    /*
+      CENTERED
+    */
+
+    if(
+      state.align === "center"
+    ){
+
+      ctx.textAlign =
+        "center";
+
+
+      fitted.lines.forEach(
+        (line,index) => {
+
+
+          if(
+            line.blank
+          ){
+
+            return;
+
+          }
+
+
+          ctx.fillText(
+            line.text,
+            W/2,
+            startY
+            +
+            index
+            *
+            fitted.lineHeight
+          );
+
+        }
+      );
+
+    }
+
+
+    /*
+      RIGHT / JUSTIFIED
+    */
+
+    else{
+
+      const rightX =
+        W
+        -
+        marginX;
+
+
+      fitted.lines.forEach(
+        (line,index) => {
+
+
+          if(
+            line.blank
+          ){
+
+            return;
+
+          }
+
+
+          const y =
+            startY
+            +
+            index
+            *
+            fitted.lineHeight;
+
+
+          /*
+            Arabic non-final paragraph lines
+            receive restrained justification.
+          */
+
+          if(
+            arabic
+            &&
+            !line.paragraphEnd
+          ){
+
+            drawJustifiedLine(
+              line.text,
+              rightX,
+              y,
+              maxTextWidth
+            );
+
+          }
+
+          else{
+
+            ctx.textAlign =
+              "right";
+
+
+            ctx.fillText(
+              line.text,
+              rightX,
+              y
+            );
+
+          }
+
+        }
+      );
+
+    }
+
+
+    ctx.restore();
+
+
+    return (
+      startY
+      +
+      fitted.totalHeight
+    );
+
+  }
+
+
+  /*
+    ==================================================
+    HADITH HEADING
+    ==================================================
+  */
+
+  function drawHadithHeading(
+    config,
+    W,
+    y,
+    marginX
+  ){
+
+    ctx.save();
+
+
+    ctx.fillStyle =
+      config.text;
+
+
+    ctx.shadowColor =
+      config.type === "image"
+        ? config.shadow
+        : "rgba(0,0,0,0)";
+
+
+    ctx.shadowBlur =
+      config.type === "image"
+        ? 18
+        : 0;
+
+
+    ctx.shadowOffsetY =
+      config.type === "image"
+        ? 3
+        : 0;
+
+
+    ctx.font =
+      quoteFont(
+        state.ratio === "4:5"
+          ? 124
+          : 112,
+        700,
+        true
+      );
+
+
+    ctx.direction =
+      "rtl";
+
+
+    ctx.textBaseline =
+      "top";
+
+
+    ctx.textAlign =
+      state.align === "center"
+        ? "center"
+        : "right";
+
+
+    const x =
+      state.align === "center"
+        ? W/2
+        : W-marginX;
+
+
+    ctx.fillText(
+      "قال النبي ﷺ:",
+      x,
+      y
+    );
+
+
+    ctx.restore();
+
+  }
+
+
+  /*
+    ==================================================
+    GENERAL ATTRIBUTION
+    ==================================================
+
+    Speaker/source now belong to the LOWER
+    section of the design.
+
+    Short quotes do not cause this block
+    to float into the center.
+  */
+
+  function drawGeneralAttribution(
+    config,
+    W,
+    H,
+    marginX,
+    quoteBottom,
+    author,
+    source,
+    authorArabic,
+    sourceArabic
+  ){
+
+    if(
+      !author
+      &&
+      !source
+    ){
+
+      return;
+
+    }
+
+
+    const metaX =
+      state.align === "center"
+        ? W/2
+        : W-marginX;
+
+
+    /*
+      Increased ~8–10%.
+    */
+
+    const authorSize =
+      authorArabic
+        ? 104
+        : 74;
+
+
+    const sourceSize =
+      sourceArabic
+        ? 76
+        : 56;
+
+
+    /*
+      Lower anchor.
+
+      This remains predictable regardless
+      of quote length.
+    */
+
+    let authorRatio;
+
+
+    if(
+      quoteBottom
+      <
+      H * .42
+    ){
+
+      authorRatio =
+        state.ratio === "4:5"
+          ? .715
+          : .695;
+
+    }
+
+    else{
+
+      authorRatio =
+        state.ratio === "4:5"
+          ? .735
+          : .715;
+
+    }
+
+
+    let authorY =
+      H
+      *
+      authorRatio;
+
+
+    /*
+      Never collide with quote.
+    */
+
+    const minimumAuthorY =
+      quoteBottom
+      +
+      (
+        state.ratio === "4:5"
+          ? 115
+          : 92
+      );
+
+
+    authorY =
+      Math.max(
+        authorY,
+        minimumAuthorY
+      );
+
+
+    /*
+      Speaker/source separation.
+
+      This retains the ~25% spacing
+      increase requested previously.
+    */
+
+    const sourceY =
+      authorY
+      +
+      (
+        state.ratio === "4:5"
+          ? 180
+          : 152
+      );
+
+
+    /*
+      SPEAKER
+    */
+
+    if(author){
+
+      ctx.save();
+
+
+      ctx.fillStyle =
+        config.secondary;
+
+
+      ctx.globalAlpha =
+        .98;
+
+
+      ctx.shadowColor =
+        config.type === "image"
+          ? config.shadow
+          : "rgba(0,0,0,0)";
+
+
+      ctx.shadowBlur =
+        config.type === "image"
+          ? 15
+          : 0;
+
+
+      ctx.shadowOffsetY =
+        config.type === "image"
+          ? 2
+          : 0;
+
+
+      ctx.textBaseline =
+        "top";
+
+
+      ctx.textAlign =
+        state.align === "center"
+          ? "center"
+          : "right";
+
+
+      ctx.direction =
+        authorArabic
+          ? "rtl"
+          : "ltr";
+
+
+      ctx.font =
+        metaFont(
+          authorSize,
+          700,
+          authorArabic
+        );
+
+
+      ctx.fillText(
+        author,
+        metaX,
+        authorY
+      );
+
+
+      ctx.restore();
+
+    }
+
+
+    /*
+      SOURCE
+    */
+
+    if(source){
+
+      ctx.save();
+
+
+      ctx.fillStyle =
+        config.secondary;
+
+
+      ctx.globalAlpha =
+        .94;
+
+
+      ctx.shadowColor =
+        config.type === "image"
+          ? config.shadow
+          : "rgba(0,0,0,0)";
+
+
+      ctx.shadowBlur =
+        config.type === "image"
+          ? 12
+          : 0;
+
+
+      ctx.shadowOffsetY =
+        config.type === "image"
+          ? 2
+          : 0;
+
+
+      ctx.textBaseline =
+        "top";
+
+
+      ctx.textAlign =
+        state.align === "center"
+          ? "center"
+          : "right";
+
+
+      ctx.direction =
+        sourceArabic
+          ? "rtl"
+          : "ltr";
+
+
+      ctx.font =
+        metaFont(
+          sourceSize,
+          400,
+          sourceArabic
+        );
+
+
+      ctx.fillText(
+        source,
+        metaX,
+        author
+          ? sourceY
+          : authorY
+      );
+
+
+      ctx.restore();
+
+    }
+
+  }
+
+
+  /*
+    ==================================================
+    HADITH SOURCE
+    ==================================================
+
+    Layout retained from the version
+    that worked well.
+
+    Short:
+      ~74%
+
+    Medium:
+      ~78%
+
+    Long:
+      ~83%
+  */
+
+function drawHadithSource(
+  config,
+  W,
+  H,
+  marginX,
+  quoteBottom,
+  source,
+  sourceArabic,
+  lineCount
+){
+
+  if(
+    !source
+  ){
+
+    return;
+
+  }
+
+
+  const sourceX =
+    state.align === "center"
+      ? W/2
+      : W-marginX;
+
+
+  /*
+    Slightly larger than before.
+  */
+
+  const sourceSize =
+    sourceArabic
+      ? 86
+      : 62;
+
+
+  /*
+    Hadith source now belongs in the
+    lower source position — not where
+    a speaker would normally sit.
+
+    Short:
+      ~79%
+
+    Medium:
+      ~81%
+
+    Long:
+      ~83%
+  */
+
+  let sourceRatio;
+
+
+  if(
+    lineCount <= 3
+  ){
+
+    sourceRatio =
+      state.ratio === "4:5"
+        ? .79
+        : .775;
+
+  }
+
+  else if(
+    lineCount <= 5
+  ){
+
+    sourceRatio =
+      state.ratio === "4:5"
+        ? .81
+        : .795;
+
+  }
+
+  else{
+
+    sourceRatio =
+      state.ratio === "4:5"
+        ? .83
+        : .81;
+
+  }
+
+
+  let sourceY =
+    H
+    *
+    sourceRatio;
+
+
+  /*
+    Never collide with the matn.
+  */
+
+  const minimumGap =
+    state.ratio === "4:5"
+      ? 110
+      : 88;
+
+
+  sourceY =
+    Math.max(
+      sourceY,
+      quoteBottom
+      +
+      minimumGap
+    );
+
+
+  /*
+    Preserve enough breathing room
+    above the watermark.
+  */
+
+  const maximumY =
+    state.ratio === "4:5"
+      ? H * .845
+      : H * .83;
+
+
+  sourceY =
+    Math.min(
+      sourceY,
+      maximumY
+    );
+
+
+  ctx.save();
+
+
+  ctx.fillStyle =
+    config.secondary;
+
+
+  ctx.globalAlpha =
+    .96;
+
+
+  ctx.shadowColor =
+    config.type === "image"
+      ? config.shadow
+      : "rgba(0,0,0,0)";
+
+
+  ctx.shadowBlur =
+    config.type === "image"
+      ? 12
+      : 0;
+
+
+  ctx.shadowOffsetY =
+    config.type === "image"
+      ? 2
+      : 0;
+
+
+  ctx.textBaseline =
+    "top";
+
+
+  ctx.textAlign =
+    state.align === "center"
+      ? "center"
+      : "right";
+
+
+  ctx.direction =
+    sourceArabic
+      ? "rtl"
+      : "ltr";
+
+
+  ctx.font =
+    metaFont(
+      sourceSize,
+      400,
+      sourceArabic
+    );
+
+
+  ctx.fillText(
+    source,
+    sourceX,
+    sourceY
+  );
+
+
+  ctx.restore();
+
+}
+
+  
+  /*
+    ==================================================
+    WATERMARK
+    ==================================================
+
+    Important changes:
+
+      - Aref Ruqaa
+      - larger
+      - same theme color as metadata
+      - Paper therefore becomes dark brown
+        automatically
+  */
+
+  function drawWatermark(
+    config,
+    W,
+    H
+  ){
+
+    if(
+      !watermarkInput.checked
+      ||
+      !watermarkUnlocked
+    ){
+
+      return;
+
+    }
+
+
+    ctx.save();
+
+
+    /*
+      SAME COLOR AS SOURCE/SPEAKER.
+    */
+
+    ctx.fillStyle =
+      config.secondary;
+
+
+    ctx.globalAlpha =
+      .98;
+
+
+    ctx.shadowColor =
+      config.type === "image"
+        ? config.shadow
+        : "rgba(0,0,0,0)";
+
+
+    ctx.shadowBlur =
+      config.type === "image"
+        ? 14
+        : 0;
+
+
+    ctx.shadowOffsetY =
+      config.type === "image"
+        ? 3
+        : 0;
+
+
+    /*
+      ~10–12% larger.
+    */
+
+    ctx.font =
+      metaFont(
+        state.ratio === "4:5"
+          ? 114
+          : 104,
+        700,
+        true
+      );
+
+
+    ctx.textAlign =
+      "center";
+
+
+    ctx.textBaseline =
+      "middle";
+
+
+    ctx.direction =
+      "rtl";
+
+
+    /*
+      Footer position preserved.
+    */
+
+    const watermarkY =
+      state.ratio === "4:5"
+        ? H * .905
+        : H * .90;
+
+
+    ctx.fillText(
+      "المتوكل",
+      W/2,
+      watermarkY
+    );
+
+
+    ctx.restore();
+
+  }
+
+
+  /*
+    ==================================================
+    MAIN LAYOUT
+    ==================================================
+  */
+
+  function drawTextBlock(
+    config,
+    W,
+    H
+  ){
+
+    const quote =
+      quoteInput.value.trim()
+      ||
+      "اكتب النص هنا";
+
+
+    const author =
+      authorInput.value.trim();
+
+
+    const source =
+      sourceInput.value.trim();
+
+
+    const quoteArabic =
+      containsArabic(
+        quote
+      );
+
+
+    const authorArabic =
+      containsArabic(
+        author
+      );
+
+
+    const sourceArabic =
+      containsArabic(
+        source
+      );
+
+
+    /*
+      A little more width than the original
+      versions.
+
+      More width means:
+        fewer lines,
+        larger possible font,
+        cleaner composition.
+    */
+
+    const marginX =
+      state.type === "hadith"
+        ? W * .072
+        : W * .082;
+
+
+    const maxWidth =
+      W
+      -
+      marginX * 2;
+
+
+    /*
+      ==================================================
+      GENERAL
+      ==================================================
+    */
+
+    if(
+      state.type === "general"
+    ){
+
+      /*
+        Quote stays central-upper.
+
+        Short quotes become significantly larger
+        rather than leaving a huge empty void.
+      */
+
+      const quoteSafeTop =
+        state.ratio === "4:5"
+          ? H * .11
+          : H * .095;
+
+
+      const quoteSafeBottom =
+        state.ratio === "4:5"
+          ? H * .63
+          : H * .615;
+
+
+      const quoteCenterY =
+        state.ratio === "4:5"
+          ? H * .365
+          : H * .35;
+
+
+      const availableHeight =
+        quoteSafeBottom
+        -
+        quoteSafeTop;
+
+
+      const fitted =
+        fitQuote(
+          quote,
+          maxWidth,
+          availableHeight,
+          quoteArabic
+        );
+
+
+      let startY =
+        quoteCenterY
+        -
+        fitted.totalHeight / 2;
+
+
+      if(
+        startY
+        <
+        quoteSafeTop
+      ){
+
+        startY =
+          quoteSafeTop;
+
+      }
+
+
+      if(
+        startY
+        +
+        fitted.totalHeight
+        >
+        quoteSafeBottom
+      ){
+
+        startY =
+          quoteSafeBottom
+          -
+          fitted.totalHeight;
+
+      }
+
+
+      const quoteBottom =
+        drawMainQuote(
+          config,
+          fitted,
+          quoteArabic,
+          W,
+          startY,
+          marginX
+        );
+
+
+      drawGeneralAttribution(
+        config,
+        W,
+        H,
+        marginX,
+        quoteBottom,
+        author,
+        source,
+        authorArabic,
+        sourceArabic
+      );
+
+    }
+
+
+    /*
+      ==================================================
+      HADITH
+      ==================================================
+
+      This stays intentionally close
+      to the version that was already
+      working well.
+    */
+
+    else{
+
+
+      const headingHeight =
+        state.ratio === "4:5"
+          ? 150
+          : 136;
+
+
+        const headingGap =
+          state.ratio === "4:5"
+            ? 120
+            : 104;
+
+
+      /*
+        Heading + matn start a little below
+        the absolute upper edge.
+      */
+
+      const groupSafeTop =
+        state.ratio === "4:5"
+          ? H * .105
+          : H * .09;
+
+
+      /*
+        Plenty of room for large matn.
+      */
+
+      const groupSafeBottom =
+        state.ratio === "4:5"
+          ? H * .72
+          : H * .705;
+
+
+      const availableForGroup =
+        groupSafeBottom
+        -
+        groupSafeTop;
+
+
+      const availableForQuote =
+        availableForGroup
+        -
+        headingHeight
+        -
+        headingGap;
+
+
+      const fitted =
+        fitQuote(
+          quote,
+          maxWidth,
+          availableForQuote,
+          quoteArabic
+        );
+
+
+      const groupHeight =
+        headingHeight
+        +
+        headingGap
+        +
+        fitted.totalHeight;
+
+
+      /*
+        Slightly lower center
+        for visual balance.
+      */
+
+      let groupCenterY;
+
+
+      if(
+        fitted.lines.length <= 3
+      ){
+
+        groupCenterY =
+          state.ratio === "4:5"
+            ? H * .395
+            : H * .38;
+
+      }
+
+      else if(
+        fitted.lines.length <= 5
+      ){
+
+        groupCenterY =
+          state.ratio === "4:5"
+            ? H * .405
+            : H * .39;
+
+      }
+
+      else{
+
+        groupCenterY =
+          state.ratio === "4:5"
+            ? H * .415
+            : H * .40;
+
+      }
+
+
+      let groupStartY =
+        groupCenterY
+        -
+        groupHeight / 2;
+
+
+      if(
+        groupStartY
+        <
+        groupSafeTop
+      ){
+
+        groupStartY =
+          groupSafeTop;
+
+      }
+
+
+      if(
+        groupStartY
+        +
+        groupHeight
+        >
+        groupSafeBottom
+      ){
+
+        groupStartY =
+          groupSafeBottom
+          -
+          groupHeight;
+
+      }
+
+
+      const headingY =
+        groupStartY;
+
+
+      const quoteStartY =
+        headingY
+        +
+        headingHeight
+        +
+        headingGap;
+
+
+      drawHadithHeading(
+        config,
+        W,
+        headingY,
+        marginX
+      );
+
+
+      const quoteBottom =
+        drawMainQuote(
+          config,
+          fitted,
+          quoteArabic,
+          W,
+          quoteStartY,
+          marginX
+        );
+
+
+      drawHadithSource(
+        config,
+        W,
+        H,
+        marginX,
+        quoteBottom,
+        source,
+        sourceArabic,
+        fitted.lines.filter(
+          line =>
+            !line.blank
+        ).length
+      );
+
+    }
+
+
+    /*
+      Draw watermark last.
+    */
+
+    drawWatermark(
+      config,
+      W,
+      H
+    );
+
+  }
+
+
+  /*
+    ==================================================
+    RENDER
+    ==================================================
+  */
+
+  async function render(){
+
+    configureCanvas();
+
+
+    const W =
+      canvas.width;
+
+
+    const H =
+      canvas.height;
+
+
+    const config =
+      themeConfig[
+        state.theme
+      ];
+
+
+    ctx.clearRect(
+      0,
+      0,
+      W,
+      H
+    );
+
+
+    if(
+      config.type === "paper"
+    ){
+
+      drawPaper(
+        config,
+        W,
+        H
+      );
+
+    }
+
+    else{
+
+      try{
+
+
+        const img =
+          await loadImage(
+            config.src
+          );
+
+
+        drawCoverImage(
+          img,
+          0,
+          0,
+          W,
+          H
+        );
+
+
+      }
+
+      catch(err){
+
+
+        /*
+          Safe fallback if the filename
+          is wrong or image wasn't uploaded.
+        */
+
+        const fallback =
+          ctx.createLinearGradient(
+            0,
+            0,
+            0,
+            H
+          );
+
+
+        fallback.addColorStop(
+          0,
+          "#252735"
+        );
+
+
+        fallback.addColorStop(
+          1,
+          "#111217"
+        );
+
+
+        ctx.fillStyle =
+          fallback;
+
+
+        ctx.fillRect(
+          0,
+          0,
+          W,
+          H
+        );
+
+
+        setStatus(
+          `Add ${config.src} to use this background.`,
+          2800
+        );
+
+      }
+
+
+      drawImageTreatment(
+        config,
+        W,
+        H
+      );
+
+    }
+
+
+    drawTextBlock(
+      config,
+      W,
+      H
+    );
+
+  }
+
+
+  /*
+    ==================================================
+    BUTTON GROUPS
+    ==================================================
+  */
+
+  function bindChoiceGroup(
+    groupId,
+    key
+  ){
+
+    document
+      .getElementById(
+        groupId
+      )
+      .addEventListener(
+        "click",
+        event => {
+
+
+          const btn =
+            event.target.closest(
+              ".choice"
+            );
+
+
+          if(
+            !btn
+          ){
+
+            return;
+
+          }
+
+
+          const value =
+            btn.dataset[key];
+
+
+          if(
+            !value
+          ){
+
+            return;
+
+          }
+
+
+          state[key] =
+            value;
+
+
+          btn.parentElement
+            .querySelectorAll(
+              ".choice"
+            )
+            .forEach(
+              item => {
+
+                item.classList.remove(
+                  "active"
+                );
+
+              }
+            );
+
+
+          btn.classList.add(
+            "active"
+          );
+
+
+          if(
+            key === "type"
+          ){
+
+            updateTypeInterface();
+
+          }
+
+
+          render();
+
+        }
+      );
+
+  }
+
+
+  bindChoiceGroup(
+    "typeChoices",
+    "type"
+  );
+
+
+  bindChoiceGroup(
+    "themeChoices",
+    "theme"
+  );
+
+
+  bindChoiceGroup(
+    "ratioChoices",
+    "ratio"
+  );
+
+
+  bindChoiceGroup(
+    "alignChoices",
+    "align"
+  );
+
+
+  /*
+    ==================================================
+    GENERAL / HADITH INTERFACE
+    ==================================================
+  */
+
+  function updateTypeInterface(){
+
+    if(
+      state.type === "hadith"
+    ){
+
+      authorField.classList.add(
+        "hidden"
+      );
+
+    }
+
+    else{
+
+      authorField.classList.remove(
+        "hidden"
+      );
+
+    }
+
+  }
+
+
+  /*
+    ==================================================
+    LIVE INPUT
+    ==================================================
+  */
+
+  [
+    quoteInput,
+    authorInput,
+    sourceInput
+  ]
+  .forEach(
+    element => {
+
+
+      element.addEventListener(
+        "input",
+        render
+      );
+
+    }
+  );
+
+
+  /*
+    ==================================================
+    PASSWORD-GATED WATERMARK
+    ==================================================
+  */
+
+  watermarkInput
+    .addEventListener(
+      "change",
+      () => {
+
+
+        /*
+          Turning off never needs password.
+        */
+
+        if(
+          !watermarkInput.checked
+        ){
+
+          render();
+
+          return;
+
+        }
+
+
+        /*
+          Already unlocked during this
+          browser session.
+        */
+
+        if(
+          watermarkUnlocked
+        ){
+
+          render();
+
+          return;
+
+        }
+
+
+        const entered =
+          window.prompt(
+            "Enter watermark password:"
+          );
+
+
+        if(
+          entered
+          ===
+          WATERMARK_PASSWORD
+        ){
+
+          watermarkUnlocked =
+            true;
+
+
+          watermarkInput.checked =
+            true;
+
+
+          setStatus(
+            "Private watermark unlocked.",
+            1800
+          );
+
+
+          render();
+
+        }
+
+        else{
+
+
+          watermarkInput.checked =
+            false;
+
+
+          if(
+            entered !== null
+          ){
+
+            setStatus(
+              "Incorrect password.",
+              2000
+            );
+
+          }
+
+
+          render();
+
+        }
+
+      }
+    );
+
+
+  /*
+    ==================================================
+    DOWNLOAD PNG
+    ==================================================
+  */
+
+  document
+    .getElementById(
+      "downloadBtn"
+    )
+    .addEventListener(
+      "click",
+      async () => {
+
+
+        await render();
+
+
+        const link =
+          document.createElement(
+            "a"
+          );
+
+
+        let filenameBase;
+
+
+        if(
+          state.type === "hadith"
+        ){
+
+          filenameBase =
+            "hadith";
+
+        }
+
+        else{
+
+          filenameBase =
+            authorInput.value.trim()
+            ||
+            "quote";
+
+        }
+
+
+        const safeName =
+          filenameBase
+            .replace(
+              /[^\p{L}\p{N}_-]+/gu,
+              "-"
+            )
+            .replace(
+              /^-+|-+$/g,
+              ""
+            );
+
+
+        link.download =
+          `${
+            safeName || "quote"
+          }-${
+            state.ratio.replace(
+              ":",
+              "x"
+            )
+          }.png`;
+
+
+        link.href =
+          canvas.toDataURL(
+            "image/png",
+            1
+          );
+
+
+        link.click();
+
+
+        setStatus(
+          "PNG downloaded."
+        );
+
+      }
+    );
+
+
+  /*
+    ==================================================
+    COPY IMAGE
+    ==================================================
+  */
+
+  document
+    .getElementById(
+      "copyBtn"
+    )
+    .addEventListener(
+      "click",
+      async () => {
+
+
+        try{
+
+
+          await render();
+
+
+          const blob =
+            await new Promise(
+              resolve => {
+
+
+                canvas.toBlob(
+                  resolve,
+                  "image/png",
+                  1
+                );
+
+              }
+            );
+
+
+          if(
+            !navigator.clipboard
+            ||
+            !window.ClipboardItem
+          ){
+
+            throw new Error(
+              "Clipboard images are not supported."
+            );
+
+          }
+
+
+          await navigator.clipboard.write(
+            [
+
+              new ClipboardItem(
+                {
+                  "image/png":
+                    blob
+                }
+              )
+
+            ]
+          );
+
+
+          setStatus(
+            "Image copied."
+          );
+
+
+        }
+
+        catch(err){
+
+
+          setStatus(
+            "Copy Image is not supported here — use Download PNG instead.",
+            3000
+          );
+
+        }
+
+      }
+    );
+
+
+  /*
+    ==================================================
+    START / FONT LOADING
+    ==================================================
+
+    Canvas must wait for the actual fonts
+    before measuring text.
+  */
+
+  async function start(){
+
+    if(
+      document.fonts
+      &&
+      document.fonts.ready
+    ){
+
+      await document.fonts.ready;
+
+    }
+
+
+    if(
+      document.fonts
+      &&
+      document.fonts.load
+    ){
+
+      try{
+
+
+        await Promise.all(
+          [
+
+            /*
+              AMIRI
+            */
+
+            document.fonts.load(
+              '400 210px "Amiri"'
+            ),
+
+            document.fonts.load(
+              '700 124px "Amiri"'
+            ),
+
+
+            /*
+              AREF RUQAA
+            */
+
+            document.fonts.load(
+              '400 78px "Aref Ruqaa"'
+            ),
+
+            document.fonts.load(
+              '700 114px "Aref Ruqaa"'
+            )
+
+          ]
+        );
+
+
+      }
+
+      catch(err){
+
+        /*
+          Continue even if explicit
+          font loading is unsupported.
+        */
+
+      }
+
+    }
+
+
+    updateTypeInterface();
+
+
+    render();
+
+  }
+
+
+  start();
+
+
+})();
+
+</script>
+
+</body>
+</html>

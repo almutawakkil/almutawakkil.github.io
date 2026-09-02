@@ -1,0 +1,2881 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Book Clipper · al-Mutawakkil</title>
+
+  <meta
+    name="description"
+    content="Select pages from an Internet Archive book and save them as a clean multi-page PDF."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body,
+    button,
+    input,
+    select,
+    textarea {
+      font-family: "Amiri", Georgia, serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f6f5f0;
+      color: #1a1a18;
+      line-height: 1.7;
+    }
+
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 56px 20px 72px;
+    }
+
+    /* SITE HEADER */
+
+    .site-header {
+      margin-bottom: 42px;
+    }
+
+    .top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 36px;
+      line-height: 1.1;
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .site-subtitle {
+      margin: 5px 0 0;
+      color: #6e6d67;
+      font-size: 16px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding-bottom: 4px;
+    }
+
+    nav a {
+      color: #6e6d67;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #27500a;
+    }
+
+    /* TOOL HEADING */
+
+    .tool-heading {
+      margin-bottom: 28px;
+    }
+
+    .tool-heading h2 {
+      margin: 0 0 6px;
+      font-size: 32px;
+      line-height: 1.2;
+      font-weight: 400;
+    }
+
+    .tool-heading p {
+      margin: 0;
+      color: #6e6d67;
+      font-size: 17px;
+      line-height: 1.7;
+      max-width: 680px;
+    }
+
+    /* MAIN TOOL */
+
+    .card {
+      background: #fff;
+      padding: 28px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.09);
+    }
+
+    .section {
+      margin-bottom: 26px;
+    }
+
+    .section:last-of-type {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 11px 13px;
+      font-size: 17px;
+      border: 1px solid rgba(0,0,0,.15);
+      border-radius: 10px;
+      background: #fff;
+      color: #1a1a18;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #7c8d72;
+      box-shadow: 0 0 0 3px rgba(39,80,10,.08);
+    }
+
+    input::placeholder {
+      color: #8b8982;
+    }
+
+    .url-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .url-row input {
+      flex: 1;
+    }
+
+    #loadBookButton {
+      white-space: nowrap;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 10px;
+      background: #27500a;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #loadBookButton:hover {
+      opacity: .92;
+    }
+
+    #loadBookButton:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    #volumeSection {
+      display: none;
+    }
+
+    .pages-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 16px;
+    }
+
+    .page-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 9px;
+    }
+
+    .page-row input {
+      flex: 1;
+    }
+
+    .remove-page {
+      width: 45px;
+      border: 1px solid rgba(0,0,0,.15);
+      background: #fff;
+      color: #1a1a18;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .remove-page:hover {
+      background: #f1f0eb;
+    }
+
+    #addPage {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      color: #27500a;
+      font-size: 15px;
+      padding: 0;
+    }
+
+    #addPage:hover {
+      text-decoration: underline;
+    }
+
+    .main-button {
+      width: 100%;
+      padding: 11px 16px;
+      border: none;
+      border-radius: 10px;
+      background: #27500a;
+      color: #fff;
+      font-size: 17px;
+      cursor: pointer;
+    }
+
+    .main-button:hover {
+      opacity: .92;
+    }
+
+    .main-button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .small-note {
+      margin-top: 10px;
+      color: #6e6d67;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    #bookInfo {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: #f1f0eb;
+      color: #5f5e59;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    #status {
+      margin-top: 16px;
+      min-height: 20px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .error {
+      color: #8b1e1e;
+    }
+
+    .success {
+      color: #27500a;
+    }
+
+    .loading {
+      color: #6e6d67;
+    }
+
+    #clipSection {
+      display: none;
+      margin-top: 35px;
+    }
+
+    #clipLabel {
+      margin-bottom: 12px;
+      color: #6e6d67;
+      font-size: 15px;
+    }
+
+    .clip-controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .secondary-button {
+      flex: 1;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid #27500a;
+      cursor: pointer;
+      background: #fff;
+      color: #27500a;
+      font-size: 16px;
+    }
+
+    .secondary-button.dark {
+      background: #27500a;
+      color: #fff;
+    }
+
+    .secondary-button:hover {
+      opacity: .92;
+    }
+
+    /*
+     * SCREEN PREVIEW
+     *
+     * The surrounding interface follows dark mode,
+     * but the scan area intentionally stays white.
+     */
+
+    #bookClip {
+      width: 100%;
+      margin: auto;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      overflow-x: auto;
+      background: white;
+      border: 1px solid rgba(0,0,0,.08);
+      box-shadow: 0 2px 16px rgba(0,0,0,.08);
+    }
+
+    #bookClip img {
+      display: block;
+      width: auto;
+      height: 650px;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .page-divider {
+      width: 8px;
+      min-width: 8px;
+      height: auto;
+      background: white;
+      flex-shrink: 0;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+      .wrap {
+        padding: 32px 16px 50px;
+      }
+
+      .top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .brand {
+        font-size: 32px;
+      }
+
+      nav {
+        gap: 14px;
+      }
+
+      nav a {
+        font-size: 15px;
+      }
+
+      .tool-heading h2 {
+        font-size: 30px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .url-row {
+        flex-direction: column;
+      }
+
+      #loadBookButton {
+        padding: 11px 14px;
+        width: 100%;
+      }
+
+      .clip-controls {
+        flex-direction: column;
+      }
+
+      .secondary-button {
+        width: 100%;
+      }
+
+      #bookClip img {
+        height: 480px;
+      }
+    }
+
+    /* DARK MODE */
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1b1a18;
+        color: #f2efe8;
+      }
+
+      .site-subtitle,
+      nav a,
+      .tool-heading p,
+      .small-note,
+      #clipLabel,
+      .loading {
+        color: #9b9890;
+      }
+
+      nav a:hover,
+      nav a.active,
+      #addPage,
+      .success {
+        color: #b8d98d;
+      }
+
+      .card {
+        background: #22211f;
+        border-color: rgba(255,255,255,.08);
+      }
+
+      input,
+      select {
+        background: #1b1a18;
+        color: #f2efe8;
+        border-color: rgba(255,255,255,.15);
+      }
+
+      input::placeholder {
+        color: #77756e;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: #8da675;
+        box-shadow: 0 0 0 3px rgba(184,217,141,.08);
+      }
+
+      #loadBookButton,
+      .main-button,
+      .secondary-button.dark {
+        background: #496f2b;
+        color: #fff;
+      }
+
+      #bookInfo {
+        background: #1b1a18;
+        color: #b3b0a7;
+      }
+
+      .remove-page {
+        background: #1b1a18;
+        color: #f2efe8;
+        border-color: rgba(255,255,255,.15);
+      }
+
+      .remove-page:hover {
+        background: #292825;
+      }
+
+      .secondary-button {
+        background: #22211f;
+        color: #b8d98d;
+        border-color: #6e9550;
+      }
+
+      .error {
+        color: #e08b8b;
+      }
+
+      /* Book scans themselves stay white by design. */
+      #bookClip,
+      .page-divider {
+        background: #fff;
+      }
+
+      #bookClip {
+        border-color: rgba(255,255,255,.08);
+        box-shadow: 0 2px 18px rgba(0,0,0,.28);
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <main class="wrap">
+
+    <header class="site-header">
+      <div class="top">
+
+        <div>
+          <h1 class="brand">المتوكل</h1>
+          <p class="site-subtitle">Islamic Library</p>
+        </div>
+
+        <nav>
+          <a href="index.html">Translated Works</a>
+          <a href="excerpts.html">Classical Excerpts</a>
+          <a href="40.html" lang="ar" dir="rtl">الأربعون للمتوكل</a>
+          <a href="adhkar.html" lang="ar" dir="rtl">الأذكار</a>
+          <a href="tools.html" class="active">Tools</a>
+        </nav>
+
+      </div>
+    </header>
+
+    <section class="tool-heading">
+      <h2>Book Clipper</h2>
+      <p>
+        Select pages from an Internet Archive book and save them
+        as a clean multi-page PDF.
+      </p>
+    </section>
+
+<div class="card">
+
+
+    <!-- ARCHIVE LINK -->
+
+    <div class="section">
+
+
+      <label for="archiveUrl">
+        Internet Archive link
+      </label>
+
+
+      <div class="url-row">
+
+
+        <input
+          id="archiveUrl"
+          type="url"
+          placeholder="https://archive.org/details/..."
+        >
+
+
+        <button
+          id="loadBookButton"
+          type="button"
+        >
+          Load Volumes
+        </button>
+
+
+      </div>
+
+
+      <div id="bookInfo"></div>
+
+
+    </div>
+
+
+
+    <!-- VOLUME -->
+
+    <div
+      id="volumeSection"
+      class="section"
+    >
+
+
+      <label for="volumeSelect">
+        Volume / PDF
+      </label>
+
+
+      <select
+        id="volumeSelect"
+      ></select>
+
+
+      <div class="small-note">
+        Choose the volume containing the pages you were reading.
+      </div>
+
+
+    </div>
+
+
+
+    <!-- PAGE INPUTS -->
+
+    <div class="section">
+
+
+      <div class="pages-title">
+
+
+        <label
+          style="margin:0;"
+        >
+          PDF pages
+        </label>
+
+
+        <button
+          id="addPage"
+          type="button"
+        >
+          + Add page
+        </button>
+
+
+      </div>
+
+
+
+      <div id="pageInputs">
+
+
+        <div class="page-row">
+
+
+          <input
+            class="page-number"
+            type="number"
+            min="1"
+            placeholder="PDF page number"
+          >
+
+
+          <button
+            class="remove-page"
+            type="button"
+            aria-label="Remove page"
+          >
+            ×
+          </button>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <div class="small-note">
+
+        Maximum 4 pages.
+
+        They appear in exactly the
+        order entered.
+
+        Example:
+        500, 501, 1.
+
+      </div>
+
+
+    </div>
+
+
+
+    <button
+      id="createButton"
+      class="main-button"
+      type="button"
+      disabled
+    >
+      Create Clip
+    </button>
+
+
+    <div id="status"></div>
+
+
+  </div>
+
+
+
+  <!-- RESULT -->
+
+  <section id="clipSection">
+
+
+    <div id="clipLabel"></div>
+
+
+    <div class="clip-controls">
+
+
+      <button
+        id="savePdfButton"
+        class="secondary-button dark"
+        type="button"
+      >
+        Save as PDF
+      </button>
+
+
+      <button
+        id="newClipButton"
+        class="secondary-button"
+        type="button"
+      >
+        New Clip
+      </button>
+
+
+    </div>
+
+
+
+    <div id="bookClip"></div>
+
+
+
+    <div
+      class="small-note"
+      style="margin-top:16px;"
+    >
+
+      Each selected scan is saved as
+      its own tightly fitted PDF page.
+
+      To combine two afterward,
+      open the saved PDF and print
+      using
+      <strong>
+        2 pages per sheet
+      </strong>.
+
+    </div>
+
+
+  </section>
+
+  </main>
+
+<script>
+
+  /*
+   * ELEMENTS
+   */
+
+  const archiveUrl =
+    document.getElementById(
+      "archiveUrl"
+    );
+
+
+  const loadBookButton =
+    document.getElementById(
+      "loadBookButton"
+    );
+
+
+  const volumeSection =
+    document.getElementById(
+      "volumeSection"
+    );
+
+
+  const volumeSelect =
+    document.getElementById(
+      "volumeSelect"
+    );
+
+
+  const bookInfo =
+    document.getElementById(
+      "bookInfo"
+    );
+
+
+  const pageInputs =
+    document.getElementById(
+      "pageInputs"
+    );
+
+
+  const addPage =
+    document.getElementById(
+      "addPage"
+    );
+
+
+  const createButton =
+    document.getElementById(
+      "createButton"
+    );
+
+
+  const status =
+    document.getElementById(
+      "status"
+    );
+
+
+  const clipSection =
+    document.getElementById(
+      "clipSection"
+    );
+
+
+  const clipLabel =
+    document.getElementById(
+      "clipLabel"
+    );
+
+
+  const bookClip =
+    document.getElementById(
+      "bookClip"
+    );
+
+
+  const savePdfButton =
+    document.getElementById(
+      "savePdfButton"
+    );
+
+
+  const newClipButton =
+    document.getElementById(
+      "newClipButton"
+    );
+
+
+
+  /*
+   * CURRENT ITEM
+   */
+
+  let currentIdentifier =
+    null;
+
+
+  let currentVolumes =
+    [];
+
+
+
+  /*
+   * STATUS MESSAGE
+   */
+
+  function setStatus(
+    message,
+    type = ""
+  ) {
+
+    status.textContent =
+      message;
+
+
+    status.className =
+      type;
+
+  }
+
+
+
+  /*
+   * EXTRACT ARCHIVE IDENTIFIER
+   */
+
+  function getIdentifier(
+    value
+  ) {
+
+    value =
+      value.trim();
+
+
+    if (!value) {
+
+      throw new Error(
+        "Paste an Internet Archive link first."
+      );
+
+    }
+
+
+    let url;
+
+
+    try {
+
+      url =
+        new URL(
+          value
+        );
+
+    } catch {
+
+      throw new Error(
+        "That doesn't look like a valid URL."
+      );
+
+    }
+
+
+    if (
+      url.hostname !==
+        "archive.org"
+      &&
+      url.hostname !==
+        "www.archive.org"
+    ) {
+
+      throw new Error(
+        "Please use an archive.org link."
+      );
+
+    }
+
+
+    const parts =
+      url.pathname
+        .split("/")
+        .filter(Boolean);
+
+
+    const detailsIndex =
+      parts.indexOf(
+        "details"
+      );
+
+
+    if (
+      detailsIndex !== -1
+      &&
+      parts[
+        detailsIndex + 1
+      ]
+    ) {
+
+      return parts[
+        detailsIndex + 1
+      ];
+
+    }
+
+
+    const downloadIndex =
+      parts.indexOf(
+        "download"
+      );
+
+
+    if (
+      downloadIndex !== -1
+      &&
+      parts[
+        downloadIndex + 1
+      ]
+    ) {
+
+      return parts[
+        downloadIndex + 1
+      ];
+
+    }
+
+
+    throw new Error(
+      "Couldn't determine the Internet Archive item."
+    );
+
+  }
+
+
+
+  /*
+   * ARCHIVE PATH ENCODING
+   */
+
+  function encodeArchivePath(
+    path
+  ) {
+
+    return path
+      .split("/")
+      .map(
+        part =>
+          encodeURIComponent(
+            part
+          )
+      )
+      .join("/");
+
+  }
+
+
+
+  function getBaseName(
+    path
+  ) {
+
+    return path
+      .split("/")
+      .pop();
+
+  }
+
+
+
+  function prettifyVolumeName(
+    name
+  ) {
+
+    return name
+      .replace(
+        /_scandata\.xml$/i,
+        ""
+      )
+      .replace(
+        /_text\.pdf$/i,
+        ""
+      )
+      .replace(
+        /_bw\.pdf$/i,
+        ""
+      )
+      .replace(
+        /\.pdf$/i,
+        ""
+      )
+      .replace(
+        /_/g,
+        " "
+      )
+      .replace(
+        /\s+/g,
+        " "
+      )
+      .trim();
+
+  }
+
+
+
+  /*
+   * FIND VOLUMES
+   */
+
+  function findVolumes(
+    metadata
+  ) {
+
+    const files =
+      Array.isArray(
+        metadata.files
+      )
+        ?
+        metadata.files
+        :
+        [];
+
+
+    const scandataFiles =
+      files.filter(
+        file => {
+
+          return (
+            file.name
+            &&
+            file.name
+              .toLowerCase()
+              .endsWith(
+                "_scandata.xml"
+              )
+          );
+
+        }
+      );
+
+
+    const volumes =
+      [];
+
+
+    for (
+      const scandata
+      of
+      scandataFiles
+    ) {
+
+      const prefix =
+        scandata.name
+          .replace(
+            /_scandata\.xml$/i,
+            ""
+          );
+
+
+      const matchingPdfs =
+        files.filter(
+          file => {
+
+            if (!file.name) {
+
+              return false;
+
+            }
+
+
+            const lower =
+              file.name
+                .toLowerCase();
+
+
+            if (
+              !lower.endsWith(
+                ".pdf"
+              )
+            ) {
+
+              return false;
+
+            }
+
+
+            return (
+
+              file.name ===
+                `${prefix}.pdf`
+
+              ||
+
+              file.name ===
+                `${prefix}_text.pdf`
+
+              ||
+
+              file.name ===
+                `${prefix}_bw.pdf`
+
+              ||
+
+              file.name.startsWith(
+                `${prefix}_`
+              )
+
+            );
+
+          }
+        );
+
+
+      const exactPdf =
+        matchingPdfs.find(
+          file =>
+            file.name ===
+            `${prefix}.pdf`
+        );
+
+
+      const textPdf =
+        matchingPdfs.find(
+          file =>
+            file.name ===
+            `${prefix}_text.pdf`
+        );
+
+
+      const displayPdf =
+        exactPdf
+        ||
+        textPdf
+        ||
+        matchingPdfs[0]
+        ||
+        null;
+
+
+      volumes.push({
+
+        prefix,
+
+        pdfName:
+          displayPdf
+            ?
+            displayPdf.name
+            :
+            null,
+
+        label:
+          displayPdf
+            ?
+            getBaseName(
+              displayPdf.name
+            )
+            :
+            prettifyVolumeName(
+              prefix
+            )
+
+      });
+
+    }
+
+
+
+    /*
+     * REMOVE DUPLICATES
+     */
+
+    const unique =
+      [];
+
+
+    const seen =
+      new Set();
+
+
+    for (
+      const volume
+      of volumes
+    ) {
+
+      if (
+        seen.has(
+          volume.prefix
+        )
+      ) {
+
+        continue;
+
+      }
+
+
+      seen.add(
+        volume.prefix
+      );
+
+
+      unique.push(
+        volume
+      );
+
+    }
+
+
+
+    /*
+     * FALLBACK:
+     * derive prefixes from PDFs.
+     */
+
+    if (!unique.length) {
+
+      const pdfFiles =
+        files.filter(
+          file => {
+
+            return (
+              file.name
+              &&
+              file.name
+                .toLowerCase()
+                .endsWith(
+                  ".pdf"
+                )
+            );
+
+          }
+        );
+
+
+      for (
+        const pdf
+        of
+        pdfFiles
+      ) {
+
+        let prefix =
+          pdf.name;
+
+
+        prefix =
+          prefix.replace(
+            /_text\.pdf$/i,
+            ""
+          );
+
+
+        prefix =
+          prefix.replace(
+            /_bw\.pdf$/i,
+            ""
+          );
+
+
+        prefix =
+          prefix.replace(
+            /\.pdf$/i,
+            ""
+          );
+
+
+        if (
+          seen.has(
+            prefix
+          )
+        ) {
+
+          continue;
+
+        }
+
+
+        seen.add(
+          prefix
+        );
+
+
+        unique.push({
+
+          prefix,
+
+          pdfName:
+            pdf.name,
+
+          label:
+            getBaseName(
+              pdf.name
+            )
+
+        });
+
+      }
+
+    }
+
+
+
+    /*
+     * NATURAL SORT
+     */
+
+    unique.sort(
+      (
+        a,
+        b
+      ) =>
+        a.label.localeCompare(
+          b.label,
+          undefined,
+          {
+            numeric: true,
+            sensitivity:
+              "base"
+          }
+        )
+    );
+
+
+    return unique;
+
+  }
+
+
+
+  /*
+   * SAFE TEXT
+   */
+
+  function escapeHtml(
+    text
+  ) {
+
+    const div =
+      document.createElement(
+        "div"
+      );
+
+
+    div.textContent =
+      String(
+        text
+      );
+
+
+    return div.innerHTML;
+
+  }
+
+
+
+  /*
+   * LOAD ARCHIVE ITEM
+   */
+
+  async function loadArchiveItem() {
+
+    try {
+
+      setStatus(
+        "Reading Internet Archive files...",
+        "loading"
+      );
+
+
+      loadBookButton.disabled =
+        true;
+
+
+      createButton.disabled =
+        true;
+
+
+      volumeSection.style.display =
+        "none";
+
+
+      bookInfo.style.display =
+        "none";
+
+
+      currentIdentifier =
+        getIdentifier(
+          archiveUrl.value
+        );
+
+
+      const metadataUrl =
+        `https://archive.org/metadata/${encodeURIComponent(currentIdentifier)}`;
+
+
+      const response =
+        await fetch(
+          metadataUrl
+        );
+
+
+      if (
+        !response.ok
+      ) {
+
+        throw new Error(
+          "Internet Archive metadata could not be loaded."
+        );
+
+      }
+
+
+      const metadata =
+        await response.json();
+
+
+      if (
+        metadata.error
+      ) {
+
+        throw new Error(
+          metadata.error
+        );
+
+      }
+
+
+      currentVolumes =
+        findVolumes(
+          metadata
+        );
+
+
+      if (
+        !currentVolumes.length
+      ) {
+
+        throw new Error(
+          "I couldn't find any readable book volumes in this Archive item."
+        );
+
+      }
+
+
+      volumeSelect.innerHTML =
+        "";
+
+
+      currentVolumes.forEach(
+        (
+          volume,
+          index
+        ) => {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+
+          option.value =
+            index;
+
+
+          option.textContent =
+            volume.label;
+
+
+          volumeSelect.appendChild(
+            option
+          );
+
+        }
+      );
+
+
+      const title =
+        metadata.metadata?.title
+        ||
+        currentIdentifier;
+
+
+      bookInfo.innerHTML =
+        `<strong>${escapeHtml(title)}</strong><br>`
+        +
+        `${currentVolumes.length} book ${
+          currentVolumes.length === 1
+            ?
+            "volume"
+            :
+            "volumes"
+        } found.`;
+
+
+      bookInfo.style.display =
+        "block";
+
+
+      volumeSection.style.display =
+        "block";
+
+
+      createButton.disabled =
+        false;
+
+
+      setStatus(
+
+        currentVolumes.length === 1
+
+          ?
+
+          "Book loaded. Enter the PDF page number."
+
+          :
+
+          `Found ${currentVolumes.length} volumes. Choose the one you were reading.`,
+
+        "success"
+
+      );
+
+
+    } catch (
+      error
+    ) {
+
+      console.error(
+        error
+      );
+
+
+      setStatus(
+        error.message
+        ||
+        "Something went wrong.",
+        "error"
+      );
+
+
+    } finally {
+
+      loadBookButton.disabled =
+        false;
+
+    }
+
+  }
+
+
+
+  loadBookButton.addEventListener(
+    "click",
+    loadArchiveItem
+  );
+
+
+
+  archiveUrl.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key ===
+        "Enter"
+      ) {
+
+        loadArchiveItem();
+
+      }
+
+    }
+  );
+
+
+
+  /*
+   * PAGE INPUT CONTROLS
+   */
+
+  function updateRows() {
+
+    const rows =
+      document.querySelectorAll(
+        ".page-row"
+      );
+
+
+    addPage.style.display =
+      rows.length >= 4
+        ?
+        "none"
+        :
+        "inline-block";
+
+
+    rows.forEach(
+      row => {
+
+        const button =
+          row.querySelector(
+            ".remove-page"
+          );
+
+
+        button.style.visibility =
+          rows.length === 1
+            ?
+            "hidden"
+            :
+            "visible";
+
+      }
+    );
+
+  }
+
+
+
+  addPage.addEventListener(
+    "click",
+    () => {
+
+      const count =
+        document.querySelectorAll(
+          ".page-row"
+        ).length;
+
+
+      if (
+        count >= 4
+      ) {
+
+        return;
+
+      }
+
+
+      const row =
+        document.createElement(
+          "div"
+        );
+
+
+      row.className =
+        "page-row";
+
+
+      row.innerHTML = `
+
+        <input
+          class="page-number"
+          type="number"
+          min="1"
+          placeholder="PDF page number"
+        >
+
+        <button
+          class="remove-page"
+          type="button"
+          aria-label="Remove page"
+        >
+          ×
+        </button>
+
+      `;
+
+
+      pageInputs.appendChild(
+        row
+      );
+
+
+      updateRows();
+
+
+      row
+        .querySelector(
+          "input"
+        )
+        .focus();
+
+    }
+  );
+
+
+
+  pageInputs.addEventListener(
+    "click",
+    event => {
+
+      if (
+        !event.target
+          .classList
+          .contains(
+            "remove-page"
+          )
+      ) {
+
+        return;
+
+      }
+
+
+      const rows =
+        document.querySelectorAll(
+          ".page-row"
+        );
+
+
+      if (
+        rows.length <= 1
+      ) {
+
+        return;
+
+      }
+
+
+      event.target
+        .closest(
+          ".page-row"
+        )
+        .remove();
+
+
+      updateRows();
+
+    }
+  );
+
+
+
+  updateRows();
+
+
+
+  /*
+   * READ PAGE NUMBERS
+   */
+
+  function getPages() {
+
+    const inputs =
+      [
+        ...document.querySelectorAll(
+          ".page-number"
+        )
+      ];
+
+
+    const pages =
+      inputs
+        .map(
+          input =>
+            input.value.trim()
+        )
+        .filter(
+          value =>
+            value !== ""
+        )
+        .map(
+          value =>
+            Number(
+              value
+            )
+        );
+
+
+    if (
+      !pages.length
+    ) {
+
+      throw new Error(
+        "Enter at least one PDF page."
+      );
+
+    }
+
+
+    if (
+      pages.length > 4
+    ) {
+
+      throw new Error(
+        "Maximum 4 pages."
+      );
+
+    }
+
+
+    for (
+      const page
+      of pages
+    ) {
+
+      if (
+        !Number.isInteger(
+          page
+        )
+        ||
+        page < 1
+      ) {
+
+        throw new Error(
+          "Page numbers must be whole numbers starting at 1."
+        );
+
+      }
+
+    }
+
+
+    return pages;
+
+  }
+
+
+
+  /*
+   * LOAD INTERNET ARCHIVE PAGE IMAGE
+   *
+   * PDF page 1   -> n0
+   * PDF page 2   -> n1
+   * PDF page 500 -> n499
+   */
+
+  function loadPageImage(
+    identifier,
+    prefix,
+    pdfPage
+  ) {
+
+    return new Promise(
+      (
+        resolve,
+        reject
+      ) => {
+
+        const index =
+          pdfPage - 1;
+
+
+        const encodedPrefix =
+          encodeArchivePath(
+            prefix
+          );
+
+
+        const src =
+          `https://archive.org/download/${encodeURIComponent(identifier)}/${encodedPrefix}/page/n${index}_large.jpg`;
+
+
+        const img =
+          new Image();
+
+
+        img.onload =
+          () => {
+
+            if (
+              img.naturalWidth < 200
+              ||
+              img.naturalHeight < 200
+            ) {
+
+              reject(
+                new Error(
+                  `Page ${pdfPage} could not be loaded from this volume.`
+                )
+              );
+
+
+              return;
+
+            }
+
+
+            resolve({
+
+              img,
+
+              pdfPage,
+
+              src
+
+            });
+
+          };
+
+
+        img.onerror =
+          () => {
+
+            reject(
+              new Error(
+                `Could not load page ${pdfPage} from the selected volume.`
+              )
+            );
+
+          };
+
+
+        img.src =
+          src;
+
+      }
+    );
+
+  }
+
+
+
+  /*
+   * CREATE CLIP
+   */
+
+  createButton.addEventListener(
+    "click",
+    async () => {
+
+      try {
+
+        if (
+          !currentIdentifier
+        ) {
+
+          throw new Error(
+            "Load an Internet Archive book first."
+          );
+
+        }
+
+
+        if (
+          !currentVolumes.length
+        ) {
+
+          throw new Error(
+            "Choose a book volume first."
+          );
+
+        }
+
+
+        const selectedIndex =
+          Number(
+            volumeSelect.value
+          );
+
+
+        const volume =
+          currentVolumes[
+            selectedIndex
+          ];
+
+
+        if (
+          !volume
+        ) {
+
+          throw new Error(
+            "Choose a valid volume."
+          );
+
+        }
+
+
+        const pages =
+          getPages();
+
+
+        createButton.disabled =
+          true;
+
+
+        bookClip.innerHTML =
+          "";
+
+
+        clipSection.style.display =
+          "none";
+
+
+        const loadedPages =
+          [];
+
+
+        /*
+         * LOAD IN EXACT USER ORDER
+         */
+
+        for (
+          let i = 0;
+          i < pages.length;
+          i++
+        ) {
+
+          const page =
+            pages[i];
+
+
+          setStatus(
+            `Loading page ${page} (${i + 1} of ${pages.length})...`,
+            "loading"
+          );
+
+
+          const loaded =
+            await loadPageImage(
+              currentIdentifier,
+              volume.prefix,
+              page
+            );
+
+
+          loadedPages.push(
+            loaded
+          );
+
+        }
+
+
+
+        /*
+         * SCREEN PREVIEW
+         */
+
+        loadedPages.forEach(
+          (
+            item,
+            index
+          ) => {
+
+            item.img.alt =
+              `PDF page ${item.pdfPage}`;
+
+
+            item.img.title =
+              `PDF page ${item.pdfPage}`;
+
+
+            item.img.dataset.pdfPage =
+              item.pdfPage;
+
+
+            item.img.dataset.sourceUrl =
+              item.src;
+
+
+            item.img.dataset.naturalWidth =
+              item.img.naturalWidth;
+
+
+            item.img.dataset.naturalHeight =
+              item.img.naturalHeight;
+
+
+            bookClip.appendChild(
+              item.img
+            );
+
+
+            if (
+              index
+              <
+              loadedPages.length - 1
+            ) {
+
+              const divider =
+                document.createElement(
+                  "div"
+                );
+
+
+              divider.className =
+                "page-divider";
+
+
+              bookClip.appendChild(
+                divider
+              );
+
+            }
+
+          }
+        );
+
+
+        clipLabel.textContent =
+          `${volume.label} — PDF pages ${pages.join(", ")}`;
+
+
+        clipSection.style.display =
+          "block";
+
+
+        setStatus(
+          `Done — pages ${pages.join(", ")} are ready.`,
+          "success"
+        );
+
+
+        clipSection.scrollIntoView({
+
+          behavior:
+            "smooth",
+
+          block:
+            "start"
+
+        });
+
+
+      } catch (
+        error
+      ) {
+
+        console.error(
+          error
+        );
+
+
+        setStatus(
+          error.message
+          ||
+          "Something went wrong.",
+          "error"
+        );
+
+
+      } finally {
+
+        createButton.disabled =
+          false;
+
+      }
+
+    }
+  );
+
+
+
+  /*
+   * ESCAPE TEXT FOR PRINT WINDOW
+   */
+
+  function escapeAttribute(
+    value
+  ) {
+
+    return String(
+      value
+    )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      );
+
+  }
+
+
+
+  /*
+   * SAVE AS PDF
+   *
+   * IMPORTANT:
+   *
+   * We do NOT place scans onto Letter
+   * or A4 paper anymore.
+   *
+   * Instead:
+   *
+   * 1. Read the scan's real pixel ratio.
+   *
+   * 2. Calculate a custom PDF page
+   *    with the same aspect ratio.
+   *
+   * 3. Put the scan edge-to-edge
+   *    on that PDF page.
+   *
+   * 4. Each selected scan becomes
+   *    exactly one PDF page.
+   *
+   * This means there is no artificial
+   * top/bottom/side whitespace added
+   * by Book Clipper.
+   */
+
+  savePdfButton.addEventListener(
+    "click",
+    () => {
+
+      const images =
+        [
+          ...bookClip.querySelectorAll(
+            "img"
+          )
+        ];
+
+
+      if (
+        !images.length
+      ) {
+
+        setStatus(
+          "There are no pages to save.",
+          "error"
+        );
+
+
+        return;
+
+      }
+
+
+
+      /*
+       * Use the first scan as the
+       * reference page shape.
+       *
+       * Pages within the same scanned
+       * volume normally have the same
+       * dimensions.
+       */
+
+      const firstImage =
+        images[0];
+
+
+      const naturalWidth =
+        Number(
+          firstImage.dataset.naturalWidth
+        )
+        ||
+        firstImage.naturalWidth;
+
+
+      const naturalHeight =
+        Number(
+          firstImage.dataset.naturalHeight
+        )
+        ||
+        firstImage.naturalHeight;
+
+
+      if (
+        !naturalWidth
+        ||
+        !naturalHeight
+      ) {
+
+        setStatus(
+          "Could not determine the scan dimensions.",
+          "error"
+        );
+
+
+        return;
+
+      }
+
+
+
+      /*
+       * REAL IMAGE ASPECT RATIO
+       *
+       * Example:
+       *
+       * 1400 / 2100 = 0.6667
+       */
+
+      const aspectRatio =
+        naturalWidth
+        /
+        naturalHeight;
+
+
+
+      /*
+       * Physical PDF dimensions.
+       *
+       * The absolute size doesn't matter
+       * much — the ratio does.
+       *
+       * We use 10 inches as the longer
+       * dimension so the resulting PDF
+       * remains comfortably within normal
+       * browser/PDF limits.
+       */
+
+      let pdfWidth;
+      let pdfHeight;
+
+
+      if (
+        aspectRatio <= 1
+      ) {
+
+        /*
+         * Portrait scan.
+         */
+
+        pdfHeight =
+          10;
+
+
+        pdfWidth =
+          pdfHeight
+          *
+          aspectRatio;
+
+      } else {
+
+        /*
+         * Landscape scan.
+         */
+
+        pdfWidth =
+          10;
+
+
+        pdfHeight =
+          pdfWidth
+          /
+          aspectRatio;
+
+      }
+
+
+
+      /*
+       * Limit decimal noise in CSS.
+       */
+
+      pdfWidth =
+        Number(
+          pdfWidth.toFixed(
+            4
+          )
+        );
+
+
+      pdfHeight =
+        Number(
+          pdfHeight.toFixed(
+            4
+          )
+        );
+
+
+
+      /*
+       * Open a completely clean window.
+       *
+       * This is much more reliable than
+       * trying to hide pieces of the
+       * normal website during printing.
+       */
+
+      const printWindow =
+        window.open(
+          "",
+          "_blank"
+        );
+
+
+      if (
+        !printWindow
+      ) {
+
+        setStatus(
+          "The print window was blocked. Allow pop-ups for this site and try again.",
+          "error"
+        );
+
+
+        return;
+
+      }
+
+
+
+      /*
+       * BUILD PRINT PAGES
+       */
+
+      const printPages =
+        images
+          .map(
+            (
+              img,
+              index
+            ) => {
+
+              const src =
+                escapeAttribute(
+                  img.src
+                );
+
+
+              const pageNumber =
+                escapeAttribute(
+                  img.dataset.pdfPage
+                  ||
+                  index + 1
+                );
+
+
+              return `
+
+                <div class="pdf-page">
+
+                  <img
+                    src="${src}"
+                    alt="PDF page ${pageNumber}"
+                  >
+
+                </div>
+
+              `;
+
+            }
+          )
+          .join("");
+
+
+
+      /*
+       * WRITE THE CLEAN PRINT DOCUMENT
+       */
+
+      printWindow.document.open();
+
+
+      printWindow.document.write(`
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>
+    Book Clip
+  </title>
+
+
+  <style>
+
+    /*
+     * CRITICAL:
+     *
+     * The actual PDF page has exactly
+     * the same aspect ratio as the scan.
+     */
+
+    @page {
+
+      size:
+        ${pdfWidth}in
+        ${pdfHeight}in;
+
+      margin: 0;
+
+    }
+
+
+    * {
+      box-sizing:
+        border-box;
+    }
+
+
+    html,
+    body {
+
+      margin: 0 !important;
+
+      padding: 0 !important;
+
+      background:
+        white;
+
+    }
+
+
+    body {
+      width:
+        ${pdfWidth}in;
+    }
+
+
+    /*
+     * ONE SCAN =
+     * ONE PDF PAGE
+     */
+
+    .pdf-page {
+
+      width:
+        ${pdfWidth}in;
+
+      height:
+        ${pdfHeight}in;
+
+      margin: 0;
+
+      padding: 0;
+
+      overflow:
+        hidden;
+
+      background:
+        white;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      break-after:
+        page;
+
+      page-break-after:
+        always;
+
+      break-inside:
+        avoid;
+
+      page-break-inside:
+        avoid;
+
+    }
+
+
+    /*
+     * FINAL PAGE:
+     * no extra blank page.
+     */
+
+    .pdf-page:last-child {
+
+      break-after:
+        auto;
+
+      page-break-after:
+        auto;
+
+    }
+
+
+    /*
+     * IMAGE FILLS THE PDF PAGE.
+     *
+     * No Letter canvas.
+     * No A4 canvas.
+     * No margins.
+     */
+
+    .pdf-page img {
+
+      display:
+        block;
+
+      width:
+        100%;
+
+      height:
+        100%;
+
+      margin: 0;
+
+      padding: 0;
+
+      border: 0;
+
+      object-fit:
+        contain;
+
+    }
+
+
+    @media print {
+
+      html,
+      body {
+
+        margin:
+          0 !important;
+
+        padding:
+          0 !important;
+
+      }
+
+
+      .pdf-page {
+
+        margin:
+          0 !important;
+
+        padding:
+          0 !important;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  ${printPages}
+
+
+  <script>
+
+    /*
+     * Wait until every remote Archive
+     * image has loaded in this clean
+     * print window before opening
+     * the print dialog.
+     */
+
+    const images =
+      [
+        ...document.images
+      ];
+
+
+    let finished =
+      0;
+
+
+    function imageFinished() {
+
+      finished++;
+
+
+      if (
+        finished >=
+        images.length
+      ) {
+
+        setTimeout(
+          () => {
+
+            window.focus();
+
+            window.print();
+
+          },
+          250
+        );
+
+      }
+
+    }
+
+
+    if (
+      images.length === 0
+    ) {
+
+      setTimeout(
+        () => {
+
+          window.focus();
+
+          window.print();
+
+        },
+        250
+      );
+
+    } else {
+
+      images.forEach(
+        img => {
+
+          if (
+            img.complete
+            &&
+            img.naturalWidth > 0
+          ) {
+
+            imageFinished();
+
+          } else {
+
+            img.addEventListener(
+              "load",
+              imageFinished,
+              {
+                once: true
+              }
+            );
+
+
+            img.addEventListener(
+              "error",
+              imageFinished,
+              {
+                once: true
+              }
+            );
+
+          }
+
+        }
+      );
+
+    }
+
+  <\/script>
+
+
+</body>
+
+</html>
+
+      `);
+
+
+      printWindow.document.close();
+
+
+
+      setStatus(
+        `Print view ready — each scan is fitted to a ${pdfWidth} × ${pdfHeight} inch PDF page.`,
+        "success"
+      );
+
+    }
+  );
+
+
+
+  /*
+   * NEW CLIP
+   *
+   * Keeps the current book
+   * and selected volume loaded.
+   */
+
+  newClipButton.addEventListener(
+    "click",
+    () => {
+
+      bookClip.innerHTML =
+        "";
+
+
+      clipSection.style.display =
+        "none";
+
+
+      const inputs =
+        document.querySelectorAll(
+          ".page-number"
+        );
+
+
+      inputs.forEach(
+        input => {
+
+          input.value =
+            "";
+
+        }
+      );
+
+
+      setStatus(
+        "Ready for another clip.",
+        "success"
+      );
+
+
+      window.scrollTo({
+
+        top: 0,
+
+        behavior:
+          "smooth"
+
+      });
+
+    }
+  );
+
+</script>
+
+
+</body>
+
+</html>

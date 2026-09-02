@@ -1,38 +1,130 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>YouTube Archive</title>
-<meta name="description" content="Search captions already available on YouTube and jump directly to the source timestamp.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="ytarchive-style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>YouTube Archive · al-Mutawakkil</title>
+
+  <meta
+    name="description"
+    content="Search captions already available on YouTube and jump directly to the source timestamp."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="ytarchive-style.css" />
 </head>
+
 <body>
-<main class="wrap">
-<header>
-<div class="eyebrow">SEARCHABLE LECTURE TRANSCRIPTS</div>
-<h1>YouTube Archive</h1>
-<p class="lede">Search captions already available on YouTube and jump directly to the original video and timestamp.</p>
-</header>
 
-<section class="card">
-<label for="query">Search transcripts</label>
-<input id="query" type="search" autocomplete="off" placeholder="مثال: ابن تيمية  •  ابن تيمية AND الصوفية">
-<div class="controls">
-<select id="channel"><option value="">All scholars</option></select>
-<button id="go">Search</button>
-</div>
-<p class="help"><code>AND</code> requires both terms nearby. <code>OR</code> accepts either. Nearby repeated hits are grouped into one passage.</p>
-</section>
+  <main class="wrap">
 
-<div id="status" class="status">Loading archive…</div>
-<section id="results" class="results"></section>
+    <header class="site-header">
+      <div class="top">
 
-<footer>Transcripts come from captions available through YouTube. Automatic captions may contain errors; verify important quotations against the original audio.</footer>
-</main>
-<script src="ytarchive-search.js"></script>
+        <div>
+          <h1 class="brand">المتوكل</h1>
+          <p class="subtitle">Islamic Library</p>
+        </div>
+
+        <nav>
+          <a href="index.html">Translated Works</a>
+          <a href="excerpts.html">Classical Excerpts</a>
+          <a href="40.html" lang="ar" dir="rtl">الأربعون للمتوكل</a>
+          <a href="adhkar.html" lang="ar" dir="rtl">الأذكار</a>
+          <a href="tools.html" class="active">Tools</a>
+        </nav>
+
+      </div>
+    </header>
+
+
+    <section class="tool-heading">
+
+      <div class="eyebrow">
+        SEARCHABLE LECTURE TRANSCRIPTS
+      </div>
+
+      <h2>
+        YouTube Archive
+      </h2>
+
+      <p class="lede">
+        Search captions already available on YouTube and jump directly
+        to the original video and timestamp.
+      </p>
+
+    </section>
+
+
+    <section class="card">
+
+      <label for="query">
+        Search transcripts
+      </label>
+
+      <input
+        id="query"
+        type="search"
+        autocomplete="off"
+        placeholder="مثال: ابن تيمية  •  ابن تيمية AND الصوفية"
+      />
+
+
+      <div class="controls">
+
+        <select id="channel">
+          <option value="">
+            All scholars
+          </option>
+        </select>
+
+        <button id="go">
+          Search
+        </button>
+
+      </div>
+
+
+      <p class="help">
+        <code>AND</code> requires both terms nearby.
+        <code>OR</code> accepts either.
+        Nearby repeated hits are grouped into one passage.
+      </p>
+
+    </section>
+
+
+    <div
+      id="status"
+      class="status">
+      Loading archive…
+    </div>
+
+
+    <section
+      id="results"
+      class="results">
+    </section>
+
+
+    <footer>
+      Transcripts come from captions available through YouTube.
+      Automatic captions may contain errors; verify important quotations
+      against the original audio.
+    </footer>
+
+  </main>
+
+
+  <script src="ytarchive-search.js"></script>
+
 </body>
 </html>

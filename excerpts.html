@@ -110,6 +110,16 @@
       margin: 0 0 24px;
     }
 
+    .page-intro {
+      direction: rtl;
+      text-align: right;
+    }
+
+    .page-intro .category-links {
+      direction: rtl;
+      justify-content: flex-start;
+    }
+
     /* CATEGORY LINKS */
 
     .category-links {
@@ -316,20 +326,24 @@
 
     <!-- PAGE TITLE -->
 
-    <h2 class="page-heading">
-      مختارات من التراث
-    </h2>
+    <div class="page-intro" lang="ar" dir="rtl">
 
-    <p class="page-description">
-      مختارات من كتب التراث الإسلامي في العقيدة والحديث والآداب والرقائق، جُمعت لتيسير قراءتها والانتفاع بها.
-    </p>
+      <h2 class="page-heading">
+        مختارات من التراث
+      </h2>
 
-    <nav class="category-links" aria-label="Classical works categories">
-      <a class="category-link" href="#hadith-aqeedah" lang="ar" dir="rtl">العقيدة من كتب الحديث</a>
-      <a class="category-link" href="#scholars-aqeedah" lang="ar" dir="rtl">عقيدة العلماء</a>
-      <a class="category-link" href="#riqaq-adab" lang="ar" dir="rtl">الرقائق والآداب</a>
-      <a class="category-link" href="#hadith-works" lang="ar" dir="rtl">مصنفات في الحديث</a>
-    </nav>
+      <p class="page-description">
+        مختارات من كتب التراث الإسلامي في العقيدة والحديث والآداب والرقائق، جُمعت لتيسير قراءتها والانتفاع بها.
+      </p>
+
+      <nav class="category-links" aria-label="أقسام مختارات من التراث">
+        <a class="category-link" href="#hadith-aqeedah">العقيدة من كتب الحديث</a>
+        <a class="category-link" href="#scholars-aqeedah">عقيدة العلماء</a>
+        <a class="category-link" href="#riqaq-adab">الرقائق والآداب</a>
+        <a class="category-link" href="#hadith-works">مصنفات في الحديث</a>
+      </nav>
+
+    </div>
 
 
     <!-- ====================================================== -->

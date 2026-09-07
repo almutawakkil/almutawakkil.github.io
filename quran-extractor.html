@@ -53,24 +53,18 @@
       gap: 24px;
     }
 
-    .brand-block {
-      width: fit-content;
-      text-align: center;
-    }
-
-    .brand {
+    .arabic {
+      font-family: "Amiri", Georgia, serif;
       font-size: 36px;
       line-height: 1.1;
       margin: 0;
       font-weight: 400;
-      text-align: center;
     }
 
     .subtitle {
       margin: 5px 0 0;
       color: var(--muted);
       font-size: 16px;
-      text-align: center;
     }
 
     nav {
@@ -92,7 +86,7 @@
     nav a:hover,
     nav a.active { color: var(--green); }
 
-    h1 {
+    .page-heading {
       font-family: "Amiri", Georgia, serif;
       font-size: 32px;
       font-weight: 400;
@@ -292,8 +286,8 @@
   <div class="wrap">
     <header>
       <div class="top">
-        <div class="brand-block">
-          <h2 class="brand" lang="ar" dir="rtl">المتوكل</h2>
+        <div>
+          <h1 class="arabic">المتوكل</h1>
           <p class="subtitle">Islamic Library</p>
         </div>
         <nav>
@@ -307,7 +301,7 @@
     </header>
 
     <main>
-      <h1>Qur'an Extractor</h1>
+      <h2 class="page-heading">Qur'an Extractor</h2>
       <p class="lede">Create a high-resolution image of one ayah or a range of ayat using the King Fahd Complex Hafs Uthmanic text and font.</p>
 
       <section class="panel">
@@ -356,7 +350,7 @@
       </section>
     </main>
 
-    
+    <footer>المتوكل</footer>
   </div>
 
   <script>

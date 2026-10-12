@@ -5,11 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#173b32">
   <title>مُشَجِّر الأسانيد</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=8">
-  <link rel="stylesheet" href="refinements.css?v=9">
+  <link rel="stylesheet" href="refinements.css?v=10">
 </head>
 <body>
   <header class="topbar">
@@ -112,7 +109,7 @@
       <div class="inspector-empty"><span>اختر راوياً أو وصلة من الرسم</span><small>لإضافة حاشية أو لون، أو لتصحيح الهوية.</small></div>
       <div id="nodeInspector" class="hidden">
         <button id="closeNodeInspector" class="inspector-close" aria-label="إلغاء تحديد الراوي">×</button><span class="eyebrow">الراوي المحدد</span><h2 id="selectedNodeName"></h2>
-        <label>الاسم المعروض<input id="nodeName"></label><label>التصنيف اليدوي<select id="nodeGeneration"><option value="">راوٍ آخر</option><option value="prophet">النبي ﷺ</option><option value="companion">صحابي</option><option value="tabii">تابعي</option><option value="follower">تابع تابعي</option></select></label><label class="check-row"><input id="nodeCompiler" type="checkbox"> مصنّف / صاحب الكتاب</label><p class="field-help">يمكن جمع صفة المصنّف مع التصنيف الطبقي. لا يعيّن التطبيق أي تصنيف تلقائيًا.</p><label>لون المربع<input id="nodeColor" type="color"></label>
+        <label>الاسم المعروض<input id="nodeName"></label><label>التصنيف اليدوي<select id="nodeGeneration"><option value="">راوٍ آخر</option><option value="prophet">النبي ﷺ</option><option value="companion">صحابي</option><option value="tabii">تابعي</option><option value="follower">تابع تابعي</option></select></label><label class="check-row"><input id="nodeCompiler" type="checkbox"> مصنّف / صاحب الكتاب</label><p class="field-help">يمكن جمع صفة المصنّف مع التصنيف الطبقي، ويظهر لون المصنّف بالأزرق.</p><label>لون مخصص للمربع<input id="nodeColor" type="color"></label><button id="clearNodeColor" class="ghost full" type="button">العودة إلى لون التصنيف</button>
         <label>المستوى اليدوي<input id="nodeTier" type="number" min="1" max="50" placeholder="تلقائي"></label><p class="field-help">اتركه فارغًا للتخطيط التلقائي. يبقى النبي ﷺ في المستوى الأعلى دائمًا.</p>
         <label>حاشية الراوي<textarea id="nodeNote" rows="4"></textarea></label><button id="applyNode" class="primary full">تطبيق</button>
         <div class="divider"></div><h3>تصحيح الهوية</h3><p class="field-help">الجمع يؤكد أن هويتين لراوٍ واحد. الفصل ينقل ظهورًا واحدًا إلى هوية جديدة.</p>
@@ -137,6 +134,6 @@
   </form></dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=11"></script>
+  <script src="app.js?v=12"></script>
 </body>
 </html>

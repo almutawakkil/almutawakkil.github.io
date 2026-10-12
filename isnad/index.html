@@ -132,7 +132,7 @@
   </main>
 
   <dialog id="exportDialog"><form method="dialog" class="dialog-card"><button class="dialog-close" value="cancel" aria-label="إغلاق">×</button><span class="eyebrow">إخراج الرسم</span><h2>خيارات التصدير</h2>
-    <label class="check-row"><input id="exportTitle" type="checkbox" checked> تضمين العنوان</label><label class="check-row"><input id="exportResearcher" type="checkbox" checked> إظهار اسم الباحث</label><label class="check-row"><input id="exportMatn" type="checkbox" checked> تضمين متن الحديث</label><label class="check-row"><input id="exportDiagram" type="checkbox" checked> تضمين الرسم</label><label class="check-row"><input id="exportLegend" type="checkbox" checked> تضمين مفتاح الطرق</label><label class="check-row"><input id="exportRoleLegend" type="checkbox" checked> تضمين مفتاح تصنيفات الرواة</label><label class="check-row"><input id="exportSummary" type="checkbox" checked> تضمين ملخص البنية</label><label class="check-row"><input id="exportSources" type="checkbox" checked> تضمين المصادر</label><label class="check-row"><input id="exportNotes" type="checkbox" checked> تضمين الحواشي</label>
+    <label class="check-row"><input id="exportTitle" type="checkbox" checked> تضمين العنوان</label><label class="check-row"><input id="exportResearcher" type="checkbox" checked> إظهار اسم الباحث</label><label class="check-row"><input id="exportMatn" type="checkbox" checked> تضمين متن الحديث</label><label class="check-row"><input id="exportDiagram" type="checkbox" checked> تضمين الرسم</label><label class="check-row"><input id="exportRoleLegend" type="checkbox" checked> تضمين مفتاح تصنيفات الرواة</label><label class="check-row"><input id="exportSummary" type="checkbox" checked> تضمين ملخص البنية</label><label class="check-row"><input id="exportSources" type="checkbox" checked> تضمين المصادر</label><label class="check-row"><input id="exportNotes" type="checkbox" checked> تضمين الحواشي</label>
     <fieldset class="print-options"><legend>قائمة الأسانيد للطباعة</legend><label>اتجاه القائمة<select id="printChainDirection"><option value="compiler-to-source">من المصنّف إلى النبي ﷺ</option><option value="source-to-compiler">من النبي ﷺ إلى المصنّف</option></select></label><p class="field-help">تستخدم القائمة خياري المصادر والحواشي أعلاه، ولا تتضمن الرسم.</p></fieldset>
     <div class="row-actions"><button type="button" id="exportSvg" class="primary">تنزيل SVG</button><button type="button" id="exportPng" class="primary">تنزيل PNG عالي الدقة</button><button type="button" id="exportPdfReport" class="ghost">قائمة الأسانيد للطباعة</button></div><p class="field-help">تفتح صفحة نصية مستقلة؛ استخدم «طباعة / حفظ PDF» من المتصفح.</p>
   </form></dialog>
@@ -143,17 +143,15 @@
     <p id="branchDirectionHelp" class="field-help"></p>
     <label>الرواة الجدد بين الراوي والمصنّف<textarea id="branchNarrators" rows="3" placeholder="افصل الأسماء بفاصلة عربية. لا تكرر الراوي المحدد أو المصنّف."></textarea></label>
     <label>صيغ الأداء للمقاطع الجديدة<textarea id="branchTransmissions" rows="2" placeholder="اختياري: صيغة لكل مقطع، مفصولة بفاصلة عربية"></textarea></label>
-    <label>المصنّف<input id="branchCompiler" list="compilerOptions" placeholder="اختر أو اكتب اسم مصنّف"></label>
+    <label>نهاية الطريق / المصنّف<input id="branchCompiler" placeholder="مثال: البخاري ١"></label>
     <div class="chain-meta-grid"><label>الكتاب المحدد<input id="branchBook" placeholder="اختياري"></label><label>رقم الحديث<input id="branchHadith"></label><label>الجزء<input id="branchVolume"></label><label>الصفحة<input id="branchPage"></label></div>
     <label>مرجع حر<input id="branchFree"></label><label>ملاحظة الطريق<textarea id="branchNote" rows="2"></textarea></label>
     <div class="row-actions"><button type="submit" class="primary">حفظ الطريق الجديد</button><button type="button" class="ghost" data-close-branch>إلغاء</button></div>
   </form></dialog>
 
-  <dialog id="endpointRoutesDialog"><form method="dialog" class="dialog-card"><button class="dialog-close" value="cancel" aria-label="إغلاق">×</button><span class="eyebrow">طرق هذا المرجع</span><h2 id="endpointRoutesTitle"></h2><div id="endpointRoutesList" class="endpoint-routes-list"></div></form></dialog>
-
-  <datalist id="compilerOptions"><option value="مصنّف آخر / إدخال يدوي"><option value="البخاري"><option value="مسلم"><option value="أبو داود"><option value="الترمذي"><option value="النسائي"><option value="ابن ماجه"><option value="مالك"><option value="أحمد"><option value="الحميدي"><option value="إسحاق بن راهويه"><option value="أبو يعلى"><option value="عبد الرزاق"><option value="ابن أبي شيبة"><option value="الدارمي"><option value="ابن خزيمة"><option value="ابن حبان"><option value="الحاكم"><option value="البيهقي"><option value="الطبراني"><option value="البزار"><option value="أبو نعيم"><option value="الدارقطني"><option value="سعيد بن منصور"><option value="الطيالسي"><option value="الشافعي"><option value="ابن الجارود"><option value="ابن أبي عاصم"></datalist>
+  <dialog id="endpointRoutesDialog"><form method="dialog" class="dialog-card"><button class="dialog-close" value="cancel" aria-label="إغلاق">×</button><span class="eyebrow">طرق هذه النهاية</span><h2 id="endpointRoutesTitle"></h2><div id="endpointRoutesList" class="endpoint-routes-list"></div></form></dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=13"></script>
+  <script src="app.js?v=14"></script>
 </body>
 </html>

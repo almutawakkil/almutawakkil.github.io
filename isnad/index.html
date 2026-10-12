@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=8">
-  <link rel="stylesheet" href="refinements.css?v=8">
+  <link rel="stylesheet" href="refinements.css?v=9">
 </head>
 <body>
   <header class="topbar">
@@ -42,9 +42,10 @@
       </nav>
 
       <section id="tab-chains" class="tab-panel">
-        <div class="section-heading"><div><span class="eyebrow">إدخال سريع</span><h2>كل إسناد في سطر</h2></div><span class="count" id="chainCount">٠</span></div>
+        <div class="section-heading"><div><span class="eyebrow">إدخال سريع</span><h2>كل إسناد في سطر</h2></div><div class="heading-actions"><button id="expandChainEditor" class="ghost">توسيع محرر الأسانيد</button><span class="count" id="chainCount">٠</span></div></div>
+        <fieldset class="entry-direction"><legend>اتجاه الإدخال الجديد</legend><label class="radio-row compact"><input type="radio" name="entryDirection" value="compiler-to-source" checked><span><strong>من المصنّف إلى النبي ﷺ</strong><small>مثال: البخاري، الحميدي، …، عمر بن الخطاب، النبي ﷺ</small></span></label><label class="radio-row compact"><input type="radio" name="entryDirection" value="source-to-compiler"><span><strong>من النبي ﷺ إلى المصنّف</strong><small>لا يُضاف النبي ﷺ تلقائيًا إلى الأخبار الموقوفة أو المقطوعة.</small></span></label></fieldset>
         <textarea id="quickInput" rows="5" spellcheck="false" placeholder="النبي ﷺ، ابن عمر، نافع، مالك، الشافعي"></textarea>
-        <div class="field-help">الترتيب من أقدم سلطة إلى أحدث ناقل. الفاصل «،» أو الفاصلة الإنجليزية.</div>
+        <div class="field-help">اختر اتجاه الإدخال أعلاه. يحوّل التطبيق الاتجاه داخليًا للرسم فقط، ويحفظ اتجاه التحرير الذي اخترته.</div>
         <div class="row-actions"><button id="addQuick" class="primary">إضافة الأسانيد</button><button id="clearQuick" class="ghost">مسح الحقل</button></div>
 
         <details class="guided-card">
@@ -74,6 +75,7 @@
         <label class="switch-row compact"><span><strong>إظهار المتن فوق المشجّر</strong><small>عنوان نصي مستقل لا يُنشئ عقدة أو وصلة.</small></span><input id="showMatn" type="checkbox" checked><i></i></label>
         <label class="switch-row compact"><span><strong>إظهار أسماء الطرق</strong></span><input id="showLegend" type="checkbox" checked><i></i></label>
         <label class="switch-row compact"><span><strong>إظهار صيغ الأداء</strong><small>يعرض الألفاظ التي أدخلها الباحث على الوصلات، من غير استنتاج آلي.</small></span><input id="showTransmission" type="checkbox"><i></i></label>
+        <label class="switch-row compact"><span><strong>إظهار مفتاح تصنيفات الرواة</strong><small>تصنيفات يحددها الباحث يدويًا، ولا تُستنتج من طبقة الرسم.</small></span><input id="showRoleLegend" type="checkbox"><i></i></label>
         <button id="resetLayout" class="ghost full">إعادة ترتيب المشجّر</button>
         <p class="warning-text">لا يَحكم البرنامج على الرواة، ولا يتحقق من صحة الاتصال أو نسبة الخبر.</p>
       </section>
@@ -94,10 +96,12 @@
         </div>
       </div>
       <div id="researcherDisplay" class="researcher-display hidden" dir="auto"></div>
+      <div class="diagram-hint">انقر أي وصلة لتحرير حاشيتها و«صيغة الأداء». لا يفسّر الرسم لفظ «عن» ولا يحكم على الاتصال.</div>
       <div id="diagramViewport" class="diagram-viewport">
         <div id="emptyState" class="empty-state hidden"><div class="empty-icon">⌁</div><h2>أضف إسنادًا لبدء الرسم</h2><p>سيُبنى المخطط تلقائيًا من غير إنشاء أي صلة لم تُدخلها.</p></div>
         <svg id="graph" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="مخطط الأسانيد"></svg>
       </div>
+      <div id="roleKey" class="role-key hidden" aria-label="مفتاح تصنيفات الرواة"></div>
       <details class="footnotes-panel" open>
         <summary><span>المصادر والحواشي</span><span class="count" id="footnoteCount">٠</span></summary>
         <div id="footnotes" class="footnotes"></div>
@@ -108,7 +112,7 @@
       <div class="inspector-empty"><span>اختر راوياً أو وصلة من الرسم</span><small>لإضافة حاشية أو لون، أو لتصحيح الهوية.</small></div>
       <div id="nodeInspector" class="hidden">
         <button id="closeNodeInspector" class="inspector-close" aria-label="إلغاء تحديد الراوي">×</button><span class="eyebrow">الراوي المحدد</span><h2 id="selectedNodeName"></h2>
-        <label>الاسم المعروض<input id="nodeName"></label><label>لون المربع<input id="nodeColor" type="color"></label>
+        <label>الاسم المعروض<input id="nodeName"></label><label>التصنيف اليدوي<select id="nodeGeneration"><option value="">راوٍ آخر</option><option value="prophet">النبي ﷺ</option><option value="companion">صحابي</option><option value="tabii">تابعي</option><option value="follower">تابع تابعي</option></select></label><label class="check-row"><input id="nodeCompiler" type="checkbox"> مصنّف / صاحب الكتاب</label><p class="field-help">يمكن جمع صفة المصنّف مع التصنيف الطبقي. لا يعيّن التطبيق أي تصنيف تلقائيًا.</p><label>لون المربع<input id="nodeColor" type="color"></label>
         <label>المستوى اليدوي<input id="nodeTier" type="number" min="1" max="50" placeholder="تلقائي"></label><p class="field-help">اتركه فارغًا للتخطيط التلقائي. يبقى النبي ﷺ في المستوى الأعلى دائمًا.</p>
         <label>حاشية الراوي<textarea id="nodeNote" rows="4"></textarea></label><button id="applyNode" class="primary full">تطبيق</button>
         <div class="divider"></div><h3>تصحيح الهوية</h3><p class="field-help">الجمع يؤكد أن هويتين لراوٍ واحد. الفصل ينقل ظهورًا واحدًا إلى هوية جديدة.</p>
@@ -127,11 +131,12 @@
   </main>
 
   <dialog id="exportDialog"><form method="dialog" class="dialog-card"><button class="dialog-close" value="cancel" aria-label="إغلاق">×</button><span class="eyebrow">إخراج الرسم</span><h2>خيارات التصدير</h2>
-    <label class="check-row"><input id="exportTitle" type="checkbox" checked> تضمين العنوان</label><label class="check-row"><input id="exportResearcher" type="checkbox" checked> إظهار اسم الباحث</label><label class="check-row"><input id="exportMatn" type="checkbox" checked> تضمين متن الحديث</label><label class="check-row"><input id="exportDiagram" type="checkbox" checked> تضمين الرسم</label><label class="check-row"><input id="exportLegend" type="checkbox" checked> تضمين مفتاح الطرق</label><label class="check-row"><input id="exportSources" type="checkbox" checked> تضمين المصادر</label><label class="check-row"><input id="exportNotes" type="checkbox" checked> تضمين الحواشي</label><label class="check-row"><input id="exportReportChains" type="checkbox" checked> تضمين قائمة الأسانيد في تقرير PDF</label>
-    <div class="row-actions"><button type="button" id="exportSvg" class="primary">تنزيل SVG</button><button type="button" id="exportPng" class="primary">تنزيل PNG عالي الدقة</button><button type="button" id="exportPdfReport" class="ghost">تصدير تقرير PDF</button></div><p class="field-help">يفتح تقرير PDF في صفحة طباعة مستقلة؛ اختر «حفظ بتنسيق PDF» من نافذة الطباعة.</p>
+    <label class="check-row"><input id="exportTitle" type="checkbox" checked> تضمين العنوان</label><label class="check-row"><input id="exportResearcher" type="checkbox" checked> إظهار اسم الباحث</label><label class="check-row"><input id="exportMatn" type="checkbox" checked> تضمين متن الحديث</label><label class="check-row"><input id="exportDiagram" type="checkbox" checked> تضمين الرسم</label><label class="check-row"><input id="exportLegend" type="checkbox" checked> تضمين مفتاح الطرق</label><label class="check-row"><input id="exportRoleLegend" type="checkbox" checked> تضمين مفتاح تصنيفات الرواة</label><label class="check-row"><input id="exportSources" type="checkbox" checked> تضمين المصادر</label><label class="check-row"><input id="exportNotes" type="checkbox" checked> تضمين الحواشي</label>
+    <fieldset class="print-options"><legend>قائمة الأسانيد للطباعة</legend><label>اتجاه القائمة<select id="printChainDirection"><option value="compiler-to-source">من المصنّف إلى النبي ﷺ</option><option value="source-to-compiler">من النبي ﷺ إلى المصنّف</option></select></label><p class="field-help">تستخدم القائمة خياري المصادر والحواشي أعلاه، ولا تتضمن الرسم.</p></fieldset>
+    <div class="row-actions"><button type="button" id="exportSvg" class="primary">تنزيل SVG</button><button type="button" id="exportPng" class="primary">تنزيل PNG عالي الدقة</button><button type="button" id="exportPdfReport" class="ghost">قائمة الأسانيد للطباعة</button></div><p class="field-help">تفتح صفحة نصية مستقلة؛ استخدم «طباعة / حفظ PDF» من المتصفح.</p>
   </form></dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=9"></script>
+  <script src="app.js?v=11"></script>
 </body>
 </html>

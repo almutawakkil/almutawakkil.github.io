@@ -1,0 +1,18 @@
+/* Final-pass refinements that preserve the established visual identity. */
+.chain-source{display:block;color:var(--muted);font-size:12px;margin:2px 28px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chain-card.highlighted{border-color:#d49b42;box-shadow:0 0 0 2px #f4e0b8}
+.chain-actions{gap:4px}
+.canvas-toolbar{height:auto;min-height:54px;padding:7px 12px}
+.tool-button.active{background:#dcece4;border-color:#76a68f;color:#174f3d}
+.diagram-viewport svg{transition:none}
+.diagram-viewport svg{margin-inline:auto}
+.node{cursor:pointer}
+.layout-edit .node{cursor:grab}
+.layout-edit .node{touch-action:none}
+.node.route-dim,.edge.route-dim{opacity:.13}
+.node.route-focus rect{stroke:#d49b42;stroke-width:3}
+.edge.route-focus{filter:drop-shadow(0 0 2px #8a5b15)}
+.matn-layer text{direction:rtl;unicode-bidi:plaintext}
+.project-library{display:flex;align-items:center;gap:7px}.project-library label{margin:0;color:#dce9e4;font-weight:700;white-space:nowrap}.save-status{font-size:13px;white-space:nowrap;padding:4px 8px;border-radius:999px;background:#ffffff18;color:#e5f1ec}.save-status.saving{color:#ffe7a9}.save-status.failed{background:#762f36;color:#fff}.researcher-display{padding:7px 16px;border-bottom:1px solid var(--line);background:#fbfcfa;color:#5a6c65;text-align:center;font-size:14px;overflow-wrap:anywhere}.project-dates{font-size:12px;color:var(--muted);line-height:1.6}.inspector{position:relative}.inspector-close{position:absolute;top:10px;left:10px;border:0;background:#edf3ef;color:#234f40;border-radius:999px;width:30px;height:30px;font-size:21px;line-height:1}.node.dragging{cursor:grabbing}.edge[data-edge-id]{transition:none}
+.project-tools .icon-button{color:#1d302a}
+@media(max-width:800px){.canvas-toolbar{align-items:flex-start}.toolbar-actions{justify-content:flex-start}.project-tools{flex-wrap:wrap}.project-library{flex:1 1 100%}.project-library select{flex:1}.save-status{order:3}}

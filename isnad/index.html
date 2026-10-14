@@ -62,7 +62,7 @@
 
       <section id="tab-settings" class="tab-panel hidden">
         <span class="eyebrow">سلوك الرسم</span><h2>الهوية والألوان</h2>
-        <label class="switch-row"><span><strong>دمج الأسماء المتطابقة</strong><small>ينطبق على الإدخالات الجديدة فقط. لا تُفعّله إن كان الاسم محتملاً لأكثر من راوٍ.</small></span><input id="mergeExact" type="checkbox"><i></i></label>
+        <label class="switch-row"><span><strong>إعادة استخدام الاسم المطابق حرفيًا</strong><small>تلقائي عند وجود هوية واحدة فقط بالاسم نفسه تمامًا؛ ولا يدمج الهويات الموجودة.</small></span><input id="mergeExact" type="checkbox" checked disabled><i></i></label>
         <fieldset><legend>نظام التلوين</legend><label class="radio-row"><input type="radio" name="colorMode" value="branch" checked><span><strong>تلوين الفروع</strong><small>المقطع المشترك موحّد، وتتباين الطرق بعد التفرّع.</small></span></label><label class="radio-row"><input type="radio" name="colorMode" value="chain"><span><strong>تلوين الأسانيد</strong><small>تظهر الوصلات المشتركة كخطوط متوازية.</small></span></label></fieldset>
         <label>عنوان المشجّر<input id="diagramTitle" value="مشجّر حديث"></label>
         <label>متن الحديث<textarea id="matnText" rows="4" placeholder="أدخل متن الحديث اختياريًا…"></textarea></label>
@@ -89,7 +89,7 @@
         <div class="stats" id="stats">جاهز</div>
         <div class="toolbar-actions">
           <button id="zoomOut" class="tool-button" title="تصغير">−</button><button id="zoomReset" class="tool-button" title="الحجم الأصلي">١٠٠٪</button><button id="zoomIn" class="tool-button" title="تكبير">+</button>
-          <button id="fitDiagram" class="tool-button">ملاءمة</button><button id="editLayout" class="tool-button" aria-pressed="false">تحريك يدوي</button><button id="clearHighlight" class="tool-button hidden">إلغاء التمييز</button><button id="exportButton" class="primary">تصدير</button>
+          <button id="fitDiagram" class="tool-button">ملاءمة</button><button id="editLayout" class="tool-button" aria-pressed="false">تحريك يدوي</button><button id="clearFocus" class="tool-button hidden">إلغاء تركيز الراوي</button><button id="clearHighlight" class="tool-button hidden">إلغاء التمييز</button><button id="exportButton" class="primary">تصدير</button>
         </div>
       </div>
       <div id="researcherDisplay" class="researcher-display hidden" dir="auto"></div>
@@ -112,7 +112,7 @@
     <aside id="inspector" class="inspector" aria-label="خصائص العنصر المحدد">
       <div class="inspector-empty"><span>اختر راوياً أو وصلة من الرسم</span><small>لإضافة حاشية أو لون، أو لتصحيح الهوية.</small></div>
       <div id="nodeInspector" class="hidden">
-        <button id="closeNodeInspector" class="inspector-close" aria-label="إلغاء تحديد الراوي">×</button><span class="eyebrow">الراوي المحدد</span><h2 id="selectedNodeName"></h2><p id="selectedNodeRoutes" class="selected-node-routes"></p><button id="branchFromNode" class="primary full" type="button">إضافة طريق من هذا الراوي</button>
+        <button id="closeNodeInspector" class="inspector-close" aria-label="إلغاء تحديد الراوي">×</button><span class="eyebrow">الراوي المحدد</span><h2 id="selectedNodeName"></h2><p id="selectedNodeRoutes" class="selected-node-routes"></p><button id="showNodeRoutes" class="primary full" type="button">إظهار طرق هذا الراوي</button><button id="branchFromNode" class="ghost full" type="button">إضافة طريق من هذا الراوي</button><button id="focusNode" class="ghost full" type="button">تركيز الرسم على هذا الراوي</button>
         <label>الاسم المعروض<input id="nodeName"></label><label>التصنيف اليدوي<select id="nodeGeneration"><option value="">راوٍ آخر</option><option value="prophet">النبي ﷺ</option><option value="companion">صحابي</option><option value="tabii">تابعي</option><option value="follower">تابع تابعي</option></select></label><label class="check-row"><input id="nodeCompiler" type="checkbox"> مصنّف / صاحب الكتاب</label><p class="field-help">يمكن جمع صفة المصنّف مع التصنيف الطبقي، ويظهر لون المصنّف بالأزرق.</p><label>لون مخصص للمربع<input id="nodeColor" type="color"></label><button id="clearNodeColor" class="ghost full" type="button">العودة إلى لون التصنيف</button>
         <label>المستوى اليدوي<input id="nodeTier" type="number" min="1" max="50" placeholder="تلقائي"></label><p class="field-help">اتركه فارغًا للتخطيط التلقائي. يبقى النبي ﷺ في المستوى الأعلى دائمًا.</p>
         <label>حاشية الراوي<textarea id="nodeNote" rows="4"></textarea></label><button id="applyNode" class="primary full">تطبيق</button>
@@ -152,6 +152,6 @@
   <dialog id="endpointRoutesDialog"><form method="dialog" class="dialog-card"><button class="dialog-close" value="cancel" aria-label="إغلاق">×</button><span class="eyebrow">طرق هذه النهاية</span><h2 id="endpointRoutesTitle"></h2><div id="endpointRoutesList" class="endpoint-routes-list"></div></form></dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=16"></script>
+  <script src="app.js?v=24"></script>
 </body>
 </html>

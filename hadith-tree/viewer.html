@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="عارض عام لمشجّرات الأسانيد المنشورة.">
+  <title>عرض المشجّر · المتوكل</title>
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="viewer.css">
+</head>
+<body>
+  <header class="viewer-header">
+    <div class="viewer-header-inner">
+      <div class="viewer-brand"><a href="index.html" aria-label="العودة إلى مكتبة المشجّرات">المتوكل</a><span>مشجّرات الأسانيد</span></div>
+      <a class="back-link" href="index.html">العودة إلى المكتبة</a>
+    </div>
+  </header>
+
+  <main id="viewerApp" class="viewer-shell">
+    <section id="loading" class="viewer-message" role="status">جارٍ تحميل المشجّر…</section>
+    <section id="viewerError" class="viewer-message error-panel hidden" role="alert"></section>
+
+    <div id="viewerContent" class="hidden">
+      <header class="project-heading">
+        <div>
+          <p class="eyebrow">مشجّر منشور للعرض فقط</p>
+          <h1 id="projectTitle"></h1>
+          <p id="researcher" class="researcher hidden"></p>
+        </div>
+        <div class="project-actions" aria-label="أدوات العرض والتصدير">
+          <button id="exportSvg" class="button secondary" type="button">تنزيل SVG</button>
+          <button id="exportPng" class="button secondary" type="button">تنزيل PNG</button>
+          <button id="exportPdf" class="button" type="button">طباعة / حفظ PDF</button>
+        </div>
+      </header>
+
+      <section class="diagram-card" aria-label="المشجّر">
+        <div class="diagram-toolbar">
+          <div class="zoom-controls" aria-label="التحكم في حجم الرسم">
+            <button id="zoomIn" type="button" aria-label="تكبير">+</button>
+            <button id="zoomReset" type="button" aria-label="الحجم الأصلي">١٠٠٪</button>
+            <button id="zoomOut" type="button" aria-label="تصغير">−</button>
+            <button id="fitDiagram" type="button">ملاءمة</button>
+          </div>
+          <button id="clearHighlight" class="clear-highlight hidden" type="button">إلغاء التمييز</button>
+        </div>
+        <div id="diagramViewport" class="diagram-viewport" tabindex="0" aria-label="مساحة المشجّر؛ اسحب الخلفية للتحريك">
+          <svg id="graph" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="مخطط الأسانيد"></svg>
+          <div id="emptyGraph" class="empty-graph hidden">لا توجد أسانيد قابلة للعرض في هذا المشروع.</div>
+        </div>
+        <div id="routeKey" class="role-key hidden" aria-label="مفتاح ألوان الطرق"></div>
+        <div id="roleKey" class="role-key hidden" aria-label="مفتاح ألوان طبقات الرواة"></div>
+      </section>
+
+      <section class="reader-grid">
+        <aside id="inspector" class="reading-card" aria-live="polite">
+          <h2>تفاصيل العنصر</h2>
+          <p class="muted">انقر على راوٍ أو وصلة لقراءة المعلومات المنشورة وتمييز الطرق المرتبطة به.</p>
+        </aside>
+
+        <section class="reading-card">
+          <h2>ملخص بنية الأسانيد</h2>
+          <div id="structureSummary"></div>
+        </section>
+      </section>
+
+      <details class="reading-card routes-panel">
+        <summary>قائمة الطرق المسجلة <span id="routeCount"></span></summary>
+        <ol id="routesList" class="routes-list"></ol>
+      </details>
+
+      <details class="reading-card notes-panel" open>
+        <summary>المراجع والملاحظات <span id="notesCount"></span></summary>
+        <div id="notesList"></div>
+      </details>
+
+      <p class="scientific-note">تعرض هذه المشجّرات الطرق التي جُمعت من المصادر المذكورة، ولا يلزم منها استيعاب جميع طرق الحديث أو الحكم على صحته.</p>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="viewer.js"></script>
+</body>
+</html>

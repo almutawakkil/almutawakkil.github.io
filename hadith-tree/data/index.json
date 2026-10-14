@@ -1,0 +1,11 @@
+{
+  "projects": [
+    {
+      "id": "istaqimu-thawban",
+      "title": "حديث «استقيموا ولن تحصوا»",
+      "description": "«استقيموا ولن تحصوا...»",
+      "file": "Istaqimu-Thawban.json",
+      "routeCount": 17
+    }
+  ]
+}

@@ -6,6 +6,12 @@
       "description": "«استقيموا ولن تحصوا...»",
       "file": "Istaqimu-Thawban.json",
       "routeCount": 17
+    },
+    {
+      "id": "intentions-umar",
+      "title": "إنما الأعمال بالنيات",
+      "file": "Intentions-Umar.json",
+      "routeCount": 17
     }
   ]
 }

@@ -12,6 +12,12 @@
       "title": "إنما الأعمال بالنيات",
       "file": "Intentions-Umar.json",
       "routeCount": 17
+    },
+    {
+      "id": "kahf-on-friday",
+      "title": "قراءة سورة الكهف يوم الجمعة",
+      "file": "Kahf-on-Friday.json",
+      "routeCount": 24
     }
   ]
 }

@@ -1,0 +1,2508 @@
+{
+  "version": 9,
+  "id": "project-mvd8zjqw-azpblh7",
+  "name": "قراءة سورة الكهف يوم الجمعة",
+  "title": "قراءة سورة الكهف يوم الجمعة",
+  "matn": "",
+  "researcher": "",
+  "researchNotes": "وروية من قول او فعل من دون الصحابة كخالد بن معدان (سعيد بن منصور 1367)، وأبي قلابة (شعب الإيمان 2239 وفضائل القرآن لابن الضريس 207)، والْمُهَلَّبِ (فضائل القرآن لابن الضريس 208). واستحب قراءتها الشافعي في الام وابن قدامة في المغني.",
+  "createdAt": "2026-10-18T03:10:18.296Z",
+  "updatedAt": "2026-10-18T15:56:46.697Z",
+  "settings": {
+    "mergeExact": true,
+    "focusNarratorId": "n-mvdate33-0ez89uk",
+    "colorMode": "branch",
+    "showLegend": true,
+    "showMatn": true,
+    "showTransmission": true,
+    "showRoleLegend": false,
+    "entryDirection": "compiler-to-source"
+  },
+  "chains": [
+    {
+      "id": "chain-mvd92kit-bmpomdt",
+      "label": "الطريق 1",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvd92kit-aduj374",
+          "name": "أَبِي سَعِيدٍ الْخُدْرِيِّ (موقوف)",
+          "identityId": "n-mvd92kit-e7w1irr"
+        },
+        {
+          "occurrenceId": "o-mvd92kit-3bxdj0n",
+          "name": "قَيْسِ بْنِ عُبَادٍ",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvd92kit-hsmeidl",
+          "name": "أَبِي مِجْلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvd92kit-k9wk5os",
+          "name": "أَبِي هَاشِمٍ",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvd92kit-fuomzs2",
+          "name": "سفيان الثوري",
+          "identityId": "n-mvd9nzzp-h7628hv"
+        },
+        {
+          "occurrenceId": "o-mvd92kit-r6qww15",
+          "name": "عَبْدُ الرَّحْمَنِ",
+          "identityId": "n-mvdabxyw-y0i8yeh"
+        },
+        {
+          "occurrenceId": "o-mvd92kit-9g82f3y",
+          "name": "مُحَمَّدُ بْنُ بَشَّارٍ",
+          "identityId": "n-mvd92kit-wfiuupf"
+        },
+        {
+          "occurrenceId": "o-mvd92kit-slwdo0p",
+          "name": "سنن النسائي الكبرى 10724 (12/493)",
+          "identityId": "n-mvd92kit-lhq57aq"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvd94jx1-tc4kdfh",
+      "label": "الطريق 2",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvd94jx0-nvnwbow",
+          "name": "النبي ﷺ",
+          "identityId": "n-mvd94jx0-logds1z"
+        },
+        {
+          "occurrenceId": "o-mvd94jx1-f4p7h6f",
+          "name": "أبي سعيد الخُدْري",
+          "identityId": "n-mvdabxyv-u9r5zfw"
+        },
+        {
+          "occurrenceId": "o-mvd94jx1-4rw1sv0",
+          "name": "قَيْسِ بْنِ عُبَادٍ",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvd94jx1-kv1bkdy",
+          "name": "أَبِي مِجْلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvd94jx1-7jcvrxl",
+          "name": "أَبُو هَاشِمٍ",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvd94jx1-ulf0qs5",
+          "name": "شُعْبَةُ",
+          "identityId": "n-mvdate33-ya8qxu4"
+        },
+        {
+          "occurrenceId": "o-mvd94jx1-1eyesyc",
+          "name": "يَحْيَى بْنُ كَثِيرٍ أَبُو غَسَّانَ",
+          "identityId": "n-mvd94jx1-9397oim"
+        },
+        {
+          "occurrenceId": "o-mvd94jx1-qlobd48",
+          "name": "يَحْيَى بْنُ مُحَمَّدِ بْنِ السَّكَنِ الْبَصْرِيُّ",
+          "identityId": "n-mvd94jx1-d6z5872"
+        },
+        {
+          "occurrenceId": "o-mvd94jx1-wod2gjc",
+          "name": "سنن النسائي الكبرى 10722 (12/492)",
+          "identityId": "n-mvd94jx1-4tsje9v"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvd95mp8-z6qp07v",
+      "label": "الطريق 3",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvd95mp8-35r58mn",
+          "name": "أبي سعيد الخُدْري",
+          "identityId": "n-mvdabxyv-u9r5zfw"
+        },
+        {
+          "occurrenceId": "o-mvd95mp8-8t8gv5e",
+          "name": "قَيْسِ بْنِ عُبَادٍ",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvd95mp8-dz1u0qs",
+          "name": "أَبَا مِجْلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvd95mp8-wwibeq2",
+          "name": "أَبِي هَاشِمِ",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvd95mp8-lhumt5u",
+          "name": "شُعْبَةُ",
+          "identityId": "n-mvdate33-ya8qxu4"
+        },
+        {
+          "occurrenceId": "o-mvd95mp8-hqqsy3w",
+          "name": "مُحَمَّدٌ",
+          "identityId": "n-mvd95mp8-uc7huuf"
+        },
+        {
+          "occurrenceId": "o-mvd95mp8-x8faor8",
+          "name": "مُحَمَّدُ بْنُ بَشَّارٍ",
+          "identityId": "n-mvd92kit-wfiuupf"
+        },
+        {
+          "occurrenceId": "o-mvd95mp8-bdj26b9",
+          "name": "سنن النسائي الكبرى 10723 (12/493)",
+          "identityId": "n-mvd95mp8-28giu7g"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvd9nzzp-yg5luzw",
+      "label": "الطريق 4",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvd9nzzp-c1kzja1",
+          "name": "أبي سعيد الخُدْري",
+          "identityId": "n-mvdabxyv-u9r5zfw"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-jc8b4xx",
+          "name": "قيس بن عباد",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-ahzzh6p",
+          "name": "أبي مجلز",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-ym8ta2h",
+          "name": "أبي هاشم",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-ax1bgwe",
+          "name": "سفيان الثوري",
+          "identityId": "n-mvd9nzzp-h7628hv"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-p42ugdz",
+          "name": "قبيصة بن عقبة",
+          "identityId": "n-mvd9nzzp-84aom1w"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-opaw1wv",
+          "name": "علي بن عبد الله بن المديني",
+          "identityId": "n-mvd9nzzp-p43iz2y"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-8euvq7q",
+          "name": "أبو شعيب الحراني",
+          "identityId": "n-mvd9nzzp-7sstrf9"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-7ul7qpi",
+          "name": "أبو الحسن علي بن الفضل بن محمد بن عقيل",
+          "identityId": "n-mvd9nzzp-jjrloxf"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-zmz3h5k",
+          "name": "أبو نصر بن قتادة",
+          "identityId": "n-mvd9nzzp-sjddumu"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-1a657vk",
+          "name": "شعب الإيمان 2776",
+          "identityId": "n-mvd9nzzp-mv6xzxi"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvd9nzzp-j3armut",
+      "label": "الطريق 5",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvd9nzzp-ax5b6du",
+          "name": "النبي ﷺ",
+          "identityId": "n-mvd94jx0-logds1z"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-rpu88ja",
+          "name": "أبي سعيد الخُدْري",
+          "identityId": "n-mvdabxyv-u9r5zfw"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-yetd9jv",
+          "name": "قيس بن عباد",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-02gvneq",
+          "name": "أبي مجلز",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-yeytpzi",
+          "name": "أبي هاشم الرماني",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-bq9la5k",
+          "name": "هشيم",
+          "identityId": "n-mvdc3jmr-f6uubar"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-r9va9x5",
+          "name": "يزيد بن خالد بن يزيد",
+          "identityId": "n-mvd9nzzp-v3m738k"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-b7b7frh",
+          "name": "أسلم بن سهل الواسطي",
+          "identityId": "n-mvd9nzzp-tk75cay"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-gxoe11a",
+          "name": "عبد الباقي بن قانع الحافظ",
+          "identityId": "n-mvd9nzzp-90s3g6j"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-ea4umbf",
+          "name": "أبو عبد الله",
+          "identityId": "n-mvd9nzzp-myi8n9b"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-1tr8ffy",
+          "name": "شعب الإيمان 2777",
+          "identityId": "n-mvd9nzzp-z2chius"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvd9nzzp-p2mx43r",
+      "label": "الطريق 6",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mve03x2l-dmumt8j",
+          "name": "أَبِي سَعِيدٍ الْخُدْرِيِّ (موقوف)",
+          "identityId": "n-mvd92kit-e7w1irr"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-chouq9a",
+          "name": "قيس بن عباد",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-1n4dh7b",
+          "name": "أبي مجلز",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-uxj5n95",
+          "name": "أبو هاشم",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-y6xqn1w",
+          "name": "هشيم",
+          "identityId": "n-mvdc3jmr-f6uubar"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-ot5dghi",
+          "name": "سعيد بن منصور",
+          "identityId": "n-mvd9nzzp-feamz0x"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-rfxcb18",
+          "name": "أحمد بن نجدة",
+          "identityId": "n-mvd9nzzp-1g5cz5h"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-kffehzq",
+          "name": "أبو منصور النضروي",
+          "identityId": "n-mvd9nzzq-6xpw24s"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-mkqpn0s",
+          "name": "أبو نصر بن قتادة",
+          "identityId": "n-mvd9nzzp-sjddumu"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-p2oliqm",
+          "name": "شعب الإيمان 2220",
+          "identityId": "n-mvd9nzzp-j9sl18n"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": "قال البيهقي: وهذا هو المحفوظ موقوف، ورواه نعيم بن حماد عن هشيم فرفعه (4/86)"
+    },
+    {
+      "id": "chain-mvd9nzzq-denh5y3",
+      "label": "الطريق 7",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvd9nzzp-6fim4be",
+          "name": "النبي ﷺ",
+          "identityId": "n-mvd94jx0-logds1z"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-0fasb33",
+          "name": "أبي سعيد الخُدْري",
+          "identityId": "n-mvdabxyv-u9r5zfw"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-booo6q9",
+          "name": "قيس بن عباد",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-ysr6xhi",
+          "name": "أبي مجلز",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-cgd1ske",
+          "name": "أبو هاشم",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-l8j7pws",
+          "name": "هشيم",
+          "identityId": "n-mvdc3jmr-f6uubar"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzp-73qcrm4",
+          "name": "يزيد بن خالد بن يزيد",
+          "identityId": "n-mvd9nzzp-v3m738k"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-ppdt4t9",
+          "name": "أبو منصور سليمان بن محمد بن الفضل بن جبريل البجلي",
+          "identityId": "n-mvd9nzzq-6xpw24s"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-i0ino3o",
+          "name": "أبو علي حامد بن محمد الرفاء",
+          "identityId": "n-mvd9nzzq-u2v6peu"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-cm3nuip",
+          "name": "أبو عبد الرحمن السلمي",
+          "identityId": "n-mvd9nzzq-f23j2wd"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-cc30ydu",
+          "name": "شعب الإيمان 2220",
+          "identityId": "n-mvd9nzzp-j9sl18n"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvd9nzzq-63ebwe7",
+      "label": "الطريق 8",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvd9nzzq-ndpnbkm",
+          "name": "النبي ﷺ",
+          "identityId": "n-mvd94jx0-logds1z"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-jq1scqx",
+          "name": "أبي سعيد الخُدْري",
+          "identityId": "n-mvdabxyv-u9r5zfw"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-813k8fo",
+          "name": "قيس بن عباد",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-e8i3rod",
+          "name": "أبي مجلز",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-f8jf0vp",
+          "name": "أبو هاشم",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-0hxlsfb",
+          "name": "هشيم",
+          "identityId": "n-mvdc3jmr-f6uubar"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-jntjjd0",
+          "name": "يزيد بن خالد بن يزيد",
+          "identityId": "n-mvd9nzzp-v3m738k"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-nm8zuau",
+          "name": "أبو منصور سليمان بن محمد بن الفضل بن جبريل البجلي",
+          "identityId": "n-mvd9nzzq-6xpw24s"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-mma23zz",
+          "name": "أبو علي حامد بن محمد الرفاء",
+          "identityId": "n-mvd9nzzq-u2v6peu"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-xndg3vt",
+          "name": "أبو نصر بن قتادة",
+          "identityId": "n-mvd9nzzp-sjddumu"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-5bnfcdm",
+          "name": "شعب الإيمان 2220",
+          "identityId": "n-mvd9nzzp-j9sl18n"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvd9nzzq-6m2m5ny",
+      "label": "الطريق 9",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvd9nzzq-1hwx0n6",
+          "name": "النبي ﷺ",
+          "identityId": "n-mvd94jx0-logds1z"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-vbpm0ry",
+          "name": "أبي سعيد الخُدْري",
+          "identityId": "n-mvdabxyv-u9r5zfw"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-tcbodli",
+          "name": "قيس بن عباد",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-zxeq7sg",
+          "name": "أبي مجلز",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-l4xkxqf",
+          "name": "أبي هاشم",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-ytrba3q",
+          "name": "شعبة",
+          "identityId": "n-mvdate33-ya8qxu4"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-oy2r3s5",
+          "name": "يحيى بن كثير",
+          "identityId": "n-mvd94jx1-9397oim"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-k81w489",
+          "name": "أبو قدامة",
+          "identityId": "n-mvd9nzzq-blq60py"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-ylis92c",
+          "name": "أحمد بن النضر بن عبد الوهاب",
+          "identityId": "n-mvd9nzzq-0yadyfe"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-zu9grmq",
+          "name": "عبد الله بن سعد",
+          "identityId": "n-mvd9nzzq-wa5n4m9"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-3vdlcol",
+          "name": "أبو عبد الله الحافظ",
+          "identityId": "n-mvd9nzzp-myi8n9b"
+        },
+        {
+          "occurrenceId": "o-mvd9nzzq-5p0dfxj",
+          "name": "شعب الإيمان 2221",
+          "identityId": "n-mvd9nzzq-aqcvmvf"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvdabxyv-0bn25z7",
+      "label": "الطريق 11",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvdabxyv-05m1w6t",
+          "name": "النبي ﷺ",
+          "identityId": "n-mvd94jx0-logds1z"
+        },
+        {
+          "occurrenceId": "o-mvdabxyv-cm77pdr",
+          "name": "أبي سعيد الخُدْري",
+          "identityId": "n-mvdabxyv-u9r5zfw"
+        },
+        {
+          "occurrenceId": "o-mvdabxyv-6bdtesm",
+          "name": "قيس بن عُبَاد",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvdabxyv-3axylbd",
+          "name": "أبي مِجلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvdabxyv-lpxlc78",
+          "name": "أبي هاشم",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvdabxyv-4wo27ff",
+          "name": "شعبة",
+          "identityId": "n-mvdate33-ya8qxu4"
+        },
+        {
+          "occurrenceId": "o-mvdabxyv-utpq7df",
+          "name": "يحيى بن كثير",
+          "identityId": "n-mvd94jx1-9397oim"
+        },
+        {
+          "occurrenceId": "o-mvdabxyv-7afbgsz",
+          "name": "أبو قِلابة عبد الملك بن محمد",
+          "identityId": "n-mvdabxyv-luit7bp"
+        },
+        {
+          "occurrenceId": "o-mvdabxyv-44zkxge",
+          "name": "أبو الحُسين أحمد بن عثمان المقرئ",
+          "identityId": "n-mvdabxyv-1u3j3yr"
+        },
+        {
+          "occurrenceId": "o-mvdabxyv-h3cv6pt",
+          "name": "المستدرك 2097",
+          "identityId": "n-mvdabxyv-cgcbz8y"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvdabxyw-nwfqq6m",
+      "label": "الطريق 12",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mve03rao-v18x027",
+          "name": "أَبِي سَعِيدٍ الْخُدْرِيِّ (موقوف)",
+          "identityId": "n-mvd92kit-e7w1irr"
+        },
+        {
+          "occurrenceId": "o-mvdabxyv-oom3u4s",
+          "name": "قيس بن عُبَادٍ",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvdabxyv-5tvms22",
+          "name": "أبي مِجلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvdabxyv-lknzsrh",
+          "name": "أبي هاشم",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-fsqr5zn",
+          "name": "سفيان الثوري",
+          "identityId": "n-mvd9nzzp-h7628hv"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-evmjve8",
+          "name": "عبد الرحمن بن مهدي",
+          "identityId": "n-mvdabxyw-y0i8yeh"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-bd1hjra",
+          "name": "أحمد بن حنبل",
+          "identityId": "n-mvdabxyw-3xv01np"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-drd5014",
+          "name": "عبد الله بن أحمد بن حنبل",
+          "identityId": "n-mvdabxyw-nlf0o7m"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-k8gk9pf",
+          "name": "أحمد بن جعفر القَطِيعي",
+          "identityId": "n-mvdabxyw-id8d168"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-o8d16qb",
+          "name": "المستدرك 2098",
+          "identityId": "n-mvdabxyw-h31pxua"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvdabxyw-klh7rwc",
+      "label": "الطريق 13",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mve03mlv-p1t89fa",
+          "name": "أَبِي سَعِيدٍ الْخُدْرِيِّ (موقوف)",
+          "identityId": "n-mvd92kit-e7w1irr"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-ndt2tlo",
+          "name": "قيس بن عُبَادٍ",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-3szxosz",
+          "name": "أبي مِجلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-pqnb91p",
+          "name": "أبي هاشم",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-xoiz140",
+          "name": "سفيان الثوري",
+          "identityId": "n-mvd9nzzp-h7628hv"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-dhbcl9t",
+          "name": "عبد الرحمن بن مهدي",
+          "identityId": "n-mvdabxyw-y0i8yeh"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-y3nd137",
+          "name": "أبو موسى",
+          "identityId": "n-mvdabxyw-7fqf3fr"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-7uujxr2",
+          "name": "إبراهيم بن أبي طالب",
+          "identityId": "n-mvdabxyw-dbomun6"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-nrukvqr",
+          "name": "محمد بن موسى بن عِمران الفقيه",
+          "identityId": "n-mvdabxyw-fict7b2"
+        },
+        {
+          "occurrenceId": "o-mvdabxyw-f5s9359",
+          "name": "المستدرك 2098",
+          "identityId": "n-mvdabxyw-h31pxua"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvdaodfg-i18n2z9",
+      "label": "الطريق 14",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvdaodfg-n70rke0",
+          "name": "النبي ﷺ",
+          "identityId": "n-mvd94jx0-logds1z"
+        },
+        {
+          "occurrenceId": "o-mvdaodfg-7sml880",
+          "name": "أبي سعيد الخُدْري",
+          "identityId": "n-mvdabxyv-u9r5zfw"
+        },
+        {
+          "occurrenceId": "o-mvdaodfg-qopavqu",
+          "name": "قيس بن عُبَادٍ",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvdaodfg-4lgj6sr",
+          "name": "أبي مِجلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvdaodfg-irqqjdn",
+          "name": "أبو هاشم",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvdaodfg-s3w68r4",
+          "name": "هُشَيم",
+          "identityId": "n-mvdc3jmr-f6uubar"
+        },
+        {
+          "occurrenceId": "o-mvdaodfg-c6v40ke",
+          "name": "نُعَيم بن حمَّاد",
+          "identityId": "n-mvdaodfg-rnssz73"
+        },
+        {
+          "occurrenceId": "o-mvdaodfg-mexclup",
+          "name": "الفضل بن محمد الشَّعْراني",
+          "identityId": "n-mvdaodfg-ignqn6h"
+        },
+        {
+          "occurrenceId": "o-mvdaodfg-koku9zs",
+          "name": "أبو بكر محمد بن المؤمَّل",
+          "identityId": "n-mvdaodfg-p24odtv"
+        },
+        {
+          "occurrenceId": "o-mvdaodfg-d4j7e78",
+          "name": "المستدرك 3432",
+          "identityId": "n-mvdaodfg-ejket30"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvdate33-z9it4kc",
+      "label": "الطريق 15",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvdate33-qn46f2c",
+          "name": "النبي ﷺ",
+          "identityId": "n-mvd94jx0-logds1z"
+        },
+        {
+          "occurrenceId": "o-mvdate33-j67mply",
+          "name": "أَبِي سَعِيدٍ الْخُدْرِيِّ",
+          "identityId": "n-mvdabxyv-u9r5zfw"
+        },
+        {
+          "occurrenceId": "o-mvdate33-vux5jv5",
+          "name": "قَيْسِ بْنِ عُبَادٍ",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvdate33-b95jju1",
+          "name": "أَبِي مِجْلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvdate33-2s6watl",
+          "name": "أَبِي هَاشِمٍ الرُّمَّانِيِّ",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvdate33-jjwqr5a",
+          "name": "شُعْبَةُ",
+          "identityId": "n-mvdate33-ya8qxu4"
+        },
+        {
+          "occurrenceId": "o-mvdate33-977e3sc",
+          "name": "يَحْيَى بْنُ كَثِيرٍ الْعَنْبَرِيُّ",
+          "identityId": "n-mvd94jx1-9397oim"
+        },
+        {
+          "occurrenceId": "o-mvdate33-gkb4vj8",
+          "name": "يَحْيَى بْنُ مُحَمَّدِ بْنِ السَّكَنِ",
+          "identityId": "n-mvd94jx1-d6z5872"
+        },
+        {
+          "occurrenceId": "o-mvdate33-mbtatq7",
+          "name": "أَحْمَدُ",
+          "identityId": "n-mvdate33-sd3t7d0"
+        },
+        {
+          "occurrenceId": "o-mvdate33-1mid0hq",
+          "name": "الأوسط للطبراني 1455",
+          "identityId": "n-mvdate33-ygsfabr"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": "قال الطبراني: لَمْ يَرْوِ هَذَا الْحَدِيثَ مَرْفُوعًا عَنْ شُعْبَةَ إِلَّا يَحْيَى بْنُ كَثِيرٍ"
+    },
+    {
+      "id": "chain-mvdbjie6-clvbeug",
+      "label": "الطريق 16",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvdbjie5-hylnd3b",
+          "name": "النبي ﷺ",
+          "identityId": "n-mvd94jx0-logds1z"
+        },
+        {
+          "occurrenceId": "o-mvdbjie6-uib9o9t",
+          "name": "ابن عمر",
+          "identityId": "n-mvdbjie6-dd5xnm2"
+        },
+        {
+          "occurrenceId": "o-mvdbjie6-2c1jbnh",
+          "name": "نافع",
+          "identityId": "n-mvdbjie6-3vt14xc"
+        },
+        {
+          "occurrenceId": "o-mvdbjie6-nt0tz0m",
+          "name": "خالد بن سعيد بن أبي مريم",
+          "identityId": "n-mvdbjie6-3gjd381"
+        },
+        {
+          "occurrenceId": "o-mvdbkljx-16o71d9",
+          "name": "محمد بن خالد الختلي",
+          "identityId": "n-mvdbkljx-d7p2mrv"
+        },
+        {
+          "occurrenceId": "o-mvdc87zq-4kkqloc",
+          "name": "إسناد تفسير ابن مردويه",
+          "identityId": "n-mvdc87zq-8zaf21b"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": "قال ابن كثير: وروى الحافظ أبو بكر بن مردويه في تفسيره بإسناد له غريب ... وهذا الحديث في رفعه نظر، وأحسن أحواله الوقف"
+    },
+    {
+      "id": "chain-mvdbxc50-xhpqj3d",
+      "label": "الطريق 17",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvdbxc50-4vn1al2",
+          "name": "النبي ﷺ",
+          "identityId": "n-mvd94jx0-logds1z"
+        },
+        {
+          "occurrenceId": "o-mvdbxc50-hzglm0v",
+          "name": "عائشة",
+          "identityId": "n-mvdbxc50-ezw2c2z"
+        },
+        {
+          "occurrenceId": "o-mvdbxc50-rekn5zx",
+          "name": "عروة",
+          "identityId": "n-mvdbxc50-9st2kut"
+        },
+        {
+          "occurrenceId": "o-mvdbxc50-8pdfwwa",
+          "name": "هشام بن عروة",
+          "identityId": "n-mvdbxc50-o1ixnsm"
+        },
+        {
+          "occurrenceId": "o-mvdbxc50-jvodcee",
+          "name": "هشام بن عبد الله بن عكرمة المخزومي",
+          "identityId": "n-mvdbxc50-24ozuql"
+        },
+        {
+          "occurrenceId": "o-mvdbxc50-10l5po6",
+          "name": "عبد الرحمن بن هشام المخزومي",
+          "identityId": "n-mvdbxc50-qb7nvyd"
+        },
+        {
+          "occurrenceId": "o-mvdbxc50-iyjoxh7",
+          "name": "الديلمي [الضعيفة 2482]",
+          "identityId": "n-mvdbxc50-w9neh41"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": "قال الألباني: وهذا إسناد ضعيف جدا ... وابنه عبد الرحمن لم أجد له ترجمة الآن"
+    },
+    {
+      "id": "chain-mvdc3jmr-ogx5xa1",
+      "label": "الطريق 18",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mve03gkr-iz9m8no",
+          "name": "أَبِي سَعِيدٍ الْخُدْرِيِّ (موقوف)",
+          "identityId": "n-mvd92kit-e7w1irr"
+        },
+        {
+          "occurrenceId": "o-mvdc3jmr-7ivw8vv",
+          "name": "قَيْسِ بْنِ عُبَادٍ",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvdc3jmr-cdhu7sf",
+          "name": "أَبِي مِجْلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvdc3jmr-hun5adl",
+          "name": "أَبُو هَاشِمٍ",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvdc3jmr-e819t0c",
+          "name": "هُشَيْمٌ",
+          "identityId": "n-mvdc3jmr-f6uubar"
+        },
+        {
+          "occurrenceId": "o-mvdc3jmr-pzh840d",
+          "name": "أَبُو النُّعْمَانِ",
+          "identityId": "n-mvdc3jmr-9esm5wa"
+        },
+        {
+          "occurrenceId": "o-mvdc3jmr-eocz9t7",
+          "name": "الدارمي 3312",
+          "identityId": "n-mvdc3jmr-n2prpoi"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvdcc460-d9fm0o2",
+      "label": "الطريق 19",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvdcc460-dvgok2w",
+          "name": "النبي ﷺ",
+          "identityId": "n-mvd94jx0-logds1z"
+        },
+        {
+          "occurrenceId": "o-mvdcc460-c10gum7",
+          "name": "أبي سعيدٍ الخُدرِىِّ",
+          "identityId": "n-mvdabxyv-u9r5zfw"
+        },
+        {
+          "occurrenceId": "o-mvdcc460-gj88vke",
+          "name": "قَيسِ بنِ عُبَادٍ",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvdcc460-kgyp11c",
+          "name": "أبي مِجلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvdcc460-k4mdx4q",
+          "name": "أبو هاشِمٍ",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvdcc460-b874dcw",
+          "name": "هُشَيمٌ",
+          "identityId": "n-mvdc3jmr-f6uubar"
+        },
+        {
+          "occurrenceId": "o-mvdcc460-wlcgafu",
+          "name": "نُعَيمُ بنُ حَمّادٍ",
+          "identityId": "n-mvdcc460-xplxcaz"
+        },
+        {
+          "occurrenceId": "o-mvdcc460-1xt2z43",
+          "name": "الفَضلُ بنُ محمدٍ الشَّعرانِىُّ",
+          "identityId": "n-mvdcc460-cdnaa4n"
+        },
+        {
+          "occurrenceId": "o-mvdcc460-vkudqyv",
+          "name": "أبو بكرٍ محمدُ بنُ المُؤَمَّلِ",
+          "identityId": "n-mvdcc460-jalz7nm"
+        },
+        {
+          "occurrenceId": "o-mvdcc460-zfzvmsp",
+          "name": "محمدُ بنُ عبدِ اللَّهِ الحافظُ",
+          "identityId": "n-mvdcc460-okzsm32"
+        },
+        {
+          "occurrenceId": "o-mvdcc460-ru61oer",
+          "name": "البيهقي 6063 (6/451)",
+          "identityId": "n-mvdcc460-ddmzthn"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvdcszds-ep7i0c4",
+      "label": "الطريق 20",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvdcszds-x9n4xhg",
+          "name": "النبي ﷺ",
+          "identityId": "n-mvd94jx0-logds1z"
+        },
+        {
+          "occurrenceId": "o-mvdcszds-flcib1y",
+          "name": "عَلِيِّ",
+          "identityId": "n-mvdcszds-umgh2zx"
+        },
+        {
+          "occurrenceId": "o-mvdcszds-3djgw6m",
+          "name": "الْحُسَيْنِ",
+          "identityId": "n-mvdcszds-mh6p0d2"
+        },
+        {
+          "occurrenceId": "o-mvdcszds-ktutd7x",
+          "name": "عَلِيِّ بْنِ الْحُسَيْنِ",
+          "identityId": "n-mvdcszds-gw9tlto"
+        },
+        {
+          "occurrenceId": "o-mvdcszds-sx9kye4",
+          "name": "إسناد ضياء الدين المقدسي [2/49]",
+          "identityId": "n-mvdcszds-q5f8kbe"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": "زوائد الأحاديث المختارة - ص 60 والمغني لابن قدامة 3/236"
+    },
+    {
+      "id": "chain-mvdcxi6k-9aux7jk",
+      "label": "الطريق 23",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mve038rt-m730p82",
+          "name": "أَبِي سَعِيدٍ الْخُدْرِيِّ (موقوف)",
+          "identityId": "n-mvd92kit-e7w1irr"
+        },
+        {
+          "occurrenceId": "o-mvdcxi6k-7vhq238",
+          "name": "قيسِ بنِ عُبَادٍ",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvdcxi6k-1m9ed1n",
+          "name": "أبي مِجْلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvdcxi6k-tje0kq9",
+          "name": "أبو هاشمٍ",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvdcxi6k-j4eo3x5",
+          "name": "هُشيمٌ",
+          "identityId": "n-mvdc3jmr-f6uubar"
+        },
+        {
+          "occurrenceId": "o-mvdcxi6k-4jwpq9j",
+          "name": "سعيد بن منصور 1368",
+          "identityId": "n-mvdcxi6k-xv8mk7r"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": "",
+        "compiler": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvdznxck-wu6vai7",
+      "label": "",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mve03411-ogie4y1",
+          "name": "أَبِي سَعِيدٍ الْخُدْرِيِّ (موقوف)",
+          "identityId": "n-mvd92kit-e7w1irr"
+        },
+        {
+          "occurrenceId": "o-mvdznxcj-5n0bg36",
+          "name": "قَيْسِ بْنِ عَبَّادٍ",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mvdznxcj-r9uerf0",
+          "name": "أَبِي مِجْلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mvdznxck-yzok3h8",
+          "name": "أَبِي هَاشِمٍ",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mvdznxck-o2dlofp",
+          "name": "هُشَيْمٌ",
+          "identityId": "n-mvdc3jmr-f6uubar"
+        },
+        {
+          "occurrenceId": "o-mvdznxck-j04t5ox",
+          "name": "أَحْمَدُ بْنُ خَلَفٍ الْبَغْدَادِيُّ",
+          "identityId": "n-mvdznxck-lv8wxf5"
+        },
+        {
+          "occurrenceId": "o-mvdznxck-rdljbx4",
+          "name": "فضائل القرآن لابن الضريس 211",
+          "identityId": "n-mvdznxck-zph0z62"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "compiler": "",
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mvdzr4qc-qclrvxt",
+      "label": "",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mvdzr4qc-k9nz66e",
+          "name": "النبي ﷺ",
+          "identityId": "n-mvd94jx0-logds1z"
+        },
+        {
+          "occurrenceId": "o-mvdzr4qc-ui4ex72",
+          "name": "إِسْمَاعِيلَ بْنِ رَافِعٍ",
+          "identityId": "n-mvdzr4qc-ef7bjyf"
+        },
+        {
+          "occurrenceId": "o-mvdzr4qc-00s4bgw",
+          "name": "إِسْمَاعِيلُ بْنُ عَيَّاشٍ",
+          "identityId": "n-mvdzr4qc-2v3bnd6"
+        },
+        {
+          "occurrenceId": "o-mvdzr4qc-13g5ae3",
+          "name": "يَزِيدُ بْنُ عَبْدِ الْعَزِيزِ الطَّيَالِسِيُّ",
+          "identityId": "n-mvdzr4qc-5afkdzh"
+        },
+        {
+          "occurrenceId": "o-mvdzr4qc-34jxwkd",
+          "name": "فضائل القرآن لابن الضريس 203",
+          "identityId": "n-mvdzr4qc-qq9711i"
+        }
+      ],
+      "transmissions": [
+        "بلغنا",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "compiler": "",
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mve01fqz-mq80z58",
+      "label": "",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mve01w99-115n2yp",
+          "name": "أَبِي سَعِيدٍ الْخُدْرِيِّ (موقوف)",
+          "identityId": "n-mvd92kit-e7w1irr"
+        },
+        {
+          "occurrenceId": "o-mve01fqz-nse5sp3",
+          "name": "قَيْسِ بْنِ عَبَّادٍ",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mve01fqz-pvp1bo5",
+          "name": "أَبِي مِجْلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mve01fqz-g28a0na",
+          "name": "أَبُو هَاشِمٍ",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mve01fqz-7yqan7s",
+          "name": "هُشَيْمٌ",
+          "identityId": "n-mvdc3jmr-f6uubar"
+        },
+        {
+          "occurrenceId": "o-mve01fqz-7y0jbpf",
+          "name": "فضائل القرآن لأبي عبيد",
+          "identityId": "n-mve01fqz-tqy2aah"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "compiler": "",
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": ""
+      },
+      "note": ""
+    },
+    {
+      "id": "chain-mve07xrv-j1hhq1x",
+      "label": "",
+      "entryDirection": "compiler-to-source",
+      "narrators": [
+        {
+          "occurrenceId": "o-mve07xrv-tkdckt7",
+          "name": "أَبِي سَعِيدٍ الْخُدْرِيِّ (موقوف)",
+          "identityId": "n-mvd92kit-e7w1irr"
+        },
+        {
+          "occurrenceId": "o-mve07xrv-1ycugo5",
+          "name": "قيس بن عُبَادٍ",
+          "identityId": "n-mvdabxyv-tr9p56u"
+        },
+        {
+          "occurrenceId": "o-mve07xrv-k2eh3y8",
+          "name": "أَبِي مِجْلَزٍ",
+          "identityId": "n-mve01fqz-g5qeoh5"
+        },
+        {
+          "occurrenceId": "o-mve07xrv-mxcm9sa",
+          "name": "أَبِي هَاشِمٍ الرُّمَّانِيِّ",
+          "identityId": "n-mvdate33-0ez89uk"
+        },
+        {
+          "occurrenceId": "o-mve07xrv-a9zv6er",
+          "name": "هُشَيْمٌ",
+          "identityId": "n-mvdc3jmr-f6uubar"
+        },
+        {
+          "occurrenceId": "o-mve07xrv-xeromgw",
+          "name": "أحمد بن خلف البغدادي",
+          "identityId": "n-mve07xrv-xbsjsos"
+        },
+        {
+          "occurrenceId": "o-mve07xrv-fsonsg7",
+          "name": "محمد بن أيوب الرازي",
+          "identityId": "n-mve07xrv-vnqflqq"
+        },
+        {
+          "occurrenceId": "o-mve07xrv-decy7ry",
+          "name": "أحمد بن إسحاق بن نيخاب الطيبي",
+          "identityId": "n-mve07xrv-73pujuf"
+        },
+        {
+          "occurrenceId": "o-mve07xrv-joikmvl",
+          "name": "الحسن بن أبي بكر",
+          "identityId": "n-mve07xrv-3r9wwa1"
+        },
+        {
+          "occurrenceId": "o-mve07xrv-zoowskc",
+          "name": "تاريخ بغداد 5/221",
+          "identityId": "n-mve07xrv-igt1jxk"
+        }
+      ],
+      "transmissions": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "source": {
+        "compiler": "",
+        "book": "",
+        "volume": "",
+        "page": "",
+        "hadith": "",
+        "free": ""
+      },
+      "note": ""
+    }
+  ],
+  "nodes": {
+    "n-mvd92kit-e7w1irr": {
+      "name": "أَبِي سَعِيدٍ الْخُدْرِيِّ (موقوف)",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "companion",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdabxyv-tr9p56u": {
+      "name": "قيس بن عُبَادٍ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdate33-0ez89uk": {
+      "name": "أَبِي هَاشِمٍ الرُّمَّانِيِّ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-h7628hv": {
+      "name": "سفيان الثوري",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdabxyw-y0i8yeh": {
+      "name": "عبد الرحمن بن مهدي",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd92kit-wfiuupf": {
+      "name": "مُحَمَّدُ بْنُ بَشَّارٍ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd92kit-lhq57aq": {
+      "name": "سنن النسائي الكبرى 10724 (12/493)",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvd94jx0-logds1z": {
+      "name": "النبي ﷺ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdabxyv-u9r5zfw": {
+      "name": "أبي سعيد الخُدْري",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "companion",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdate33-ya8qxu4": {
+      "name": "شُعْبَةُ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd94jx1-9397oim": {
+      "name": "يَحْيَى بْنُ كَثِيرٍ أَبُو غَسَّانَ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd94jx1-d6z5872": {
+      "name": "يَحْيَى بْنُ مُحَمَّدِ بْنِ السَّكَنِ الْبَصْرِيُّ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd94jx1-4tsje9v": {
+      "name": "سنن النسائي الكبرى 10722 (12/492)",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvd95mp8-uc7huuf": {
+      "name": "مُحَمَّدٌ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd95mp8-28giu7g": {
+      "name": "سنن النسائي الكبرى 10723 (12/493)",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-84aom1w": {
+      "name": "قبيصة بن عقبة",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-p43iz2y": {
+      "name": "علي بن عبد الله بن المديني",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-7sstrf9": {
+      "name": "أبو شعيب الحراني",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-jjrloxf": {
+      "name": "أبو الحسن علي بن الفضل بن محمد بن عقيل",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-sjddumu": {
+      "name": "أبو نصر بن قتادة",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-mv6xzxi": {
+      "name": "شعب الإيمان 2776",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvdc3jmr-f6uubar": {
+      "name": "هُشَيْمٌ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-v3m738k": {
+      "name": "يزيد بن خالد بن يزيد",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-tk75cay": {
+      "name": "أسلم بن سهل الواسطي",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-90s3g6j": {
+      "name": "عبد الباقي بن قانع الحافظ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-myi8n9b": {
+      "name": "أبو عبد الله",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-z2chius": {
+      "name": "شعب الإيمان 2777",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-feamz0x": {
+      "name": "سعيد بن منصور",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-1g5cz5h": {
+      "name": "أحمد بن نجدة",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzq-6xpw24s": {
+      "name": "أبو منصور سليمان بن محمد بن الفضل بن جبريل البجلي",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzp-j9sl18n": {
+      "name": "شعب الإيمان 2220",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvd9nzzq-u2v6peu": {
+      "name": "أبو علي حامد بن محمد الرفاء",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzq-f23j2wd": {
+      "name": "أبو عبد الرحمن السلمي",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzq-blq60py": {
+      "name": "أبو قدامة",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzq-0yadyfe": {
+      "name": "أحمد بن النضر بن عبد الوهاب",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzq-wa5n4m9": {
+      "name": "عبد الله بن سعد",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvd9nzzq-aqcvmvf": {
+      "name": "شعب الإيمان 2221",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvdabxyv-luit7bp": {
+      "name": "أبو قِلابة عبد الملك بن محمد",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdabxyv-1u3j3yr": {
+      "name": "أبو الحُسين أحمد بن عثمان المقرئ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdabxyv-cgcbz8y": {
+      "name": "المستدرك 2097",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvdabxyw-3xv01np": {
+      "name": "أحمد بن حنبل",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdabxyw-nlf0o7m": {
+      "name": "عبد الله بن أحمد بن حنبل",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdabxyw-id8d168": {
+      "name": "أحمد بن جعفر القَطِيعي",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdabxyw-h31pxua": {
+      "name": "المستدرك 2098",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvdabxyw-7fqf3fr": {
+      "name": "أبو موسى",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdabxyw-dbomun6": {
+      "name": "إبراهيم بن أبي طالب",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdabxyw-fict7b2": {
+      "name": "محمد بن موسى بن عِمران الفقيه",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdaodfg-rnssz73": {
+      "name": "نُعَيم بن حمَّاد",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdaodfg-ignqn6h": {
+      "name": "الفضل بن محمد الشَّعْراني",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdaodfg-p24odtv": {
+      "name": "أبو بكر محمد بن المؤمَّل",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdaodfg-ejket30": {
+      "name": "المستدرك 3432",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvdate33-sd3t7d0": {
+      "name": "أَحْمَدُ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdate33-ygsfabr": {
+      "name": "الأوسط للطبراني 1455",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvdbjie6-dd5xnm2": {
+      "name": "ابن عمر",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "companion",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdbjie6-3vt14xc": {
+      "name": "نافع",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "tabii",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdbjie6-3gjd381": {
+      "name": "خالد بن سعيد بن أبي مريم",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdbkljx-d7p2mrv": {
+      "name": "محمد بن خالد الختلي",
+      "color": "",
+      "note": "قال ابن حجر: قال ابن الجوزي في الموضوعات كذبوه ... قال ابن مندة صاحب مناكير. [لسان الميزان 7/111]",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdc87zq-8zaf21b": {
+      "name": "إسناد تفسير ابن مردويه",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvdbxc50-ezw2c2z": {
+      "name": "عائشة",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "companion",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdbxc50-9st2kut": {
+      "name": "عروة",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "tabii",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdbxc50-o1ixnsm": {
+      "name": "هشام بن عروة",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdbxc50-24ozuql": {
+      "name": "هشام بن عبد الله بن عكرمة المخزومي",
+      "color": "",
+      "note": "قال ابن حبان: ينفرد بما لا أصل له من حديث هشام بن عروة، لا يعجبني الاحتجاج بخبره إذا انفرد",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdbxc50-qb7nvyd": {
+      "name": "عبد الرحمن بن هشام المخزومي",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdbxc50-w9neh41": {
+      "name": "الديلمي [الضعيفة 2482]",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvdc3jmr-9esm5wa": {
+      "name": "أَبُو النُّعْمَانِ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdc3jmr-n2prpoi": {
+      "name": "الدارمي 3312",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvdcc460-xplxcaz": {
+      "name": "نُعَيمُ بنُ حَمّادٍ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdcc460-cdnaa4n": {
+      "name": "الفَضلُ بنُ محمدٍ الشَّعرانِىُّ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdcc460-jalz7nm": {
+      "name": "أبو بكرٍ محمدُ بنُ المُؤَمَّلِ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdcc460-okzsm32": {
+      "name": "محمدُ بنُ عبدِ اللَّهِ الحافظُ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdcc460-ddmzthn": {
+      "name": "البيهقي 6063 (6/451)",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvdcszds-umgh2zx": {
+      "name": "عَلِيِّ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "companion",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdcszds-mh6p0d2": {
+      "name": "الْحُسَيْنِ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "companion",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdcszds-gw9tlto": {
+      "name": "عَلِيِّ بْنِ الْحُسَيْنِ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "tabii",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mvdcszds-q5f8kbe": {
+      "name": "إسناد ضياء الدين المقدسي [2/49]",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvdcxi6k-xv8mk7r": {
+      "name": "سعيد بن منصور 1368",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true,
+      "colorOverride": false
+    },
+    "n-mvdznxck-lv8wxf5": {
+      "name": "أَحْمَدُ بْنُ خَلَفٍ الْبَغْدَادِيُّ",
+      "color": "",
+      "colorOverride": false,
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false
+    },
+    "n-mvdznxck-zph0z62": {
+      "name": "فضائل القرآن لابن الضريس 211",
+      "color": "",
+      "colorOverride": false,
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true
+    },
+    "n-mvdzr4qc-ef7bjyf": {
+      "name": "إِسْمَاعِيلَ بْنِ رَافِعٍ",
+      "color": "",
+      "colorOverride": false,
+      "note": "قَالَ بَلَغَنَا",
+      "manualTier": 2,
+      "generation": "",
+      "isCompiler": false
+    },
+    "n-mvdzr4qc-2v3bnd6": {
+      "name": "إِسْمَاعِيلُ بْنُ عَيَّاشٍ",
+      "color": "",
+      "colorOverride": false,
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false
+    },
+    "n-mvdzr4qc-5afkdzh": {
+      "name": "يَزِيدُ بْنُ عَبْدِ الْعَزِيزِ الطَّيَالِسِيُّ",
+      "color": "",
+      "colorOverride": false,
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false
+    },
+    "n-mvdzr4qc-qq9711i": {
+      "name": "فضائل القرآن لابن الضريس 203",
+      "color": "",
+      "colorOverride": false,
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true
+    },
+    "n-mve01fqz-g5qeoh5": {
+      "name": "أَبِي مِجْلَزٍ",
+      "color": "",
+      "colorOverride": false,
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false
+    },
+    "n-mve01fqz-tqy2aah": {
+      "name": "فضائل القرآن لأبي عبيد",
+      "color": "",
+      "colorOverride": false,
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true
+    },
+    "n-mve07xrv-xbsjsos": {
+      "name": "أحمد بن خلف البغدادي",
+      "color": "",
+      "colorOverride": false,
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false
+    },
+    "n-mve07xrv-vnqflqq": {
+      "name": "محمد بن أيوب الرازي",
+      "color": "",
+      "colorOverride": false,
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false
+    },
+    "n-mve07xrv-73pujuf": {
+      "name": "أحمد بن إسحاق بن نيخاب الطيبي",
+      "color": "",
+      "colorOverride": false,
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false
+    },
+    "n-mve07xrv-3r9wwa1": {
+      "name": "الحسن بن أبي بكر",
+      "color": "",
+      "colorOverride": false,
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false
+    },
+    "n-mve07xrv-igt1jxk": {
+      "name": "تاريخ بغداد 5/221",
+      "color": "",
+      "colorOverride": false,
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": true
+    }
+  },
+  "edges": {
+    "n-mvd94jx0-logds1z→n-mvdzr4qc-ef7bjyf": {
+      "color": "#b56b16",
+      "note": ""
+    }
+  },
+  "projectNotes": [],
+  "positions": {}
+}

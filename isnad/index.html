@@ -67,6 +67,7 @@
         <label>عنوان المشجّر<input id="diagramTitle" value="مشجّر حديث"></label>
         <label>متن الحديث<textarea id="matnText" rows="4" placeholder="أدخل متن الحديث اختياريًا…"></textarea></label>
         <label>دراسة وإعداد<input id="researcherName" dir="auto" maxlength="500" placeholder="اسم الباحث — اختياري"></label>
+        <label>حالة البحث<select id="researchStatus"><option value="in-progress">قيد البحث</option><option value="complete">مكتمل</option></select></label>
         <label>ملاحظات الباحث<textarea id="researcherNotes" dir="auto" rows="3" placeholder="ملاحظات عامة منفصلة عن الحواشي المرقمة — اختياري"></textarea></label>
         <p id="projectDates" class="project-dates"></p>
         <label class="switch-row compact"><span><strong>إظهار المتن فوق المشجّر</strong><small>عنوان نصي مستقل لا يُنشئ عقدة أو وصلة.</small></span><input id="showMatn" type="checkbox" checked><i></i></label>
@@ -152,6 +153,6 @@
   <dialog id="endpointRoutesDialog"><form method="dialog" class="dialog-card"><button class="dialog-close" value="cancel" aria-label="إغلاق">×</button><span class="eyebrow">طرق هذه النهاية</span><h2 id="endpointRoutesTitle"></h2><div id="endpointRoutesList" class="endpoint-routes-list"></div></form></dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=34"></script>
+  <script src="app.js?v=35"></script>
 </body>
 </html>

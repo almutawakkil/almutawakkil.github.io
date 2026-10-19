@@ -4,10 +4,10 @@
   "name": "قراءة سورة الكهف يوم الجمعة",
   "title": "قراءة سورة الكهف يوم الجمعة",
   "matn": "",
-  "researcher": "",
+  "researcher": "إياس عدنان البربراوي",
   "researchNotes": "وروية من قول او فعل من دون الصحابة كخالد بن معدان (سعيد بن منصور 1367)، وأبي قلابة (شعب الإيمان 2239 وفضائل القرآن لابن الضريس 207)، والْمُهَلَّبِ (فضائل القرآن لابن الضريس 208). واستحب قراءتها الشافعي في الام وابن قدامة في المغني.",
   "createdAt": "2026-10-18T03:10:18.296Z",
-  "updatedAt": "2026-10-19T04:26:48.960Z",
+  "updatedAt": "2026-10-19T15:29:50.213Z",
   "settings": {
     "mergeExact": true,
     "focusNarratorId": "n-mvdate33-0ez89uk",
@@ -987,7 +987,7 @@
         {
           "occurrenceId": "o-mvdaodfg-c6v40ke",
           "name": "نُعَيم بن حمَّاد",
-          "identityId": "n-mvdaodfg-rnssz73"
+          "identityId": "n-mvdcc460-xplxcaz"
         },
         {
           "occurrenceId": "o-mvdaodfg-mexclup",
@@ -1317,12 +1317,12 @@
         {
           "occurrenceId": "o-mvdcc460-1xt2z43",
           "name": "الفَضلُ بنُ محمدٍ الشَّعرانِىُّ",
-          "identityId": "n-mvdcc460-cdnaa4n"
+          "identityId": "n-mvdaodfg-ignqn6h"
         },
         {
           "occurrenceId": "o-mvdcc460-vkudqyv",
           "name": "أبو بكرٍ محمدُ بنُ المُؤَمَّلِ",
-          "identityId": "n-mvdcc460-jalz7nm"
+          "identityId": "n-mvdaodfg-p24odtv"
         },
         {
           "occurrenceId": "o-mvdcc460-zfzvmsp",
@@ -2127,15 +2127,6 @@
       "isCompiler": false,
       "colorOverride": false
     },
-    "n-mvdaodfg-rnssz73": {
-      "name": "نُعَيم بن حمَّاد",
-      "color": "",
-      "note": "",
-      "manualTier": null,
-      "generation": "",
-      "isCompiler": false,
-      "colorOverride": false
-    },
     "n-mvdaodfg-ignqn6h": {
       "name": "الفضل بن محمد الشَّعْراني",
       "color": "",
@@ -2300,24 +2291,6 @@
     },
     "n-mvdcc460-xplxcaz": {
       "name": "نُعَيمُ بنُ حَمّادٍ",
-      "color": "",
-      "note": "",
-      "manualTier": null,
-      "generation": "",
-      "isCompiler": false,
-      "colorOverride": false
-    },
-    "n-mvdcc460-cdnaa4n": {
-      "name": "الفَضلُ بنُ محمدٍ الشَّعرانِىُّ",
-      "color": "",
-      "note": "",
-      "manualTier": null,
-      "generation": "",
-      "isCompiler": false,
-      "colorOverride": false
-    },
-    "n-mvdcc460-jalz7nm": {
-      "name": "أبو بكرٍ محمدُ بنُ المُؤَمَّلِ",
       "color": "",
       "note": "",
       "manualTier": null,

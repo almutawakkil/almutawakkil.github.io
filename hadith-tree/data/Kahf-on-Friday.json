@@ -7,7 +7,7 @@
   "researcher": "",
   "researchNotes": "وروية من قول او فعل من دون الصحابة كخالد بن معدان (سعيد بن منصور 1367)، وأبي قلابة (شعب الإيمان 2239 وفضائل القرآن لابن الضريس 207)، والْمُهَلَّبِ (فضائل القرآن لابن الضريس 208). واستحب قراءتها الشافعي في الام وابن قدامة في المغني.",
   "createdAt": "2026-10-18T03:10:18.296Z",
-  "updatedAt": "2026-10-18T15:56:46.697Z",
+  "updatedAt": "2026-10-19T04:26:48.960Z",
   "settings": {
     "mergeExact": true,
     "focusNarratorId": "n-mvdate33-0ez89uk",
@@ -161,9 +161,9 @@
       "entryDirection": "compiler-to-source",
       "narrators": [
         {
-          "occurrenceId": "o-mvd95mp8-35r58mn",
-          "name": "أبي سعيد الخُدْري",
-          "identityId": "n-mvdabxyv-u9r5zfw"
+          "occurrenceId": "o-mveqzvqp-6kr6bke",
+          "name": "أَبِي سَعِيدٍ الْخُدْرِيِّ (موقوف)",
+          "identityId": "n-mvd92kit-e7w1irr"
         },
         {
           "occurrenceId": "o-mvd95mp8-8t8gv5e",
@@ -226,9 +226,9 @@
       "entryDirection": "compiler-to-source",
       "narrators": [
         {
-          "occurrenceId": "o-mvd9nzzp-c1kzja1",
-          "name": "أبي سعيد الخُدْري",
-          "identityId": "n-mvdabxyv-u9r5zfw"
+          "occurrenceId": "o-mver3bh3-fywfbtj",
+          "name": "أَبِي سَعِيدٍ الْخُدْرِيِّ (موقوف)",
+          "identityId": "n-mvd92kit-e7w1irr"
         },
         {
           "occurrenceId": "o-mvd9nzzp-jc8b4xx",
@@ -1459,7 +1459,7 @@
     },
     {
       "id": "chain-mvdznxck-wu6vai7",
-      "label": "",
+      "label": "الطريق 21",
       "entryDirection": "compiler-to-source",
       "narrators": [
         {
@@ -1507,18 +1507,18 @@
         ""
       ],
       "source": {
-        "compiler": "",
         "book": "",
         "volume": "",
         "page": "",
         "hadith": "",
-        "free": ""
+        "free": "",
+        "compiler": ""
       },
       "note": ""
     },
     {
       "id": "chain-mvdzr4qc-qclrvxt",
-      "label": "",
+      "label": "الطريق 22",
       "entryDirection": "compiler-to-source",
       "narrators": [
         {
@@ -1554,18 +1554,18 @@
         ""
       ],
       "source": {
-        "compiler": "",
         "book": "",
         "volume": "",
         "page": "",
         "hadith": "",
-        "free": ""
+        "free": "",
+        "compiler": ""
       },
       "note": ""
     },
     {
       "id": "chain-mve01fqz-mq80z58",
-      "label": "",
+      "label": "الطريق 23",
       "entryDirection": "compiler-to-source",
       "narrators": [
         {
@@ -1607,18 +1607,18 @@
         ""
       ],
       "source": {
-        "compiler": "",
         "book": "",
         "volume": "",
         "page": "",
         "hadith": "",
-        "free": ""
+        "free": "",
+        "compiler": ""
       },
       "note": ""
     },
     {
       "id": "chain-mve07xrv-j1hhq1x",
-      "label": "",
+      "label": "الطريق 24",
       "entryDirection": "compiler-to-source",
       "narrators": [
         {
@@ -1684,12 +1684,12 @@
         ""
       ],
       "source": {
-        "compiler": "",
         "book": "",
         "volume": "",
         "page": "",
         "hadith": "",
-        "free": ""
+        "free": "",
+        "compiler": ""
       },
       "note": ""
     }
@@ -1706,6 +1706,15 @@
     },
     "n-mvdabxyv-tr9p56u": {
       "name": "قيس بن عُبَادٍ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
+    "n-mve01fqz-g5qeoh5": {
+      "name": "أَبِي مِجْلَزٍ",
       "color": "",
       "note": "",
       "manualTier": null,
@@ -2382,119 +2391,110 @@
     "n-mvdznxck-lv8wxf5": {
       "name": "أَحْمَدُ بْنُ خَلَفٍ الْبَغْدَادِيُّ",
       "color": "",
-      "colorOverride": false,
       "note": "",
       "manualTier": null,
       "generation": "",
-      "isCompiler": false
+      "isCompiler": false,
+      "colorOverride": false
     },
     "n-mvdznxck-zph0z62": {
       "name": "فضائل القرآن لابن الضريس 211",
       "color": "",
-      "colorOverride": false,
       "note": "",
       "manualTier": null,
       "generation": "",
-      "isCompiler": true
+      "isCompiler": true,
+      "colorOverride": false
     },
     "n-mvdzr4qc-ef7bjyf": {
       "name": "إِسْمَاعِيلَ بْنِ رَافِعٍ",
       "color": "",
-      "colorOverride": false,
       "note": "قَالَ بَلَغَنَا",
       "manualTier": 2,
       "generation": "",
-      "isCompiler": false
+      "isCompiler": false,
+      "colorOverride": false
     },
     "n-mvdzr4qc-2v3bnd6": {
       "name": "إِسْمَاعِيلُ بْنُ عَيَّاشٍ",
       "color": "",
-      "colorOverride": false,
       "note": "",
       "manualTier": null,
       "generation": "",
-      "isCompiler": false
+      "isCompiler": false,
+      "colorOverride": false
     },
     "n-mvdzr4qc-5afkdzh": {
       "name": "يَزِيدُ بْنُ عَبْدِ الْعَزِيزِ الطَّيَالِسِيُّ",
       "color": "",
-      "colorOverride": false,
       "note": "",
       "manualTier": null,
       "generation": "",
-      "isCompiler": false
+      "isCompiler": false,
+      "colorOverride": false
     },
     "n-mvdzr4qc-qq9711i": {
       "name": "فضائل القرآن لابن الضريس 203",
       "color": "",
-      "colorOverride": false,
       "note": "",
       "manualTier": null,
       "generation": "",
-      "isCompiler": true
-    },
-    "n-mve01fqz-g5qeoh5": {
-      "name": "أَبِي مِجْلَزٍ",
-      "color": "",
-      "colorOverride": false,
-      "note": "",
-      "manualTier": null,
-      "generation": "",
-      "isCompiler": false
+      "isCompiler": true,
+      "colorOverride": false
     },
     "n-mve01fqz-tqy2aah": {
       "name": "فضائل القرآن لأبي عبيد",
       "color": "",
-      "colorOverride": false,
       "note": "",
       "manualTier": null,
       "generation": "",
-      "isCompiler": true
+      "isCompiler": true,
+      "colorOverride": false
     },
     "n-mve07xrv-xbsjsos": {
       "name": "أحمد بن خلف البغدادي",
       "color": "",
-      "colorOverride": false,
       "note": "",
       "manualTier": null,
       "generation": "",
-      "isCompiler": false
+      "isCompiler": false,
+      "colorOverride": false
     },
     "n-mve07xrv-vnqflqq": {
       "name": "محمد بن أيوب الرازي",
       "color": "",
-      "colorOverride": false,
       "note": "",
       "manualTier": null,
       "generation": "",
-      "isCompiler": false
+      "isCompiler": false,
+      "colorOverride": false
     },
     "n-mve07xrv-73pujuf": {
       "name": "أحمد بن إسحاق بن نيخاب الطيبي",
       "color": "",
-      "colorOverride": false,
       "note": "",
       "manualTier": null,
       "generation": "",
-      "isCompiler": false
+      "isCompiler": false,
+      "colorOverride": false
     },
     "n-mve07xrv-3r9wwa1": {
       "name": "الحسن بن أبي بكر",
       "color": "",
-      "colorOverride": false,
       "note": "",
       "manualTier": null,
       "generation": "",
-      "isCompiler": false
+      "isCompiler": false,
+      "colorOverride": false
     },
     "n-mve07xrv-igt1jxk": {
       "name": "تاريخ بغداد 5/221",
       "color": "",
-      "colorOverride": false,
       "note": "",
       "manualTier": null,
       "generation": "",
-      "isCompiler": true
+      "isCompiler": true,
+      "colorOverride": false
     }
   },
   "edges": {

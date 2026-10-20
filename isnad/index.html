@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#173b32">
   <title>مُشَجِّر الأسانيد</title>
   <link rel="stylesheet" href="styles.css?v=8">
-  <link rel="stylesheet" href="refinements.css?v=10">
+  <link rel="stylesheet" href="refinements.css?v=11">
 </head>
 <body>
   <header class="topbar">
@@ -74,6 +74,12 @@
         <label class="switch-row compact"><span><strong>إظهار أسماء الطرق</strong></span><input id="showLegend" type="checkbox" checked><i></i></label>
         <label class="switch-row compact"><span><strong>إظهار صيغ الأداء</strong><small>يعرض الألفاظ التي أدخلها الباحث على الوصلات، من غير استنتاج آلي.</small></span><input id="showTransmission" type="checkbox"><i></i></label>
         <label class="switch-row compact"><span><strong>إظهار مفتاح تصنيفات الرواة</strong><small>تصنيفات يحددها الباحث يدويًا، ولا تُستنتج من طبقة الرسم.</small></span><input id="showRoleLegend" type="checkbox"><i></i></label>
+        <button id="openIdentityReview" class="ghost full" type="button">مراجعة هويات الرواة</button>
+        <p class="field-help">فحص اختياري محافظ للأسماء المتطابقة أو المتقاربة. لا يدمج التطبيق أي هوية تلقائيًا.</p>
+        <div class="divider"></div>
+        <h3>ملاحظات الطرق المختارة</h3>
+        <p class="field-help">ملاحظات بحثية اختيارية تربط مجموعة من هويات الرواة بالطرق المحفوظة التي تجمعهم.</p>
+        <div id="routeObservations" class="route-observations"></div>
         <button id="resetLayout" class="ghost full">إعادة ترتيب المشجّر</button>
         <p class="warning-text">لا يَحكم البرنامج على الرواة، ولا يتحقق من صحة الاتصال أو نسبة الخبر.</p>
       </section>
@@ -90,12 +96,26 @@
         <div class="stats" id="stats">جاهز</div>
         <div class="toolbar-actions">
           <button id="zoomOut" class="tool-button" title="تصغير">−</button><button id="zoomReset" class="tool-button" title="الحجم الأصلي">١٠٠٪</button><button id="zoomIn" class="tool-button" title="تكبير">+</button>
-          <button id="fitDiagram" class="tool-button">ملاءمة</button><button id="editLayout" class="tool-button" aria-pressed="false">تحريك يدوي</button><button id="clearFocus" class="tool-button hidden">إلغاء تركيز الراوي</button><button id="clearHighlight" class="tool-button hidden">إلغاء التمييز</button><button id="exportButton" class="primary">تصدير</button>
+          <button id="fitDiagram" class="tool-button">ملاءمة</button><button id="editLayout" class="tool-button" aria-pressed="false">تحريك يدوي</button><button id="multiNarratorMode" class="tool-button" aria-pressed="false">تحديد عدة رواة</button><button id="clearFocus" class="tool-button hidden">إلغاء تركيز الراوي</button><button id="clearHighlight" class="tool-button hidden">إلغاء التمييز</button><button id="exportButton" class="primary">تصدير</button>
         </div>
       </div>
       <div id="researcherDisplay" class="researcher-display hidden" dir="auto"></div>
       <div class="diagram-hint">انقر أي وصلة لتحرير حاشيتها و«صيغة الأداء». لا يفسّر الرسم لفظ «عن» ولا يحكم على الاتصال.</div>
       <div id="diagramViewport" class="diagram-viewport">
+        <section id="multiNarratorPanel" class="multi-narrator-panel hidden" dir="rtl" aria-live="polite">
+          <div class="multi-narrator-heading"><strong>استكشاف الطرق المشتركة</strong><button id="exitMultiNarrator" class="text-button" type="button">خروج</button></div>
+          <p id="multiNarratorHelp" class="field-help">اختر راويين أو أكثر من الرسم.</p>
+          <div id="multiNarratorNames" class="multi-narrator-names"></div>
+          <p id="multiNarratorCount" class="multi-narrator-count"></p>
+          <div id="multiNarratorMatches" class="multi-narrator-matches"></div>
+          <div class="row-actions"><button id="clearMultiNarrator" class="ghost" type="button">مسح الاختيار</button></div>
+          <details id="routeObservationComposer" class="route-observation-composer">
+            <summary>حفظ كملاحظة بحثية</summary>
+            <label>العنوان<input id="routeObservationTitle" maxlength="300" dir="auto"></label>
+            <label>تعليق اختياري<textarea id="routeObservationComment" rows="3" dir="auto"></textarea></label>
+            <button id="saveRouteObservation" class="primary full" type="button">حفظ الملاحظة</button>
+          </details>
+        </section>
         <div id="emptyState" class="empty-state hidden"><div class="empty-icon">⌁</div><h2>أضف إسنادًا لبدء الرسم</h2><p>سيُبنى المخطط تلقائيًا من غير إنشاء أي صلة لم تُدخلها.</p></div>
         <svg id="graph" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="مخطط الأسانيد"></svg>
       </div>
@@ -152,7 +172,9 @@
 
   <dialog id="endpointRoutesDialog"><form method="dialog" class="dialog-card"><button class="dialog-close" value="cancel" aria-label="إغلاق">×</button><span class="eyebrow">طرق هذه النهاية</span><h2 id="endpointRoutesTitle"></h2><div id="endpointRoutesList" class="endpoint-routes-list"></div></form></dialog>
 
+  <dialog id="identityReviewDialog"><form method="dialog" class="dialog-card identity-review-dialog"><button class="dialog-close" value="cancel" aria-label="إغلاق">×</button><span class="eyebrow">أداة اختيارية</span><h2>مراجعة هويات الرواة</h2><p class="field-help">يعرض الفحص حالات محافظة للمراجعة البشرية فقط. افحص السياق، ثم اترك الهويتين منفصلتين أو استخدم الدمج اليدوي المؤكد.</p><p id="identityReviewCount" class="identity-review-count"></p><div id="identityReviewList" class="identity-review-list"></div></form></dialog>
+
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=35"></script>
+  <script src="app.js?v=37"></script>
 </body>
 </html>

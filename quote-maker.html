@@ -6,7 +6,7 @@
   <title>Quote Maker · al-Mutawakkil</title>
 
   <!--
-    QUOTE MAKER — VERSION 1.1
+    QUOTE MAKER — VERSION 1.2
 
     Background files:
 
@@ -1555,7 +1555,10 @@
 
 
           img.onerror =
-            reject;
+            () => {
+              imageCache.delete(src);
+              reject(new Error(`Unable to load background: ${src}`));
+            };
 
 
           img.src =
@@ -2118,206 +2121,11 @@
   }
 
 
-  /*
-    ==================================================
-    ADAPTIVE FITTING
-    ==================================================
 
-    Important change:
 
-    We no longer depend heavily on arbitrary
-    character-count ranges.
 
-    Instead:
 
-      1. Pick an attractive starting size.
-      2. Actually wrap and measure the text.
-      3. Keep it if it fits.
-      4. Otherwise gently shrink.
 
-    Short quotations receive a larger
-    starting point because they SHOULD
-    dominate the available space.
-  */
-
-  function startingQuoteSize(
-    text,
-    arabic
-  ){
-
-    const cleanLength =
-      text
-        .replace(/\s/g,"")
-        .length;
-
-
-    /*
-      Universal quote sizing follows the former
-      Hadith treatment. Short quotations remain
-      prominent while leaving room for attribution.
-    */
-
-    if(arabic){
-
-      if(cleanLength <= 60){
-        return 180;
-      }
-
-      if(cleanLength <= 120){
-        return 166;
-      }
-
-      if(cleanLength <= 220){
-        return 150;
-      }
-
-      if(cleanLength <= 400){
-        return 136;
-      }
-
-      return 124;
-
-    }
-
-
-    return 122;
-
-  }
-
-
-  function fitQuote(
-    text,
-    maxWidth,
-    maxHeight,
-    arabic
-  ){
-
-    let size =
-      startingQuoteSize(
-        text,
-        arabic
-      );
-
-
-    const minSize =
-      arabic
-        ? 50
-        : 46;
-
-
-    while(
-      size >= minSize
-    ){
-
-      ctx.font =
-        quoteFont(
-          size,
-          400,
-          arabic
-        );
-
-
-      const lines =
-        wrapText(
-          text,
-          maxWidth
-        );
-
-
-      const multiplier =
-        arabic
-          ? getArabicLineHeightMultiplier(text)
-          : 1.38;
-
-
-      const lineHeight =
-        size
-        *
-        multiplier;
-
-
-      const totalHeight =
-        lines.length
-        *
-        lineHeight;
-
-
-      if(
-        totalHeight
-        <=
-        maxHeight
-      ){
-
-        return {
-
-          size,
-
-          lines,
-
-          lineHeight,
-
-          totalHeight
-
-        };
-
-      }
-
-
-      /*
-        Fine-grained shrinking makes
-        transitions less abrupt.
-      */
-
-      size -=
-        2;
-
-    }
-
-
-    ctx.font =
-      quoteFont(
-        minSize,
-        400,
-        arabic
-      );
-
-
-    const lines =
-      wrapText(
-        text,
-        maxWidth
-      );
-
-
-    const multiplier =
-      arabic
-        ? getArabicLineHeightMultiplier(text)
-        : 1.38;
-
-
-    const lineHeight =
-      minSize
-      *
-      multiplier;
-
-
-    return {
-
-      size:
-        minSize,
-
-      lines,
-
-      lineHeight,
-
-      totalHeight:
-        lines.length
-        *
-        lineHeight
-
-    };
-
-  }
 
 
   /*
@@ -2700,121 +2508,36 @@
     text, and may be left blank.
   */
 
-  function fitAttribution(
-    text,
-    maxWidth,
-    arabic,
-    ratio
-  ){
+  function fitAttribution(text,maxWidth,arabic,ratio,maxHeight){
+    if(!text){ return null; }
 
-    if(!text){
-      return null;
-    }
+    const maxSize = ratio === "4:5" ? 114 : 103;
+    const minSize = arabic ? 68 : 60;
+    const allowedHeight = Math.max(1,maxHeight || Infinity);
+    let best = null;
 
-
-    /*
-      Slightly quieter than the previous version.
-      The attribution should clearly introduce the
-      quotation without competing with the matn.
-      This is approximately an 8% reduction.
-    */
-
-    let size =
-      ratio === "4:5"
-        ? 114
-        : 103;
-
-
-    const minSize =
-      arabic
-        ? 68
-        : 60;
-
-
-    while(size >= minSize){
-
-      ctx.font =
-        quoteFont(
-          size,
-          700,
-          arabic
-        );
-
-
-      const lines =
-        wrapText(
-          text,
-          maxWidth
-        );
-
-
-      const multiplier =
-        arabic
-          ? Math.max(
-              1.48,
-              getArabicLineHeightMultiplier(text) * .80
-            )
-          : 1.30;
-
-
-      const lineHeight =
-        size * multiplier;
-
-
-      if(lines.length <= 2){
-
-        return {
-          size,
-          lines,
-          lineHeight,
-          totalHeight:
-            lines.length * lineHeight
-        };
-
-      }
-
-
-      size -= 2;
-
-    }
-
-
-    ctx.font =
-      quoteFont(
-        minSize,
-        700,
-        arabic
-      );
-
-
-    const lines =
-      wrapText(
-        text,
-        maxWidth
-      );
-
-
-    const multiplier =
-      arabic
-        ? Math.max(
-            1.48,
-            getArabicLineHeightMultiplier(text) * .80
-          )
+    function measureAttribution(size){
+      const font = quoteFont(size,700,arabic);
+      const multiplier = arabic
+        ? Math.max(1.48,getArabicLineHeightMultiplier(text)*.80)
         : 1.30;
+      const lineHeight = measuredLineAdvance(text,size,multiplier,font);
+      return measureWrappedBlock(text,maxWidth,size,font,lineHeight);
+    }
 
+    for(let low=minSize,high=maxSize;low<=high;){
+      const size = Math.floor((low+high)/2);
+      const candidate = measureAttribution(size);
+      if(candidate.totalHeight <= allowedHeight){
+        best = candidate;
+        low = size + 1;
+      }else{
+        high = size - 1;
+      }
+    }
 
-    const lineHeight =
-      minSize * multiplier;
-
-
-    return {
-      size:minSize,
-      lines,
-      lineHeight,
-      totalHeight:
-        lines.length * lineHeight
-    };
-
+    const result = best || measureAttribution(minSize);
+    return {...result,overflow:result.totalHeight > allowedHeight};
   }
 
 
@@ -2915,614 +2638,21 @@
   }
 
 
-  /*
-    ==================================================
-    SOURCE
-    ==================================================
 
-    Layout retained from the version
-    that worked well.
 
-    Short:
-      ~74%
-
-    Medium:
-      ~78%
-
-    Long:
-      ~83%
-  */
-
-function drawHadithSource(
-  config,
-  W,
-  H,
-  marginX,
-  quoteBottom,
-  source,
-  sourceArabic,
-  lineCount
-){
-
-  if(
-    !source
-  ){
-
-    return;
-
-  }
-
-
-  const sourceX =
-    state.align === "center"
-      ? W/2
-      : W-marginX;
-
-
-  /*
-    Slightly larger than before.
-  */
-
-  const sourceSize =
-    sourceArabic
-      ? 86
-      : 62;
-
-
-  /*
-    Source belongs in the
-    lower source position — not where
-    a speaker would normally sit.
-
-    Short:
-      ~79%
-
-    Medium:
-      ~81%
-
-    Long:
-      ~83%
-  */
-
-  let sourceRatio;
-
-
-  if(
-    lineCount <= 3
-  ){
-
-    sourceRatio =
-      state.ratio === "4:5"
-        ? .79
-        : .775;
-
-  }
-
-  else if(
-    lineCount <= 5
-  ){
-
-    sourceRatio =
-      state.ratio === "4:5"
-        ? .81
-        : .795;
-
-  }
-
-  else{
-
-    sourceRatio =
-      state.ratio === "4:5"
-        ? .83
-        : .81;
-
-  }
-
-
-  let sourceY =
-    H
-    *
-    sourceRatio;
-
-
-  /*
-    Never collide with the matn.
-  */
-
-  const minimumGap =
-    state.ratio === "4:5"
-      ? 110
-      : 88;
-
-
-  sourceY =
-    Math.max(
-      sourceY,
-      quoteBottom
-      +
-      minimumGap
-    );
-
-
-  /*
-    Preserve enough breathing room
-    above the watermark.
-  */
-
-  const maximumY =
-    state.ratio === "4:5"
-      ? H * .845
-      : H * .83;
-
-
-  sourceY =
-    Math.min(
-      sourceY,
-      maximumY
-    );
-
-
-  ctx.save();
-
-
-  ctx.fillStyle =
-    config.secondary;
-
-
-  ctx.globalAlpha =
-    .96;
-
-
-  ctx.shadowColor =
-    config.type === "image"
-      ? config.shadow
-      : "rgba(0,0,0,0)";
-
-
-  ctx.shadowBlur =
-    config.type === "image"
-      ? 12
-      : 0;
-
-
-  ctx.shadowOffsetY =
-    config.type === "image"
-      ? 2
-      : 0;
-
-
-  ctx.textBaseline =
-    "top";
-
-
-  ctx.textAlign =
-    state.align === "center"
-      ? "center"
-      : "right";
-
-
-  ctx.direction =
-    sourceArabic
-      ? "rtl"
-      : "ltr";
-
-
-  ctx.font =
-    metaFont(
-      sourceSize,
-      400,
-      sourceArabic
-    );
-
-
-  ctx.fillText(
-    source,
-    sourceX,
-    sourceY
-  );
-
-
-  ctx.restore();
-
-}
 
   
-  /*
-    ==================================================
-    WATERMARK
-    ==================================================
-
-    Important changes:
-
-      - Aref Ruqaa
-      - larger
-      - same theme color as metadata
-      - Paper therefore becomes dark brown
-        automatically
-  */
-
-  function drawWatermark(
-    config,
-    W,
-    H
-  ){
-
-    if(
-      !watermarkInput.checked
-      ||
-      !watermarkUnlocked
-    ){
-
-      return;
-
-    }
 
 
-    ctx.save();
 
 
-    /*
-      SAME COLOR AS SOURCE/SPEAKER.
-    */
-
-    ctx.fillStyle =
-      config.secondary;
 
 
-    ctx.globalAlpha =
-      .98;
-
-
-    ctx.shadowColor =
-      config.type === "image"
-        ? config.shadow
-        : "rgba(0,0,0,0)";
-
-
-    ctx.shadowBlur =
-      config.type === "image"
-        ? 14
-        : 0;
-
-
-    ctx.shadowOffsetY =
-      config.type === "image"
-        ? 3
-        : 0;
-
-
-    /*
-      ~10–12% larger.
-    */
-
-    ctx.font =
-      metaFont(
-        state.ratio === "4:5"
-          ? 114
-          : 104,
-        700,
-        true
-      );
-
-
-    ctx.textAlign =
-      "center";
-
-
-    ctx.textBaseline =
-      "middle";
-
-
-    ctx.direction =
-      "rtl";
-
-
-    /*
-      Footer position preserved.
-    */
-
-    const watermarkY =
-      state.ratio === "4:5"
-        ? H * .905
-        : H * .90;
-
-
-    ctx.fillText(
-      "المتوكل",
-      W/2,
-      watermarkY
-    );
-
-
-    ctx.restore();
-
-  }
 
 
   /*
     ==================================================
-    MAIN LAYOUT
-    ==================================================
-  */
-
-  function drawTextBlock(
-    config,
-    W,
-    H
-  ){
-
-    const quote =
-      quoteInput.value.trim()
-      ||
-      "اكتب النص هنا";
-
-
-    const attribution =
-      authorInput.value.trim();
-
-
-    const source =
-      sourceInput.value.trim();
-
-
-    const quoteArabic =
-      containsArabic(quote);
-
-
-    const attributionArabic =
-      containsArabic(attribution);
-
-
-    const sourceArabic =
-      containsArabic(source);
-
-
-    /*
-      Universal layout keeps the width and lower
-      metadata treatment of the former Hadith mode.
-    */
-
-    const marginX =
-      W * .072;
-
-
-    const maxWidth =
-      W
-      -
-      marginX * 2;
-
-
-    const attributionFit =
-      fitAttribution(
-        attribution,
-        maxWidth,
-        attributionArabic,
-        state.ratio
-      );
-
-
-    const attributionHeight =
-      attributionFit
-        ? attributionFit.totalHeight
-        : 0;
-
-
-    /*
-      Slightly more breathing room than the old
-      Hadith heading. Stacked harakat can extend
-      above/below the nominal letter box, so this
-      extra gap prevents visual crowding.
-    */
-
-    const attributionGap =
-      attributionFit
-        ? (
-            state.ratio === "4:5"
-              ? 142
-              : 124
-          )
-        : 0;
-
-
-    const groupSafeTop =
-      state.ratio === "4:5"
-        ? H * .10
-        : H * .085;
-
-
-    const groupSafeBottom =
-      state.ratio === "4:5"
-        ? H * .715
-        : H * .70;
-
-
-    const availableForQuote =
-      groupSafeBottom
-      -
-      groupSafeTop
-      -
-      attributionHeight
-      -
-      attributionGap;
-
-
-    const fitted =
-      fitQuote(
-        quote,
-        maxWidth,
-        availableForQuote,
-        quoteArabic
-      );
-
-
-    const groupHeight =
-      attributionHeight
-      +
-      attributionGap
-      +
-      fitted.totalHeight;
-
-
-    const visibleLineCount =
-      fitted.lines.filter(
-        line =>
-          !line.blank
-      ).length;
-
-
-    /*
-      Adaptive vertical balance. The entire attribution
-      + quotation composition moves as one unit. Short
-      compositions sit noticeably lower; medium and long
-      ones move progressively less; very long passages
-      keep the higher placement required for safe fitting.
-    */
-
-    let groupCenterRatio;
-
-
-    /*
-      The position is based on the ACTUAL rendered
-      height of attribution + gap + quotation, not
-      character count.
-
-      Short compositions move down the most.
-      Medium compositions move down moderately.
-      Long compositions move down only a little.
-      Very long compositions retain the higher
-      placement they need in order to fit safely.
-
-      The source and watermark remain fixed below.
-    */
-
-    if(groupHeight <= H * .24){
-
-      groupCenterRatio =
-        state.ratio === "4:5"
-          ? .530
-          : .510;
-
-    }
-
-    else if(groupHeight <= H * .40){
-
-      groupCenterRatio =
-        state.ratio === "4:5"
-          ? .470
-          : .450;
-
-    }
-
-    else if(groupHeight <= H * .62){
-
-      groupCenterRatio =
-        state.ratio === "4:5"
-          ? .432
-          : .415;
-
-    }
-
-    else{
-
-      groupCenterRatio =
-        state.ratio === "4:5"
-          ? .402
-          : .385;
-
-    }
-
-
-    let groupStartY =
-      H * groupCenterRatio
-      -
-      groupHeight / 2;
-
-
-    if(groupStartY < groupSafeTop){
-
-      groupStartY =
-        groupSafeTop;
-
-    }
-
-
-    if(
-      groupStartY
-      +
-      groupHeight
-      >
-      groupSafeBottom
-    ){
-
-      groupStartY =
-        groupSafeBottom
-        -
-        groupHeight;
-
-    }
-
-
-    let quoteStartY =
-      groupStartY;
-
-
-    if(attributionFit){
-
-      drawAttribution(
-        config,
-        attributionFit,
-        attributionArabic,
-        W,
-        groupStartY,
-        marginX
-      );
-
-
-      quoteStartY =
-        groupStartY
-        +
-        attributionHeight
-        +
-        attributionGap;
-
-    }
-
-
-    const quoteBottom =
-      drawMainQuote(
-        config,
-        fitted,
-        quoteArabic,
-        W,
-        quoteStartY,
-        marginX
-      );
-
-
-    drawHadithSource(
-      config,
-      W,
-      H,
-      marginX,
-      quoteBottom,
-      source,
-      sourceArabic,
-      visibleLineCount
-    );
-
-
-    drawWatermark(
-      config,
-      W,
-      H
-    );
-
-  }
-
-
-  /*
-    ==================================================
-    PRECISION LAYOUT v1.1
+    PRECISION LAYOUT v1.2
     ==================================================
 
     The renderer below replaces the earlier threshold-based
@@ -3533,6 +2663,20 @@ function drawHadithSource(
 
   function clamp(value,min,max){
     return Math.max(min,Math.min(max,value));
+  }
+
+
+  function measuredLineAdvance(text,size,multiplier,font){
+    ctx.font = font;
+    const metrics = ctx.measureText(text || "Hg");
+    const paintedHeight =
+      Number.isFinite(metrics.actualBoundingBoxAscent) &&
+      Number.isFinite(metrics.actualBoundingBoxDescent)
+        ? metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent
+        : size;
+
+    /* Keep the established rhythm while protecting unusually tall glyphs. */
+    return Math.max(size*multiplier,paintedHeight*1.12);
   }
 
 
@@ -3558,9 +2702,12 @@ function drawHadithSource(
 
     for(let low=minSize,high=maxSize;low<=high;){
       const size = Math.floor((low+high)/2);
-      const lineHeight = size * (arabic ? 1.50 : 1.32);
+      const font = metaFont(size,400,arabic);
+      const lineHeight = measuredLineAdvance(
+        text,size,arabic ? 1.50 : 1.32,font
+      );
       const measured = measureWrappedBlock(
-        text,maxWidth,size,metaFont(size,400,arabic),lineHeight
+        text,maxWidth,size,font,lineHeight
       );
 
       if(measured.totalHeight <= maxHeight){
@@ -3573,9 +2720,12 @@ function drawHadithSource(
 
     if(best){ return {...best,arabic,overflow:false}; }
 
-    const lineHeight = minSize * (arabic ? 1.50 : 1.32);
+    const font = metaFont(minSize,400,arabic);
+    const lineHeight = measuredLineAdvance(
+      text,minSize,arabic ? 1.50 : 1.32,font
+    );
     const measured = measureWrappedBlock(
-      text,maxWidth,minSize,metaFont(minSize,400,arabic),lineHeight
+      text,maxWidth,minSize,font,lineHeight
     );
     return {...measured,arabic,overflow:measured.totalHeight > maxHeight};
   }
@@ -3587,12 +2737,16 @@ function drawHadithSource(
     const hasEnglish = state.translationEnabled && !!translation;
     let best = null;
 
-    function measure(size){
-      const quoteLineHeight = size * (
-        quoteArabic ? getArabicLineHeightMultiplier(quote) : 1.38
+    function measureComposition(size){
+      const quoteTypeface = quoteFont(size,400,quoteArabic);
+      const quoteLineHeight = measuredLineAdvance(
+        quote,
+        size,
+        quoteArabic ? getArabicLineHeightMultiplier(quote) : 1.38,
+        quoteTypeface
       );
       const quoteFit = measureWrappedBlock(
-        quote,maxWidth,size,quoteFont(size,400,quoteArabic),quoteLineHeight
+        quote,maxWidth,size,quoteTypeface,quoteLineHeight
       );
 
       let englishFit = null;
@@ -3600,9 +2754,12 @@ function drawHadithSource(
 
       if(hasEnglish){
         const englishSize = clamp(Math.round(size * .62),34,82);
-        const englishLineHeight = englishSize * 1.43;
+        const englishTypeface = quoteFont(englishSize,400,false);
+        const englishLineHeight = measuredLineAdvance(
+          translation,englishSize,1.43,englishTypeface
+        );
         englishFit = measureWrappedBlock(
-          translation,maxWidth,englishSize,quoteFont(englishSize,400,false),englishLineHeight
+          translation,maxWidth,englishSize,englishTypeface,englishLineHeight
         );
         translationGap = clamp(size * .38,54,86);
       }
@@ -3618,7 +2775,7 @@ function drawHadithSource(
 
     for(let low=minQuote,high=maxQuote;low<=high;){
       const size = Math.floor((low+high)/2);
-      const candidate = measure(size);
+      const candidate = measureComposition(size);
       if(candidate.totalHeight <= maxHeight){
         best = candidate;
         low = size + 1;
@@ -3627,7 +2784,7 @@ function drawHadithSource(
       }
     }
 
-    const result = best || measure(minQuote);
+    const result = best || measureComposition(minQuote);
     result.overflow = result.totalHeight > maxHeight;
     return result;
   }
@@ -3733,8 +2890,12 @@ function drawHadithSource(
     const sourceHeight = sourceFit ? sourceFit.totalHeight : 0;
     const mainBottom = footerBottom - sourceHeight - sourceGap;
 
+    const attributionLimit = Math.max(
+      1,
+      Math.min(H*.18,mainBottom-safeTop-H*.22)
+    );
     const attributionFit = fitAttribution(
-      attribution,maxWidth,attributionArabic,state.ratio
+      attribution,maxWidth,attributionArabic,state.ratio,attributionLimit
     );
     const attributionHeight = attributionFit ? attributionFit.totalHeight : 0;
 
@@ -3780,7 +2941,7 @@ function drawHadithSource(
     if(sourceFit){
       const earliest = y + sourceGap;
       const latest = footerBottom - sourceHeight;
-      const preferred = Math.max(H*.76,earliest);
+      const preferred = earliest + Math.max(0,latest-earliest)*.62;
       const sourceY = clamp(preferred,earliest,Math.max(earliest,latest));
       drawSimpleBlock(
         config,sourceFit,W,sourceY,marginX,
@@ -3791,6 +2952,7 @@ function drawHadithSource(
     drawWatermark(config,W,H);
 
     const overflow = composition.overflow ||
+      (attributionFit && attributionFit.overflow) ||
       (sourceFit && sourceFit.overflow) ||
       groupHeight > regionHeight ||
       (sourceFit && y+sourceGap+sourceHeight > footerBottom);

@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#173b32">
   <title>مُشَجِّر الأسانيد</title>
   <link rel="stylesheet" href="styles.css?v=8">
-  <link rel="stylesheet" href="refinements.css?v=11">
+  <link rel="stylesheet" href="refinements.css?v=12">
 </head>
 <body>
   <header class="topbar">
@@ -104,7 +104,10 @@
       <div id="diagramViewport" class="diagram-viewport">
         <section id="multiNarratorPanel" class="multi-narrator-panel hidden" dir="rtl" aria-live="polite">
           <div class="multi-narrator-heading"><strong>استكشاف الطرق المشتركة</strong><button id="exitMultiNarrator" class="text-button" type="button">خروج</button></div>
-          <p id="multiNarratorHelp" class="field-help">اختر راويين أو أكثر من الرسم.</p>
+          <div class="observation-mode" role="group" aria-label="نوع العرض البحثي"><button id="summaryObservationType" class="mode-button active" type="button" aria-pressed="true">تلخيص الطرق</button><button id="selectiveObservationType" class="mode-button" type="button" aria-pressed="false">إبراز رواة معينين</button></div>
+          <div id="summaryModeControls" class="observation-mode" role="group" aria-label="طريقة مطابقة الطرق"><button id="comparisonMode" class="mode-button active" type="button" aria-pressed="true">المقارنة</button><button id="intersectionMode" class="mode-button" type="button" aria-pressed="false">الاشتراك</button></div>
+          <div id="selectiveControls" class="selective-controls hidden"><p class="field-help">اختر الرواة المستهدفين من الرسم، ثم عيّن الراوي المشترك. لا يفترض التطبيق رواية مباشرة بينهما.</p><button id="chooseSharedNarrator" class="ghost" type="button">اختيار الراوي المشترك من الرسم</button><p id="sharedNarratorName" class="shared-narrator-name">لم يُعيّن راوٍ مشترك.</p></div>
+          <p id="multiNarratorHelp" class="field-help">اختر راوياً واحدًا أو أكثر من الرسم.</p>
           <div id="multiNarratorNames" class="multi-narrator-names"></div>
           <p id="multiNarratorCount" class="multi-narrator-count"></p>
           <div id="multiNarratorMatches" class="multi-narrator-matches"></div>
@@ -113,6 +116,7 @@
             <summary>حفظ كملاحظة بحثية</summary>
             <label>العنوان<input id="routeObservationTitle" maxlength="300" dir="auto"></label>
             <label>تعليق اختياري<textarea id="routeObservationComment" rows="3" dir="auto"></textarea></label>
+            <div id="selectiveDraftFields" class="hidden"><label>النص البحثي المعتمد<textarea id="routeObservationText" rows="4" dir="rtl"></textarea></label><button id="generateObservationDraft" class="ghost full" type="button">إنشاء مسودة من البيانات الحالية</button><p class="field-help">المسودة قابلة للتحرير، ولا يعيد التطبيق كتابتها بعد الحفظ إلا بطلبك.</p></div>
             <button id="saveRouteObservation" class="primary full" type="button">حفظ الملاحظة</button>
           </details>
         </section>
@@ -154,6 +158,7 @@
 
   <dialog id="exportDialog"><form method="dialog" class="dialog-card"><button class="dialog-close" value="cancel" aria-label="إغلاق">×</button><span class="eyebrow">إخراج الرسم</span><h2>خيارات التصدير</h2>
     <label class="check-row"><input id="exportTitle" type="checkbox" checked> تضمين العنوان</label><label class="check-row"><input id="exportResearcher" type="checkbox" checked> إظهار اسم الباحث</label><label class="check-row"><input id="exportMatn" type="checkbox" checked> تضمين متن الحديث</label><label class="check-row"><input id="exportDiagram" type="checkbox" checked> تضمين الرسم</label><label class="check-row"><input id="exportRoleLegend" type="checkbox" checked> تضمين مفتاح تصنيفات الرواة</label><label class="check-row"><input id="exportSummary" type="checkbox" checked> تضمين ملخص البنية</label><label class="check-row"><input id="exportSources" type="checkbox" checked> تضمين المصادر</label><label class="check-row"><input id="exportNotes" type="checkbox" checked> تضمين الحواشي</label>
+    <label class="export-observation">ملاحظة بحثية اختيارية<select id="exportObservation"><option value="">دون ملاحظة بحثية</option></select></label><p class="field-help">لا تُضمّن أي ملاحظة إلا إذا اخترتها هنا صراحة.</p>
     <fieldset class="print-options"><legend>قائمة الأسانيد للطباعة</legend><label>اتجاه القائمة<select id="printChainDirection"><option value="compiler-to-source">من المصنّف إلى النبي ﷺ</option><option value="source-to-compiler">من النبي ﷺ إلى المصنّف</option></select></label><p class="field-help">تستخدم القائمة خياري المصادر والحواشي أعلاه، ولا تتضمن الرسم.</p></fieldset>
     <div class="row-actions"><button type="button" id="exportSvg" class="primary">تنزيل SVG</button><button type="button" id="exportPng" class="primary">تنزيل PNG عالي الدقة</button><button type="button" id="exportPdfReport" class="ghost">قائمة الأسانيد للطباعة</button></div><p class="field-help">تفتح صفحة نصية مستقلة؛ استخدم «طباعة / حفظ PDF» من المتصفح.</p>
   </form></dialog>
@@ -175,6 +180,6 @@
   <dialog id="identityReviewDialog"><form method="dialog" class="dialog-card identity-review-dialog"><button class="dialog-close" value="cancel" aria-label="إغلاق">×</button><span class="eyebrow">أداة اختيارية</span><h2>مراجعة هويات الرواة</h2><p class="field-help">يعرض الفحص حالات محافظة للمراجعة البشرية فقط. افحص السياق، ثم اترك الهويتين منفصلتين أو استخدم الدمج اليدوي المؤكد.</p><p id="identityReviewCount" class="identity-review-count"></p><div id="identityReviewList" class="identity-review-list"></div></form></dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=37"></script>
+  <script src="app.js?v=39"></script>
 </body>
 </html>

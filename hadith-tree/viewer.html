@@ -6,7 +6,7 @@
   <meta name="description" content="عارض عام لمشجّرات الأسانيد المنشورة.">
   <title>عرض المشجّر · المتوكل</title>
   <link rel="stylesheet" href="site.css">
-  <link rel="stylesheet" href="viewer.css?v=2">
+  <link rel="stylesheet" href="viewer.css?v=3">
 </head>
 <body>
   <header class="viewer-header">
@@ -68,6 +68,11 @@
         </section>
       </section>
 
+      <details id="researchObservations" class="reading-card observations-panel hidden">
+        <summary>ملاحظات بحثية منشورة</summary>
+        <div id="researchObservationsList" class="public-observations"></div>
+      </details>
+
       <details class="reading-card routes-panel">
         <summary>قائمة الطرق المسجلة <span id="routeCount"></span></summary>
         <ol id="routesList" class="routes-list"></ol>
@@ -83,6 +88,6 @@
   </main>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="viewer.js?v=3"></script>
+  <script src="viewer.js?v=5"></script>
 </body>
 </html>

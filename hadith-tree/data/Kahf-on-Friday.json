@@ -7,7 +7,7 @@
   "researcher": "إياس عدنان البربراوي",
   "researchNotes": "وروية من قول او فعل من دون الصحابة كخالد بن معدان (سعيد بن منصور 1367)، وأبي قلابة (شعب الإيمان 2239 وفضائل القرآن لابن الضريس 207)، والْمُهَلَّبِ (فضائل القرآن لابن الضريس 208). واستحب قراءتها الشافعي في الام وابن قدامة في المغني.",
   "createdAt": "2026-10-18T03:10:18.296Z",
-  "updatedAt": "2026-10-19T15:29:50.213Z",
+  "updatedAt": "2026-10-20T18:25:06.731Z",
   "settings": {
     "mergeExact": true,
     "focusNarratorId": "n-mvdate33-0ez89uk",
@@ -16,7 +16,11 @@
     "showMatn": true,
     "showTransmission": true,
     "showRoleLegend": false,
-    "entryDirection": "compiler-to-source"
+    "entryDirection": "compiler-to-source",
+    "identityReviewDismissed": [
+      "n-mvd92kit-e7w1irr::n-mvdabxyv-u9r5zfw",
+      "n-mvdabxyw-3xv01np::n-mvdabxyw-nlf0o7m"
+    ]
   },
   "chains": [
     {
@@ -1490,7 +1494,7 @@
         {
           "occurrenceId": "o-mvdznxck-j04t5ox",
           "name": "أَحْمَدُ بْنُ خَلَفٍ الْبَغْدَادِيُّ",
-          "identityId": "n-mvdznxck-lv8wxf5"
+          "identityId": "n-mve07xrv-xbsjsos"
         },
         {
           "occurrenceId": "o-mvdznxck-rdljbx4",
@@ -2127,6 +2131,15 @@
       "isCompiler": false,
       "colorOverride": false
     },
+    "n-mvdcc460-xplxcaz": {
+      "name": "نُعَيمُ بنُ حَمّادٍ",
+      "color": "",
+      "note": "",
+      "manualTier": null,
+      "generation": "",
+      "isCompiler": false,
+      "colorOverride": false
+    },
     "n-mvdaodfg-ignqn6h": {
       "name": "الفضل بن محمد الشَّعْراني",
       "color": "",
@@ -2289,15 +2302,6 @@
       "isCompiler": true,
       "colorOverride": false
     },
-    "n-mvdcc460-xplxcaz": {
-      "name": "نُعَيمُ بنُ حَمّادٍ",
-      "color": "",
-      "note": "",
-      "manualTier": null,
-      "generation": "",
-      "isCompiler": false,
-      "colorOverride": false
-    },
     "n-mvdcc460-okzsm32": {
       "name": "محمدُ بنُ عبدِ اللَّهِ الحافظُ",
       "color": "",
@@ -2361,8 +2365,8 @@
       "isCompiler": true,
       "colorOverride": false
     },
-    "n-mvdznxck-lv8wxf5": {
-      "name": "أَحْمَدُ بْنُ خَلَفٍ الْبَغْدَادِيُّ",
+    "n-mve07xrv-xbsjsos": {
+      "name": "أحمد بن خلف البغدادي",
       "color": "",
       "note": "",
       "manualTier": null,
@@ -2424,15 +2428,6 @@
       "isCompiler": true,
       "colorOverride": false
     },
-    "n-mve07xrv-xbsjsos": {
-      "name": "أحمد بن خلف البغدادي",
-      "color": "",
-      "note": "",
-      "manualTier": null,
-      "generation": "",
-      "isCompiler": false,
-      "colorOverride": false
-    },
     "n-mve07xrv-vnqflqq": {
       "name": "محمد بن أيوب الرازي",
       "color": "",
@@ -2477,5 +2472,6 @@
     }
   },
   "projectNotes": [],
-  "positions": {}
+  "positions": {},
+  "routeObservations": []
 }

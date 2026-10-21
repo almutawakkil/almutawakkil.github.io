@@ -6,7 +6,7 @@
   <title>Quote Maker · al-Mutawakkil</title>
 
   <!--
-    QUOTE MAKER — VERSION 1.2
+    QUOTE MAKER — VERSION 1.2.1
 
     Background files:
 
@@ -1916,7 +1916,7 @@
     const family =
       arabic
         ? '"Amiri"'
-        : 'Georgia';
+        : '"Amiri", "Times New Roman", serif';
 
 
     return `${weight} ${size}px ${family}`;
@@ -1933,7 +1933,7 @@
     const family =
       arabic
         ? '"Aref Ruqaa"'
-        : 'Georgia';
+        : '"Amiri", "Times New Roman", serif';
 
 
     return `${weight} ${size}px ${family}`;
@@ -2761,7 +2761,7 @@
         englishFit = measureWrappedBlock(
           translation,maxWidth,englishSize,englishTypeface,englishLineHeight
         );
-        translationGap = clamp(size * .38,54,86);
+        translationGap = clamp(size * .31,44,70);
       }
 
       return {

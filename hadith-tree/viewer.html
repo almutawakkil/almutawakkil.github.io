@@ -29,6 +29,7 @@
           <p id="projectMeta" class="project-meta"></p>
         </div>
         <div class="project-actions" aria-label="أدوات العرض والتصدير">
+          <label id="exportGroupsLabel" class="export-groups-toggle hidden"><input id="exportTransmissionGroups" type="checkbox" checked> ألوان الروايات</label>
           <button id="exportSvg" class="button secondary" type="button">تنزيل SVG</button>
           <button id="exportPng" class="button secondary" type="button">تنزيل PNG</button>
           <button id="exportPdf" class="button" type="button">طباعة / حفظ PDF</button>
@@ -53,6 +54,7 @@
           <summary>الطرق <span id="routeLegendCount"></span></summary>
           <div id="routeKey" class="role-key" aria-label="مفتاح ألوان الطرق"></div>
         </details>
+        <details id="transmissionGroupLegend" class="route-legend transmission-group-legend hidden" open><summary>مفتاح ألوان الروايات <span id="transmissionGroupLegendCount"></span></summary><div id="transmissionGroupKey" class="role-key"></div></details>
         <div id="roleKey" class="role-key hidden" aria-label="مفتاح ألوان طبقات الرواة"></div>
       </section>
 
@@ -88,6 +90,6 @@
   </main>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="viewer.js?v=8"></script>
+  <script src="viewer.js?v=9"></script>
 </body>
 </html>

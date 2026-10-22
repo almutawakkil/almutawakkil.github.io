@@ -74,6 +74,11 @@
         <label class="switch-row compact"><span><strong>إظهار أسماء الطرق</strong></span><input id="showLegend" type="checkbox" checked><i></i></label>
         <label class="switch-row compact"><span><strong>إظهار صيغ الأداء</strong><small>يعرض الألفاظ التي أدخلها الباحث على الوصلات، من غير استنتاج آلي.</small></span><input id="showTransmission" type="checkbox"><i></i></label>
         <label class="switch-row compact"><span><strong>إظهار مفتاح تصنيفات الرواة</strong><small>تصنيفات يحددها الباحث يدويًا، ولا تُستنتج من طبقة الرسم.</small></span><input id="showRoleLegend" type="checkbox"><i></i></label>
+        <details class="transmission-groups-panel"><summary>تمييز الروايات بالألوان</summary><div class="transmission-groups-body">
+          <label class="switch-row compact"><span><strong>إظهار تمييز الروايات</strong><small>تصنيفات يحددها الباحث للطرق المسجلة، وليست أحكامًا آلية.</small></span><input id="showTransmissionGroups" type="checkbox"><i></i></label>
+          <div id="transmissionGroupsList" class="transmission-groups-list"></div>
+          <div class="group-composer"><input id="newTransmissionGroupTitle" maxlength="80" placeholder="عنوان عربي قصير"><input id="newTransmissionGroupColor" type="color" value="#2f6fb0"><button id="addTransmissionGroup" class="ghost" type="button">إضافة مجموعة</button></div>
+        </div></details>
         <button id="openIdentityReview" class="ghost full" type="button">مراجعة هويات الرواة</button>
         <p class="field-help">فحص اختياري محافظ للأسماء المتطابقة أو المتقاربة. لا يدمج التطبيق أي هوية تلقائيًا.</p>
         <div class="divider"></div>
@@ -124,6 +129,7 @@
         <svg id="graph" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="مخطط الأسانيد"></svg>
       </div>
       <div id="roleKey" class="role-key hidden" aria-label="مفتاح تصنيفات الرواة"></div>
+      <details id="transmissionGroupLegend" class="transmission-group-legend hidden" open><summary>مفتاح ألوان الروايات <span id="transmissionGroupLegendCount"></span></summary><div id="transmissionGroupKey" class="role-key"></div></details>
       <details id="structureSummaryPanel" class="structure-summary-panel">
         <summary>ملخص بنية الأسانيد</summary>
         <div id="structureSummary" class="structure-summary"></div>
@@ -157,7 +163,7 @@
   </main>
 
   <dialog id="exportDialog"><form method="dialog" class="dialog-card"><button class="dialog-close" value="cancel" aria-label="إغلاق">×</button><span class="eyebrow">إخراج الرسم</span><h2>خيارات التصدير</h2>
-    <label class="check-row"><input id="exportTitle" type="checkbox" checked> تضمين العنوان</label><label class="check-row"><input id="exportResearcher" type="checkbox" checked> إظهار اسم الباحث</label><label class="check-row"><input id="exportMatn" type="checkbox" checked> تضمين متن الحديث</label><label class="check-row"><input id="exportDiagram" type="checkbox" checked> تضمين الرسم</label><label class="check-row"><input id="exportRoleLegend" type="checkbox" checked> تضمين مفتاح تصنيفات الرواة</label><label class="check-row"><input id="exportSummary" type="checkbox" checked> تضمين ملخص البنية</label><label class="check-row"><input id="exportSources" type="checkbox" checked> تضمين المصادر</label><label class="check-row"><input id="exportNotes" type="checkbox" checked> تضمين الحواشي</label>
+    <label class="check-row"><input id="exportTitle" type="checkbox" checked> تضمين العنوان</label><label class="check-row"><input id="exportResearcher" type="checkbox" checked> إظهار اسم الباحث</label><label class="check-row"><input id="exportMatn" type="checkbox" checked> تضمين متن الحديث</label><label class="check-row"><input id="exportDiagram" type="checkbox" checked> تضمين الرسم</label><label class="check-row"><input id="exportTransmissionGroups" type="checkbox" checked> تضمين ألوان الروايات ومفتاحها</label><label class="check-row"><input id="exportRoleLegend" type="checkbox" checked> تضمين مفتاح تصنيفات الرواة</label><label class="check-row"><input id="exportSummary" type="checkbox" checked> تضمين ملخص البنية</label><label class="check-row"><input id="exportSources" type="checkbox" checked> تضمين المصادر</label><label class="check-row"><input id="exportNotes" type="checkbox" checked> تضمين الحواشي</label>
     <label class="export-observation">ملاحظة بحثية اختيارية<select id="exportObservation"><option value="">دون ملاحظة بحثية</option></select></label><p class="field-help">لا تُضمّن أي ملاحظة إلا إذا اخترتها هنا صراحة.</p>
     <fieldset class="print-options"><legend>قائمة الأسانيد للطباعة</legend><label>اتجاه القائمة<select id="printChainDirection"><option value="compiler-to-source">من المصنّف إلى النبي ﷺ</option><option value="source-to-compiler">من النبي ﷺ إلى المصنّف</option></select></label><p class="field-help">تستخدم القائمة خياري المصادر والحواشي أعلاه، ولا تتضمن الرسم.</p></fieldset>
     <div class="row-actions"><button type="button" id="exportSvg" class="primary">تنزيل SVG</button><button type="button" id="exportPng" class="primary">تنزيل PNG عالي الدقة</button><button type="button" id="exportPdfReport" class="ghost">قائمة الأسانيد للطباعة</button></div><p class="field-help">تفتح صفحة نصية مستقلة؛ استخدم «طباعة / حفظ PDF» من المتصفح.</p>
@@ -180,6 +186,6 @@
   <dialog id="identityReviewDialog"><form method="dialog" class="dialog-card identity-review-dialog"><button class="dialog-close" value="cancel" aria-label="إغلاق">×</button><span class="eyebrow">أداة اختيارية</span><h2>مراجعة هويات الرواة</h2><p class="field-help">يعرض الفحص حالات محافظة للمراجعة البشرية فقط. افحص السياق، ثم اترك الهويتين منفصلتين أو استخدم الدمج اليدوي المؤكد.</p><p id="identityReviewCount" class="identity-review-count"></p><div id="identityReviewList" class="identity-review-list"></div></form></dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=42"></script>
+  <script src="app.js?v=43"></script>
 </body>
 </html>

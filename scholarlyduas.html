@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>أدعية العلماء · المتوكل</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Amiri", Georgia, serif;
+      background: #f6f5f0;
+      color: #1a1a18;
+      line-height: 1.7;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 900px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 42px 20px 32px;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+
+    header {
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto 28px;
+      direction: ltr;
+    }
+
+    .top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .arabic {
+      font-family: "Amiri", Georgia, serif;
+      font-size: 36px;
+      line-height: 1.1;
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .subtitle {
+      margin: 5px 0 0;
+      color: #6e6d67;
+      font-size: 16px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+      padding-bottom: 4px;
+    }
+
+    nav a {
+      font-family: "Amiri", Georgia, serif;
+      color: #6e6d67;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #27500a;
+    }
+
+    /* READER */
+
+    .reader {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 0;
+    }
+
+    .dhikr-card {
+      width: 100%;
+      min-height: 430px;
+
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 18px;
+
+      padding: 46px 42px 34px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dhikr-text {
+      width: 100%;
+      max-width: 760px;
+      margin: auto 0;
+
+      font-size: clamp(31px, 5vw, 44px);
+      line-height: 2.1;
+      font-weight: 400;
+
+      direction: rtl;
+      text-align: center;
+      white-space: pre-line;
+    }
+
+    .dhikr-text.medium {
+      font-size: clamp(27px, 4.4vw, 38px);
+      line-height: 2.5;
+    }
+
+    .dhikr-text.long {
+      font-size: clamp(23px, 3.8vw, 32px);
+      line-height: 2.5;
+    }
+
+    .dhikr-text.very-long {
+      font-size: clamp(19px, 3vw, 27px);
+      line-height: 2.5;
+    }
+
+    /* COUNTER */
+
+    .counter {
+      display: none;
+      margin-top: 18px;
+
+      font-family: "Amiri", Georgia, serif;
+      font-size: 21px;
+      line-height: 1.2;
+      font-weight: 400;
+
+      color: #8b8982;
+      direction: ltr;
+      text-align: center;
+
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .counter.complete {
+      color: #27500a;
+    }
+
+    .dhikr-card.countable {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ARROWS AND SOURCE */
+
+    .controls {
+      width: 100%;
+      max-width: 260px;
+      margin-top: 34px;
+
+      display: flex;
+      direction: ltr;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .arrow {
+      font-family: "Amiri", Georgia, serif;
+      appearance: none;
+      border: none;
+      background: transparent;
+      color: #77756e;
+
+      font-size: 34px;
+      line-height: 1;
+
+      padding: 10px 16px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .arrow:hover {
+      color: #27500a;
+      background: rgba(0,0,0,.035);
+    }
+
+    .arrow:disabled {
+      opacity: .22;
+      cursor: default;
+      background: transparent;
+    }
+
+    .source-marker {
+      font-family: "Amiri", Georgia, serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #9a9891;
+      direction: rtl;
+      unicode-bidi: isolate;
+      text-align: center;
+      min-width: 40px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+      .wrap {
+        padding: 28px 14px 18px;
+      }
+
+      header {
+        max-width: none;
+        margin-bottom: 18px;
+      }
+
+      .top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .arabic {
+        font-size: 32px;
+      }
+
+      nav {
+        gap: 14px;
+      }
+
+      nav a {
+        font-size: 15px;
+      }
+
+      .dhikr-card {
+        min-height: calc(100vh - 190px);
+        border-radius: 14px;
+        padding: 28px 20px 22px;
+      }
+
+      .dhikr-text {
+        font-size: clamp(29px, 8.5vw, 38px);
+        line-height: 1.95;
+      }
+
+      .dhikr-text.medium {
+        font-size: clamp(25px, 7.3vw, 33px);
+      }
+
+      .dhikr-text.long {
+        font-size: clamp(21px, 6vw, 28px);
+      }
+
+      .dhikr-text.very-long {
+        font-size: clamp(17px, 4.7vw, 23px);
+      }
+
+      .counter {
+        font-size: 19px;
+        margin-top: 14px;
+      }
+
+      .source-marker {
+        font-size: 15px;
+      }
+    }
+
+    /* DARK MODE */
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1b1a18;
+        color: #f2efe8;
+      }
+
+      .dhikr-card {
+        background: #22211f;
+        border-color: rgba(255,255,255,.08);
+      }
+
+      .subtitle,
+      nav a,
+      .arrow,
+      .source-marker,
+      .counter {
+        color: #9b9890;
+      }
+
+      nav a:hover,
+      nav a.active,
+      .arrow:hover,
+      .counter.complete {
+        color: #b8d98d;
+      }
+
+      .arrow:hover {
+        background: rgba(255,255,255,.04);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="wrap">
+
+    <header>
+      <div class="top">
+
+        <div>
+          <h1 class="arabic">المتوكل</h1>
+          <p class="subtitle">Islamic Library</p>
+        </div>
+
+        <nav>
+          <a href="index.html">Translated Works</a>
+          <a href="excerpts.html" lang="ar" dir="rtl">مختارات من التراث</a>
+          <a href="adhkar.html" class="active" lang="ar" dir="rtl">الأذكار</a>
+          <a href="tools.html">Tools</a>
+        </nav>
+
+      </div>
+    </header>
+
+
+    <section class="reader">
+
+      <div
+        id="dhikrCard"
+        class="dhikr-card">
+
+        <div
+          id="dhikrText"
+          class="dhikr-text">
+        </div>
+
+        <div
+          id="counter"
+          class="counter">
+        </div>
+
+        <div class="controls">
+
+          <button
+            id="previousButton"
+            class="arrow"
+            type="button"
+            aria-label="Previous">
+            ←
+          </button>
+
+          <span
+            id="sourceMarker"
+            class="source-marker">
+          </span>
+
+          <button
+            id="nextButton"
+            class="arrow"
+            type="button"
+            aria-label="Next">
+            →
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+const adhkar = [
+  "اللَّهُمَّ اجْعَلْ عَمَلِي كُلَّهُ صَالِحًا وَاجْعَلْهُ لِوَجْهِك خَالِصًا وَلَا تَجْعَلْ لِأَحَدِ فِيهِ شَيْئًا",
+  "اللهم اعصمنا بحفظك وثبتنا عَلَى أمرك",
+  "اللهم إنك تحول بين المرء وقلبه، فَحُلْ بيني وبين معاصيك",
+  "اللهم ٱ‎عصمني بدينك وطواعيتك وطواعية رسولك، اللهم جنبني حدودك، اللهم ٱ‎جعلني ممن يحبك، ويحب ملائكتك، ويحب رسلك، ويحب عبادك الصالحين، اللهم حببني إليك وإلى ملائكتك وإلى رسلك وإلى عبادك الصالحين، اللهم يسرني لليسرى وجنبني العسرى، واغفر لي في الآخرة والأولى، واجعلني من أئمة المتقين، واجعلني من ورثة جنة النعيم، واغفر لي خطيئتي يوم الدين، اللهم إنك قُلْتَ ﴿ٱدْعُونِىٓ أَسْتَجِبْ لَكُمْ﴾ وإنك لا تخلف الميعاد، اللهم إذ هديتني إلى الإسلام فلا تنزعني منه، ولا تنزعه مني حتى توفاني وأنا على الإسلام، اللهم لا تقدمني بعذاب، ولا تؤخرني لسيئ الفتن",
+  "اللَّهُمَّ تَقَبَّلْ شَفَاعَةَ مُحَمَّدٍ الْكُبْرَى، وَارْفَعْ دَرَجَتَهُ الْعُلْيَا، وَآتِهِ سُؤْلَهُ فِي الْآخِرَةِ وَالْأُولَى، كَمَا آتيْتَ إِبْرَاهِيمَ وَمُوسَى",
+  "اللهم لا تكلني إلى نفسي فأعجز عنها، ولا تكلني إلى المخلوقين فيضيعوني",
+  "عُبيدك بفنائك، مسكينك بفنائك، سائلك بفنائك، فقيرك بفنائك",
+  "كَمْ مِنْ نِعْمَةٍ أَنْعَمْتَهَا عَلَيَّ قَلَّ لَكَ عِنْدَهَا شُكْرِي، وَكَمْ مِنْ بَلِيَّةٍ ابْتَلَيْتَنِي بِهَا قَلَّ لَكَ عِنْدَهَا صَبْرَى، فَيَا مَنْ قَلَّ شُكْرِي عِنْدَ نِعْمَتِهِ فَلَمْ يَحْرِمْنِي، وَيَا مَنْ قَلَّ صَبْرِي عِنْدَ بَلَائِهِ فَلَمْ يَخْذُلْنِي، وَيَا مَنْ رَآنِي عَلَى الذُّنُوبِ الْعِظَامِ فَلَمْ يَفْضَحْنِي وَلَمْ يَهْتِكْ سِتْرِي\n\nوَيَا ذَا الْمَعْرُوفِ الَّذِي لَا يَنْقُصُنِي، وَيَا ذَا النِّعْمَةِ الَّتِي لَا تَحَوَّلُ وَلَا تَزُولُ، صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، وَاغْفِرْ لَنَا وَارْحَمْنَا",
+  "اللهم أصلح من كان في صلاحه صلاح لأمة محمد، اللهم أهلك من كان في هلاكه صلاح لأمة محمد ﷺ",
+  "اللهم إن لم أكن أهلا أن أبلغ رحمتك، فإن رحمتك أهل أن تبلغني، رحمتك وسعت كل شيء، وأنا شيء، فلتسعني رحمتك يا أرحم الراحمين\n\nاللهم إنك خلقت قوماً فأطاعوك فيما أمرتهم، وعملوا في الذي خلقتهم له، فرحمتك إياهم كانت قبل طاعتهم لك يا أرحم الراحمين",
+  "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ أَنْ أُبَدِّلَ نِعَمَكَ كُفْرًا، أَوْ أَكْفُرَهَا بَعْدَ مَعْرِفَتِهَا، أَوْ أَنْسَاهَا فَلَا أُثْنِيَ بِهَا",
+  "اللهُمَّ أَعِزَّنِي بِطَاعَتِكَ وَلَا تُخْزِنِي بِمَعْصِيَتِكَ، اللهُمَّ ارْزُقْنِي مُوَاسَاةَ مَنْ قَتَرْتَ عَلَيْهِ رِزْقَهُ بِمَا وَسَّعْتَ عَلَيَّ من فَضْلَكَ",
+  "اللهم إن ذنوبي عظمت وجلَّتْ، وأنت أعظم منها وأجل، فافعل بنا ما أنت أهله، ولا تفعل بنا ما نحن أهله",
+  "اللَّهمَّ إنِّي أستغفرُكَ ممَّا تُبتُ إليكَ منه ثمّ عُدتُ فيه، وأستغفرُكَ ممَّا جعلتُهُ لكَ على نفسي ثمَّ لم أَفِ لكَ به، وأستغفركَ ممَّا زعمتُ أنِّي أردتُ به وجهَك فخالطَ قلبي منه ما قد علمتَ",
+  "اللهم من كان على هوى أو على رأي وهو يظن أنه على الحق، وليس هو على الحق، فرده إلى الحق، حتى لا يضل من هذه الأمة أحد",
+  "اللهم كما صنت وجهي عن السجود لغيرك، فصن وجهي عن المسألة لغيرك",
+  "اللهم لا تؤاخذني بما يقولون، واغفر لي ما لا يعلمون، واجعلني خيرًا مما يظنون",
+  "اللهم يا معلم آدم وإبراهيم علمني، ويا مفهم سليمان فهمني",
+  "يا حي يا قيوم، لا إله إلا أنت، برحمتك أستغيث"
+];
+
+const sources = [
+  "عمر بن الخطاب",
+  "عمر بن الخطاب",
+  "",
+  "عبد الله بن عمر",
+  "ابن عباس",
+  "زين العابدين عليه السلام",
+  "زين العابدين عليه السلام",
+  "زين العابدين عليه السلام",
+  "عمر بن عبد العزيز",
+  "عمر بن عبد العزيز",
+  "عمر بن عبد العزيز",
+  "جعفر الصادق عليه السلام",
+  "",
+  "مطرف بن عبد الله",
+  "أحمد بن حنبل",
+  "أحمد بن حنبل",
+  "",
+  "ابن تيمية",
+  "ابن تيمية"
+];
+
+
+    // No repetition counters are assigned until you request them.
+    const countTargets = {};
+    const unlimitedCounters = {};
+    const counts = {};
+
+
+    let currentIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let swipeJustOccurred = false;
+
+
+    const dhikrCard =
+      document.getElementById("dhikrCard");
+
+    const dhikrText =
+      document.getElementById("dhikrText");
+
+    const counter =
+      document.getElementById("counter");
+
+    const sourceMarker =
+      document.getElementById("sourceMarker");
+
+    const previousButton =
+      document.getElementById("previousButton");
+
+    const nextButton =
+      document.getElementById("nextButton");
+
+
+    function isCountable() {
+
+      return Object.prototype.hasOwnProperty.call(
+        countTargets,
+        currentIndex
+      );
+
+    }
+
+
+    function renderCounter() {
+
+      if (!isCountable()) {
+
+        counter.style.display = "none";
+        counter.textContent = "";
+        counter.classList.remove("complete");
+        dhikrCard.classList.remove("countable");
+
+        return;
+
+      }
+
+
+      const currentCount =
+        counts[currentIndex];
+
+      const target =
+        countTargets[currentIndex];
+
+
+      counter.style.display = "block";
+      dhikrCard.classList.add("countable");
+
+
+      if (currentCount >= target) {
+
+        counter.textContent =
+          currentCount + " / " + target + "+ ✓";
+
+        counter.classList.add("complete");
+
+      }
+
+      else {
+
+        counter.textContent =
+          currentCount + " / " + target + "+";
+
+        counter.classList.remove("complete");
+
+      }
+
+    }
+
+
+    function renderDhikr() {
+
+      if (adhkar.length === 0) {
+        dhikrText.className = "dhikr-text";
+        dhikrText.textContent = "ستُضاف أدعية العلماء هنا";
+        sourceMarker.textContent = "";
+        previousButton.disabled = true;
+        nextButton.disabled = true;
+        renderCounter();
+        return;
+      }
+
+      const text =
+        adhkar[currentIndex];
+
+
+      dhikrText.textContent = text;
+
+
+      sourceMarker.textContent =
+        sources[currentIndex];
+
+
+      dhikrText.className = "dhikr-text";
+
+
+      if (text.length > 500) {
+
+        dhikrText.classList.add("very-long");
+
+      }
+
+      else if (text.length > 200) {
+
+        dhikrText.classList.add("long");
+
+      }
+
+      else if (text.length > 130) {
+
+        dhikrText.classList.add("medium");
+
+      }
+
+
+      renderCounter();
+
+
+      previousButton.disabled =
+        currentIndex === 0;
+
+      nextButton.disabled =
+        currentIndex === adhkar.length - 1;
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    /*
+      Tap the card to increase the counter.
+
+      Navigation controls never add a count.
+      A swipe also will not accidentally add a count.
+
+      Because this particular dhikr is 100 or more,
+      the counter continues after reaching 100.
+    */
+
+    dhikrCard.addEventListener(
+      "click",
+      function (event) {
+
+        if (
+          swipeJustOccurred ||
+          event.target.closest(".controls") ||
+          !isCountable()
+        ) {
+          return;
+        }
+
+
+        const target =
+          countTargets[currentIndex];
+
+        const isUnlimited =
+          unlimitedCounters[currentIndex] === true;
+
+
+        if (
+          isUnlimited ||
+          counts[currentIndex] < target
+        ) {
+
+          counts[currentIndex]++;
+
+          renderCounter();
+
+        }
+
+      }
+    );
+
+
+    previousButton.addEventListener(
+      "click",
+      function () {
+
+        if (currentIndex > 0) {
+
+          currentIndex--;
+
+          renderDhikr();
+
+        }
+
+      }
+    );
+
+
+    nextButton.addEventListener(
+      "click",
+      function () {
+
+        if (currentIndex < adhkar.length - 1) {
+
+          currentIndex++;
+
+          renderDhikr();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      function (event) {
+
+        if (
+          event.key === "ArrowLeft" &&
+          currentIndex > 0
+        ) {
+
+          currentIndex--;
+
+          renderDhikr();
+
+        }
+
+
+        if (
+          event.key === "ArrowRight" &&
+          currentIndex < adhkar.length - 1
+        ) {
+
+          currentIndex++;
+
+          renderDhikr();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "touchstart",
+      function (event) {
+
+        touchStartX =
+          event.changedTouches[0].screenX;
+
+        swipeJustOccurred = false;
+
+      },
+      { passive: true }
+    );
+
+
+    document.addEventListener(
+      "touchend",
+      function (event) {
+
+        touchEndX =
+          event.changedTouches[0].screenX;
+
+
+        const difference =
+          touchEndX - touchStartX;
+
+
+        if (Math.abs(difference) < 60) {
+
+          return;
+
+        }
+
+
+        swipeJustOccurred = true;
+
+
+        if (
+          difference < 0 &&
+          currentIndex < adhkar.length - 1
+        ) {
+
+          currentIndex++;
+
+          renderDhikr();
+
+        }
+
+
+        if (
+          difference > 0 &&
+          currentIndex > 0
+        ) {
+
+          currentIndex--;
+
+          renderDhikr();
+
+        }
+
+
+        setTimeout(
+          function () {
+
+            swipeJustOccurred = false;
+
+          },
+          300
+        );
+
+      },
+      { passive: true }
+    );
+
+
+    renderDhikr();
+
+  </script>
+
+</body>
+</html>
